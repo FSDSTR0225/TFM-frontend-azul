@@ -1,33 +1,23 @@
 import React from "react";
 import "./ModalMUI.css";
-import Backdrop from "@mui/material/Backdrop";
-import Box from "@mui/material/Box";
-import Modal from "@mui/material/Modal";
-import Fade from "@mui/material/Fade";
-import Typography from "@mui/material/Typography";
+import { Button, Box, Modal, Fade, Typography, Backdrop } from "@mui/material";
 import { PiSealCheckFill } from "react-icons/pi";
-import { green } from "@mui/material/colors";
+import { MdSmsFailed } from "react-icons/md";
+import { green, red, indigo } from "@mui/material/colors";
 
 export default function ModalMUI({
   isShowregisterModal,
   setIsShowregisterModal,
+  isModalSuccess,
 }) {
-  const success = green["800"];
-  const style = {
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    width: 500,
-    bgcolor: green[100],
-    border: `2px solid ${green["600"]}`,
-    boxShadow: 24,
-    p: 4,
-  };
-
-  //   const handleOpen = () => setIsShowregisterModal(true);
   const handleClose = () => setIsShowregisterModal(false);
 
+  const greenstyle = {
+    border: `2px solid ${green["600"]}`,
+  };
+  const redstyle = {
+    border: `2px solid ${red["600"]}`,
+  };
   return (
     <div>
       <Modal
@@ -45,23 +35,35 @@ export default function ModalMUI({
         }}
       >
         <Fade in={isShowregisterModal}>
-          <Box className="registerModal__Box" sx={style}>
-            <Typography
-              className="registerModal__Title"
-              id="transition-modal-title"
-              variant="h6"
-              component="h2"
-              color={success}
-            >
-              <PiSealCheckFill className="registerModal__icon" /> Awesome!
+          <Box
+            className="registerModal__Box"
+            sx={isModalSuccess ? greenstyle : redstyle}
+          >
+            {isModalSuccess ? (
+              <PiSealCheckFill className="registerModal__successicon" />
+            ) : (
+              <MdSmsFailed className="registerModal__failicon" />
+            )}
+            <Typography className="registerModal__Title" color={indigo["900"]}>
+              {isModalSuccess ? "Awesome!" : "Ooops.."}
+            </Typography>
+            <Typography className="registerModal__text" color={indigo["900"]}>
+              {isModalSuccess
+                ? " Now your are ready to play our games!"
+                : "Register Fail. Please try again Later"}
             </Typography>
             <Typography
-              className="registerModal__text"
-              id="transition-modal-description"
-              sx={{ mt: 2 }}
-              color={success}
+              className={isModalSuccess ? "modalFooter" : "modalFooter fail"}
             >
-              Now your are ready to play our games!
+              <Button
+                onClick={() => setIsShowregisterModal(false)}
+                className={
+                  isModalSuccess ? "modalFooter__btn" : "modalFooter__btn fail"
+                }
+                variant="contained"
+              >
+                {isModalSuccess ? "Start playing" : "OK try again"}
+              </Button>
             </Typography>
           </Box>
         </Fade>
