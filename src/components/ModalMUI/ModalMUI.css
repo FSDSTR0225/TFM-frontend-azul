@@ -1,0 +1,18 @@
+
+.registerModal__Box {
+  outline: none;
+}
+.registerModal__Title {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 2rem !important;
+  font-weight: 700;
+}
+.registerModal__icon{
+    font-size: 4rem;
+}
+.registerModal__text {
+  font-size: 1.2rem !important;
+  font-weight: 500;
+}

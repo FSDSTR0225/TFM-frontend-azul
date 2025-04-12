@@ -1,0 +1,23 @@
+:root {
+  --dark-blue: #003b5c;
+  --light-blue: #0095d9;
+  --light-green: #00b2a9;
+  --main-yellow: #ffdd00;
+  --light-orange: #ff6f61;
+  --white: #f0f4f8;
+  --dark-gray: rgb(69, 69, 69);
+  --light-gray: rgb(205, 205, 205);
+}
+@font-face {
+  font-family: Aladin;
+  src: url("./../public/fonts/Aladin/Aladin-Regular.ttf");
+}
+@font-face {
+  font-family: Fascinate;
+  src: url("./../public/fonts/Fascinate_Inline/FascinateInline-Regular.ttf");
+}
+
+body {
+  font-family: Aladin !important;
+  font-size: 16px;
+}

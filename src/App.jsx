@@ -1,14 +1,12 @@
 import React from "react";
+import "./styles/reset.css";
 import "./App.css";
+import Register from "./pages/Register";
 
-function App() {
+export default function App() {
   return (
-    <>
-      <div>
-        <h1>Welcome to React</h1>
-      </div>
-    </>
+    <div>
+      <Register />
+    </div>
   );
 }
-
-export default App;
