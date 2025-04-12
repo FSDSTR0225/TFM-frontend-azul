@@ -7,6 +7,7 @@ import ModalMUI from "../components/ModalMUI/ModalMUI";
 
 export default function Register() {
   const [isShowregisterModal, setIsShowregisterModal] = useState(false);
+  const [isModalSuccess, setIsModalSuccess] = useState(false);
   const url = "http://localhost:4000/users";
   const {
     register,
@@ -30,10 +31,17 @@ export default function Register() {
       .then((resposnse) => {
         console.log(resposnse);
         if (resposnse.status === 201) {
-          setIsShowregisterModal(true);
+          setIsModalSuccess(true);
+        } else {
+          setIsModalSuccess(false);
         }
+        setIsShowregisterModal(true);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        setIsModalSuccess(false);
+        setIsShowregisterModal(true);
+      });
   };
 
   return (
@@ -105,6 +113,7 @@ export default function Register() {
       <ModalMUI
         isShowregisterModal={isShowregisterModal}
         setIsShowregisterModal={setIsShowregisterModal}
+        isModalSuccess={isModalSuccess}
       />
     </div>
   );

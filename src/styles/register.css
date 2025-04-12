@@ -24,8 +24,6 @@
   display: flex;
   margin: 0 20rem;
 }
-.Register__fotoContainer {
-}
 .Register__foto {
   height: 100%;
   max-width: 30rem;
