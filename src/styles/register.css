@@ -1,0 +1,68 @@
+:root {
+  --dark-blue: #003b5c;
+  --light-blue: #0095d9;
+  --light-green: #00b2a9;
+  --main-yellow: #ffdd00;
+  --light-orange: #ff6f61;
+  --white: #f0f4f8;
+  --dark-gray: rgb(69, 69, 69);
+  --light-gray: rgb(205, 205, 205);
+}
+.Register {
+  width: 100%;
+  height: 100vh;
+  background-image: linear-gradient(
+    to bottom right,
+    var(--dark-blue),
+    var(--light-blue)
+  );
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.Register__wrapper {
+  display: flex;
+  margin: 0 20rem;
+}
+.Register__fotoContainer {
+}
+.Register__foto {
+  height: 100%;
+  max-width: 30rem;
+  border-radius: 40px 0 0 40px;
+}
+
+.RegisterForm__Container {
+  background-color: var(--white);
+  padding: 3rem;
+  border-radius: 0 10px 10px 0;
+}
+.RegisterForm__Title {
+  text-align: center;
+  padding: 2rem;
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--dark-blue);
+  margin-bottom: 2rem;
+}
+.RegisterForm {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.RegisterForm__input {
+  width: 20rem;
+}
+.RegisterForm__button {
+  font-size: larger;
+  border: none;
+  background-color: var(--dark-blue);
+  color: var(--white);
+  padding: 0.5rem;
+  margin-top: 2rem;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.RegisterForm__button:hover {
+  background-color: var(--light-blue);
+}
