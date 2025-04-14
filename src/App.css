@@ -10,11 +10,11 @@
 }
 @font-face {
   font-family: Aladin;
-  src: url("./../public/fonts/Aladin/Aladin-Regular.ttf");
+  src: url("/fonts/Aladin/Aladin-Regular.ttf");
 }
 @font-face {
   font-family: Fascinate;
-  src: url("./../public/fonts/Fascinate_Inline/FascinateInline-Regular.ttf");
+  src: url("/fonts/Fascinate_Inline/FascinateInline-Regular.ttf");
 }
 
 body {
