@@ -6,11 +6,12 @@ import { MdSmsFailed } from "react-icons/md";
 import { green, red, indigo } from "@mui/material/colors";
 
 export default function ModalMUI({
-  isShowregisterModal,
-  setIsShowregisterModal,
+  isShowModal,
+  setIsShowModal,
   isModalSuccess,
+  modalText,
 }) {
-  const handleClose = () => setIsShowregisterModal(false);
+  const handleClose = () => setIsShowModal(false);
 
   const greenstyle = {
     border: `2px solid ${green["600"]}`,
@@ -21,10 +22,8 @@ export default function ModalMUI({
   return (
     <div>
       <Modal
-        className="registerModal"
-        aria-labelledby="transition-modal-title"
-        aria-describedby="transition-modal-description"
-        open={isShowregisterModal}
+        className="modal"
+        open={isShowModal}
         onClose={handleClose}
         closeAfterTransition
         slots={{ backdrop: Backdrop }}
@@ -34,29 +33,27 @@ export default function ModalMUI({
           },
         }}
       >
-        <Fade in={isShowregisterModal}>
+        <Fade in={isShowModal}>
           <Box
-            className="registerModal__Box"
+            className="modal__Box"
             sx={isModalSuccess ? greenstyle : redstyle}
           >
             {isModalSuccess ? (
-              <PiSealCheckFill className="registerModal__successicon" />
+              <PiSealCheckFill className="modal__successicon" />
             ) : (
-              <MdSmsFailed className="registerModal__failicon" />
+              <MdSmsFailed className="modal__failicon" />
             )}
-            <Typography className="registerModal__Title" color={indigo["900"]}>
+            <Typography className="modal__Title" color={indigo["900"]}>
               {isModalSuccess ? "Awesome!" : "Ooops.."}
             </Typography>
-            <Typography className="registerModal__text" color={indigo["900"]}>
-              {isModalSuccess
-                ? " Now your are ready to play our games!"
-                : "Register Fail. Please try again Later"}
+            <Typography className="modal__text" color={indigo["900"]}>
+              {isModalSuccess ? modalText.success : modalText.fail}
             </Typography>
             <Typography
               className={isModalSuccess ? "modalFooter" : "modalFooter fail"}
             >
               <Button
-                onClick={() => setIsShowregisterModal(false)}
+                onClick={() => setIsShowModal(false)}
                 className={
                   isModalSuccess ? "modalFooter__btn" : "modalFooter__btn fail"
                 }
