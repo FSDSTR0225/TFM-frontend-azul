@@ -1,13 +1,3 @@
-:root {
-  --dark-blue: #003b5c;
-  --light-blue: #0095d9;
-  --light-green: #00b2a9;
-  --main-yellow: #ffdd00;
-  --light-orange: #ff6f61;
-  --white: #f0f4f8;
-  --dark-gray: rgb(69, 69, 69);
-  --light-gray: rgb(205, 205, 205);
-}
 .Register {
   width: 100%;
   height: 100vh;
@@ -22,25 +12,18 @@
 }
 .Register__wrapper {
   display: flex;
-  margin: 0 20rem;
 }
-.Register__fotoContainer {
-}
-.Register__foto {
-  height: 100%;
-  max-width: 30rem;
-  border-radius: 40px 0 0 40px;
-}
-
 .RegisterForm__Container {
   background-color: var(--white);
   padding: 3rem;
-  border-radius: 0 10px 10px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
 }
 .RegisterForm__Title {
   text-align: center;
-  padding: 2rem;
-  font-size: 2rem;
+  font-size: 2.5rem;
   font-weight: 800;
   color: var(--dark-blue);
   margin-bottom: 2rem;
@@ -59,10 +42,48 @@
   background-color: var(--dark-blue);
   color: var(--white);
   padding: 0.5rem;
-  margin-top: 2rem;
+  margin-top: 2rem !important;
   cursor: pointer;
   border-radius: 5px;
 }
 .RegisterForm__button:hover {
   background-color: var(--light-blue);
+}
+@media only screen and (max-width: 900px) {
+  /* Mobile Size */
+  .Register__wrapper {
+    flex-direction: column;
+  }
+  .Register__fotoContainer {
+    overflow: hidden;
+    height: 10rem;
+  }
+  .Register__foto {
+    /* max-height: 5rem; */
+    width: 100%;
+    border-radius: 20px 20px 0 0;
+  }
+  .RegisterForm__Container {
+    border-radius: 0 0 20px 20px;
+  }
+  .RegisterForm__Title {
+    padding: 1rem;
+  }
+}
+/* Desktop Size */
+@media only screen and (min-width: 900px) {
+  .Register__wrapper {
+    flex-direction: row;
+  }
+  .Register__foto {
+    height: 100%;
+    max-width: 30rem;
+    border-radius: 90px 0 0 90px;
+  }
+  .RegisterForm__Container {
+    border-radius: 0 40px 40px 0;
+  }
+  .RegisterForm__Title {
+    padding: 2rem;
+  }
 }
