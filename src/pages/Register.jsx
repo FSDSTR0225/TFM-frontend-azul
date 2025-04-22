@@ -17,7 +17,7 @@ export default function Register() {
     success: "Now your are ready to play our games!",
     fail: "Register Fail. Please try again Later",
   };
-  const url = "http://localhost:4000/users";
+  const url = "http://localhost:3000/users/register";
   const {
     register,
     handleSubmit,
@@ -32,9 +32,9 @@ export default function Register() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        userName: formDatas.fullName,
-        password: formDatas.password,
+        username: formDatas.username,
         email: formDatas.email,
+        password: formDatas.password,
       }),
     })
       .then((resposnse) => {
@@ -68,18 +68,18 @@ export default function Register() {
             <TextField
               type="text"
               className="RegisterForm__input"
-              {...register("fullName", {
+              {...register("username", {
                 required: true,
                 maxLength: 20,
                 minLength: 6,
               })}
-              aria-invalid={errors.fullName ? "true" : "false"}
-              error={errors.fullName}
+              aria-invalid={errors.username ? "true" : "false"}
+              error={errors.username}
               // id="standard-error-helper-text"
-              label="Fullname"
+              label="Username"
               defaultValue=""
               helperText={
-                errors.fullName ? "Please enter valid fullname!" : null
+                errors.username ? "Please enter valid username!" : null
               }
               // color=""
               variant="standard"
