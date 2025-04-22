@@ -1,3 +1,22 @@
+@import url("https://fonts.googleapis.com/css2?family=Audiowide&family=Poppins:wght@400;600&display=swap");
+
+body {
+  font-family: "Poppins", sans-serif;
+}
+
+h1,
+h2,
+h3,
+.logo {
+  font-family: "Audiowide", cursive;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 :root {
   --dark-blue: #003b5c;
   --light-blue: #0095d9;
@@ -8,6 +27,9 @@
   --dark-gray: rgb(69, 69, 69);
   --light-gray: rgb(205, 205, 205);
 }
+
+/* 
+
 @font-face {
   font-family: Aladin;
   src: url("/fonts/Aladin/Aladin-Regular.ttf");
@@ -20,4 +42,4 @@
 body {
   font-family: Aladin !important;
   font-size: 16px;
-}
+} */

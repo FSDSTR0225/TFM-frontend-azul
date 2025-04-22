@@ -1,0 +1,108 @@
+.user-section {
+  margin: 3rem 0;
+}
+
+.user-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.user-card {
+  background: rgb(203, 247, 203);
+  border: 1px solid #090909;
+  border-radius: 12px;
+  padding: 1rem;
+  width: 200px;
+  box-shadow: 0 0 15px #ff00ff88;
+  background-image: url("../assets/game-controller.png");
+  background-repeat: no-repeat;
+  background-size: 50px;
+  background-position: top right;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.user-card:hover {
+  transform: scale(1.05);
+}
+
+.user-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-bottom: 0.5rem;
+  border: 2px solid #000000d3;
+  background-color: rgb(207, 241, 242);
+}
+
+.username {
+  font-size: 1.2rem;
+  margin: 0.5rem 0;
+  color: #060606;
+}
+
+.user-genres {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  justify-content: center;
+}
+
+.genre-tag {
+  background: #0122f84c;
+  color: #030303;
+  border: 1px solid #f6f3f6;
+  border-radius: 20px;
+  padding: 4px 8px;
+  font-size: 0.8rem;
+}
+
+/* .user-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+}
+.user-card {
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #b4c35f;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.user-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.user-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+
+.username {
+  margin-bottom: 10px;
+  font-size: 18px;
+  color: #1f1f1f;
+}
+
+.user-genres {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.genre-tag {
+  background-color: #6669fc;
+  color: #fdfdff;
+  padding: 4px 10px;
+  border-radius: 14px;
+  font-size: 12px;
+} */
