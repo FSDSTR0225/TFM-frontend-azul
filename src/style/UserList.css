@@ -1,62 +1,81 @@
 .user-section {
-  margin: 3rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .user-list {
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
+  overflow-x: auto;
   gap: 2rem;
+  padding: 1rem;
+  scroll-snap-type: x mandatory;
 }
 
 .user-card {
-  background: rgb(203, 247, 203);
-  border: 1px solid #090909;
-  border-radius: 12px;
-  padding: 1rem;
-  width: 200px;
-  box-shadow: 0 0 15px #ff00ff88;
-  background-image: url("../assets/game-controller.png");
-  background-repeat: no-repeat;
-  background-size: 50px;
-  background-position: top right;
+  scroll-snap-align: center;
+  min-width: 220px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  padding: 1.5rem;
   text-align: center;
+  color: #fff;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 255, 255, 0.15);
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
   transition: transform 0.3s ease;
 }
 
-.user-card:hover {
-  transform: scale(1.05);
-}
-
 .user-avatar {
-  width: 80px;
-  height: 80px;
+  width: 70px;
+  height: 70px;
   border-radius: 50%;
-  margin-bottom: 0.5rem;
-  border: 2px solid #000000d3;
-  background-color: rgb(207, 241, 242);
+  border: 2px solid #00ffff;
+  margin-bottom: 1rem;
+  background-color: rgba(0, 255, 255, 0.2);
 }
 
 .username {
-  font-size: 1.2rem;
-  margin: 0.5rem 0;
-  color: #060606;
+  font-family: "Audiowide", sans-serif;
+  font-size: 1rem;
+  color: #00ffff;
+  margin-bottom: 0.5rem;
 }
 
 .user-genres {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.4rem;
   justify-content: center;
+  gap: 0.4rem;
+  margin: 0.5rem 0 1rem;
 }
 
 .genre-tag {
-  background: #0122f84c;
-  color: #030303;
-  border: 1px solid #f6f3f6;
+  background: rgba(0, 255, 255, 0.1);
+  border: 1px solid #00ffff99;
+  color: #ffffffdd;
+  padding: 4px 10px;
   border-radius: 20px;
-  padding: 4px 8px;
+  font-size: 0.75rem;
+}
+
+.user-card button {
+  background: linear-gradient(90deg, #00d1ff, #007cf0);
+  color: white;
+  border: none;
+  padding: 0.4rem 1rem;
+  margin: 0.2rem;
+  border-radius: 30px;
+  font-weight: bold;
+  cursor: pointer;
   font-size: 0.8rem;
+  transition: transform 0.3s ease;
+}
+
+.user-card button:hover {
+  transform: scale(1.05);
 }
 
 /* .user-list {
