@@ -31,7 +31,7 @@ const NavBar = ({ setSearch, showSearch, setShowSearch }) => {
       <ul className="navbar-links">
         <li className="dropdown">
           <NavLink
-            to="/juegos"
+            to="/platforms"
             className={({ isActive }) =>
               isActive ? "active-link" : "nav-link"
             }
@@ -61,7 +61,7 @@ const NavBar = ({ setSearch, showSearch, setShowSearch }) => {
         </li>
         <li>
           <NavLink
-            to="/eventos"
+            to="/events"
             className={({ isActive }) =>
               isActive ? "active-link" : "nav-link"
             }
@@ -71,12 +71,12 @@ const NavBar = ({ setSearch, showSearch, setShowSearch }) => {
         </li>
         <li>
           <NavLink
-            to="/foro"
+            to="/post"
             className={({ isActive }) =>
               isActive ? "active-link" : "nav-link"
             }
           >
-            Foro
+            Comunidad
           </NavLink>
         </li>
         <li>

@@ -1,0 +1,86 @@
+import React, { useState, useEffect } from "react";
+import "../style/IntroSection.css";
+
+const frases = [
+  {
+    title: "Encuentra jugadores",
+    description:
+      "Conecta con gamers afines, encuentra compañeros para tus juegos favoritos y forma tu squad.",
+  },
+  {
+    title: "Crea partidas",
+    description: "Organiza eventos, raids o torneos en tu juego favorito.",
+  },
+  {
+    title: "Únete a nuestra comunidad gamer",
+    description: "Nunca más jugarás solo. ¡Grindear nunca fue tan divertido!",
+  },
+];
+
+function IntroSection() {
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIndex((prev) => (prev + 1) % frases.length);
+    }, 7000);
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <section className="intro-section">
+      <div className="overlay">
+        <h1 className="intro-title">{frases[index].title}</h1>
+        <p className="intro-description">{frases[index].description}</p>
+        <button className="cta-btn">Explorar comunidad</button>
+      </div>
+    </section>
+  );
+}
+
+export default IntroSection;
+
+// import React from "react";
+// import "../style/IntroSection.css";
+
+// function IntroSection({ scrollRef }) {
+//   const handleScroll = () => {
+//     if (scrollRef?.current) {
+//       scrollRef.current.scrollIntoView({ behavior: "smooth" });
+//     }
+//   };
+
+//   return (
+//     <section className="intro-section">
+//       <div className="intro-content">
+//         <h1 className="intro-title">
+//           Encuentra jugadores. Crea partidas. Organiza raids, torneos y conecta
+//           con otros gamers afines.
+//         </h1>
+//         <p className="intro-subtitle">¡Grindear nunca fue tan divertido!</p>
+
+//         <button className="intro-btn" onClick={handleScroll}>
+//           Explorar comunidad
+//         </button>
+//       </div>
+//     </section>
+//   );
+// }
+
+// export default IntroSection;
+
+// const frases = [
+//     {
+//       title: "Encuentra jugadores",
+//       description:
+//         "Conecta con gamers afines, encuentra compañeros para tus juegos favoritos y forma tu squad.",
+//     },
+//     {
+//       title: "Crea partidas",
+//       description: "Organiza eventos, raids o torneos en tu juego favorito.",
+//     },
+//     {
+//       title: "Únete a nuestra comunidad gamer.",
+//       description: "Nunca más jugaras solo,¡grindear nunca fue tan divertido!",
+//     },
+//   ];
