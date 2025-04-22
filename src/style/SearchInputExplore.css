@@ -1,0 +1,46 @@
+/* SearchInputExplore.css */
+
+#search-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0;
+  animation: fadeDown 0.4s ease-in-out;
+}
+
+#search-container input {
+  width: 80%;
+  max-width: 600px;
+  padding: 12px 16px;
+  font-size: 18px;
+  border: 1px solid #00ffff;
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.3);
+  color: white;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 0 15px #00ffff88;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+#search-container input::placeholder {
+  color: #ccccff;
+}
+
+#search-container input:focus {
+  border-color: #00ffff;
+  box-shadow: 0 0 25px #00ffffaa;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+/* Animación de entrada */
+@keyframes fadeDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
