@@ -77,6 +77,17 @@
   position: relative;
 }
 
+.dropdown-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.dropdown-wrapper:hover .dropdown-platforms {
+  display: block;
+}
+
 .dropdown-platforms {
   display: none;
   position: absolute;

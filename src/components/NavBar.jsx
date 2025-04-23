@@ -31,7 +31,7 @@ const NavBar = ({ setSearch, showSearch, setShowSearch }) => {
       <ul className="navbar-links">
         <li className="dropdown">
           <NavLink
-            to="/platforms"
+            to="/games"
             className={({ isActive }) =>
               isActive ? "active-link" : "nav-link"
             }
