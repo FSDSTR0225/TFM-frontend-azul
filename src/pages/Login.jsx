@@ -16,7 +16,7 @@ export default function Login() {
     success: "Login succes! Now lets play",
     fail: "Login Fail. Please try again Later",
   };
-  const url = "http://localhost:4000/users/login";
+  const url = "http://localhost:3000/users/login";
   const {
     register,
     handleSubmit,
@@ -31,7 +31,7 @@ export default function Login() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        email: formDatas.email,
+        login: formDatas.email,
         password: formDatas.password,
       }),
     })
@@ -70,15 +70,15 @@ export default function Login() {
                 required: true,
                 maxLength: 35,
                 minLength: 10,
-                pattern: /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/,
+                // pattern: /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/,
               })}
               aria-invalid={errors.email ? "true" : "false"}
               error={errors.email}
               // id="standard-error-helper-text"
-              label="Email"
+              label="Username or Email"
               defaultValue=""
               // color=""
-              helperText={errors.email ? "Please enter valid email!" : null}
+              helperText={errors.email ? "Please enter valid username or email!" : null}
               variant="standard"
             />
             <TextField
@@ -88,7 +88,7 @@ export default function Login() {
                 required: true,
                 maxLength: 35,
                 minLength: 6,
-                pattern: /^(?=.*[0-9])(?=.*[A-Z]).{6,}$/,
+                // pattern: /^(?=.*[0-9])(?=.*[A-Z]).{6,}$/,
               })}
               aria-invalid={errors.password ? "true" : "false"}
               error={errors.password}
@@ -98,7 +98,7 @@ export default function Login() {
               // color=""
               helperText={
                 errors.password
-                  ? `Please enter correct password! (Password must be 6 and include capitals and numbers) `
+                  ? "Please enter valid password!"
                   : null
               }
               variant="standard"
