@@ -18,7 +18,7 @@ body {
 .welcome h1 {
   font-size: 3rem;
   text-shadow: 0 0 15px #00ffff;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
 }
 
 .description p {
@@ -27,7 +27,6 @@ body {
   margin-bottom: 3rem;
 }
 
-/* EventList.css */
 .event-section {
   margin: 2rem 0;
 }
@@ -47,39 +46,19 @@ body {
   width: 32px;
 }
 
-/* .welcome {
+.sub-container {
+  margin: 2rem auto;
+  padding: 3rem 2rem;
+  width: 90%;
+  max-width: 1200px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 30px;
+  box-shadow: 0 0 60px rgba(0, 255, 255, 0.08);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 255, 255, 0.1);
   display: flex;
-  justify-content: center;
-  margin: 50px;
-  font-size: 40px;
-  font-weight: 700;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
+  transition: all 0.4s ease;
 }
-
-.description {
-  display: flex;
-  justify-content: center;
-  font-size: 24px;
-}
-
-.section-title {
-  text-align: center;
-  font-size: 28px;
-  font-weight: bold;
-  margin: 40px 0 20px;
-  position: relative;
-  color: #1f1f1f;
-}
-
-.section-title::after {
-  content: "";
-  display: block;
-  width: 300px;
-  height: 3px;
-  background-color: #66fcf1;
-  margin: 8px auto 0;
-}
-
-.section-title img {
-  width: 30px;
-  height: 30px;
-} */
