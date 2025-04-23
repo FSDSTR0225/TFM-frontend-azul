@@ -1,5 +1,3 @@
-/* NAVBAR con estilo glassmorphism gamer */
-
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -8,22 +6,26 @@
   position: sticky;
   top: 0;
   z-index: 1000;
-  background: rgba(10, 10, 30, 0.5);
+  background: rgba(10, 10, 30, 0.6);
   backdrop-filter: blur(10px);
   border-bottom: 2px solid #66fcf1;
   box-shadow: 0 4px 20px rgba(0, 255, 255, 0.1);
 }
 
-/* Logo */
 .navbar-logo .logo {
   font-size: 26px;
   font-weight: bold;
   color: #66fcf1;
   text-decoration: none;
   text-shadow: 0 0 10px #66fcf1;
+  font-family: "Audiowide", sans-serif;
 }
 
-/* Links principales */
+.navbar-logo .logo:hover {
+  color: #00d1ff;
+  text-shadow: 0 0 20px #00d1ff;
+}
+
 .navbar-links {
   display: flex;
   gap: 24px;
@@ -37,7 +39,7 @@
 .active-link {
   color: white;
   text-decoration: none;
-  font-size: 24px;
+  font-size: 20px;
   padding: 8px 14px;
   border-radius: 8px;
   transition: background 0.3s ease, box-shadow 0.3s ease;
@@ -54,9 +56,8 @@
   box-shadow: 0 0 10px #66fcf1;
 }
 
-/* Botón de explorar */
 .navbar-btn {
-  background: #8383834b;
+  background: rgba(131, 131, 131, 0.4);
   color: white;
   border: none;
   padding: 8px 14px;
@@ -68,11 +69,10 @@
 }
 
 .navbar-btn:hover {
-  background: #94939453;
+  background: rgba(148, 148, 148, 0.33);
   box-shadow: 0 0 10px #fafbfbae;
 }
 
-/* Dropdown de plataformas */
 .dropdown {
   position: relative;
 }
@@ -112,7 +112,6 @@
   display: block;
 }
 
-/* Sección login y usuario */
 .navbar-login {
   display: flex;
   gap: 16px;
@@ -122,7 +121,6 @@
   padding: 0;
 }
 
-/* Usuario logueado */
 .navbar-user {
   position: relative;
   display: flex;
@@ -150,7 +148,6 @@
   color: #fff;
 }
 
-/* Dropdown del usuario */
 .dropdown-user {
   display: none;
   position: absolute;

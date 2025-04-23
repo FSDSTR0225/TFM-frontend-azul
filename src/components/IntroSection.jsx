@@ -17,8 +17,14 @@ const frases = [
   },
 ];
 
-function IntroSection() {
+function IntroSection({ scrollRef }) {
   const [index, setIndex] = useState(0);
+
+  const handleScroll = () => {
+    if (scrollRef?.current) {
+      scrollRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -32,7 +38,9 @@ function IntroSection() {
       <div className="overlay">
         <h1 className="intro-title">{frases[index].title}</h1>
         <p className="intro-description">{frases[index].description}</p>
-        <button className="cta-btn">Explorar comunidad</button>
+        <button className="cta-btn" onClick={handleScroll}>
+          Explorar comunidad
+        </button>
       </div>
     </section>
   );

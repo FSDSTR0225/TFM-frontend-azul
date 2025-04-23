@@ -16,7 +16,7 @@ export default function Home() {
         <h1>Bienvenido a Link2Play</h1>
       </div>
       <IntroSection scrollRef={contentRef} />
-      <div ref={contentRef}>
+      <div ref={contentRef} className="sub-container">
         <EventList />
         <UserList />
         <BotSection />

@@ -3,6 +3,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin-bottom: 3rem;
 }
 
 .user-list {
@@ -16,32 +17,38 @@
 
 .user-card {
   scroll-snap-align: center;
-  min-width: 220px;
-  background: rgba(255, 255, 255, 0.05);
+  min-width: 240px;
+  background: rgba(255, 255, 255, 0.07);
   border-radius: 20px;
-  padding: 1.5rem;
+  padding: 1.8rem 1.2rem;
   text-align: center;
   color: #fff;
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(0, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 255, 255, 0.2);
   box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
-  transition: transform 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.user-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.3);
 }
 
 .user-avatar {
-  width: 70px;
-  height: 70px;
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
   border: 2px solid #00ffff;
   margin-bottom: 1rem;
-  background-color: rgba(0, 255, 255, 0.2);
+  background-color: rgba(0, 255, 255, 0.15);
+  object-fit: cover;
 }
 
 .username {
   font-family: "Audiowide", sans-serif;
-  font-size: 1rem;
+  font-size: 1.1rem;
   color: #00ffff;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.6rem;
 }
 
 .user-genres {
@@ -49,13 +56,13 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 0.4rem;
-  margin: 0.5rem 0 1rem;
+  margin: 0.5rem 0 1.2rem;
 }
 
 .genre-tag {
-  background: rgba(0, 255, 255, 0.1);
-  border: 1px solid #00ffff99;
-  color: #ffffffdd;
+  background: rgba(0, 255, 255, 0.08);
+  border: 1px solid #00ffff88;
+  color: #ffffffcc;
   padding: 4px 10px;
   border-radius: 20px;
   font-size: 0.75rem;
@@ -65,63 +72,16 @@
   background: linear-gradient(90deg, #00d1ff, #007cf0);
   color: white;
   border: none;
-  padding: 0.4rem 1rem;
-  margin: 0.2rem;
+  padding: 0.5rem 1.2rem;
+  margin: 0.3rem;
   border-radius: 30px;
   font-weight: bold;
   cursor: pointer;
-  font-size: 0.8rem;
-  transition: transform 0.3s ease;
+  font-size: 0.85rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .user-card button:hover {
   transform: scale(1.05);
+  box-shadow: 0 0 15px #00ffff88;
 }
-
-/* .user-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
-  justify-content: center;
-}
-.user-card {
-  width: 200px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background: #b4c35f;
-  border-radius: 12px;
-  padding: 16px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-}
-
-.user-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
-}
-
-.user-avatar {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-}
-
-.username {
-  margin-bottom: 10px;
-  font-size: 18px;
-  color: #1f1f1f;
-}
-
-.user-genres {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-
-.genre-tag {
-  background-color: #6669fc;
-  color: #fdfdff;
-  padding: 4px 10px;
-  border-radius: 14px;
-  font-size: 12px;
-} */
