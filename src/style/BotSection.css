@@ -1,6 +1,5 @@
 .bot-card {
   background: rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(15px);
   border-radius: 20px;
   padding: 2.5rem;
   margin: 3rem auto;
