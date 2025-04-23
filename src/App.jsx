@@ -8,6 +8,7 @@ import SearchInputExplore from "./components/searchInputExplore";
 import { useState } from "react";
 import "./styles/reset.css";
 import "./App.css";
+import Events from "./pages/Events";
 
 export default function App() {
   const [showSearch, setShowSearch] = useState(false);
@@ -24,6 +25,7 @@ export default function App() {
       )}
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/events" element={<Events />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         {/* <PrivateRoute path="/lobby" element={<Lobby />} /> */}
