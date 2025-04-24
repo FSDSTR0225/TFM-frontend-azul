@@ -1,0 +1,226 @@
+.hero-section {
+  height: 100vh;
+  background-image: url("/src/assets/fantasy.jpg");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.hero-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+  border-radius: 16px;
+  background: rgba(0, 0, 0, 0.359);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 40px rgba(0, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.hero-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.hero-icon {
+  width: 100px;
+  height: 100px;
+  font-size: 3rem;
+  background: linear-gradient(90deg, #00f0ff, #007cf0, #00ffc3);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 5px #00eaff);
+}
+
+.hero-logo h2,
+span {
+  font-size: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.hero-title {
+  font-size: 2.5rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  color: #00ffff;
+  font-family: "Audiowide", sans-serif;
+  text-shadow: 0 0 5px #00ffff;
+}
+
+.hero-description {
+  font-size: 1.2rem;
+  color: #e0e0e0;
+  margin-bottom: 2rem;
+  line-height: 3rem;
+}
+
+.hero-description h2 {
+  font-weight: 500;
+  margin-bottom: 2rem;
+}
+
+.hero-description p {
+  background-color: rgba(255, 255, 255, 0.05);
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-style: italic;
+  color: #bbb;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.1);
+}
+
+.hero-link {
+  display: inline-block; /* 👈 esto lo soluciona */
+  color: #00ffff;
+  font-weight: 500;
+  font-style: italic;
+  text-decoration: none;
+  position: relative;
+  transition: all 0.3s ease;
+  text-shadow: 0 0 2px #00ffff66;
+}
+
+.hero-link:hover {
+  text-shadow: 0 0 8px #00ffffcc;
+  letter-spacing: 0.5px;
+}
+
+.hero-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0.2em;
+  width: 0%;
+  height: 2px;
+  background: #00f0ff;
+  transition: width 0.3s ease;
+}
+
+.hero-link:hover::after {
+  width: 100%;
+}
+
+.hero-btn button {
+  background: linear-gradient(90deg, #00d1ff, #007cf0);
+  color: white;
+  border: none;
+  padding: 0.8rem 2rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 12px rgba(0, 255, 255, 0.3);
+}
+
+button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.6);
+}
+
+/* .hero-section {
+    height: 100vh;
+    background-image: url("/src/assets/fantasy.jpg");
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .hero-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+    border-radius: 16px;
+    background: rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 40px rgba(0, 255, 255, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .hero-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  .hero-icon {
+    width: 100px;
+    height: 100px;
+    font-size: 3rem;
+    background: linear-gradient(90deg, #00f0ff, #007cf0, #00ffc3);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 5px #00eaff);
+  }
+  
+  .hero-tagline {
+    font-size: 0.85rem;
+    color: #ccc;
+    margin-top: 0.5rem;
+    font-weight: 300;
+  }
+  
+  .hero-welcome {
+    font-size: 1.2rem;
+    margin-top: 0.2rem;
+    color: #00ffff;
+    font-family: "Poppins", sans-serif;
+    text-shadow: 0 0 3px #00ffff;
+  }
+  
+  .hero-title h1 {
+    font-size: 2.3rem;
+    font-weight: 500;
+    color: #00ffff;
+    font-family: "Audiowide", sans-serif;
+    text-shadow: 0 0 5px #00ffff;
+    margin-bottom: 1rem;
+  }
+  
+  .hero-subtext {
+    font-size: 1.1rem;
+    color: #e0e0e0;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+  }
+  
+  .hero-subtext strong {
+    color: #00ffff;
+  }
+  
+  .hero-btn button {
+    background: linear-gradient(90deg, #00d1ff, #007cf0);
+    color: white;
+    border: none;
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 12px rgba(0, 255, 255, 0.3);
+  }
+  
+  button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.6);
+  }
+   */

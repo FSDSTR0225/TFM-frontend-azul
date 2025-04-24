@@ -13,7 +13,7 @@ const frases = [
   },
   {
     title: "Únete a nuestra comunidad gamer",
-    description: "Nunca más jugarás solo. ¡Grindear nunca fue tan divertido!",
+    description: "Nunca más jugarás solo. ¡Farmear nunca fue tan divertido!",
   },
 ];
 

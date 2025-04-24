@@ -2,6 +2,7 @@ import React from "react";
 import Home from "./pages/Home";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
+import Lobby from "./pages/Lobby";
 import { Routes, Route } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import SearchInputExplore from "./components/searchInputExplore";
@@ -25,6 +26,7 @@ export default function App() {
       )}
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/lobby" element={<Lobby />} />
         <Route path="/events" element={<Events />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />

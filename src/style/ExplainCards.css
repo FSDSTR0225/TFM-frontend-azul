@@ -1,0 +1,176 @@
+.explain-section {
+  padding: 4rem 2rem;
+  background: rgba(10, 10, 20, 0.9);
+  backdrop-filter: blur(6px);
+  color: #fff;
+  text-align: center;
+}
+
+.explain-title {
+  font-size: 2.4rem;
+  margin-bottom: 3rem;
+  font-family: "Audiowide", sans-serif;
+  color: #00ffff;
+  text-shadow: 0 0 6px #00ffff;
+}
+
+.card-icon {
+  font-size: 2rem;
+  color: #00f0ff;
+  filter: drop-shadow(0 0 5px #00eaff);
+}
+.explain-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+
+.card1,
+.card2,
+.card3,
+.card4 {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  padding: 2rem;
+  animation: fadeInUp 0.8s ease forwards;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.card1:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 20px #00f0ff;
+}
+.card2:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 20px #a259ff;
+}
+.card3:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 20px #b7d303;
+}
+.card4:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 20px #2effa0;
+}
+
+.card-title {
+  font-size: 1.4rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  color: #00f0ff;
+}
+
+.card-title:hover {
+  color: #00eaff;
+  text-shadow: 0 0 6px #00ffffca;
+  cursor: default;
+}
+
+.card-icon {
+  font-size: 2.2rem;
+  color: #00ffff;
+  filter: drop-shadow(0 0 5px #00eaffb5);
+  margin-right: 0.5rem;
+}
+
+.explain-bot {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 5px #00eaffb5);
+  margin-top: -2px;
+}
+
+.card-description {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: #ccc;
+}
+
+.card-btn {
+  margin-top: 1.5rem;
+}
+
+.card-btn button {
+  background: linear-gradient(90deg, #00d1ff, #007cf0);
+  color: white;
+  border: none;
+  padding: 0.6rem 1.4rem;
+  font-size: 0.9rem;
+  font-weight: bold;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+}
+
+.card-btn button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.6);
+}
+
+.explain-games {
+  margin-top: 5rem; /* subido de 4rem a 5rem */
+  padding: 2.5rem 2rem;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 20px;
+  max-width: 900px;
+  margin-inline: auto;
+  border: 1px solid rgba(0, 255, 255, 0.1);
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.05);
+  position: relative; /* para usar ::before */
+  overflow: hidden;
+}
+
+.explain-games::before {
+  content: "Link2Play 🎮";
+  font-family: "Audiowide", sans-serif;
+  position: absolute;
+  font-size: 1rem;
+  color: #5ee5f7;
+  opacity: 0.15;
+  top: 12%;
+  left: 9%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+}
+
+.explain-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  color: #00f0ff;
+  filter: drop-shadow(0 0 5px #00eaff);
+}
+
+.explain-games-title {
+  font-size: 1.8rem;
+  color: #00ffff;
+  margin-bottom: 1rem;
+  text-shadow: 0 0 4px #00f0ff;
+}
+
+.explain-games-description {
+  font-size: 1rem;
+  color: #ccc;
+  line-height: 1.8;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
