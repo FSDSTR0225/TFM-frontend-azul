@@ -1,12 +1,25 @@
 import React from "react";
 import HeroSection from "../components/HeroSection";
 import ExplainCards from "../components/ExplainCards";
+import UserList from "../components/UserList";
+import EventList from "../components/EventList";
+import ShowProfile from "../components/ShowProfile";
+import { useRef } from "react";
+import ShowEvent from "../components/ShowEvent";
 
 export default function Lobby() {
+  const contentRef = useRef();
+
   return (
     <div>
-      <HeroSection />
-      <ExplainCards />
+      <HeroSection scrollRef={contentRef} />
+      <div ref={contentRef}>
+        <ExplainCards />
+      </div>
+      <ShowProfile />
+      <ShowEvent />
+      <UserList />
+      <EventList />
     </div>
   );
 }

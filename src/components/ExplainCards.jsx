@@ -4,7 +4,6 @@ import { FcCalendar } from "react-icons/fc";
 import { FaUsers } from "react-icons/fa";
 import { MdOutlineEmojiEvents } from "react-icons/md";
 import { GrChatOption } from "react-icons/gr";
-import { FaRobot } from "react-icons/fa";
 import "../style/ExplainCards.css";
 
 function ExplainCards() {
@@ -36,7 +35,8 @@ function ExplainCards() {
             Crea y únete a eventos
           </h3>
           <p className="card-description">
-            Organiza partidas, raids o torneos de tu juego favorito.
+            Organiza tus propias partidas, raids o torneos de tu juego favorito
+            o únete a eventos creados por otros jugadores.
           </p>
 
           <div className="card-btn">

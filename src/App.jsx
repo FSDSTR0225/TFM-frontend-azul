@@ -14,6 +14,7 @@ import Events from "./pages/Events";
 export default function App() {
   const [showSearch, setShowSearch] = useState(false);
   const [search, setSearch] = useState("");
+
   return (
     <div className="App">
       <NavBar showSearch={showSearch} setShowSearch={setShowSearch} />
