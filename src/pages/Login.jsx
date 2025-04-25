@@ -78,7 +78,9 @@ export default function Login() {
               label="Username or Email"
               defaultValue=""
               // color=""
-              helperText={errors.email ? "Please enter valid username or email!" : null}
+              helperText={
+                errors.email ? "Please enter valid username or email!" : null
+              }
               variant="standard"
             />
             <TextField
@@ -97,9 +99,7 @@ export default function Login() {
               defaultValue=""
               // color=""
               helperText={
-                errors.password
-                  ? "Please enter valid password!"
-                  : null
+                errors.password ? "Please enter valid password!" : null
               }
               variant="standard"
             />
@@ -112,6 +112,15 @@ export default function Login() {
             >
               Login
             </Button>
+            <p className="signup__text">
+              Not a member?{" "}
+              <strong
+                className="signup__text__strong"
+                onClick={() => navigate("/register")}
+              >
+                Signup now
+              </strong>
+            </p>
           </form>
         </div>
       </div>
