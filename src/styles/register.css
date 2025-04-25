@@ -1,6 +1,6 @@
 .Register {
   width: 100%;
-  height: 100vh;
+  height: 90vh;
   background-image: linear-gradient(
     to bottom right,
     var(--dark-blue),
@@ -48,6 +48,23 @@
 }
 .RegisterForm__button:hover {
   background-color: var(--light-blue);
+}
+.signup__text {
+  color: var(--dark-blue);
+  text-align: center;
+}
+.signup__text__strong {
+  text-decoration: underline;
+  font-weight: 800;
+  margin-left: 0.5rem;
+  :hover {
+    color: var(--light-blue);
+    cursor: pointer;
+  }
+}
+.signup__text__strong:hover {
+  color: var(--light-blue);
+  cursor: pointer;
 }
 @media only screen and (max-width: 900px) {
   /* Mobile Size */
