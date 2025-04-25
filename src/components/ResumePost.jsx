@@ -1,9 +1,12 @@
 import React from "react";
+import { LuScrollText } from "react-icons/lu";
 
 function ResumePost() {
   return (
     <section>
-      <h2>📝 Resumen del foro</h2>
+      <h2>
+        <LuScrollText /> Resumen del foro
+      </h2>
     </section>
   );
 }
