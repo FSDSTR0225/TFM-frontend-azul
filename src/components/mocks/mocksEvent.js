@@ -25,7 +25,7 @@ const mocksEvent = [
     date: "15/04/2025",
     time: "21:00",
     game: "World Of Warcraft",
-    players: "n/d",
+    players: "N/D",
     image: "/src/assets/wow2.png",
   },
 ];

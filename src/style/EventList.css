@@ -50,10 +50,6 @@
   box-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
 }
 
-.next-event:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 0 20px rgba(0, 255, 255, 0.25);
-}
 .event-img {
   width: 60px;
   height: 60px;

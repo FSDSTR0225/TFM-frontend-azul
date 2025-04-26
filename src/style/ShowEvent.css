@@ -14,15 +14,18 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
   max-width: 1200px;
   width: 100%;
   padding: 4rem 3rem;
-  background: rgba(255, 255, 255, 0.025);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(0, 255, 255, 0.05);
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.05);
+  /* background: rgba(255, 255, 255, 0.025); */
   border-radius: 36px;
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  box-shadow: 0 0 30px rgba(0, 255, 255, 0.05);
+  /* border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: 0 0 30px rgba(0, 255, 255, 0.05); */
   position: relative;
   overflow: hidden;
 }
@@ -67,13 +70,19 @@
   width: 100%;
   max-width: 420px;
   height: 270px;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.138);
   overflow: hidden;
   display: flex;
+  border-radius: 20px;
   justify-content: center;
   align-items: flex-start;
   flex: 1;
   margin-top: 1rem;
-  background-color: rgba(255, 255, 255, 0.015);
+  background: linear-gradient(
+    145deg,
+    rgba(20, 20, 40, 0.7),
+    rgba(10, 10, 20, 0.85)
+  );
 }
 
 .event-card.float-card {
@@ -84,10 +93,12 @@
   width: 100%;
   max-width: 360px;
   height: 520px;
-  background: #23272f;
+  background: rgba(20, 25, 40, 0.85);
+  border: 1px solid rgba(0, 255, 255, 0.08);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.05);
   border-radius: 24px;
   padding: 2rem;
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
   text-align: center;
   transition: transform 1s ease;
   z-index: 2;
