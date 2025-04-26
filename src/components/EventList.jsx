@@ -19,6 +19,10 @@ function EventList() {
             <p className="event-players">{event.players}</p>
 
             <h2 className="event-game">{event.game}</h2>
+            <div className="event-join">
+              <button>Unirse</button>
+              <button>Detalles</button>
+            </div>
           </div>
         ))}
       </div>
