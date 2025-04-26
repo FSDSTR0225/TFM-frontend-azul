@@ -28,7 +28,7 @@ function UserList() {
                   </span>
                 ))}
               </div>
-              <div className="user-actions">
+              <div className="user-explore">
                 <button>Conectar</button>
                 <button>Ver perfil</button>
               </div>
