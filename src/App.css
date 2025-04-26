@@ -1,7 +1,20 @@
 @import url("https://fonts.googleapis.com/css2?family=Audiowide&family=Poppins:wght@400;600&display=swap");
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
   font-family: "Poppins", sans-serif;
+  background-image: linear-gradient(
+    to bottom right,
+    var(--dark-blue),
+    var(--light-blue)
+  );
+  color: white;
+  min-height: 100vh;
 }
 
 h1,
@@ -9,12 +22,6 @@ h2,
 h3,
 .logo {
   font-family: "Audiowide", cursive;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
 }
 
 :root {

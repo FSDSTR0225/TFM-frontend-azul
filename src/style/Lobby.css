@@ -27,25 +27,6 @@ body {
   margin-bottom: 3rem;
 }
 
-.event-section {
-  margin: 2rem 0;
-}
-
-.section-title {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  color: #00ffff;
-  text-shadow: 0 0 10px #00ffff;
-}
-
-.section-title img {
-  width: 32px;
-}
-
 .sub-container {
   margin: 2rem auto;
   padding: 3rem 2rem;

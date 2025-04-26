@@ -1,5 +1,14 @@
+.bot-glass-section {
+  padding: 2rem 1rem 0; /* Compacto como los demás */
+  background: rgba(10, 10, 20, 0.9);
+  backdrop-filter: blur(6px);
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0; /* Evitar separación excesiva */
+}
+
 .bot-card {
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(255, 255, 255, 0.03);
   border-radius: 20px;
   padding: 2.5rem;
   margin: 3rem auto;
@@ -11,6 +20,18 @@
   font-family: "Poppins", sans-serif;
   transition: transform 0.3s ease;
   border: 1px solid rgba(0, 255, 255, 0.15);
+  animation: fadeSlideIn 1s ease forwards;
+}
+
+@keyframes fadeSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .bot-card:hover {
