@@ -11,21 +11,27 @@ function UserList() {
       <div className="user-list">
         {mocksUser.map((user) => (
           <div className="user-card" key={user.id}>
-            <img
-              src={user.avatar}
-              alt={user.username}
-              className="user-avatar"
-            />
-            <h3 className="username">{user.username}</h3>
-            <div className="user-genres">
-              {user.genre.map((genre, index) => (
-                <span key={index} className="genre-tag">
-                  {genre}
-                </span>
-              ))}
+            <div className="user-avatar-container">
+              <img
+                src={user.avatar}
+                alt={user.username}
+                className="user-avatar"
+              />
             </div>
-            <button>Conectar</button>
-            <button>Ver perfil</button>
+            <div className="user-info">
+              <h3 className="username">{user.username}</h3>
+              <div className="user-genres">
+                {user.genre.map((genre, index) => (
+                  <span key={index} className="genre-tag">
+                    {genre}
+                  </span>
+                ))}
+              </div>
+              <div className="user-actions">
+                <button>Conectar</button>
+                <button>Ver perfil</button>
+              </div>
+            </div>
           </div>
         ))}
       </div>
