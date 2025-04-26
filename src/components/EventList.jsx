@@ -1,5 +1,6 @@
 import React from "react";
 import mocksEvent from "./mocks/mocksEvent";
+import "../style/EventList.css";
 
 function EventList() {
   return (

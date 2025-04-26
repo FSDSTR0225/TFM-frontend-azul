@@ -8,7 +8,7 @@ import { useRef } from "react";
 import ShowEvent from "../components/ShowEvent";
 import BotSection from "../components/BotSection";
 
-export default function Lobby() {
+export default function Home() {
   const contentRef = useRef();
 
   return (

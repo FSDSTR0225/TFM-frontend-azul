@@ -1,5 +1,6 @@
 import React from "react";
 import mocksUser from "./mocks/mocksUser";
+import "../style/UserList.css";
 
 function UserList() {
   return (
