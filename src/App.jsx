@@ -1,8 +1,8 @@
 import React from "react";
-import Home from "./pages/Home";
+import Lobby from "./pages/Lobby";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
-import Lobby from "./pages/Lobby";
+import Home from "./pages/Home";
 import { Routes, Route } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import SearchInputExplore from "./components/searchInputExplore";

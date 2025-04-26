@@ -8,6 +8,13 @@
 
 body {
   font-family: "Poppins", sans-serif;
+  background-image: linear-gradient(
+    to bottom right,
+    var(--dark-blue),
+    var(--light-blue)
+  );
+  color: white;
+  min-height: 100vh;
 }
 
 h1,

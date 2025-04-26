@@ -8,7 +8,7 @@ import { GiBoxTrap, GiArmoredBoomerang } from "react-icons/gi";
 function ShowEvent() {
   return (
     <section className="event-glass-section">
-      <div className="wrapper-glass">
+      <div className="event-wrapper-glass">
         <div className="event-preview">
           <div className="event-card float-card reveal">
             <div className="event-image">

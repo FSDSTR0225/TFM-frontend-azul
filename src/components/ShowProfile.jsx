@@ -11,7 +11,7 @@ import {
 function ShowProfile() {
   return (
     <section className="profile-glass-section">
-      <div className="wrapper-glass">
+      <div className="profile-wrapper-glass">
         {/* COLUMNA IZQUIERDA */}
         <div className="profile-info">
           <h2>¡Crea tu perfil gamer !</h2>
