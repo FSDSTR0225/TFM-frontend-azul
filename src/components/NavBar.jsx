@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import { useContext } from "react";
 import AuthContext from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { FaSearchengin } from "react-icons/fa6";
 import "../style/NavBar.css";
 
 const NavBar = ({ setSearch, showSearch, setShowSearch }) => {
@@ -81,7 +82,7 @@ const NavBar = ({ setSearch, showSearch, setShowSearch }) => {
         </li>
         <li>
           <button className="navbar-btn" onClick={toggleExplore}>
-            🔍
+            <FaSearchengin className="navbar-icon" />
           </button>
         </li>
       </ul>

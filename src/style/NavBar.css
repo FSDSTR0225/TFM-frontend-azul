@@ -47,7 +47,8 @@
 
 .nav-link:hover {
   background: rgba(255, 255, 255, 0.1);
-  box-shadow: 0 0 6px #fff;
+  box-shadow: 0 0 10px #00ffea;
+  color: #66fcf1;
 }
 
 .active-link {
@@ -57,7 +58,7 @@
 }
 
 .navbar-btn {
-  background: rgba(131, 131, 131, 0.4);
+  background: rgba(255, 255, 255, 0.1);
   color: white;
   border: none;
   padding: 8px 14px;
@@ -69,8 +70,20 @@
 }
 
 .navbar-btn:hover {
-  background: rgba(148, 148, 148, 0.33);
-  box-shadow: 0 0 10px #fafbfbae;
+  background: rgba(131, 131, 131, 0.6);
+  box-shadow: 0 0 10px #00ffea;
+}
+
+.navbar-icon {
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.navbar-icon:hover {
+  color: #66fcf1;
+  text-shadow: 0 0 10px #66fcf1;
 }
 
 .dropdown {
