@@ -7,6 +7,7 @@ import ShowProfile from "../components/ShowProfile";
 import { useRef } from "react";
 import ShowEvent from "../components/ShowEvent";
 import BotSection from "../components/BotSection";
+import Footer from "../components/Footer";
 
 export default function Home() {
   const contentRef = useRef();
@@ -22,6 +23,7 @@ export default function Home() {
       <BotSection />
       <UserList />
       <EventList />
+      <Footer />
     </div>
   );
 }

@@ -1,0 +1,76 @@
+.footer {
+  background: rgba(10, 10, 30, 0.882);
+  backdrop-filter: blur(6px);
+  padding: 2rem 1rem;
+  text-align: center;
+  color: #ccc;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.9rem;
+  border-top: 2px solid rgba(0, 255, 255, 0.2);
+  box-shadow: 0 -4px 20px rgba(0, 255, 255, 0.1);
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.footer-logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #00ffff;
+  text-shadow: 0 0 8px #00ffff88;
+  font-family: "Audiowide", sans-serif;
+  margin-bottom: 1rem;
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links li a {
+  color: #ccc;
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+}
+
+.footer-links li a:hover {
+  color: #00ffff;
+  text-shadow: 0 0 6px #00ffff88;
+}
+
+.footer-copy {
+  font-size: 0.8rem;
+  color: #777;
+  margin-top: 1rem;
+}
+
+.footer-rrss {
+  display: flex;
+  justify-content: center;
+  gap: 1.2rem;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.footer-rrss svg {
+  color: #ccc;
+  font-size: 24px;
+  transition: color 0.3s ease, transform 0.3s ease;
+  cursor: pointer;
+}
+
+.footer-rrss svg:hover {
+  color: #00ffff;
+  transform: scale(1.2);
+}
