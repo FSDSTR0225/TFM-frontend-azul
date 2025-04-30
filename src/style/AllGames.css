@@ -1,0 +1,38 @@
+.all-games-container {
+  padding: 5rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  background: rgba(10, 10, 20, 0.9);
+  border: 1px solid rgba(0, 255, 255, 0.08);
+  border-radius: 24px;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 0 30px rgba(0, 255, 255, 0.05);
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+.all-games-container h1 {
+  font-size: 2.4rem;
+  font-family: "Audiowide", sans-serif;
+  color: #00f0ff;
+  text-align: center;
+  margin-bottom: 3rem;
+  text-shadow: 0 0 10px #00ffff88;
+}
+
+.all-games-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+  justify-items: center;
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
