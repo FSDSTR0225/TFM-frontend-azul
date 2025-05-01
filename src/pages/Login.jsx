@@ -37,7 +37,7 @@ export default function Login() {
     })
       .then((resposnse) => {
         console.log(resposnse);
-        if (resposnse.status === 201) {
+        if (resposnse.status === 200) {
           setIsModalSuccess(true);
           setTimeout(() => {
             navigate("/");
