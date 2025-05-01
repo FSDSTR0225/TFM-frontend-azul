@@ -1,5 +1,7 @@
 import React from "react";
 
-export default function Lobby() {
+function Lobby() {
   return <div>Lobby</div>;
 }
+
+export default Lobby;
