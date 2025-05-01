@@ -1,44 +1,69 @@
 .event-section {
+  padding: 4.5rem 1rem;
+  background: rgba(10, 10, 20, 0.9);
+  backdrop-filter: blur(6px);
+  color: #fff;
+  text-align: center;
+}
+
+.event-section .section-title {
+  font-size: 1.7rem;
+  font-family: "Audiowide", sans-serif;
+  color: #00ffff;
+  text-shadow: 0 0 6px #00ffff;
+  margin-bottom: 3.4rem;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.event-section .section-title img {
+  width: 34px;
+  height: 34px;
+  margin-bottom: 0.5rem;
+  filter: drop-shadow(0 0 4px #00ffffaa);
 }
 
 .card-event {
-  display: flex;
-  justify-content: center;
-  overflow-x: auto;
-  gap: 2rem;
-  padding: 1rem;
-  scroll-snap-type: x mandatory;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+  justify-items: center;
 }
 
 .next-event {
-  background: rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(8px);
-  border-radius: 20px;
-  padding: 1.5rem;
-  width: 250px;
-  color: #ffffff;
-  box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
-  border: 1px solid rgba(0, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(0, 255, 255, 0.15);
+  border-radius: 16px;
+  padding: 1.6rem 1.1rem;
   text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  font-family: "Audiowide", sans-serif;
+  color: #fff;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.08);
+  transition: all 0.3s ease;
+  max-width: 250px;
+  width: 100%;
 }
 
 .next-event:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 25px rgba(0, 255, 255, 0.4);
-  border-color: rgba(0, 255, 255, 0.4);
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
+}
+
+.event-img {
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+  margin: 0 auto 1rem auto;
+  filter: drop-shadow(0 0 6px #00ffff66);
 }
 
 .event-title {
-  font-size: 1.2rem;
-  margin-bottom: 0.5rem;
+  font-size: 1rem;
   color: #00ffff;
-  text-shadow: 0 0 5px #00ffffaa;
+  margin-bottom: 0.4rem;
+  text-shadow: 0 0 4px #00ffffaa;
+  font-family: "Audiowide", sans-serif;
 }
 
 .event-date {
@@ -47,8 +72,43 @@
   margin-bottom: 0.8rem;
 }
 
+.event-players {
+  font-size: 0.9rem;
+  color: #ccc;
+  margin-bottom: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+}
+
 .event-game {
-  font-size: 1rem;
-  color: #cecb15;
+  font-size: 0.85rem;
   font-weight: bold;
+  color: #ffdf3f;
+  text-shadow: 0 0 3px #ffdf3f55;
+}
+
+.event-join {
+  display: flex;
+  justify-content: center;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+.event-join button {
+  background: rgba(0, 255, 255, 0.1);
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  color: #00ffff;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.event-join button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.6);
 }

@@ -1,26 +1,29 @@
-import React, { useRef } from "react";
-import "../style/Home.css";
-import EventList from "../components/EventList";
+import React from "react";
+import HeroSection from "../components/HeroSection";
+import ExplainCards from "../components/ExplainCards";
 import UserList from "../components/UserList";
-import "../style/EventList.css";
-import "../style/UserList.css";
+import EventList from "../components/EventList";
+import ShowProfile from "../components/ShowProfile";
+import { useRef } from "react";
+import ShowEvent from "../components/ShowEvent";
 import BotSection from "../components/BotSection";
-import IntroSection from "../components/IntroSection";
+import Footer from "../components/Footer";
 
 export default function Home() {
   const contentRef = useRef();
 
   return (
-    <div className="home-container">
-      <div className="welcome">
-        <h1>Bienvenido a Link2Play</h1>
+    <div>
+      <HeroSection scrollRef={contentRef} />
+      <div ref={contentRef}>
+        <ExplainCards />
       </div>
-      <IntroSection scrollRef={contentRef} />
-      <div ref={contentRef} className="sub-container">
-        <EventList />
-        <UserList />
-        <BotSection />
-      </div>
+      <ShowProfile />
+      <ShowEvent />
+      <BotSection />
+      <UserList />
+      <EventList />
+      <Footer />
     </div>
   );
 }
