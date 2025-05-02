@@ -104,14 +104,15 @@
 .dropdown-platforms {
   display: none;
   position: absolute;
-  top: 110%;
-  left: 0;
+  top: 170%; /* 290% para verlo en la parte baja de navbar */
+  left: -40%;
   background: rgba(10, 10, 30, 0.95);
   backdrop-filter: blur(6px);
   border-radius: 8px;
   box-shadow: 0 0 12px #00ffff88;
   padding: 10px 0;
-  min-width: 180px;
+  text-align: left;
+  min-width: 220px;
   list-style: none;
   z-index: 999;
 }

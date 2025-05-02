@@ -1,5 +1,7 @@
 import React from "react";
 import Lobby from "./pages/Lobby";
+import GamesByPlatform from "./pages/GamesByPlatform";
+import Games from "./pages/Games";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
@@ -10,6 +12,7 @@ import { useState } from "react";
 import "./styles/reset.css";
 import "./App.css";
 import Events from "./pages/Events";
+import GameDetails from "./components/GameDetails";
 
 export default function App() {
   const [showSearch, setShowSearch] = useState(false);
@@ -28,6 +31,13 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         {/* <Route path="/lobby" element={<Lobby />} /> */}
+        <Route path="/games" element={<Games />} />
+        <Route
+          path="/platforms/:platformId/games"
+          element={<GamesByPlatform />}
+        />
+        <Route path="/games/:id" element={<GameDetails />} />
+        <Route path="/games/rawg/:rawgId" element={<GameDetails />} />
         <Route path="/events" element={<Events />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
