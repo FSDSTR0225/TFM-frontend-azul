@@ -10,6 +10,7 @@ import { useState } from "react";
 import "./styles/reset.css";
 import "./App.css";
 import Events from "./pages/Events";
+import Profile from "./pages/Profile";
 
 export default function App() {
   const [showSearch, setShowSearch] = useState(false);
@@ -31,6 +32,7 @@ export default function App() {
         <Route path="/events" element={<Events />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/profile" element={<Profile />} />
         {/* <PrivateRoute path="/lobby" element={<Lobby />} /> */}
       </Routes>
     </div>
