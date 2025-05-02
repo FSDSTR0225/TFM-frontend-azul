@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useContext } from "react";
 import AuthContext from "../context/AuthContext";
@@ -8,6 +8,25 @@ import "../style/NavBar.css";
 
 const NavBar = ({ setSearch, showSearch, setShowSearch }) => {
   const { user, logout } = useContext(AuthContext);
+
+  const [platforms, setPlatforms] = useState([]);
+
+  useEffect(() => {
+    const fetchPlatforms = async () => {
+      try {
+        const response = await fetch("http://localhost:3000/platforms");
+        if (!response.ok) {
+          throw new Error("Error fetching platforms");
+        }
+        const data = await response.json();
+        setPlatforms(data.platforms);
+      } catch (error) {
+        console.error("Error al cargar plataformas en navbar:", error);
+      }
+    };
+
+    fetchPlatforms();
+  }, []);
 
   const navigate = useNavigate();
 
@@ -40,24 +59,13 @@ const NavBar = ({ setSearch, showSearch, setShowSearch }) => {
             Juegos
           </NavLink>
           <ul className="dropdown-platforms">
-            <li>
-              <NavLink to="/platforms/pc/games">PC</NavLink>
-            </li>
-            <li>
-              <NavLink to="/platforms/ps5/games">PS5</NavLink>
-            </li>
-            <li>
-              <NavLink to="/platforms/ps4/games">PS4</NavLink>
-            </li>
-            <li>
-              <NavLink to="/platforms/xbox/games">Xbox</NavLink>
-            </li>
-            <li>
-              <NavLink to="/platforms/nintendo/games">Nintendo Switch</NavLink>
-            </li>
-            <li>
-              <NavLink to="/platforms/mobile/games">Mobile Games</NavLink>
-            </li>
+            {platforms.map((platform) => (
+              <li key={platform._id}>
+                <NavLink to={`/platforms/${platform._id}/games`}>
+                  {platform.name}
+                </NavLink>
+              </li>
+            ))}
           </ul>
         </li>
         <li>
