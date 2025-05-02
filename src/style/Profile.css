@@ -1,13 +1,3 @@
-:root {
-  --dark-blue: #003b5c;
-  --light-blue: #0095d9;
-  --light-green: #00b2a9;
-  --main-yellow: #ffdd00;
-  --light-orange: #ff6f61;
-  --white: #f0f4f8;
-  --dark-gray: rgb(69, 69, 69);
-  --light-gray: rgb(205, 205, 205);
-}
 .profile {
   background-image: url(./images/profile/backProfile.jpg);
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
