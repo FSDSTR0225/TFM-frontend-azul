@@ -18,7 +18,7 @@ function AllGames() {
           throw new Error("Error fetching games");
         }
         const data = await response.json();
-        setGames(data.games);
+        setGames(data); // Aqui como viene directo el array de juegos, no hace falta hacer data.games
       } catch (error) {
         console.error("Error fetching games:", error);
       }
