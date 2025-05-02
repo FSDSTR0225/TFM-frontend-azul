@@ -12,11 +12,8 @@ import { useState } from "react";
 import "./styles/reset.css";
 import "./App.css";
 import Events from "./pages/Events";
-<<<<<<< HEAD
 import Profile from "./pages/Profile";
-=======
 import GameDetails from "./components/GameDetails";
->>>>>>> 8170e52618286c379424c10e6aadd512032271b9
 
 export default function App() {
   const [showSearch, setShowSearch] = useState(false);
