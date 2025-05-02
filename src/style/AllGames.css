@@ -1,27 +1,21 @@
 .all-games-container {
-  padding: 5rem 2rem;
-  max-width: 1200px;
+  padding: 0;
   margin: 0 auto;
-  background: rgba(10, 10, 20, 0.9);
-  border: 1px solid rgba(0, 255, 255, 0.08);
-  border-radius: 24px;
-  backdrop-filter: blur(8px);
-  box-shadow: 0 0 30px rgba(0, 255, 255, 0.05);
-  animation: fadeInUp 0.8s ease forwards;
+  max-width: 1200px;
+  text-align: center;
 }
 
-.all-games-container h1 {
-  font-size: 2.4rem;
+.all-games-title {
+  font-size: 2.6rem;
+  margin-bottom: 2.2rem;
   font-family: "Audiowide", sans-serif;
   color: #00f0ff;
-  text-align: center;
-  margin-bottom: 3rem;
-  text-shadow: 0 0 10px #00ffff88;
+  text-shadow: 0 0 10px #00f0ff, 0 0 20px #00f0ff88;
 }
 
 .all-games-list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: 2rem;
   justify-items: center;
 }
