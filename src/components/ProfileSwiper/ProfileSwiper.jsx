@@ -21,8 +21,8 @@ export default function ProfileSwiper({
       // modules={[Autoplay, Pagination, Navigation]}
       modules={[Autoplay]}
       // freeMode={false}
-      onSlideChange={() => console.log("slide change")}
-      onSwiper={(swiper) => console.log(swiper)}
+      // onSlideChange={() => console.log("slide change")}
+      // onSwiper={(swiper) => console.log(swiper)}
     >
       {swiperArray.map((item) => (
         <SwiperSlide key={item.id}>

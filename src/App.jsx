@@ -1,5 +1,6 @@
 import React from "react";
-import Lobby from "./pages/Lobby";
+import { useState } from "react";
+import "./App.css";
 import GamesByPlatform from "./pages/GamesByPlatform";
 import Games from "./pages/Games";
 import Register from "./pages/Register";
@@ -8,43 +9,76 @@ import Home from "./pages/Home";
 import { Routes, Route } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import SearchInputExplore from "./components/searchInputExplore";
-import { useState } from "react";
 import "./styles/reset.css";
-import "./App.css";
 import Events from "./pages/Events";
 import Profile from "./pages/Profile";
 import GameDetails from "./components/GameDetails";
+import Lobby from "./pages/Lobby";
+
+import AuthContext from "./context/AuthenticationContext";
 
 export default function App() {
   const [showSearch, setShowSearch] = useState(false);
   const [search, setSearch] = useState("");
 
+  const [isLoggedIn, setIsLoggedIn] = useState(false); //state to show user is logged in or now
+  const [token, setToken] = useState(false); //state to show user token
+  const [userInfos, setUserInfos] = useState({}); //state to show current user data
+
+  const login = (userInfos, token) => {
+    //process of loging in a user
+    setToken(token);
+    setIsLoggedIn(true);
+    setUserInfos(userInfos);
+    localStorage.setItem("user", JSON.stringify({ token: token }));
+    console.log("login result :", isLoggedIn, token, userInfos);
+  };
+  const logout = () => {
+    //process of loging out a user
+    setToken(null);
+    setIsLoggedIn(false);
+    setUserInfos({});
+    localStorage.removeItem("user");
+    console.log("logout result :", isLoggedIn, token, userInfos);
+  };
+
   return (
-    <div className="App">
-      <NavBar showSearch={showSearch} setShowSearch={setShowSearch} />
-      {showSearch && (
-        <SearchInputExplore
-          search={search}
-          setSearch={setSearch}
-          showSearch={showSearch}
-        />
-      )}
-      <Routes>
-        <Route path="/" element={<Home />} />
-        {/* <Route path="/lobby" element={<Lobby />} /> */}
-        <Route path="/games" element={<Games />} />
-        <Route
-          path="/platforms/:platformId/games"
-          element={<GamesByPlatform />}
-        />
-        <Route path="/games/:id" element={<GameDetails />} />
-        <Route path="/games/rawg/:rawgId" element={<GameDetails />} />
-        <Route path="/events" element={<Events />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/profile" element={<Profile />} />
-        {/* <PrivateRoute path="/lobby" element={<Lobby />} /> */}
-      </Routes>
-    </div>
+    //all of the app part can use this context now
+    <AuthContext.Provider
+      value={{
+        isLoggedIn,
+        token,
+        userInfos,
+        login,
+        logout,
+      }}
+    >
+      <div className="App">
+        <NavBar showSearch={showSearch} setShowSearch={setShowSearch} />
+        {showSearch && (
+          <SearchInputExplore
+            search={search}
+            setSearch={setSearch}
+            showSearch={showSearch}
+          />
+        )}
+        <Routes>
+          <Route path="/" element={<Home />} />
+          {/* <Route path="/lobby" element={<Lobby />} /> */}
+          <Route path="/games" element={<Games />} />
+          <Route
+            path="/platforms/:platformId/games"
+            element={<GamesByPlatform />}
+          />
+          <Route path="/games/:id" element={<GameDetails />} />
+          <Route path="/games/rawg/:rawgId" element={<GameDetails />} />
+          <Route path="/events" element={<Events />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/profile" element={<Profile />} />
+          {/* <PrivateRoute path="/lobby" element={<Lobby />} /> */}
+        </Routes>
+      </div>
+    </AuthContext.Provider>
   );
 }

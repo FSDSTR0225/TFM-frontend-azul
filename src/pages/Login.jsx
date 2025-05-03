@@ -1,13 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "./../styles/register.css";
 import sideImg from "/images/register/3.jpg";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import ModalMUI from "../components/ModalMUI/ModalMUI";
 import { Button, TextField } from "@mui/material";
+import AuthContext from "../context/AuthenticationContext";
 
 export default function Login() {
   const navigate = useNavigate();
+
+  const authContext = useContext(AuthContext);
 
   const [isShowModal, setIsShowModal] = useState(false);
   const [isModalSuccess, setIsModalSuccess] = useState(true);
@@ -35,9 +38,9 @@ export default function Login() {
         password: formDatas.password,
       }),
     })
-      .then((resposnse) => {
-        console.log(resposnse);
-        if (resposnse.status === 200) {
+      .then((res) => {
+        console.log(res);
+        if (res.ok === true) {
           setIsModalSuccess(true);
           setTimeout(() => {
             navigate("/");
@@ -46,6 +49,11 @@ export default function Login() {
           setIsModalSuccess(false);
         }
         setIsShowModal(true);
+        return res.json();
+      })
+      .then((result) => {
+        console.log(result);
+        authContext.login(result.userExist, result.access_token);
       })
       .catch((err) => {
         console.log(err);
