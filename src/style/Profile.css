@@ -34,6 +34,18 @@
   justify-content: center;
   align-items: center;
   gap: 2rem;
+  position: relative;
+}
+.profileImage__editIcon {
+  font-size: 2rem;
+  position: absolute;
+  top: 0rem;
+  right: 0rem;
+  background-color: var(--white);
+  color: var(--dark-blue);
+  border-radius: 50%;
+  padding: 5px;
+  animation: float 6s ease-in-out infinite;
 }
 .profileImage {
   width: 8rem;

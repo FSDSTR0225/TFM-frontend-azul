@@ -1,20 +1,29 @@
-import React from "react";
+import React, { useContext } from "react";
 import blankImg from "/images/profile/blankImg.jpg";
 import "../style/Profile.css";
 import { Button } from "@mui/material";
 import { IoAddCircleOutline } from "react-icons/io5";
+import { MdOutlineEdit } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
+import AuthContext from "../context/AuthenticationContext";
 
 import "swiper/css";
 import ProfileSwiper from "../components/ProfileSwiper/ProfileSwiper";
 
 export default function Profile() {
+  const navigate = useNavigate();
+  const authContext = useContext(AuthContext);
+
   return (
     <div className="profile">
       <div className="profile__container">
         <div className="profile__left">
           <div className="profile__left__imgContainer">
             <img className="profileImage" src={blankImg} />
-            <div className="profileName">Jenifer Lopez</div>
+            <div>
+              <MdOutlineEdit className="profileImage__editIcon" />
+            </div>
+            <div className="profileName">{authContext.userInfos.username}</div>
           </div>
           <div className="profile__left__btnContainer">
             <Button
@@ -24,7 +33,15 @@ export default function Profile() {
             >
               Change Password
             </Button>
-            <Button variant="contained" className="profileBtn" value="Logout">
+            <Button
+              variant="contained"
+              className="profileBtn"
+              value="Logout"
+              onClick={() => {
+                authContext.logout();
+                navigate("/");
+              }}
+            >
               Log out
             </Button>
           </div>
@@ -34,21 +51,25 @@ export default function Profile() {
             <div className="profile__mainContainerItem">
               <div className="profileDetail">
                 <span className="detailTitle">Username:</span>
-                <span className="detailText">Jenifer Lopez</span>
+                <span className="detailText">
+                  {authContext.userInfos.username}
+                </span>
               </div>
               <div className="profileDetail">
                 <span className="detailTitle">Friends:</span>
-                <span className="detailText">6</span>
+                <span className="detailText">8</span>
               </div>
               <div className="profileDetail">
                 <span className="detailTitle">Favorit Games:</span>
-                <span className="detailText">3</span>
+                <span className="detailText">12</span>
               </div>
             </div>
             <div className="profile__mainContainerItem">
               <div className="profileDetail">
                 <span className="detailTitle">Email:</span>
-                <span className="detailText">Jenifer.JLO@yahoo.com</span>
+                <span className="detailText">
+                  {authContext.userInfos.email}
+                </span>
               </div>
               <div className="profileDetail">
                 <span className="detailTitle">Rating:</span>
@@ -86,7 +107,7 @@ export default function Profile() {
                 value="new game"
               >
                 <IoAddCircleOutline className="addIcon" />
-                 new game
+                new game
               </Button>
             </div>
 

@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useContext } from "react";
-import AuthContext from "../context/AuthContext";
+// import AuthContext from "../context/AuthContext"; 
+import AuthContext from "../context/AuthenticationContext";
 import { useNavigate } from "react-router-dom";
 import { FaSearchengin } from "react-icons/fa6";
 import "../style/NavBar.css";
 
 const NavBar = ({ setSearch, showSearch, setShowSearch }) => {
-  const { user, logout } = useContext(AuthContext);
+  // const { user, logout } = useContext(AuthContext);
+  const authContext = useContext(AuthContext);
 
   const [platforms, setPlatforms] = useState([]);
 
@@ -31,7 +33,9 @@ const NavBar = ({ setSearch, showSearch, setShowSearch }) => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    logout(), navigate("/");
+    // logout(),
+    authContext.logout;
+    navigate("/");
   };
 
   const toggleExplore = () => {
@@ -95,7 +99,8 @@ const NavBar = ({ setSearch, showSearch, setShowSearch }) => {
         </li>
       </ul>
       <ul className="navbar-login">
-        {!user ? (
+        {/* {!user ? ( */}
+        {!authContext.isLoggedIn ? (
           <li>
             <NavLink
               to="/login"
@@ -109,12 +114,15 @@ const NavBar = ({ setSearch, showSearch, setShowSearch }) => {
         ) : (
           <li className="navbar-user">
             <img
-              src={user.avatar || "/default-avatar.png"}
+              src={authContext.userInfos.avatar || "/default-avatar.png"}
               alt="Avatar"
               className="navbar-avatar"
             />
-            <NavLink to="/perfil" id="perfil">
-              <span className="navbar-username">{user.username}</span>
+            <NavLink to="/profile" id="perfil">
+              {/* <span className="navbar-username">{user.username}</span> */}
+              <span className="navbar-username">
+                {authContext.userInfos.username}
+              </span>
             </NavLink>
             <ul className="dropdown-user">
               <li>
