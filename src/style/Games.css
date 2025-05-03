@@ -3,13 +3,14 @@
   flex-direction: column;
   gap: 4rem;
   padding: 4rem 2rem;
-  max-width: 1400px;
+  width: 100%;
   margin: 0 auto;
   animation: fadeInUp 0.8s ease forwards;
+  background: rgba(10, 10, 20, 0.9);
+  backdrop-filter: blur(6px);
 }
 
-section.platforms-section,
-section.games-section {
+.games-section {
   background: rgba(20, 25, 40, 0.85);
   border-radius: 24px;
   padding: 3rem 2rem;
