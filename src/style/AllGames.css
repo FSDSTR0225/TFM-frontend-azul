@@ -1,13 +1,13 @@
 .all-games-container {
   padding: 0;
   margin: 0 auto;
-  max-width: 1200px;
+  max-width: 1800px;
   text-align: center;
 }
 
 .all-games-title {
   font-size: 2.6rem;
-  margin-bottom: 2.2rem;
+  margin-bottom: 4rem;
   font-family: "Audiowide", sans-serif;
   color: #00f0ff;
   text-shadow: 0 0 10px #00f0ff, 0 0 20px #00f0ff88;
