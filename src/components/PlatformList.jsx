@@ -49,7 +49,7 @@ function PlatformList() {
             <img
               src={platform.icon}
               alt={platform.name}
-              className="platform-icon"
+              className="platform-icon-img"
             />
             {platform.name}
           </Link>
