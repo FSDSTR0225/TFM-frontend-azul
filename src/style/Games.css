@@ -26,6 +26,41 @@
   z-index: -2;
 }
 
+.section-divider {
+  position: relative;
+  height: 6px;
+  width: 80%;
+  margin: 3.5rem auto 5rem auto;
+  background: rgba(0, 255, 255, 0.05);
+  border-radius: 3px;
+  overflow: hidden;
+  box-shadow: 0 0 6px rgba(0, 255, 255, 0.1);
+}
+
+.section-divider::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 50%;
+  height: 50%;
+  background: linear-gradient(90deg, transparent, #00ff6228, transparent);
+  transform: translateX(-50%);
+  animation: glowMove 2.5s infinite ease-in-out;
+}
+
+@keyframes glowMove {
+  0%,
+  100% {
+    transform: translateX(-50%) scaleX(0.4);
+    opacity: 0.2;
+  }
+  50% {
+    transform: translateX(-50%) scaleX(1.8);
+    opacity: 1;
+  }
+}
+
 /* .games-page::before {
   content: "";
   position: absolute;
