@@ -7,15 +7,15 @@
 
 .all-games-title {
   font-size: 2.6rem;
-  margin-bottom: 4rem;
   font-family: "Audiowide", sans-serif;
   color: #00f0ff;
-  text-shadow: 0 0 10px #00f0ff, 0 0 20px #00f0ff88;
+  text-shadow: 0 0 10px #00f0ff, 0 0 20px #00f0ff88, 0 0 6px #000000aa;
+  margin-bottom: 2.2rem;
 }
 
 .all-games-list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 2.5rem;
   justify-items: center;
   padding: 2rem 0;
