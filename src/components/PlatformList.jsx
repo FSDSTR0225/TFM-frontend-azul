@@ -29,7 +29,7 @@ function PlatformList() {
     // Si está cargando, muestra...
     return (
       <div className="loading-container">
-        <h1 className="loading-title">Cargando juegos...</h1>
+        <h1 className="loading-title">Cargando plataformas...</h1>
         <PacmanLoader color="#FFD700" size={40} />{" "}
         {/* Los componentes de React spinner reciben css en el propio componente */}
       </div>
@@ -49,7 +49,7 @@ function PlatformList() {
             <img
               src={platform.icon}
               alt={platform.name}
-              className="platform-icon"
+              className="platform-icon-img"
             />
             {platform.name}
           </Link>
