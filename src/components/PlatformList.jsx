@@ -51,7 +51,7 @@ function PlatformList() {
               alt={platform.name}
               className="platform-icon-img"
             />
-            {platform.name}
+            <span className="platform-name-card">{platform.name}</span>
           </Link>
         ))}
       </div>

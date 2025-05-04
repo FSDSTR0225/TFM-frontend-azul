@@ -8,6 +8,7 @@ function Games() {
     <section className="games-page">
       <div className="unified-glass-block">
         <PlatformList />
+        <div className="section-divider"></div>
         <AllGames />
       </div>
     </section>
