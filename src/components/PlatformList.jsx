@@ -37,8 +37,8 @@ function PlatformList() {
   }
 
   return (
-    <div className="platform-container">
-      <h1>Listado de plataformas</h1>
+    <>
+      <h1 className="section-title1">Listado de plataformas</h1>
       <div className="platform-list">
         {platforms.map((platform) => (
           <Link
@@ -55,7 +55,7 @@ function PlatformList() {
           </Link>
         ))}
       </div>
-    </div>
+    </>
   );
 }
 

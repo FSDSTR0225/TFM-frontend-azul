@@ -39,14 +39,14 @@ function AllGames() {
   } // Si está cargando, muestra...
 
   return (
-    <div className="all-games-container">
-      <h1 className="all-games-title">Listado de juegos</h1>
+    <>
+      <h1 className="section-title2">Listado de juegos</h1>
       <div className="all-games-list">
         {games.map((game) => (
-          <GameCover key={game._id || game.rawgId} game={game} /> // Recorremos juegos con map y los mostramos con el componente GameCover
+          <GameCover key={game._id || game.rawgId} game={game} />
         ))}
       </div>
-    </div>
+    </>
   );
 }
 
