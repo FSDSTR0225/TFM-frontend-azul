@@ -1,15 +1,15 @@
 import React from "react";
+import "./styles/reset.css";
 import { useState } from "react";
+import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import GamesByPlatform from "./pages/GamesByPlatform";
 import Games from "./pages/Games";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
-import { Routes, Route } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import SearchInputExplore from "./components/searchInputExplore";
-import "./styles/reset.css";
 import Events from "./pages/Events";
 import Profile from "./pages/Profile";
 import GameDetails from "./components/GameDetails";
