@@ -5,10 +5,7 @@ import "../style/GameCover.css";
 function GameCover({ game }) {
   return (
     <div className="game-cover">
-      <Link
-        to={game._id ? `/games/${game._id}` : `/games/rawg/${game.rawgId}`}
-        className="game-link"
-      >
+      <Link to={`/games/${game.rawgId}`} className="game-link">
         <img
           src={game.image || game.imageUrl || game.background_iamge}
           alt={game.name}

@@ -12,7 +12,7 @@ import NavBar from "./components/NavBar";
 import SearchInputExplore from "./components/searchInputExplore";
 import Events from "./pages/Events";
 import Profile from "./pages/Profile";
-import GameDetails from "./components/GameDetails";
+import GameDetails from "./pages/GameDetails";
 import Lobby from "./pages/Lobby";
 
 import AuthContext from "./context/AuthenticationContext";
@@ -71,7 +71,6 @@ export default function App() {
             element={<GamesByPlatform />}
           />
           <Route path="/games/:id" element={<GameDetails />} />
-          <Route path="/games/rawg/:rawgId" element={<GameDetails />} />
           <Route path="/events" element={<Events />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
