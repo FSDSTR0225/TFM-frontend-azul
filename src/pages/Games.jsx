@@ -1,14 +1,14 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import PlatformList from "../components/PlatformList";
-import "../style/Games.css";
 import AllGames from "../components/AllGames";
+import "../style/Games.css";
 
 function Games() {
   return (
     <section className="games-page">
-      <PlatformList />
-      <div className="games-section">
+      <div className="unified-glass-block">
+        <PlatformList />
+        <div className="section-divider"></div>
         <AllGames />
       </div>
     </section>

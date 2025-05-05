@@ -1,24 +1,59 @@
-.all-games-container {
-  padding: 0;
-  margin: 0 auto;
-  max-width: 1800px;
-  text-align: center;
-}
-
-.all-games-title {
+.section-title2 {
+  position: relative;
   font-size: 2.6rem;
+  text-align: center;
+  margin-bottom: 3.5rem;
   font-family: "Audiowide", sans-serif;
   color: #00f0ff;
   text-shadow: 0 0 10px #00f0ff, 0 0 20px #00f0ff88, 0 0 6px #000000aa;
-  margin-bottom: 2.2rem;
+  animation: neonZoomIn 0.8s ease-out both;
+}
+
+.section-title2::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -20px;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 4px;
+  background: linear-gradient(90deg, transparent, #00f0ff, transparent);
+  border-radius: 2px;
+  box-shadow: 0 0 10px #00f0ff66, 0 0 20px #00f0ff44;
+  animation: pulseBar 1.6s ease-in-out forwards;
+}
+
+@keyframes pulseBar {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) scaleX(0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) scaleX(4);
+  }
+}
+
+@keyframes neonZoomIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.85);
+    text-shadow: 0 0 2px #00f0ff55;
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    text-shadow: 0 0 10px #00f0ff, 0 0 20px #00f0ff88, 0 0 6px #000000aa;
+  }
 }
 
 .all-games-list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 2.8rem 2.5rem;
   justify-items: center;
   padding: 2rem 0;
+  margin-bottom: 2rem 0 4rem 0;
 }
 
 @keyframes fadeInUp {
