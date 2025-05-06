@@ -5,6 +5,8 @@ import "../style/GamesByPlatform.css";
 import GameCover from "../components/GameCover";
 import { PacmanLoader } from "react-spinners";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 function GamesByPlatform() {
   const { platformId } = useParams(); // Obtener el id de la plataforma de la URL
   const [games, setGames] = useState([]); // Estado para almacenar los juegos
@@ -30,7 +32,7 @@ function GamesByPlatform() {
     const fetchGames = async () => {
       try {
         const response = await fetch(
-          `http://localhost:3000/platforms/${platformId}/games`
+          `${API_URL}/platforms/${platformId}/games`
         );
         if (!response.ok) {
           throw new Error("Error fetching games");
