@@ -4,6 +4,8 @@ import { useParams } from "react-router-dom";
 import { PacmanLoader } from "react-spinners";
 import "../style/GameDetails.css";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 const possibleModes = [
   "Singleplayer",
   "Multiplayer",
@@ -23,7 +25,7 @@ function GameDetails() {
   useEffect(() => {
     const fetchGame = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/games/${id}`); // Petición al servidor para obtener el juego por id
+        const response = await fetch(`${API_URL}/games/${id}`); // Petición al servidor para obtener el juego por id
         if (!response.ok) {
           throw new Error("Error fetching game");
         }
