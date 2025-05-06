@@ -5,6 +5,8 @@ import { PacmanLoader } from "react-spinners";
 import "../style/AllGames.css";
 import GameCover from "./GameCover";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 function AllGames() {
   const [games, setGames] = useState([]); // Almacenar todos los juegos
   const [loading, setLoading] = useState(true); // Almacenar el estado de carga,esta cargando?asi poder mostrar un loading
@@ -12,7 +14,7 @@ function AllGames() {
   useEffect(() => {
     const fetchGames = async () => {
       try {
-        const response = await fetch("http://localhost:3000/games");
+        const response = await fetch(`${API_URL}/games`);
 
         if (!response.ok) {
           throw new Error("Error fetching games");

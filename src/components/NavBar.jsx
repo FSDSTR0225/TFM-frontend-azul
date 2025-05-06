@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useContext } from "react";
-// import AuthContext from "../context/AuthContext"; 
+// import AuthContext from "../context/AuthContext";
 import AuthContext from "../context/AuthenticationContext";
 import { useNavigate } from "react-router-dom";
 import { FaSearchengin } from "react-icons/fa6";
 import "../style/NavBar.css";
+
+const API_URL = import.meta.env.VITE_API_URL;
 
 const NavBar = ({ setSearch, showSearch, setShowSearch }) => {
   // const { user, logout } = useContext(AuthContext);
@@ -16,7 +18,7 @@ const NavBar = ({ setSearch, showSearch, setShowSearch }) => {
   useEffect(() => {
     const fetchPlatforms = async () => {
       try {
-        const response = await fetch("http://localhost:3000/platforms");
+        const response = await fetch(`${API_URL}/platforms`);
         if (!response.ok) {
           throw new Error("Error fetching platforms");
         }
