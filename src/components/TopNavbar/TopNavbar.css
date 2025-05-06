@@ -16,14 +16,14 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.5rem;
+  padding: 16px 32px;
 }
 .Topnavbar__logoItem {
-  font-size: 2rem;
+  font-size: 26px;
   font-weight: bold;
-  color: var(--florecent-blue);
+  color: #66fcf1;
   text-decoration: none;
-  text-shadow: 0 0 10px var(--florecent-blue);
+  text-shadow: 0 0 10px #66fcf1;
   font-family: "Audiowide", sans-serif;
 }
 .Topnavbar__logoItem:hover {
