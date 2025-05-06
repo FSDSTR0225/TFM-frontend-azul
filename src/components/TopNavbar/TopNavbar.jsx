@@ -1,13 +1,12 @@
 import React, { useEffect, useState, useContext } from "react";
 import "./TopNavbar.css";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import AuthContext from "../../context/AuthenticationContext";
 import { FaSearch } from "react-icons/fa";
 import blankImg from "/images/profile/blankImg.jpg";
 
 export default function TopNavbar({ showSearch, setShowSearch, setSearch }) {
   const authContext = useContext(AuthContext);
-  const navigate = useNavigate();
 
   const [platforms, setPlatforms] = useState([]);
 
