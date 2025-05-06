@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import { PacmanLoader } from "react-spinners";
 import "../style/PlatformList.css";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 function PlatformList() {
   const [platforms, setPlatforms] = useState([]); // Almacenar las plataformas
   const [loading, setLoading] = useState(true); // Almacenar el estado de carga,esta cargando?asi poder mostrar un loading
@@ -11,7 +13,7 @@ function PlatformList() {
   useEffect(() => {
     const fetchPlatforms = async () => {
       try {
-        const response = await fetch("http://localhost:3000/platforms");
+        const response = await fetch(`${API_URL}/platforms`);
         if (!response.ok) {
           throw new Error("Error fetching platforms");
         }
