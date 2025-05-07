@@ -115,14 +115,14 @@ const NavBar = ({ setSearch, showSearch, setShowSearch }) => {
         ) : (
           <li className="navbar-user">
             <img
-              src={authContext.userInfos.avatar || "/default-avatar.png"}
+              src={authContext.user?.avatar || "/default-avatar.png"}
               alt="Avatar"
               className="navbar-avatar"
             />
             <NavLink to="/profile" id="perfil">
               {/* <span className="navbar-username">{user.username}</span> */}
               <span className="navbar-username">
-                {authContext.userInfos.username}
+                {authContext.user?.username}
               </span>
             </NavLink>
             <ul className="dropdown-user">
