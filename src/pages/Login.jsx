@@ -34,26 +34,25 @@ export default function Login() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        login: formDatas.email,
+        login: formDatas.login,
         password: formDatas.password,
       }),
     })
-      .then((res) => {
-        console.log(res);
+      .then(async (res) => {
+        const result = await res.json();
+        console.log(result);
+
         if (res.ok === true) {
           setIsModalSuccess(true);
+          authContext.login(result.user, result.access_token);
           setTimeout(() => {
             navigate("/");
           }, 2000);
         } else {
           setIsModalSuccess(false);
         }
+
         setIsShowModal(true);
-        return res.json();
-      })
-      .then((result) => {
-        console.log(result);
-        authContext.login(result.userExist, result.access_token);
       })
       .catch((err) => {
         console.log(err);
@@ -74,10 +73,10 @@ export default function Login() {
             <TextField
               className="RegisterForm__input"
               type="text"
-              {...register("email", {
+              {...register("login", {
                 required: true,
                 maxLength: 35,
-                minLength: 10,
+                minLength: 6,
                 // pattern: /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/,
               })}
               aria-invalid={errors.email ? "true" : "false"}
