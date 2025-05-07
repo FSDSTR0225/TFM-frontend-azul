@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import ModalMUI from "../components/ModalMUI/ModalMUI";
 import { Button, TextField } from "@mui/material";
-import AuthContext from "../context/AuthenticationContext";
+import AuthContext from "../context/AuthContext";
 
 export default function Login() {
   const navigate = useNavigate();

@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import TextField from "@mui/material/TextField";
 import ModalMUI from "../components/ModalMUI/ModalMUI";
 import { Button } from "@mui/material";
-import AuthContext from "../context/AuthenticationContext";
+import AuthContext from "../context/AuthContext";
 
 export default function Register() {
   const navigate = useNavigate();

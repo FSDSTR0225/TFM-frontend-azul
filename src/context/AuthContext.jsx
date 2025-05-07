@@ -1,25 +1,71 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 
-const AuthContext = createContext(); //Creamos contexto
+const AuthContext = createContext(); // Creamos el contexto
 
 export const AuthProvider = ({ children }) => {
-  //Componente proveedor del contexto (provee acceso a la autentificacion)
+  const [user, setUser] = useState(null); // Info del usuario
+  const [token, setToken] = useState(null); // Token JWT
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // Estado de sesión
 
-  const [user, setUser] = useState(null); // Creamos estado para user,donde empieza en null cuando no hay sesión iniciada.
+  // ✔ Cargar sesión automáticamente al arrancar si hay token en localStorage
+  useEffect(() => {
+    const savedSession = localStorage.getItem("user");
+    // ✔ Fetch al perfil del usuario usando el token
+    const fetchUserProfile = async (token) => {
+      try {
+        const res = await fetch("http://localhost:3000/profile", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
 
-  const login = (userData) => {
-    setUser(userData); // login recogerá los datos del usuario y se actualizará el user.
+        if (!res.ok) throw new Error("Token inválido o expirado");
+
+        const data = await res.json();
+        setUser(data.user);
+        setToken(token);
+        setIsLoggedIn(true);
+      } catch (err) {
+        console.error("Error al cargar perfil:", err.message);
+        logout(); // limpia si falla
+      }
+    };
+    if (savedSession) {
+      const { token } = JSON.parse(savedSession);
+      if (token) {
+        fetchUserProfile(token);
+      }
+    }
+  }, []);
+
+  // ✔ Login manual (cuando te registras o haces login)
+  const login = (userData, token) => {
+    setUser(userData);
+    setToken(token);
+    setIsLoggedIn(true);
+    localStorage.setItem("user", JSON.stringify({ token }));
   };
 
+  // ✔ Logout total
   const logout = () => {
-    setUser(null); // Limpiamos los datos del usuario al hacer logout
+    setUser(null);
+    setToken(null);
+    setIsLoggedIn(false);
+    localStorage.removeItem("user");
   };
+
   return (
-    <>
-      <AuthContext.Provider value={{ user, login, logout }}>
-        {children}
-      </AuthContext.Provider>
-    </>
+    <AuthContext.Provider
+      value={{
+        user,
+        token,
+        isLoggedIn,
+        login,
+        logout,
+      }}
+    >
+      {children}
+    </AuthContext.Provider>
   );
 };
 
