@@ -14,6 +14,7 @@ import Events from "./pages/Events";
 import Profile from "./pages/Profile";
 import GameDetails from "./pages/GameDetails";
 import Lobby from "./pages/Lobby";
+import PrivateRoute from "./components/PrivateRoute";
 
 // import AuthContext from "./context/AuthenticationContext";
 // import TopNavbar from "./components/TopNavbar/TopNavbar";
@@ -39,7 +40,15 @@ export default function App() {
       )}
       <Routes>
         <Route path="/" element={<Home />} />
-        {/* <Route path="/lobby" element={<Lobby />} /> */}
+        <Route
+          path="/lobby"
+          element={
+            <PrivateRoute>
+              {" "}
+              <Lobby />
+            </PrivateRoute>
+          }
+        />
         <Route path="/games" element={<Games />} />
         <Route
           path="/platforms/:platformId/games"
@@ -49,8 +58,14 @@ export default function App() {
         <Route path="/events" element={<Events />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/profile" element={<Profile />} />
-        {/* <PrivateRoute path="/lobby" element={<Lobby />} /> */}
+        <Route
+          path="/users/me"
+          element={
+            <PrivateRoute>
+              <Profile />
+            </PrivateRoute>
+          }
+        />
       </Routes>
     </div>
   );
