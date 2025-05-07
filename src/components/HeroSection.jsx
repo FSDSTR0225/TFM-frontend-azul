@@ -23,7 +23,7 @@ function HeroSection({ scrollRef }) {
         </div>
         <div className="hero-description">
           <h2>
-            Conecta jugadores afines y forma tu squad. Organiza o únete a
+            Conecta con jugadores afines y forma tu squad. Organiza o únete a
             partidas. Juega sin limites.
           </h2>
           <p>
