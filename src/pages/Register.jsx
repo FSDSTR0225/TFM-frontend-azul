@@ -54,7 +54,7 @@ export default function Register() {
       })
       .then((result) => {
         console.log(result);
-        authContext.login(result.user, result.accessTdoken);
+        authContext.login(result.user, result.access_token);
       })
       .catch((err) => {
         console.log(err);

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useContext } from "react";
 import AuthContext from "../context/AuthContext";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { FaSearchengin } from "react-icons/fa6";
 import "../style/NavBar.css";
 
@@ -31,13 +31,13 @@ const NavBar = ({ setSearch, showSearch, setShowSearch }) => {
     fetchPlatforms();
   }, []);
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
-  const handleLogout = () => {
-    // logout(),
-    authContext.logout;
-    navigate("/");
-  };
+  // // const handleLogout = () => {
+  // //   // logout(),
+  // //   authContext.logout;
+  // //   navigate("/");
+  // // };
 
   const toggleExplore = () => {
     setShowSearch(!showSearch);
@@ -142,7 +142,10 @@ const NavBar = ({ setSearch, showSearch, setShowSearch }) => {
                 </NavLink>
               </li>
               <li>
-                <button className="dropdown-options" onClick={handleLogout}>
+                <button
+                  className="dropdown-options"
+                  onClick={() => authContext.logout()}
+                >
                   Cerrar sesión
                 </button>
               </li>
