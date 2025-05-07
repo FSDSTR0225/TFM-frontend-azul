@@ -5,7 +5,7 @@ import { Button } from "@mui/material";
 import { IoAddCircleOutline } from "react-icons/io5";
 import { MdOutlineEdit } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
-import AuthContext from "../context/AuthenticationContext";
+import AuthContext from "../context/AuthContext";
 
 import "swiper/css";
 import ProfileSwiper from "../components/ProfileSwiper/ProfileSwiper";

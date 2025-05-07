@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useContext } from "react";
-// import AuthContext from "../context/AuthContext";
-import AuthContext from "../context/AuthenticationContext";
+import AuthContext from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { FaSearchengin } from "react-icons/fa6";
 import "../style/NavBar.css";
