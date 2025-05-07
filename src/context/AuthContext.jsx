@@ -13,7 +13,7 @@ export const AuthProvider = ({ children }) => {
     // ✔ Fetch al perfil del usuario usando el token
     const fetchUserProfile = async (token) => {
       try {
-        const res = await fetch("http://localhost:3000/profile", {
+        const res = await fetch("http://localhost:3000/users/me", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
