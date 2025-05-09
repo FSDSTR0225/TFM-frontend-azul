@@ -19,7 +19,7 @@ export default function Register() {
     success: "Now your are ready to play our games!",
     fail: "Register Fail. Please try again Later",
   };
-  const url = "http://localhost:3000/users/register";
+  const url = "http://localhost:3000/auth/register";
   const {
     register,
     handleSubmit,

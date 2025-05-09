@@ -19,7 +19,7 @@ export default function Login() {
     success: "Login succes! Now lets play",
     fail: "Login Fail. Please try again Later",
   };
-  const url = "http://localhost:3000/users/login";
+  const url = "http://localhost:3000/auth/login";
   const {
     register,
     handleSubmit,
