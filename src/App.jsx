@@ -8,6 +8,7 @@ import Games from "./pages/Games";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
+import Players from "./pages/Players";
 // import NavBar from "./components/NavBar";
 import SearchInputExplore from "./components/searchInputExplore";
 import Events from "./pages/Events";
@@ -16,7 +17,7 @@ import GameDetails from "./pages/GameDetails";
 import Lobby from "./pages/Lobby";
 
 import AuthContext from "./context/AuthenticationContext";
-import TopNavbar from "./components/TopNavbar/TopNavbar";
+import Navbar from "./components/Navbar";
 
 export default function App() {
   const [showSearch, setShowSearch] = useState(false);
@@ -79,7 +80,7 @@ export default function App() {
     >
       <div className="App">
         {/* <NavBar showSearch={showSearch} setShowSearch={setShowSearch} /> */}
-        <TopNavbar
+        <Navbar
           showSearch={showSearch}
           setShowSearch={setShowSearch}
           setSearch={setSearch}
@@ -104,6 +105,7 @@ export default function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/players" element={<Players />} />
           {/* <PrivateRoute path="/lobby" element={<Lobby />} /> */}
         </Routes>
       </div>
