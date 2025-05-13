@@ -119,7 +119,7 @@ const NavBar = ({ setSearch, showSearch, setShowSearch }) => {
               alt="Avatar"
               className="navbar-avatar"
             />
-            <NavLink to="/profile" id="perfil">
+            <NavLink to="/users/me" id="perfil">
               {/* <span className="navbar-username">{user.username}</span> */}
               <span className="navbar-username">
                 {authContext.user?.username}
