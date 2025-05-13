@@ -61,7 +61,7 @@ export default function App() {
         <Route
           path="/users/me"
           element={
-            <PrivateRoute>
+            <PrivateRoute> 
               <Profile />
             </PrivateRoute>
           }

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useEffect, useContext } from "react";
 import blankImg from "/images/profile/blankImg.jpg";
 import "../style/Profile.css";
 import { Button } from "@mui/material";
@@ -13,6 +13,15 @@ import ProfileSwiper from "../components/ProfileSwiper/ProfileSwiper";
 export default function Profile() {
   const navigate = useNavigate();
   const authContext = useContext(AuthContext);
+ const url = "http://localhost:3000/users/me";
+
+ useEffect(() => {
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      });
+  }, []);
 
   return (
     <div className="profile">
@@ -23,7 +32,7 @@ export default function Profile() {
             <div>
               <MdOutlineEdit className="profileImage__editIcon" />
             </div>
-            <div className="profileName">{authContext.userInfos.username}</div>
+            <div className="profileName">{authContext.user.username}</div>
           </div>
           <div className="profile__left__btnContainer">
             <Button
@@ -52,7 +61,7 @@ export default function Profile() {
               <div className="profileDetail">
                 <span className="detailTitle">Username:</span>
                 <span className="detailText">
-                  {authContext.userInfos.username}
+                  {authContext.user.username}
                 </span>
               </div>
               <div className="profileDetail">
@@ -68,7 +77,7 @@ export default function Profile() {
               <div className="profileDetail">
                 <span className="detailTitle">Email:</span>
                 <span className="detailText">
-                  {authContext.userInfos.email}
+                  {authContext.user.email}
                 </span>
               </div>
               <div className="profileDetail">
