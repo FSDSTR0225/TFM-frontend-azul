@@ -15,6 +15,7 @@ import Profile from "./pages/Profile";
 import GameDetails from "./pages/GameDetails";
 import Lobby from "./pages/Lobby";
 import PrivateRoute from "./components/PrivateRoute";
+import Players from "./pages/Players";
 
 // import AuthContext from "./context/AuthenticationContext";
 // import TopNavbar from "./components/TopNavbar/TopNavbar";
@@ -58,10 +59,11 @@ export default function App() {
         <Route path="/events" element={<Events />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/players" element={<Players />} />
         <Route
           path="/users/me"
           element={
-            <PrivateRoute> 
+            <PrivateRoute>
               <Profile />
             </PrivateRoute>
           }
