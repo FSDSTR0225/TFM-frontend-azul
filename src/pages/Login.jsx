@@ -92,7 +92,7 @@ export default function Login() {
             />
             <TextField
               className="RegisterForm__input"
-              type="text"
+              type="password"
               {...register("password", {
                 required: true,
                 maxLength: 35,
