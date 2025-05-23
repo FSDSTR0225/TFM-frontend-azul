@@ -13,15 +13,12 @@ import ProfileSwiper from "../components/ProfileSwiper/ProfileSwiper";
 export default function Profile() {
   const navigate = useNavigate();
   const authContext = useContext(AuthContext);
- const url = "http://localhost:3000/users/me";
 
- useEffect(() => {
-    fetch(url)
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-      });
-  }, []);
+  useEffect(() => {
+    if (!authContext.user) {
+      navigate("/login");
+    }
+  }, [authContext.user, navigate]);// si la session caduca o se cierra, se redirige a login
 
   return (
     <div className="profile">

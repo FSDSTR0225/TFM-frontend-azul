@@ -1,0 +1,119 @@
+.profile-card {
+  width: 90%;
+  max-width: 800px;
+  margin: auto;
+  padding: 2rem;
+  border: 2px solid #2196f3;
+  border-radius: 20px;
+  text-align: center;
+  background: rgb(134, 190, 255);
+}
+
+.avatar-container {
+  position: relative;
+}
+
+.avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 4px solid #e673f3;
+  object-fit: cover;
+}
+
+.edit-button {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  font-size: 0.8rem;
+  background: none;
+  border: none;
+  color: #333;
+  cursor: pointer;
+}
+
+.username {
+  color: #1565c0;
+  font-size: 1.8rem;
+  margin: 0.5rem 0 1.5rem;
+}
+
+.section {
+  margin-bottom: 2rem;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #1565c0;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.circle-list {
+  display: flex;
+  gap: 0.8rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.circle {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 3px solid;
+}
+
+.circle.blue {
+  border-color: #1565c0;
+}
+
+.circle.purple {
+  border-color: #9c27b0;
+}
+
+.add-button {
+  font-size: 0.9rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #1565c0;
+}
+
+.add-button.purple {
+  color: #9c27b0;
+}
+
+.add-button.cyan {
+  color: #00bcd4;
+}
+.add-button.pink {
+  color:  #e673f3;
+}
+
+.diamond-list {
+  display: flex;
+  gap: 1.3rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.diamond {
+  width: 40px;
+  height: 40px;
+  transform: rotate(45deg);
+  border: 3px solid #00bcd4;
+  background: transparent;
+}
+.event-img {
+  width: 90%;
+  height: 90%;
+  object-fit: cover;
+  border-radius: 10px;
+  padding-right: 3px;
+  padding-top: 2px;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.1);
+
+transform: rotate(-45deg)
+}

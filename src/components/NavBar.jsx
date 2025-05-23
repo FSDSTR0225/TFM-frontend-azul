@@ -5,6 +5,7 @@ import AuthContext from "../context/AuthContext";
 // import { useNavigate } from "react-router-dom";
 import { FaSearchengin } from "react-icons/fa6";
 import "../style/NavBar.css";
+import blankImg from "/images/profile/blankImg.jpg";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -115,7 +116,7 @@ const NavBar = ({ setSearch, showSearch, setShowSearch }) => {
         ) : (
           <li className="navbar-user">
             <img
-              src={authContext.user?.avatar || "/default-avatar.png"}
+              src={authContext.user?.avatar || blankImg}
               alt="Avatar"
               className="navbar-avatar"
             />
