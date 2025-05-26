@@ -1,7 +1,12 @@
+.profile-page {
+    display: flex; 
+    font-family: "Poppins", sans-serif;
+    justify-content: center;
+    flex-direction: column;}
+
 .profile-card {
-  width: 90%;
-  max-width: 800px;
-  margin: auto;
+  width:70vw ;
+  margin: 0 250px;
   padding: 2rem;
   border: 2px solid #2196f3;
   border-radius: 20px;
@@ -52,15 +57,18 @@
 }
 
 .circle-list {
-  display: flex;
-  gap: 0.8rem;
-  justify-content: center;
-  flex-wrap: wrap;
+display: flex;
+    gap: 0.8rem;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-content: flex-start;
+    align-items: start;
 }
 
 .circle {
-  width: 50px;
-  height: 50px;
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
   border: 3px solid;
 }
@@ -89,7 +97,7 @@
   color: #00bcd4;
 }
 .add-button.pink {
-  color:  #e673f3;
+  color: #e673f3;
 }
 
 .diamond-list {
@@ -115,5 +123,24 @@
   padding-top: 2px;
   box-shadow: 0 0 15px rgba(0, 255, 255, 0.1);
 
-transform: rotate(-45deg)
+  transform: rotate(-45deg);
+}
+.game-img {
+width: inherit;
+    height: inherit;
+    object-fit: fill;
+    border-radius: inherit;
+    padding-right: inherit;
+    padding-top: inherit;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.1);
+}
+.game {
+  display : flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  text-align: center;
+  color: #1565c0;
+  font-weight: bold;
+  margin-bottom: 1rem;
 }
