@@ -2,14 +2,14 @@ import React from "react";
 import "../style/Profile2.css";
 import ModalWindow from "./ModalWindow";
 import { useState } from "react";
-const FavoriteGamesList = ({ games }) => {
+const FavoriteGamesList = ({ games ,  triggerRefresh}) => {
   const [modalOpen, setModalOpen] = useState(false);
 
   return (
     <div className="section">
       <div className="section-header">
         <h3>Juegos Favoritos</h3>
-        <button className="add-button purple" on onClick={() => setModalOpen(true)}>➕ add</button>
+        <button className="add-button-p purple" on onClick={() => setModalOpen(true)}>➕ add</button>
       </div>
       <div className="circle-list">
         {games.map((game, index) => (
@@ -24,7 +24,7 @@ const FavoriteGamesList = ({ games }) => {
           </div>
           </div>
         ))}
-        <ModalWindow isOpen={modalOpen} onClose={() => setModalOpen(false)} type="game"/>
+        <ModalWindow onSuccess = {triggerRefresh} isOpen={modalOpen} onClose={() => setModalOpen(false)} type="game"/>
       </div>
     </div>
   );
