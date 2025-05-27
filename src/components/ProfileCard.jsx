@@ -53,7 +53,7 @@ const ProfileCard = () => {
       <h2 className="username">{user.username}</h2>
 
       <FavoritePlatforms
-      refresh = {triggerRefresh}
+        triggerRefresh = {triggerRefresh}
         platforms={user.platforms || ["khKH", "hgygsdy", "ygyas"]}
       />
       <FriendsList triggerRefresh  = {triggerRefresh}friends={user.friends || ["khKH", "hgygsdy", "ygyas"]} />
