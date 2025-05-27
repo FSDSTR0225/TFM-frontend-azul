@@ -46,7 +46,7 @@ export default function Login() {
           setIsModalSuccess(true);
           authContext.login(result.user, result.access_token);
           setTimeout(() => {
-            navigate("/");
+            navigate("/lobby");
           }, 2000);
         } else {
           setIsModalSuccess(false);
