@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import "./../styles/register.css";
+import "./../style/register.css";
 import sideImg from "/images/register/3.jpg";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";

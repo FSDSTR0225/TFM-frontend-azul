@@ -1,6 +1,6 @@
 .lobby-content {
   background: linear-gradient(135deg, #0a0a0a, #003366);
-  background-image: url("/images/try.jpg"); /* puedes usar una imagen borrosa o nebulosa gamer */
+  background-image: url("/images/try.jpg");
   background-size: cover;
   background-position: center;
   min-height: 100vh;

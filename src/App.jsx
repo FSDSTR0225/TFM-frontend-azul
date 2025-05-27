@@ -1,5 +1,5 @@
 import React from "react";
-import "./styles/reset.css";
+import "./style/reset.css";
 import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
