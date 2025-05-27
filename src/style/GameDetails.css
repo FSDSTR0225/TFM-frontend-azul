@@ -12,7 +12,17 @@
   transition: background-image 0.3s ease-in-out;
 }
 
+.game-details-content {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  margin-top: 2.5rem;
+  padding: 3rem 2rem 5rem;
+  position: relative;
+}
+
 .game-details-container {
+  position: relative;
   background: rgba(20, 20, 20, 0.85);
   backdrop-filter: blur(8px);
   border-radius: 16px;
@@ -109,4 +119,30 @@
 
 .screenshot-gallery img:hover {
   transform: scale(1.05);
+}
+
+.back-btn-details {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #00f0ff1a;
+  color: #00f0ff;
+  border: 2.5px solid #00f0ff;
+  border-radius: 10px;
+  padding: 0.4rem 1rem;
+  font-family: "Audiowide", sans-serif;
+  font-size: 1.3rem;
+  cursor: pointer;
+  text-shadow: 0 0 6px #00f0ff;
+  box-shadow: 0 0 8px #00f0ff40;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.back-btn-details:hover {
+  transform: translateX(-2px);
+  box-shadow: 0 0 16px #00f0ff;
 }

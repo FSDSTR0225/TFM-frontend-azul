@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { PacmanLoader } from "react-spinners";
+import { useNavigate } from "react-router-dom"; // hook para navegar entre rutas
 import "../style/GameDetails.css";
 
 const API_URL = import.meta.env.VITE_API_URL;
@@ -22,6 +23,8 @@ function GameDetails() {
   const [game, setGame] = useState(null); // Almacenar el juego
   const [loading, setLoading] = useState(true); // Almacenar el estado de carga,esta cargando?asi poder mostrar un loading
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     const fetchGame = async () => {
       try {
@@ -38,7 +41,7 @@ function GameDetails() {
     };
 
     fetchGame(); // Llamar a la función para obtener el juego
-  }, [id]); // El array vacío significa que el efecto se ejecuta solo una vez al montar el componente
+  }, [id]); // El array con el id como dependencia, para que se ejecute cada vez que cambie el id del juego en la URL.
 
   if (loading) {
     return (
@@ -82,67 +85,72 @@ function GameDetails() {
         }}
       ></div>
       <div className="game-details-container">
-        <h1 className="api-title">{game.name}</h1>
+        <button className="back-btn-details" onClick={() => navigate(-1)}>
+          ← Volver
+        </button>
+        <div className="game-details-content">
+          <h1 className="api-title">{game.name}</h1>
 
-        <img
-          src={game.imageUrl || game.background_image}
-          alt={game.name}
-          className="game-main-image"
-        />
+          <img
+            src={game.imageUrl || game.background_image}
+            alt={game.name}
+            className="game-main-image"
+          />
 
-        <p>
-          <strong>Fecha de lanzamiento:</strong> {game.released}
-        </p>
-        {game.metacritic && (
           <p>
-            <strong>Metacritic:</strong> {game.metacritic}
+            <strong>Fecha de lanzamiento:</strong> {game.released}
           </p>
-        )}
-        <p>
-          <strong>Géneros:</strong> {genresString}
-        </p>
-        <p>
-          <strong>Plataformas:</strong> {platformsString}
-        </p>
-        <p>
-          <strong>Tiendas:</strong> {storesString}
-        </p>
-        <p>
-          <strong>Modos de juego:</strong> {gameModesString}
-        </p>
-        <p>
-          <strong>Etiquetas:</strong> {moreTagsString}
-        </p>
-        <p>
-          <strong>Desarrollador:</strong> {developersString}
-        </p>
-        <p>
-          <strong>Clasificación:</strong> {game.esrbRating || "N/A"}
-        </p>
+          {game.metacritic && (
+            <p>
+              <strong>Metacritic:</strong> {game.metacritic}
+            </p>
+          )}
+          <p>
+            <strong>Géneros:</strong> {genresString}
+          </p>
+          <p>
+            <strong>Plataformas:</strong> {platformsString}
+          </p>
+          <p>
+            <strong>Tiendas:</strong> {storesString}
+          </p>
+          <p>
+            <strong>Modos de juego:</strong> {gameModesString}
+          </p>
+          <p>
+            <strong>Etiquetas:</strong> {moreTagsString}
+          </p>
+          <p>
+            <strong>Desarrollador:</strong> {developersString}
+          </p>
+          <p>
+            <strong>Clasificación:</strong> {game.esrbRating || "N/A"}
+          </p>
 
-        <div className="game-description">
-          <h3>Descripción</h3>
-          <p>{game.description}</p>
-        </div>
-
-        {game.background_image_additional && (
-          <div className="additional-image">
-            <img
-              src={game.background_image_additional}
-              alt={`Imagen adicional de ${game.name}`}
-            />
+          <div className="game-description">
+            <h3>Descripción</h3>
+            <p>{game.description}</p>
           </div>
-        )}
 
-        {game.screenshots?.length > 0 && (
-          <div className="screenshots">
-            <div className="screenshot-gallery">
-              {game.screenshots.map((img, index) => (
-                <img key={index} src={img} alt={`screenshot-${index}`} />
-              ))}
+          {game.background_image_additional && (
+            <div className="additional-image">
+              <img
+                src={game.background_image_additional}
+                alt={`Imagen adicional de ${game.name}`}
+              />
             </div>
-          </div>
-        )}
+          )}
+
+          {game.screenshots?.length > 0 && (
+            <div className="screenshots">
+              <div className="screenshot-gallery">
+                {game.screenshots.map((img, index) => (
+                  <img key={index} src={img} alt={`screenshot-${index}`} />
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
       </div>
     </>
   );

@@ -27,11 +27,7 @@ export default function App() {
   return (
     <div className="App">
       <NavBar showSearch={showSearch} setShowSearch={setShowSearch} />
-      {/* <TopNavbar
-        showSearch={showSearch}
-        setShowSearch={setShowSearch}
-        setSearch={setSearch}
-      /> */}
+
       {showSearch && (
         <SearchInputExplore
           search={search}

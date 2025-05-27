@@ -76,7 +76,7 @@ export default function Login() {
               {...register("login", {
                 required: true,
                 maxLength: 35,
-                minLength: 6,
+                minLength: 4,
                 // pattern: /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/,
               })}
               aria-invalid={errors.email ? "true" : "false"}

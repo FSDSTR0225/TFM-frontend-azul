@@ -1,79 +1,226 @@
-.games-by-platform-container {
+.games-by-platform-page {
+  position: relative;
+  width: 100%;
   min-height: 100vh;
-  padding: 2rem;
-  background: linear-gradient(to bottom right, #0b0c2a, #05061a);
+  padding: 5rem 2rem 3rem 2rem;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  z-index: 1;
+  background-color: transparent;
 }
 
-.games-by-platform-container h1 {
+.background-blur-overlay {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.25),
+      rgba(0, 0, 0, 0.4)
+    ),
+    url("../assets/prueba7.jpg") center/cover no-repeat;
+  filter: blur(6px) brightness(0.9);
+  z-index: -2;
+}
+
+.content-container {
+  width: 100%;
+  max-width: 1440px;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(6px) brightness(1.05) saturate(1.2);
+  border: 1px solid rgba(0, 255, 255, 0.05);
+  border-radius: 20px;
+  padding: 3rem 2rem 5rem;
+  box-shadow: 0 0 16px rgba(0, 255, 255, 0.05);
+  z-index: -2;
+}
+
+.section-title3 {
+  font-size: 2.6rem;
   text-align: center;
-  font-size: 2.5rem;
-  margin-bottom: 3.5rem;
+  margin: 1.2rem auto 2.5rem;
+  font-family: "Audiowide", sans-serif;
   color: #00f0ff;
-  text-shadow: 0 0 10px #00f0ff;
+  text-shadow: 0 0 10px #00f0ff, 0 0 20px #00f0ff88, 0 0 6px #000000aa;
+  animation: neonZoomIn 0.8s ease-out both, titleGlow 3s ease-in-out infinite;
+}
+
+.title-under-pc {
+  width: 120px;
+  height: 4px;
+  background: linear-gradient(90deg, transparent, #dc96ff, transparent);
+  margin: -2rem auto 2.8rem auto;
+  border-radius: 4px;
+  box-shadow: 0 0 10px #00f0ff66;
+}
+
+.title-under-playstation5 {
+  width: 120px;
+  height: 4px;
+  background: linear-gradient(90deg, transparent, #00f0ff, transparent);
+  margin: -2rem auto 2.8rem auto;
+  border-radius: 4px;
+  box-shadow: 0 0 10px #00f0ff66;
+}
+
+.title-under-playstation4 {
+  width: 120px;
+  height: 4px;
+  background: linear-gradient(90deg, transparent, #00b7ff, transparent);
+  margin: -2rem auto 2.8rem auto;
+  border-radius: 4px;
+  box-shadow: 0 0 10px #00f0ff66;
+}
+.title-under-xbox-series-x {
+  width: 120px;
+  height: 4px;
+  background: linear-gradient(90deg, transparent, #66ff66, transparent);
+  margin: -2rem auto 2.8rem auto;
+  border-radius: 4px;
+  box-shadow: 0 0 10px #00f0ff66;
+}
+.title-under-nintendo-switch {
+  width: 120px;
+  height: 4px;
+  background: linear-gradient(90deg, transparent, #ff4444, transparent);
+  margin: -2rem auto 2.8rem auto;
+  border-radius: 4px;
+  box-shadow: 0 0 10px #00f0ff66;
+}
+.title-under-mobile {
+  width: 120px;
+  height: 4px;
+  background: linear-gradient(90deg, transparent, #ffbb00, transparent);
+  margin: -2rem auto 2.8rem auto;
+  border-radius: 4px;
+  box-shadow: 0 0 10px #00f0ff66;
+}
+
+@keyframes titleGlow {
+  0%,
+  100% {
+    text-shadow: 0 0 6px #00f0ffaa;
+  }
+  50% {
+    text-shadow: 0 0 12px #00f0ffcc;
+  }
+}
+
+@keyframes neonZoomIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.85);
+    text-shadow: 0 0 2px #00f0ff55;
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    text-shadow: 0 0 10px #00f0ff, 0 0 20px #00f0ff88, 0 0 6px #000000aa;
+  }
 }
 
 .platform-game-list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 3rem;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 2.8rem 2.5rem;
   justify-items: center;
-}
-
-.pagination {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 4rem;
-  gap: 1.5rem;
-}
-
-.pagination button {
-  background-color: #00f0ff;
-  color: #0b0c2a;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 12px;
-  font-size: 1rem;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.pagination button:hover {
-  background-color: #00d0ff;
-}
-
-.pagination button:disabled {
-  background-color: #b0b0b0;
-  cursor: not-allowed;
-}
-
-.pagination span {
-  font-size: 1.2rem;
-  color: #ffffff;
+  padding: 2rem 0;
 }
 
 @media (max-width: 768px) {
-  .games-by-platform-container {
-    padding: 1.5rem 1rem;
-  }
-
-  .games-by-platform-container h1 {
+  .section-title3 {
     font-size: 2rem;
-    margin-bottom: 2rem;
   }
+}
 
-  .platform-game-list {
-    grid-template-columns: 1fr;
-  }
+.platform-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
 
-  .pagination {
-    flex-direction: column;
-    gap: 0.8rem;
-  }
+.platform-icon {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 4px #00f0ff88);
+}
 
-  .pagination button {
-    width: 100%;
-    max-width: 240px;
-  }
+.section-title3-with-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2rem;
+  margin-bottom: 2.4rem;
+  flex-wrap: wrap;
+  text-align: center;
+}
+
+.platform-icon-title {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 4px #00f0ff88);
+  animation: fadeInCard 0.6s ease both;
+  z-index: 3;
+}
+
+.neon-pc {
+  color: #dc96ff;
+  text-shadow: 0 0 10px #bf76fb, 0 0 20px #c494ecb5, 0 0 6px #000000aa;
+}
+
+.neon-playstation4 {
+  color: #00b7ff;
+  text-shadow: 0 0 10px #00aaff, 0 0 20px #7bcdf6f5, 0 0 6px #000000aa;
+}
+
+.neon-xbox-series-x {
+  color: #66ff66;
+  text-shadow: 0 0 10px #66ff66, 0 0 20px #66ff6688, 0 0 6px #000000aa;
+}
+
+.neon-nintendo-switch {
+  color: #ff4444;
+  text-shadow: 0 0 10px #ff4444, 0 0 20px #ff4444a9, 0 0 6px #000000aa;
+}
+
+.neon-mobile {
+  color: #ffbb00;
+  text-shadow: 0 0 10px #ffbb00, 0 0 20px #ffbb0088, 0 0 6px #000000aa;
+}
+
+.back-btn {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #00f0ff1a;
+  color: #00f0ff;
+  border: 2.5px solid #00f0ff;
+  border-radius: 10px;
+  padding: 0.4rem 1rem;
+  font-family: "Audiowide", sans-serif;
+  font-size: 1.3rem;
+  cursor: pointer;
+  text-shadow: 0 0 6px #00f0ff;
+  box-shadow: 0 0 8px #00f0ff40;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.back-btn:hover {
+  transform: translateX(-2px);
+  box-shadow: 0 0 16px #39f9e4;
 }
