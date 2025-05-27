@@ -42,9 +42,10 @@ export default function Login() {
         const result = await res.json();
         console.log(result);
 
-        if (res.ok === true) {
+        if (res.ok) {
           setIsModalSuccess(true);
-          authContext.login(result.user, result.access_token);
+          authContext.login(res.user, res.access_token);
+          
           setTimeout(() => {
             navigate("/");
           }, 2000);

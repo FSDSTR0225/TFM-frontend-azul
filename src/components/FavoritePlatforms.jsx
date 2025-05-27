@@ -3,13 +3,13 @@ import "../style/Profile2.css";
 import "../style/PlatformList.css";
 import ModalWindow from "./ModalWindow";
 import { useState } from "react";
-const FavoritePlatforms = ({ platforms }) => {
+const FavoritePlatforms = ({ platforms, triggerRefresh }) => {
     const [modalOpen, setModalOpen] = useState(false);
   return (
     <div className="section">
       <div className="section-header">
         <h3>Plataformas</h3>
-        <button onClick={() => {setModalOpen(true)}} className="add-button pink">
+        <button onClick={() => {setModalOpen(true)}} className="add-button-p pink">
           ➕ add
         </button>
       </div>
@@ -25,7 +25,7 @@ const FavoritePlatforms = ({ platforms }) => {
           </div>
         ))}
       </div>
-      <ModalWindow isOpen={modalOpen} onClose={() => setModalOpen(false)} type="platform"/>
+      <ModalWindow onSuccess={triggerRefresh} isOpen={modalOpen} onClose={() => setModalOpen(false)} type="platform"/>
     </div>
   );
 };

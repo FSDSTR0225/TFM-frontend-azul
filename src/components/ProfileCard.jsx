@@ -1,6 +1,6 @@
 import FriendsList from "./FriendsList";
 import FavoriteGamesList from "./FavoriteGamesList";
-import EventsList from "./EventsList";
+import EventsList from "./LastEventsList";
 import FavoritePlatforms from "./FavoritePlatforms";
 import "../style/Profile2.css";
 import AuthContext from "../context/AuthContext";
@@ -11,9 +11,13 @@ import { PacmanLoader } from "react-spinners";
 
 const ProfileCard = () => {
   const { token, isLoggedIn } = useContext(AuthContext);
-const API_URL = import.meta.env.VITE_API_URL;
+  const API_URL = import.meta.env.VITE_API_URL;
   const [user, setUser] = useState(null);
+  const [refreshKey, setRefreshKey] = useState(0); // ogni cambio forza il useEffect
 
+  const triggerRefresh = () => {
+    setRefreshKey((prev) => prev + 1); // cambia il valore → useEffect ritriggera
+  };
   useEffect(() => {
     const fetchProfile = async () => {
       try {
@@ -35,7 +39,7 @@ const API_URL = import.meta.env.VITE_API_URL;
     if (isLoggedIn && token) {
       fetchProfile();
     }
-  }, [isLoggedIn, token]);
+  }, [isLoggedIn, token, refreshKey]);
 
   if (!user) {
     return <PacmanLoader color="#FFD700" size={40} />; // spinner/placeholder temporaneo
@@ -49,13 +53,14 @@ const API_URL = import.meta.env.VITE_API_URL;
       <h2 className="username">{user.username}</h2>
 
       <FavoritePlatforms
+      refresh = {triggerRefresh}
         platforms={user.platforms || ["khKH", "hgygsdy", "ygyas"]}
       />
-      <FriendsList friends={user.friends || ["khKH", "hgygsdy", "ygyas"]} />
-      <FavoriteGamesList
+      <FriendsList triggerRefresh  = {triggerRefresh}friends={user.friends || ["khKH", "hgygsdy", "ygyas"]} />
+      <FavoriteGamesList triggerRefresh = {triggerRefresh}
         games={user.favoriteGames || ["khKH", "hgygsdy", "ygyas"]}
       />
-      <EventsList events={user.events || ["khKH", "hgygsdy", "ygyas"]} />
+      <EventsList  triggerRefresh = {triggerRefresh}events={user.events || ["khKH", "hgygsdy", "ygyas"]} />
     </div>
   );
 };
