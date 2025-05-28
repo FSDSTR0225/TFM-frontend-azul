@@ -1,0 +1,69 @@
+.edit-profile {
+  max-width: 600px;
+  margin: 3rem auto;
+  padding: 2rem;
+  border: 2px solid #1565c0;
+  border-radius: 20px;
+  background-color: #2196f3;
+  font-family: "Poppins", sans-serif;
+  box-shadow: 0 0 20px rgba(21, 101, 192, 0.1);
+}
+
+.edit-profile h2 {
+  text-align: center;
+  color: #1565c0;
+  margin-bottom: 2rem;
+  font-size: 1.8rem;
+}
+
+.edit-profile form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.edit-profile label {
+  font-weight: bold;
+  color: #333;
+}
+
+.edit-profile input[type="text"],
+.edit-profile input[type="email"],
+.edit-profile input[type="password"],
+.edit-profile input[type="file"] {
+  padding: 0.7rem 1rem;
+  border: 2px solid #ccc;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-family: inherit;
+  transition: border 0.2s;
+  color: #333;
+  background-color: transparent;
+}
+
+.edit-profile input:focus {
+  border-color: #1565c0;
+  outline: none;
+}
+
+.edit-profile span {
+  color: red;
+  font-size: 0.9rem;
+}
+
+.edit-profile button[type="submit"] {
+  background-color: #e673f3;
+  color: white;
+  padding: 0.8rem 1.2rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: background-color 0.2s ease;
+}
+
+.edit-profile button[type="submit"]:hover {
+  background-color: #d058e0;
+}

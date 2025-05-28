@@ -1,0 +1,174 @@
+.profile-page {
+    display: flex; 
+    font-family: "Poppins", sans-serif;
+    justify-content: center;
+    flex-direction: column;}
+
+.profile-card {
+  width:70vw ;
+  margin: 0 250px;
+  padding: 2rem;
+  border: 2px solid #2196f3;
+  border-radius: 20px;
+  text-align: center;
+  background: rgb(134, 190, 255);
+}
+
+.avatar-container {
+  position: relative;
+  display: inline-block;
+}
+
+.avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 4px solid #e673f3;
+  object-fit: cover;
+}
+
+.edit-button {
+  position: absolute;
+  bottom: 0;
+  right: 2;
+  font-size: 0.8rem;
+  background: none;
+  border: none;
+  color: #333;
+  cursor: pointer;
+}
+
+.username {
+  color: #1565c0;
+  font-size: 1.8rem;
+  margin: 0.5rem 0 1.5rem;
+}
+
+.section {
+  margin-bottom: 4rem;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #1565c0;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.circle-list {
+display: flex;
+    gap: 0.8rem;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-content: flex-start;
+    align-items: start;
+}
+
+.circle.blue {
+  border-color: #1565c0;
+}
+
+.circle.purple {
+  border-color: #9c27b0;
+}
+
+.add-button {
+  font-size: 0.9rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #1565c0;
+}
+
+.add-button.purple {
+  color: #9c27b0;
+}
+
+.add-button.cyan {
+  color: #00bcd4;
+}
+.add-button.pink {
+  color: #e673f3;
+}
+
+.diamond-list {
+  display: flex;
+  gap: 1.3rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.diamond {
+  width: 40px;
+  height: 40px;
+  transform: rotate(45deg);
+  border: 3px solid #00bcd4;
+  background: transparent;
+}
+.event-img {
+  width: 90%;
+  height: 90%;
+  object-fit: cover;
+  border-radius: 10px;
+  padding-right: 3px;
+  padding-top: 2px;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.1);
+  
+  transform: rotate(-45deg);
+}
+
+
+.circle-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.circle {
+  position: relative; /* necessario per posizionare il bottone all'interno */
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+ 
+  border: 3px solid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.circle.purple {
+  border-color: #9c27b0;
+}
+
+.game-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.delete-button {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  background-color: white;
+  color: #9c27b0;
+  border: 2px solid #9c27b0;
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.2s ease;
+}
+
+.delete-button:hover {
+  background-color: #9c27b0;
+  color: white;
+}

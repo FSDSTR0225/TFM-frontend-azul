@@ -43,9 +43,10 @@ export default function Login() {
         const result = await res.json();
         console.log(result);
 
-        if (res.ok === true) {
+        if (res.ok) {
           setIsModalSuccess(true);
           authContext.login(result.user, result.access_token);
+
           setTimeout(() => {
             navigate("/lobby");
           }, 2000);
@@ -93,7 +94,7 @@ export default function Login() {
             />
             <TextField
               className="RegisterForm__input"
-              type="text"
+              type="password"
               {...register("password", {
                 required: true,
                 maxLength: 35,

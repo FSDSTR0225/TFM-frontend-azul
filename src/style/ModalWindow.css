@@ -1,0 +1,89 @@
+/* Modal overlay: sfondo scuro semi-trasparente con blur */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(10, 10, 30, 0.7);
+  backdrop-filter: blur(6px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+/* Modal box: neon, angoli arrotondati, effetto vetro */
+.modal-content {
+  background: rgba(20, 30, 60, 0.85);
+  border: 2px solid #00ffff;
+  border-radius: 16px;
+  padding: 2rem;
+  max-width: 500px;
+  width: 90%;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
+  color: #ffffff;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  position: relative;
+}
+
+/* Chiudi (X) */
+.modal-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  color: #00ffff;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+.modal-close:hover {
+  color: #ff00ff;
+}
+
+/* Titolo */
+.modal-content h2 {
+  margin-top: 0;
+  color: #00ffff;
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+/* Input per ricerca */
+.modal-content input[type="text"] {
+  width: 100%;
+  padding: 10px 14px;
+  margin: 1rem 0;
+  border: 1px solid #00ffff;
+  border-radius: 10px;
+  background-color: #0e1a3a;
+  color: #ffffff;
+  font-size: 1rem;
+  outline: none;
+}
+.modal-content input[type="text"]::placeholder {
+  color: #aaa;
+  font-style: italic;
+}
+
+/* Bottone aggiungi */
+.add-button {
+  margin-top: 1rem;
+  width: 100%;
+  padding: 12px;
+  border: none;
+  background-color: #00ffff;
+  color: #0e1a3a;
+  font-weight: bold;
+  border-radius: 12px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: box-shadow 0.3s, background-color 0.3s;
+}
+.add-button:hover {
+  background-color: #0ff;
+  box-shadow: 0 0 8px #0ff, 0 0 15px #00ffff;
+}

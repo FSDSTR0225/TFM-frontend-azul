@@ -10,6 +10,7 @@ export default function ModalMUI({
   setIsShowModal,
   isModalSuccess,
   modalText,
+
 }) {
   const handleClose = () => setIsShowModal(false);
 

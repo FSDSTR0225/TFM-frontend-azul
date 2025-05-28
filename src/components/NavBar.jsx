@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
 import { FaSearchengin } from "react-icons/fa6";
 import "../style/NavBar.css";
+import blankImg from "/images/profile/blankImg.jpg";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -134,60 +135,44 @@ const NavBar = ({ setSearch, showSearch, setShowSearch }) => {
             </NavLink>
           </li>
         ) : (
-          <>
-            <li className="rigth-notification">
-              <NavLink
-                to="/notificaciones"
-                className={({ isActive }) =>
-                  isActive ? "active-link" : "nav-link"
-                }
-              >
-                🔔
-              </NavLink>
-            </li>
-            <li className="navbar-user">
-              <img
-                src={authContext.user?.avatar || "./src/assets/gamer2.png"}
-                alt="Avatar"
-                className="navbar-avatar"
-              />
-              <NavLink to="/users/me" id="perfil">
-                <span className="navbar-username">
-                  {authContext.user?.username}
-                </span>
-              </NavLink>
-              <ul className="dropdown-user">
-                <li>
-                  <NavLink to="/perfil/editar" className="dropdown-options">
-                    Editar perfil
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink to="/solicitudes" className="dropdown-options">
-                    Solicitudes de juego
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink to="/solicitudes" className="dropdown-options">
-                    Gestion de eventos
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink to="/configuracion" className="dropdown-options">
-                    Configuración
-                  </NavLink>
-                </li>
-                <li>
-                  <button
-                    className="dropdown-options"
-                    onClick={() => authContext.logout()}
-                  >
-                    Cerrar sesión
-                  </button>
-                </li>
-              </ul>
-            </li>
-          </>
+          <li className="navbar-user">
+            <img
+              src={authContext.user?.avatar || blankImg}
+              alt="Avatar"
+              className="navbar-avatar"
+            />
+            <NavLink to="/users/me" id="perfil">
+              {/* <span className="navbar-username">{user.username}</span> */}
+              <span className="navbar-username">
+                {authContext.user?.username}
+              </span>
+            </NavLink>
+            <ul className="dropdown-user">
+              <li>
+                <NavLink to="/edit/profile" className="dropdown-options">
+                  Editar perfil
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/solicitudes" className="dropdown-options">
+                  Solicitudes de juego
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/configuracion" className="dropdown-options">
+                  Configuración
+                </NavLink>
+              </li>
+              <li>
+                <button
+                  className="dropdown-options"
+                  onClick={() => authContext.logout()}
+                >
+                  Cerrar sesión
+                </button>
+              </li>
+            </ul>
+          </li>
         )}
       </ul>
     </nav>

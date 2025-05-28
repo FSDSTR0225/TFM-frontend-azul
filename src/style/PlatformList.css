@@ -134,6 +134,15 @@
   }
 }
 
+.profile{
+  width: 150px;
+  height: 150px;
+  .platform-icon-img{
+    margin: auto;
+    width: 80px;
+    height: 80px;
+  }
+}
 /* ICONOS FLOTANTEs?*/
 /* .platform-icon {
   width: 54px;

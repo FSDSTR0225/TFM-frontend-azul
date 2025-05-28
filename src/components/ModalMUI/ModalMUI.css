@@ -15,8 +15,30 @@
   text-align: center;
   color: #fff;
   outline: none;
+<<<<<<< HEAD
   position: relative;
   transition: all 0.3s ease-in-out;
+=======
+  border-radius: 10px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  padding-top: 3rem;
+  background-color: var(--white);
+  box-shadow: 0 0 20px 10px rgba(0, 0, 0, 0.463);
+}
+.modal__Title {
+  font-family: "Poppins", sans-serif !important;
+  font-size: 2.5rem !important;
+  font-weight: 700 !important;
+  margin-top: 1rem !important;
+}
+.modal__successicon {
+  font-size: 4rem;
+  color: rgb(101, 166, 148);
+>>>>>>> d3bc120f3ca590ddb5b30c23d93290e99b24a097
 }
 
 .modal__successicon,
@@ -43,9 +65,11 @@
 }
 
 .modal__text {
-  font-size: 16px;
-  margin-bottom: 24px;
-  color: #e0e0ff;
+  font-family: "Poppins", sans-serif !important;
+  font-size: 1.2rem !important;
+  font-weight: 500;
+  margin: 0 !important;
+  margin-bottom: 2rem !important;
 }
 
 .modalFooter {

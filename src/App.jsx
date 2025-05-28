@@ -11,7 +11,8 @@ import Home from "./pages/Home";
 import NavBar from "./components/NavBar";
 import SearchInputExplore from "./components/searchInputExplore";
 import Events from "./pages/Events";
-import Profile from "./pages/Profile";
+import ProfilePage from "./pages/Profile2";
+import EditProfile from "./pages/EditProfile";
 import GameDetails from "./pages/GameDetails";
 import Lobby from "./pages/Lobby";
 import PrivateRoute from "./components/PrivateRoute";
@@ -72,10 +73,18 @@ export default function App() {
         <Route
           path="/users/me"
           element={
-            <PrivateRoute>
+            <PrivateRoute> 
               <Profile />
             </PrivateRoute>
           }
+        />
+          <Route
+          path="/edit/profile"
+          element={
+            <PrivateRoute> 
+              <EditProfile />
+              
+            </PrivateRoute>}
         />
       </Routes>
     </div>
