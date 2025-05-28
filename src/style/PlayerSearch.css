@@ -24,7 +24,7 @@
   margin-top: 50px; /* Ajusta según lo necesites para acercarlo al borde superior */
 }
 
-h2 {
+.player-search-container h2 {
   font-size: 2.5rem;
   font-weight: 800;
   color: var(--white);
@@ -32,7 +32,7 @@ h2 {
   text-align: center;
 }
 
-input,
+.player-search-container input,
 select {
   width: 100%;
   padding: 0.8rem;
@@ -66,25 +66,13 @@ ul {
   margin-top: 1rem;
 }
 
-.PlayerSearch li {
-  padding: 0.8rem;
-  background-color: var(--white);
-  border-bottom: 1px solid var(--light-blue);
-  cursor: pointer;
-}
-
-.PlayerSearch li:hover {
-  background-color: var(--light-blue);
-  color: var(--white);
-}
-
 /* Mobile Adaptation */
 @media only screen and (max-width: 768px) {
   .PlayerSearch {
     padding: 1rem;
   }
 
-  input,
+  .player-search-container input,
   select {
     width: 90%;
   }
