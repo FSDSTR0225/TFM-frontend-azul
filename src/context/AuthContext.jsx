@@ -10,8 +10,7 @@ export const AuthProvider = ({ children }) => {
   // ✔ Cargar sesión automáticamente al arrancar si hay token en localStorage
   useEffect(() => {
     const savedSession = localStorage.getItem("user");
-    console.log(savedSession);
-   
+    console.log(savedSession);   
     // ✔ Fetch al perfil del usuario usando el token
     const fetchUserProfile = async (token) => {
       try {
@@ -60,6 +59,7 @@ export const AuthProvider = ({ children }) => {
     <AuthContext.Provider
       value={{
         user,
+        setUser,
         token,
         isLoggedIn,
         login,

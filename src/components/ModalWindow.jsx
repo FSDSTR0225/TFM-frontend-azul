@@ -2,13 +2,14 @@ import Select from "react-select";
 import { useState, useEffect, useContext } from "react";
 import AuthContext from "../context/AuthContext";
 import "../style/ModalWindow.css";
-const ModalWindow = ({ isOpen, type, onClose, onSuccess }) => {
+const ModalWindow = ({ isOpen, type, onClose, onSuccess, existingItems }) => {
   const [query, setQuery] = useState("");
   const [options, setOptions] = useState([]);
   const [loading, setLoading] = useState(true);
   const url = import.meta.env.VITE_API_URL;
   const [selectedOptions, setSelectedOptions] = useState([]);
   const { token } = useContext(AuthContext);
+ // estilos select
   const customStyles = {
     control: (base, state) => ({
       ...base,
@@ -60,7 +61,7 @@ const ModalWindow = ({ isOpen, type, onClose, onSuccess }) => {
       color: "#fff",
     }),
   };
-
+// Fetch de las plataformas
   useEffect(() => {
     if (type !== "platform") return;
     const fetchPlatforms = async () => {
@@ -68,7 +69,11 @@ const ModalWindow = ({ isOpen, type, onClose, onSuccess }) => {
       try {
         const res = await fetch(`${url}/platforms`);
         const data = await res.json();
-        setOptions(data.platforms);
+        const platforms = data.platforms || [];
+        const filteredResults = platforms.filter(
+          (item) => !existingItems.some((fav) => fav._id === item._id)
+        );
+        setOptions(filteredResults);
       } catch (error) {
         console.error("Error en el fetch de las plataformas", error);
       } finally {
@@ -77,107 +82,120 @@ const ModalWindow = ({ isOpen, type, onClose, onSuccess }) => {
     };
     fetchPlatforms();
   }, [isOpen, type, url]);
-
+// Buscador de juagos y amigos
   useEffect(() => {
+    if (!isOpen || (type !== "game" && type !== "friend")) return;
     const delayDebounce = setTimeout(() => {
       if (query.length > 0) {
         setLoading(true);
-        switch (type) {
-          case "game":
-            fetch(`${url}/search/games?query=${query}`)
-              .then((res) => res.json())
-              .then((data) => {
-                setOptions(data.games || []);
-                setLoading(false);
-              })
-              .catch(() => setLoading(false));
-            break;
+        let endpoint = "";
+        if (type === "game") endpoint = `search/games?query=${query}`;
+        if (type === "friend") endpoint = `search/users?query=${query}`;
 
-          case "friend":
-            fetch(`${url}/search/users?query=${query}`)
-              .then((res) => res.json())
-              .then((data) => {
-                setOptions(data.users || []);
-                setLoading(false);
-              })
-              .catch(() => setLoading(false));
-            break;
-        }
-      } else {
-        setOptions([]);
+        if (!endpoint) return;
+
+        fetch(`${url}/${endpoint}`)
+          .then((res) => res.json())
+          .then((data) => {
+            let results = [];
+
+            if (type === "game") results = data.games || [];
+            if (type === "friend") results = data.user.friends || [];
+
+            const filteredResults = results.filter(
+              (item) => !existingItems.some((fav) => fav._id === item._id)
+            );
+
+            setOptions(filteredResults);
+          })
+          .catch(() => setLoading(false))
+          .finally(() => setLoading(false));
       }
     }, 300); // debounce
     return () => clearTimeout(delayDebounce);
   }, [query, type, url]);
-
+//Añadir juegos , amigos oplataformas
   const handleAdd = () => {
-    if (!selectedOptions) return;
-    const selectedId = selectedOptions.map((opt) => opt.value);
+    if (!selectedOptions || selectedOptions.length === 0) return;
 
-    console.log("Token:", token);
-    switch (type) {
-      case "game":
-        fetch(`${url}/profile/favoriteGames`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify({ gameIds: [selectedId] }),
+    const selectedIds = selectedOptions.map((opt) => opt.value);
+    const headers = {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    };
+
+    if (type === "game") {
+      return fetch(`${url}/profile/favoriteGames`, {
+        method: "POST",
+        headers,
+        body: JSON.stringify({ gameIds: selectedIds }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log("Gioco aggiunto:", data);
+          onSuccess();
+          onClose();
         })
-          .then((res) => res.json())
-          .then((data) => {
-            console.log("Gioco aggiunto:", data);
-            onSuccess();
-            onClose();
-          })
-          .catch((err) => console.error("Errore gioco:", err));
-        break;
-
-      case "friend":
-        fetch(`${url}/profile/friends`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify({ friendIds: [selectedId] }),
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            console.log("Amico aggiunto:", data);
-            onSuccess();
-            onClose();
-          })
-          .catch((err) => console.error("Errore amico:", err));
-        break;
-
-      case "platform":
-        fetch(`${url}/profile/platforms/${selectedId}`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify({ platformsId: [selectedId] }),
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            console.log("Piattaforma aggiunta:", data);
-            onSuccess();
-            onClose();
-          })
-          .catch((err) => console.error("Errore piattaforma:", err));
-        break;
-
-      default:
-        console.warn("Tipo non riconosciuto:", type);
+        .catch((err) => console.error("Errore gioco:", err));
     }
-  };
 
-  if (!isOpen) {
-    return null;
-  }
+    if (type === "friend") {
+      return fetch(`${url}/profile/friends`, {
+        method: "POST",
+        headers,
+        body: JSON.stringify({ friendIds: selectedIds }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log("Amico aggiunto:", data);
+          onSuccess();
+          onClose();
+        })
+        .catch((err) => console.error("Errore amico:", err));
+    }
+
+    if (type === "platform") {
+      return fetch(`${url}/profile/platforms/${selectedIds}`, {
+        method: "POST",
+        headers,
+        body: JSON.stringify({ platformsId: selectedIds }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log("Piattaforma aggiunta:", data);
+          onSuccess();
+          onClose();
+        })
+        .catch((err) => console.error("Errore piattaforma:", err));
+    }
+
+    console.warn("Tipo non riconosciuto:", type);
+  };
+//Todos los juegos/amigos sin query
+  // useEffect(() => {
+  //   if (!isOpen || type === "platform") return;
+
+  //   setLoading(true);
+  //   let endpoint = "";
+  //   if (type === "game") endpoint = "games";
+  //   if (type === "friend") endpoint = "users";
+
+  //   fetch(`${url}/${endpoint}`)
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       const results =
+  //         type === "game"
+  //           ? data.games
+  //           : type === "friend"
+  //           ? data.users
+  //           : [];
+  //       setOptions(results);
+  //     })
+  //     .catch((err) => console.error("Errore iniziale:", err))
+  //     .finally(() => setLoading(false));
+  // }, [isOpen, type, url]);
+
+  if (!isOpen) return null;
   return (
     <div className="modal-overlay">
       <div className="modal-content">
@@ -187,23 +205,6 @@ const ModalWindow = ({ isOpen, type, onClose, onSuccess }) => {
         {type === "game" && <h2>Añade juegos</h2>}
         {type === "platform" && <h2>Añade plataformas</h2>}
         {type === "friend" && <h2>Añade amigos</h2>}
-        {type === "game" && (
-          <input
-            type="text"
-            placeholder="Buscar juego"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-          />
-        )}
-
-        {type === "friend" && (
-          <input
-            type="text"
-            placeholder="Buscar amigo"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-          />
-        )}
 
         <Select
           isMulti
@@ -213,6 +214,9 @@ const ModalWindow = ({ isOpen, type, onClose, onSuccess }) => {
           }))}
           value={selectedOptions}
           onChange={(options) => setSelectedOptions(options)}
+          onInputChange={(inputValue) => setQuery(inputValue)}
+          placeholder="Escribe para buscar..."
+          isLoading={loading}
           styles={customStyles}
         ></Select>
         <button className="add-button" onClick={handleAdd}>

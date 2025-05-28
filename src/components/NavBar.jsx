@@ -128,7 +128,7 @@ const NavBar = ({ setSearch, showSearch, setShowSearch }) => {
             </NavLink>
             <ul className="dropdown-user">
               <li>
-                <NavLink to="/perfil/editar" className="dropdown-options">
+                <NavLink to="/edit/profile" className="dropdown-options">
                   Editar perfil
                 </NavLink>
               </li>
