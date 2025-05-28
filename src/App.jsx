@@ -20,6 +20,7 @@ import Players from "./pages/Players";
 import { useContext } from "react";
 import AuthContext from "./context/AuthContext";
 import { PacmanLoader } from "react-spinners";
+import Profile from "./pages/Profile";
 
 export default function App() {
   const [showSearch, setShowSearch] = useState(false);
@@ -73,18 +74,18 @@ export default function App() {
         <Route
           path="/users/me"
           element={
-            <PrivateRoute> 
+            <PrivateRoute>
               <Profile />
             </PrivateRoute>
           }
         />
-          <Route
+        <Route
           path="/edit/profile"
           element={
-            <PrivateRoute> 
+            <PrivateRoute>
               <EditProfile />
-              
-            </PrivateRoute>}
+            </PrivateRoute>
+          }
         />
       </Routes>
     </div>
