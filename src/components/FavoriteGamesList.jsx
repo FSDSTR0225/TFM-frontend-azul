@@ -40,7 +40,7 @@ const FavoriteGamesList = ({ games, triggerRefresh }) => {
               <img
                 src={game.imageUrl || game.image || game.background_image}
                 alt={game.name}
-                className="game-img"
+                className="favorite-game-img"
               />
               <button
                 onClick={() => handleDelete(game._id)}
@@ -51,18 +51,18 @@ const FavoriteGamesList = ({ games, triggerRefresh }) => {
                 X
               </button>
             </div>
-              <p>{game.name}</p>
+            <p>{game.name}</p>
           </div>
         ))}
-    </div>
-        <ModalWindow
-          existingItems={games}
-          onSuccess={triggerRefresh}
-          isOpen={modalOpen}
-          onClose={() => setModalOpen(false)}
-          type="game"
-        />
       </div>
+      <ModalWindow
+        existingItems={games}
+        onSuccess={triggerRefresh}
+        isOpen={modalOpen}
+        onClose={() => setModalOpen(false)}
+        type="game"
+      />
+    </div>
   );
 };
 

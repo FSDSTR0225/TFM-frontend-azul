@@ -14,7 +14,7 @@ const LastEventsList = ({ events }) => {
             <img
               src="/src/assets/8674309.png"
               alt="event"
-              className="event-img"
+              className="last-event-img"
             />
           </div>
         ))}
