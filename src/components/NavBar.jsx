@@ -168,6 +168,11 @@ const NavBar = ({ setSearch, showSearch, setShowSearch }) => {
                   </NavLink>
                 </li>
                 <li>
+                  <NavLink to="/solicitudes" className="dropdown-options">
+                    Gestion de eventos
+                  </NavLink>
+                </li>
+                <li>
                   <NavLink to="/configuracion" className="dropdown-options">
                     Configuración
                   </NavLink>
