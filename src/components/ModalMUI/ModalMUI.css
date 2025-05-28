@@ -15,10 +15,6 @@
   text-align: center;
   color: #fff;
   outline: none;
-<<<<<<< HEAD
-  position: relative;
-  transition: all 0.3s ease-in-out;
-=======
   border-radius: 10px;
   position: absolute;
   top: 50%;
@@ -38,7 +34,6 @@
 .modal__successicon {
   font-size: 4rem;
   color: rgb(101, 166, 148);
->>>>>>> d3bc120f3ca590ddb5b30c23d93290e99b24a097
 }
 
 .modal__successicon,
