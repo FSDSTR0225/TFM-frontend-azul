@@ -12,6 +12,7 @@ import NavBar from "./components/NavBar";
 import SearchInputExplore from "./components/searchInputExplore";
 import Events from "./pages/Events";
 import ProfilePage from "./pages/Profile2";
+import EditProfile from "./pages/EditProfile";
 import GameDetails from "./pages/GameDetails";
 import Lobby from "./pages/Lobby";
 import PrivateRoute from "./components/PrivateRoute";
@@ -65,6 +66,14 @@ export default function App() {
               <ProfilePage />
             </PrivateRoute>
           }
+        />
+          <Route
+          path="/edit/profile"
+          element={
+            <PrivateRoute> 
+              <EditProfile />
+              
+            </PrivateRoute>}
         />
       </Routes>
     </div>
