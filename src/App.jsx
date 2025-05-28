@@ -65,7 +65,7 @@ export default function App() {
           path="/users/me"
           element={
             <PrivateRoute> 
-              <Profile />
+              <ProfilePage />
             </PrivateRoute>
           }
         />
@@ -74,7 +74,6 @@ export default function App() {
           element={
             <PrivateRoute> 
               <EditProfile />
-              
             </PrivateRoute>}
         />
       </Routes>
