@@ -9,7 +9,6 @@ const FavoritePlatforms = ({ platforms, triggerRefresh }) => {
   const url = import.meta.env.VITE_API_URL;
   const { token } = useContext(AuthContext);
   const handleDelete = (id) => {
-    console.log(id);
     fetch(`${url}/profile/platforms/${id}`, {
       method: "DELETE",
       headers: {
@@ -39,7 +38,6 @@ const FavoritePlatforms = ({ platforms, triggerRefresh }) => {
       </div>
       <div className="platform-list ">
         {platforms.map((platform, index) => (
-          
           <div className="platform-card profile" key={index}>
             <img
               src={platform.icon}

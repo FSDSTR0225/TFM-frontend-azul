@@ -4,13 +4,13 @@ import EventsList from "./LastEventsList";
 import FavoritePlatforms from "./FavoritePlatforms";
 import "../style/Profile2.css";
 import AuthContext from "../context/AuthContext";
-import { useState, useContext, } from "react";
+import { useState, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import blankImg from "/images/profile/blankImg.jpg";
 import { PacmanLoader } from "react-spinners";
 import { useNavigate } from "react-router-dom";
 const ProfileCard = () => {
-  const { user, isLoggedIn } = useContext(AuthContext);
+  const { setUser,token, user, isLoggedIn } = useContext(AuthContext);
   const API_URL = import.meta.env.VITE_API_URL;
   // const [user, setUser] = useState(null);
   const [refreshKey, setRefreshKey] = useState(0); // ogni cambio forza il useEffect
@@ -18,7 +18,27 @@ const ProfileCard = () => {
   const triggerRefresh = () => {
     setRefreshKey((prev) => prev + 1); // cambia il valore → useEffect ritriggera
   };
-  
+  useEffect(() => {
+    const fetchProfile = async () => {
+      try {
+        const response = await fetch(`${API_URL}/users/me`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        if (!response.ok) throw new Error("Error al obtener detalles");
+
+        const data = await response.json();
+        setUser(data.user);
+      } catch (error) {
+        console.error("Error al obtener el perfil:", error);
+      }
+    };
+    if (isLoggedIn && token) {
+      fetchProfile();
+    }
+  }, [isLoggedIn, token, refreshKey]);
   const navigate = useNavigate();
 if (!isLoggedIn) {
   navigate("/login");
@@ -30,7 +50,7 @@ if (!isLoggedIn) {
     <div className="profile-card">
       <div className="avatar-container">
         <img className="avatar" src={user.avatar || blankImg} alt="Avatar" />
-        <Link to="/edit/profile"  className="edit-button">✏️ </Link>
+        <Link to="/edit/profile" state={user} className="edit-button">✏️ </Link>
       </div>
       <h2 className="username">{user.username}</h2>
 
