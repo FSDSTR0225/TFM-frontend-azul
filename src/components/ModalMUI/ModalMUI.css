@@ -23,7 +23,7 @@
 .modal__failicon {
   font-size: 60px;
   margin-bottom: 16px;
-  filter: none; /* elimina la estrella tipo drop-shadow */
+  filter: none;
 }
 
 .modal__successicon {

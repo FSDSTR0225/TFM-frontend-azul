@@ -66,7 +66,7 @@
 .dropdown-platforms {
   display: none;
   position: absolute;
-  top: 170%;
+  top: 70%;
   left: -50%;
   background: rgba(10, 10, 30, 0.707);
   backdrop-filter: blur(10px);
@@ -164,7 +164,7 @@
 .dropdown-user {
   display: none;
   position: absolute;
-  top: 110%;
+  top: 70%;
   right: 0;
   background: rgba(10, 10, 30, 0.9);
   backdrop-filter: blur(8px);

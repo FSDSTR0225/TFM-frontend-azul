@@ -16,13 +16,26 @@ import GameDetails from "./pages/GameDetails";
 import Lobby from "./pages/Lobby";
 import PrivateRoute from "./components/PrivateRoute";
 import Players from "./pages/Players";
-
-// import AuthContext from "./context/AuthenticationContext";
-// import TopNavbar from "./components/TopNavbar/TopNavbar";
+import { useContext } from "react";
+import AuthContext from "./context/AuthContext";
+import { PacmanLoader } from "react-spinners";
 
 export default function App() {
   const [showSearch, setShowSearch] = useState(false);
   const [search, setSearch] = useState("");
+
+  const { loading } = useContext(AuthContext);
+
+  if (loading) {
+    // Si está cargando, muestra...
+    return (
+      <div className="loading-container">
+        <h1 className="loading-title">Cargando plataformas...</h1>
+        <PacmanLoader color="#FFD700" size={40} />{" "}
+        {/* Los componentes de React spinner reciben css en el propio componente */}
+      </div>
+    );
+  }
 
   return (
     <div className="App">
