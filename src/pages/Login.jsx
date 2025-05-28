@@ -3,9 +3,10 @@ import "./../style/register.css";
 import sideImg from "/images/register/3.jpg";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import ModalMUI from "../components/ModalMUI/ModalMUI";
+// import ModalMUI from "../components/ModalMUI/ModalMUI";
 import { Button, TextField } from "@mui/material";
 import AuthContext from "../context/AuthContext";
+import LoginSuccessModal from "../components/ModalMUI/LoginSuccessModal.jsx";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -131,10 +132,10 @@ export default function Login() {
           </form>
         </div>
       </div>
-      <ModalMUI
-        isShowModal={isShowModal}
-        setIsShowModal={setIsShowModal}
-        isModalSuccess={isModalSuccess}
+      <LoginSuccessModal
+        show={isShowModal}
+        onClose={() => setIsShowModal(false)}
+        isSuccess={isModalSuccess}
         modalText={modalText}
       />
     </div>
