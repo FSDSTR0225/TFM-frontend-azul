@@ -1,11 +1,12 @@
 .profile-page {
-    display: flex; 
-    font-family: "Poppins", sans-serif;
-    justify-content: center;
-    flex-direction: column;}
+  display: flex;
+  font-family: "Poppins", sans-serif;
+  justify-content: center;
+  flex-direction: column;
+}
 
 .profile-card {
-  width:70vw ;
+  width: 70vw;
   margin: 0 250px;
   padding: 2rem;
   border: 2px solid #2196f3;
@@ -58,13 +59,13 @@
 }
 
 .circle-list {
-display: flex;
-    gap: 0.8rem;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
-    flex-direction: row;
-    align-content: flex-start;
-    align-items: start;
+  display: flex;
+  gap: 0.8rem;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-content: flex-start;
+  align-items: start;
 }
 
 .circle.blue {
@@ -108,7 +109,7 @@ display: flex;
   border: 3px solid #00bcd4;
   background: transparent;
 }
-.event-img {
+.last-event-img {
   width: 90%;
   height: 90%;
   object-fit: cover;
@@ -116,10 +117,9 @@ display: flex;
   padding-right: 3px;
   padding-top: 2px;
   box-shadow: 0 0 15px rgba(0, 255, 255, 0.1);
-  
+
   transform: rotate(-45deg);
 }
-
 
 .circle-wrapper {
   display: flex;
@@ -133,7 +133,7 @@ display: flex;
   width: 80px;
   height: 80px;
   border-radius: 50%;
- 
+
   border: 3px solid;
   display: flex;
   align-items: center;
@@ -144,7 +144,7 @@ display: flex;
   border-color: #9c27b0;
 }
 
-.game-img {
+.favorite-game-img {
   width: 100%;
   height: 100%;
   object-fit: cover;

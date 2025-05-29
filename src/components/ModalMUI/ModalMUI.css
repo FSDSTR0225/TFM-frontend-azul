@@ -1,8 +1,19 @@
-.modal__Box {
+.modal {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+}
+
+.modal__Box {
+  width: 90%;
+  max-width: 400px;
+  background: rgba(20, 20, 40, 0.85);
+  backdrop-filter: blur(12px);
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.15);
+  text-align: center;
+  color: #fff;
   outline: none;
   border-radius: 10px;
   position: absolute;
@@ -24,10 +35,30 @@
   font-size: 4rem;
   color: rgb(101, 166, 148);
 }
+
+.modal__successicon,
 .modal__failicon {
-  font-size: 4rem;
-  color: rgb(228, 69, 69);
+  font-size: 60px;
+  margin-bottom: 16px;
+  filter: none;
 }
+
+.modal__successicon {
+  color: #00ffab;
+}
+
+.modal__failicon {
+  color: #ff4d4d;
+}
+
+.modal__Title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: #66fcf1;
+  font-family: "Audiowide", sans-serif;
+}
+
 .modal__text {
   font-family: "Poppins", sans-serif !important;
   font-size: 1.2rem !important;
@@ -35,24 +66,29 @@
   margin: 0 !important;
   margin-bottom: 2rem !important;
 }
+
 .modalFooter {
-  width: 100%;
-  background-color: rgb(101, 166, 148);
   display: flex;
   justify-content: center;
-  align-items: center;
 }
-.modalFooter.fail {
-  background-color: rgb(199, 63, 63);
-}
+
 .modalFooter__btn {
-  /* color: var(--white) !important; */
-  color: green !important;
-  font-weight: bold !important;
-  margin: 2rem !important;
-  background-color: rgb(209, 249, 150) !important;
+  background-color: #00bfff;
+  color: #fff;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 12px;
+  transition: background 0.3s ease;
 }
-.modalFooter__btn.fail{
-  color: rgb(199, 63, 63) !important;
-  background-color: rgb(255, 191, 191)!important;
+
+.modalFooter__btn:hover {
+  background-color: #008ccc;
+}
+
+.modalFooter.fail .modalFooter__btn {
+  background-color: #ff4d4d;
+}
+
+.modalFooter.fail .modalFooter__btn:hover {
+  background-color: #cc0000;
 }

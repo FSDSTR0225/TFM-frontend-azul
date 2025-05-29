@@ -1,45 +1,35 @@
-body {
-  margin: 0;
-  padding: 0;
-  background-image: linear-gradient(
-    to bottom right,
-    var(--dark-blue),
-    var(--light-blue)
-  );
-  color: white;
+.lobby-content {
+  background: linear-gradient(135deg, #0a0a0a, #003366);
+  background-image: url("/images/try.jpg");
+  background-size: cover;
+  background-position: center;
   min-height: 100vh;
-}
-
-.home-container {
-  padding: 3rem 1rem;
-  text-align: center;
-}
-
-.welcome h1 {
-  font-size: 3rem;
-  text-shadow: 0 0 15px #00ffff;
-  margin-bottom: 2rem;
-}
-
-.description p {
-  font-size: 1.2rem;
-  color: #ccc;
-  margin-bottom: 3rem;
-}
-
-.sub-container {
-  margin: 2rem auto;
-  padding: 3rem 2rem;
-  width: 90%;
-  max-width: 1200px;
-  background: rgba(255, 255, 255, 0.03);
-  border-radius: 30px;
-  box-shadow: 0 0 60px rgba(0, 255, 255, 0.08);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(0, 255, 255, 0.1);
+  padding: 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 3rem;
-  transition: all 0.4s ease;
+  gap: 2rem;
+}
+
+.lobby-title-container {
+  width: 100%;
+  text-align: center;
+}
+
+.lobby-title {
+  font-family: "Audiowide", cursive;
+  font-size: 2rem;
+  color: #00ffff;
+  text-shadow: 0 0 10px #00ffff66;
+}
+
+.dashboard-content,
+.daily-summary-container,
+.suggestions-container {
+  background-color: rgba(0, 0, 0, 0.65);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+  width: 100%;
+  max-width: 800px;
 }

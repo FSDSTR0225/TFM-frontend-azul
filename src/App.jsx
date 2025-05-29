@@ -1,5 +1,5 @@
 import React from "react";
-import "./styles/reset.css";
+import "./style/reset.css";
 import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
@@ -17,22 +17,32 @@ import GameDetails from "./pages/GameDetails";
 import Lobby from "./pages/Lobby";
 import PrivateRoute from "./components/PrivateRoute";
 import Players from "./pages/Players";
-
-// import AuthContext from "./context/AuthenticationContext";
-// import TopNavbar from "./components/TopNavbar/TopNavbar";
+import { useContext } from "react";
+import AuthContext from "./context/AuthContext";
+import { PacmanLoader } from "react-spinners";
+import Profile from "./pages/Profile";
 
 export default function App() {
   const [showSearch, setShowSearch] = useState(false);
   const [search, setSearch] = useState("");
 
+  const { loading } = useContext(AuthContext);
+
+  if (loading) {
+    // Si está cargando, muestra...
+    return (
+      <div className="loading-container">
+        <h1 className="loading-title">Cargando plataformas...</h1>
+        <PacmanLoader color="#FFD700" size={40} />{" "}
+        {/* Los componentes de React spinner reciben css en el propio componente */}
+      </div>
+    );
+  }
+
   return (
     <div className="App">
       <NavBar showSearch={showSearch} setShowSearch={setShowSearch} />
-      {/* <TopNavbar
-        showSearch={showSearch}
-        setShowSearch={setShowSearch}
-        setSearch={setSearch}
-      /> */}
+
       {showSearch && (
         <SearchInputExplore
           search={search}
@@ -69,10 +79,10 @@ export default function App() {
             </PrivateRoute>
           }
         />
-          <Route
+        <Route
           path="/edit/profile"
           element={
-            <PrivateRoute> 
+            <PrivateRoute>
               <EditProfile />
             </PrivateRoute>}
         />

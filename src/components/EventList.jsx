@@ -11,7 +11,11 @@ function EventList() {
       <div className="card-event">
         {mocksEvent.map((event) => (
           <div className="next-event" key={event.id}>
-            <img src={event.image} alt={event.game} className="event-img" />
+            <img
+              src={event.image}
+              alt={event.game}
+              className="event-img-list"
+            />
             <h3 className="event-title">{event.title}</h3>
             <p className="event-date">
               {event.date} - {event.time}h

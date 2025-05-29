@@ -1,11 +1,12 @@
 import React, { useState, useContext } from "react";
-import "./../styles/register.css";
+import "./../style/register.css";
 import sideImg from "/images/register/3.jpg";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import ModalMUI from "../components/ModalMUI/ModalMUI";
+// import ModalMUI from "../components/ModalMUI/ModalMUI";
 import { Button, TextField } from "@mui/material";
 import AuthContext from "../context/AuthContext";
+import LoginSuccessModal from "../components/ModalMUI/LoginSuccessModal.jsx";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -47,7 +48,7 @@ export default function Login() {
           authContext.login(result.user, result.access_token);
 
           setTimeout(() => {
-            navigate("/");
+            navigate("/lobby");
           }, 2000);
         } else {
           setIsModalSuccess(false);
@@ -77,7 +78,7 @@ export default function Login() {
               {...register("login", {
                 required: true,
                 maxLength: 35,
-                minLength: 6,
+                minLength: 4,
                 // pattern: /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/,
               })}
               aria-invalid={errors.email ? "true" : "false"}
@@ -132,10 +133,10 @@ export default function Login() {
           </form>
         </div>
       </div>
-      <ModalMUI
-        isShowModal={isShowModal}
-        setIsShowModal={setIsShowModal}
-        isModalSuccess={isModalSuccess}
+      <LoginSuccessModal
+        show={isShowModal}
+        onClose={() => setIsShowModal(false)}
+        isSuccess={isModalSuccess}
         modalText={modalText}
       />
     </div>

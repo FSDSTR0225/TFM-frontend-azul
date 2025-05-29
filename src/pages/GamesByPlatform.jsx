@@ -1,9 +1,11 @@
 import React from "react";
 import { useParams } from "react-router-dom"; // hook para obtener los parámetros de la URL
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom"; // hook para navegar entre rutas
 import "../style/GamesByPlatform.css";
 import GameCover from "../components/GameCover";
 import { PacmanLoader } from "react-spinners";
+import Pagination from "../components/Pagination"; // Importamos el componente de paginación
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -12,6 +14,9 @@ function GamesByPlatform() {
   const [games, setGames] = useState([]); // Estado para almacenar los juegos
   const [loading, setLoading] = useState(true); // Estado para estado de carga,loading...
   const [currentPage, setCurrentPage] = useState(1); // Estado para almacenar la página actual, empezamos en la 1
+  const [platform, setPlatform] = useState(null); // Estado para almacenar la plataforma actual
+
+  const navigate = useNavigate(); // Hook para navegar entre rutas
 
   const gamesOnPage = 25; // Número de juegos por página
 
@@ -39,6 +44,7 @@ function GamesByPlatform() {
         }
         const data = await response.json();
         setGames(data.games);
+        setPlatform(data.platform); // Guardar la plataforma en el estado
       } catch (error) {
         console.error("Error fetching games:", error);
       }
@@ -59,31 +65,37 @@ function GamesByPlatform() {
   }
 
   return (
-    <div className="games-by-platform-container">
-      <h1>Listado de juegos</h1>
-      <div className="platform-game-list">
-        {gamesToShow.map(
-          (
-            game // Recorremos los juegos a mostrar de esta pagina
-          ) => (
-            <GameCover game={game} key={game._id} /> // Recorremos juegos con map y los mostramos con el componente GameCover
-          )
-        )}
-      </div>
-      <div className="pagination">
-        <button
-          onClick={() => handleOnClick("anterior")}
-          disabled={currentPage === 1}
-        >
-          Anterior
-        </button>
-        <span>Página {currentPage}</span>
-        <button
-          onClick={() => handleOnClick("siguiente")}
-          disabled={indexLastGame >= games.length} // Deshabilitar el botón si no hay más juegos para mostrar
-        >
-          Siguiente
-        </button>
+    <div className="games-by-platform-page">
+      <div className="background-blur-overlay" />
+
+      <div className="content-container">
+        <div className="back-btn">
+          {/* Botón para volver a la página anterior usando navigate -1*/}
+          <span onClick={() => navigate(-1)}>← Volver</span>
+        </div>
+        <div className="section-title3-with-icon">
+          <h1 className={`section-title3 neon-${platform?.slug}`}>
+            Listado de juegos de {platform?.name}
+          </h1>
+          <img
+            src={platform.icon}
+            alt={`${platform.name} icon`}
+            className="platform-icon-title"
+          />
+        </div>
+
+        <div className={`title-under-${platform.slug}`}></div>
+        <div className="platform-game-list">
+          {gamesToShow.map((game) => (
+            <GameCover game={game} key={game._id} />
+          ))}
+        </div>
+        <Pagination
+          games={games}
+          gamesOnPage={gamesOnPage}
+          currentPage={currentPage}
+          handleOnClick={handleOnClick}
+        />
       </div>
     </div>
   );
