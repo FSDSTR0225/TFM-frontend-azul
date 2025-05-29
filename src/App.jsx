@@ -20,7 +20,7 @@ import Players from "./pages/Players";
 import { useContext } from "react";
 import AuthContext from "./context/AuthContext";
 import { PacmanLoader } from "react-spinners";
-import Profile from "./pages/Profile";
+
 
 export default function App() {
   const [showSearch, setShowSearch] = useState(false);
