@@ -1,47 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../style/Events.css";
-
-const initialEventos = [
-  {
-    id: 1,
-    titulo: "Ranked Valorant",
-    fecha: "2025-04-14",
-    hora: "20:00",
-    categoria: "Próximos eventos",
-    plataforma: "PC",
-    creador: "User1",
-    juego: "Valorant",
-    jugadores: "1",
-  },
-  {
-    id: 2,
-    titulo: "Torneo Fifa",
-    fecha: "2025-04-15",
-    hora: "12:00",
-    categoria: "Próximos eventos",
-    plataforma: "PS5",
-    creador: "User2",
-    juego: "Fifa",
-    jugadores: "2",
-  },
-  {
-    id: 3,
-    titulo: "Leveo WOW",
-    fecha: "2025-04-23",
-    hora: "12:00",
-    categoria: "Próximos eventos",
-    plataforma: "PC",
-    creador: "User3",
-    juego: "WoW",
-    jugadores: "3",
-  },
-];
 
 // Simulación usuario actual
 const currentUser = "User1";
 
 const Events = () => {
-  const [eventos, setEventos] = useState(initialEventos);
+  const [eventos, setEventos] = useState([]);
   const [expandedId, setExpandedId] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
@@ -55,6 +19,27 @@ const Events = () => {
     hora: "",
     jugadores: "1",
   });
+
+  useEffect(() => {
+    fetch("http://localhost:3000/events")
+      .then((res) => res.json())
+      .then((data) => {
+        const eventosNormalizados = data.map((evento) => ({
+          id: evento._id,
+          titulo: evento.title, // traducir title a titulo
+          juego: evento.game, // aquí está el id del juego, ojo
+          plataforma: evento.platform, // id de la plataforma
+          fecha: evento.date,
+          hora: evento.hour,
+          descripcion: evento.description,
+          creador: evento.creator,
+          imagen: evento.image,
+          jugadores: 1, // Valor por defecto, backend no envía jugadores
+        }));
+        setEventos(eventosNormalizados);
+      })
+      .catch((err) => console.error("Error cargando eventos:", err));
+  }, []);
 
   const toggleExpand = (id) => {
     setExpandedId(expandedId === id ? null : id);
@@ -92,22 +77,61 @@ const Events = () => {
       return;
     }
 
-    if (isEditing) {
-      setEventos((prev) =>
-        prev.map((ev) => (ev.id === editId ? { ...ev, ...nuevoEvento } : ev))
-      );
-    } else {
-      const newEvent = {
-        id: eventos.length + 1,
-        categoria: "Próximos eventos",
-        creador: currentUser,
-        titulo: `${juego} Event`,
-        ...nuevoEvento,
-      };
-      setEventos([newEvent, ...eventos]);
-    }
+    const payload = {
+      game: nuevoEvento.juego,
+      platform: nuevoEvento.plataforma,
+      date: nuevoEvento.fecha,
+      hour: nuevoEvento.hora,
+      players: Number(nuevoEvento.jugadores),
+      title: `${nuevoEvento.juego} Event`,
+      creator: currentUser,
+      description: nuevoEvento.descripcion || "Evento sin descripción",
+      image: "", // <-- aquí envías string vacío
+    };
 
-    closeModal();
+    if (isEditing) {
+      // EDITAR evento existente
+      fetch(`http://localhost:3000/events/${editId}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      })
+        .then(async (res) => {
+          if (!res.ok) throw new Error("Error actualizando evento");
+          const updatedEvent = await res.json();
+          setEventos((prev) =>
+            prev.map((ev) =>
+              ev.id === editId ? { ...updatedEvent, id: updatedEvent._id } : ev
+            )
+          );
+          closeModal();
+        })
+        .catch((err) => {
+          console.error("Error actualizando evento:", err);
+          alert("No se pudo actualizar el evento.");
+        });
+    } else {
+      // CREAR nuevo evento
+      fetch("http://localhost:3000/events", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      })
+        .then(async (res) => {
+          if (!res.ok) throw new Error("Error creando evento");
+          const newEvent = await res.json();
+          setEventos([{ ...newEvent, id: newEvent._id }, ...eventos]);
+          closeModal();
+        })
+        .catch((err) => {
+          console.error("Error creando evento:", err);
+          alert("No se pudo crear el evento.");
+        });
+    }
   };
 
   const handleEdit = (evento) => {
@@ -122,7 +146,16 @@ const Events = () => {
   const handleDelete = (id) => {
     const confirmed = window.confirm("¿Estás seguro de eliminar este evento?");
     if (confirmed) {
-      setEventos((prev) => prev.filter((ev) => ev.id !== id));
+      fetch(`http://localhost:3000/events/${id}`, {
+        method: "DELETE",
+      })
+        .then(() => {
+          setEventos((prev) => prev.filter((ev) => ev.id !== id));
+        })
+        .catch((err) => {
+          console.error("Error eliminando evento:", err);
+          alert("No se pudo eliminar el evento.");
+        });
     }
   };
 
