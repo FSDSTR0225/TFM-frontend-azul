@@ -134,12 +134,12 @@
   }
 }
 
-.profile{
+.platform-card .profile{
   width: 150px;
   height: 150px;
   .platform-icon-img{
     margin: auto;
-    width: 80px;
+    width: px;
     height: 80px;
   }
 }

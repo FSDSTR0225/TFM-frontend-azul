@@ -21,6 +21,7 @@ import { useContext } from "react";
 import AuthContext from "./context/AuthContext";
 import { PacmanLoader } from "react-spinners";
 
+
 export default function App() {
   const [showSearch, setShowSearch] = useState(false);
   const [search, setSearch] = useState("");
@@ -74,16 +75,15 @@ export default function App() {
           path="/users/me"
           element={
             <PrivateRoute> 
-              <Profile />
+              <ProfilePage />
             </PrivateRoute>
           }
         />
-          <Route
+        <Route
           path="/edit/profile"
           element={
-            <PrivateRoute> 
+            <PrivateRoute>
               <EditProfile />
-              
             </PrivateRoute>}
         />
       </Routes>

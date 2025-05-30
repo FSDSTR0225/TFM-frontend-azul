@@ -1,5 +1,6 @@
 import React from "react";
 import AuthContext from "../context/AuthContext";
+import { useContext } from "react";
 // import DailySummary from "../components/DailySummary";
 // import PlayerSuggestion from "../components/PlayerSuggestion";
 // import EventSuggestion from "../components/EventSuggestion";
@@ -7,7 +8,9 @@ import Dashboard from "../components/Dashboard";
 import "../style/Lobby.css";
 
 function Lobby() {
-  const authContext = React.useContext(AuthContext);
+  const authContext = useContext(AuthContext);
+
+  if (!authContext.user) return null;
 
   return (
     <div className="lobby-content">

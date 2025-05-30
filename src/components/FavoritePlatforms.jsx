@@ -36,7 +36,7 @@ const FavoritePlatforms = ({ platforms, triggerRefresh }) => {
           ➕ add
         </button>
       </div>
-      <div className="platform-list ">
+      <div className="platform-list  ">
         {platforms.map((platform, index) => (
           <div className="platform-card profile" key={index}>
             <img
