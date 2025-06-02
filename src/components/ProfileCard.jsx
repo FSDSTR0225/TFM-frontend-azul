@@ -10,16 +10,17 @@ import blankImg from "/images/profile/blankImg.jpg";
 import { PacmanLoader } from "react-spinners";
 import { useNavigate } from "react-router-dom";
 const ProfileCard = () => {
-  const { setUser,token, user, isLoggedIn } = useContext(AuthContext);
+  const { setUser, token, user, isLoggedIn } = useContext(AuthContext);
   const API_URL = import.meta.env.VITE_API_URL;
   // const [user, setUser] = useState(null);
-  const [refreshKey, setRefreshKey] = useState(0); // ogni cambio forza il useEffect
-
+  const [refreshKey, setRefreshKey] = useState(0);
+ 
   const triggerRefresh = () => {
-    setRefreshKey((prev) => prev + 1); // cambia il valore → useEffect ritriggera
+    setRefreshKey((prev) => prev + 1);
   };
   useEffect(() => {
     const fetchProfile = async () => {
+
       try {
         const response = await fetch(`${API_URL}/users/me`, {
           headers: {
@@ -30,6 +31,7 @@ const ProfileCard = () => {
         if (!response.ok) throw new Error("Error al obtener detalles");
 
         const data = await response.json();
+     
         setUser(data.user);
       } catch (error) {
         console.error("Error al obtener el perfil:", error);
@@ -38,11 +40,15 @@ const ProfileCard = () => {
     if (isLoggedIn && token) {
       fetchProfile();
     }
-  }, [isLoggedIn, token, refreshKey]);
+  }, [refreshKey, isLoggedIn, token]);
+
   const navigate = useNavigate();
-if (!isLoggedIn) {
-  navigate("/login");
-}
+  
+    if (!isLoggedIn) {
+      navigate("/login");
+    }
+  
+
   if (!user) {
     return <PacmanLoader color="#FFD700" size={40} />; // spinner/placeholder temporaneo
   }
@@ -50,19 +56,28 @@ if (!isLoggedIn) {
     <div className="profile-card">
       <div className="avatar-container">
         <img className="avatar" src={user.avatar || blankImg} alt="Avatar" />
-        <Link to="/edit/profile" state={user} className="edit-button">✏️ </Link>
+        <Link to="/edit/profile" state={user} className="edit-button">
+          ✏️{" "}
+        </Link>
       </div>
       <h2 className="username">{user.username}</h2>
 
       <FavoritePlatforms
-        triggerRefresh = {triggerRefresh}
+        triggerRefresh={triggerRefresh}
         platforms={user.platforms || ["khKH", "hgygsdy", "ygyas"]}
       />
-      <FriendsList triggerRefresh  = {triggerRefresh}friends={user.friends || ["khKH", "hgygsdy", "ygyas"]} />
-      <FavoriteGamesList triggerRefresh = {triggerRefresh}
+      <FriendsList
+        triggerRefresh={triggerRefresh}
+        friends={user.friends || ["khKH", "hgygsdy", "ygyas"]}
+      />
+      <FavoriteGamesList
+        triggerRefresh={triggerRefresh}
         games={user.favoriteGames || ["khKH", "hgygsdy", "ygyas"]}
       />
-      <EventsList  triggerRefresh = {triggerRefresh} events={user.events || ["khKH", "hgygsdy", "ygyas"]} />
+      <EventsList
+        triggerRefresh={triggerRefresh}
+        events={user.events || ["khKH", "hgygsdy", "ygyas"]}
+      />
     </div>
   );
 };

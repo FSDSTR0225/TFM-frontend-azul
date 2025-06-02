@@ -100,7 +100,7 @@ const ModalWindow = ({ isOpen, type, onClose, onSuccess, existingItems }) => {
             let results = [];
 
             if (type === "game") results = data.games || [];
-            if (type === "friend") results = data.user.friends || [];
+            if (type === "friend") results = data.users || [];
 
             const filteredResults = results.filter(
               (item) => !existingItems.some((fav) => fav._id === item._id)
@@ -155,10 +155,10 @@ const ModalWindow = ({ isOpen, type, onClose, onSuccess, existingItems }) => {
     }
 
     if (type === "platform") {
-      return fetch(`${url}/profile/platforms/${selectedIds}`, {
+      return fetch(`${url}/profile/platforms`, {
         method: "POST",
         headers,
-        body: JSON.stringify({ platformsId: selectedIds }),
+        body: JSON.stringify({ platformsIds: selectedIds }),
       })
         .then((res) => res.json())
         .then((data) => {

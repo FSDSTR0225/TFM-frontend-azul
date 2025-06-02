@@ -27,7 +27,6 @@ const FavoriteGamesList = ({ games, triggerRefresh }) => {
         <h3>Juegos Favoritos</h3>
         <button
           className="add-button-p purple"
-          on
           onClick={() => setModalOpen(true)}
         >
           ➕ add
