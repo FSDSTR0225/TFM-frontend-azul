@@ -53,3 +53,75 @@ h3,
   margin-bottom: 1.2rem;
   text-shadow: 0 0 10px #00f0ff;
 }
+
+.mi-toast {
+  background: rgba(20, 30, 50, 0.92) !important;
+  border: 1.5px solid #00f0ff44 !important;
+  border-left: 5px solid #00f0ff !important;
+  backdrop-filter: blur(10px) saturate(120%) !important;
+  color: #fff !important;
+  font-family: "Audiowide", "Orbitron", "Montserrat", sans-serif !important;
+  box-shadow: 0 0 18px #00f0ff55, 0 2px 8px #000a !important;
+  text-shadow: 0 0 6px #00f0ff99, 0 0 2px #fff !important;
+  padding: 1.1rem 1.5rem 1.1rem 2.5rem !important;
+  border-radius: 14px !important;
+  position: relative !important;
+  overflow: hidden !important;
+  min-width: 220px !important;
+  max-width: 90vw !important;
+  animation: toastPopIn 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  display: flex !important;
+  align-items: center !important;
+  gap: 1rem;
+}
+
+@keyframes toastPopIn {
+  0% {
+    transform: translateY(30px) scale(0.95);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+/* Icono decorativo a la izquierda */
+.mi-toast::before {
+  content: "";
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.5rem;
+  color: #00f0ffcc;
+  text-shadow: 0 0 8px #00f0ff99;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Botón de cerrar (si lo usas) */
+.mi-toast .toast-close-btn {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #00f0ffcc;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.mi-toast .toast-close-btn:hover {
+  color: #ff1744;
+}
+
+/* Responsive */
+@media (max-width: 500px) {
+  .mi-toast {
+    padding: 0.8rem 0.7rem 0.8rem 2.2rem !important;
+    font-size: 0.98rem !important;
+    min-width: 0 !important;
+  }
+}

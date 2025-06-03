@@ -5,6 +5,7 @@ import { useContext } from "react";
 // import PlayerSuggestion from "../components/PlayerSuggestion";
 // import EventSuggestion from "../components/EventSuggestion";
 import Dashboard from "../components/Dashboard";
+import EventsToday from "../components/EventsToday";
 import "../style/Lobby.css";
 
 function Lobby() {
@@ -19,7 +20,24 @@ function Lobby() {
           ¡Bienvenido {authContext.user.username}!
         </h1>
       </div>
-      {/* <div className="lobby-fixed-container">
+
+      <div className="lobby-main-section">
+        <div className="lobby-dashboard-left">
+          <Dashboard />
+        </div>
+
+        <div className="lobby-events-right">
+          <EventsToday />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default Lobby;
+
+{
+  /* <div className="lobby-fixed-container">
         <h2 className="lobby-resume">Resumen diario</h2>
         <DailySummary />
         <div className="suggestions-container">
@@ -32,10 +50,5 @@ function Lobby() {
             <EventSuggestion />
           </div>
         </div>
-      </div> */}
-      <Dashboard />
-    </div>
-  );
+      </div> */
 }
-
-export default Lobby;

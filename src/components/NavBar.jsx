@@ -155,7 +155,12 @@ const NavBar = ({ setSearch, showSearch, setShowSearch }) => {
               </li>
               <li>
                 <NavLink to="/solicitudes" className="dropdown-options">
-                  Solicitudes de juego
+                  Amigos
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/management" className="dropdown-options">
+                  Gestión de solicitudes
                 </NavLink>
               </li>
               <li>

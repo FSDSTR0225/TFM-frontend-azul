@@ -1,0 +1,291 @@
+/* Fondo y modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: radial-gradient(ellipse at 60% 20%, #00ffc822 0%, transparent 70%),
+    rgba(15, 15, 25, 0.82);
+  backdrop-filter: blur(10px) saturate(1.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  animation: overlayFadeIn 0.3s;
+}
+@keyframes overlayFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.modal-event-content.create-event-modal {
+  background: linear-gradient(135deg, #23243a 80%, #2a2b4a 100%);
+  margin-top: 75px;
+  padding: 2.5rem 2rem 2rem 2rem;
+  border-radius: 22px;
+  width: 95%;
+  max-width: 500px;
+  box-shadow: 0 0 32px 0 #00ffc8cc, 0 0 0 2px #23243a;
+  color: #fff;
+  position: relative;
+  font-family: "Orbitron", "Inter", Arial, sans-serif;
+  border: 2.5px solid rgba(0, 255, 200, 0.18);
+  overflow: hidden;
+  animation: modalPopIn 0.25s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+@keyframes modalPopIn {
+  from {
+    transform: scale(0.92) translateY(40px);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}
+
+.modal-event-content.create-event-modal::before {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: 24px;
+  pointer-events: none;
+  z-index: 0;
+  background: linear-gradient(120deg, #0f836a 0%, #a259ff 100%);
+  opacity: 0.18;
+  filter: blur(6px);
+  animation: neonBorderMove 4s linear infinite alternate;
+}
+@keyframes neonBorderMove {
+  0% {
+    filter: blur(6px) brightness(1.1);
+  }
+  100% {
+    filter: blur(10px) brightness(1.3);
+  }
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  color: #fff;
+  cursor: pointer;
+  position: absolute;
+  top: 1.1rem;
+  right: 1.2rem;
+  z-index: 3;
+  transition: transform 0.1s, color 0.2s;
+}
+.close-btn:hover {
+  transform: scale(0.95);
+  color: #00ffc8;
+}
+
+/* Título */
+.modal-event-content h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 1.7rem;
+  letter-spacing: 1.5px;
+  font-weight: 800;
+  color: #00ffc8;
+  text-shadow: 0 0 12px #00ffc8cc, 0 0 2px #a259ff;
+}
+
+/* Mensaje de error */
+.error-message {
+  color: #ff5555;
+  background: rgba(255, 85, 85, 0.1);
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  box-shadow: 0 0 8px #ff555522;
+}
+
+/* Formulario */
+
+.event-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  z-index: 1;
+  position: relative;
+}
+
+/* Inputs y textarea: glass + neon */
+.event-form input[type="text"],
+.event-form input[type="date"],
+.event-form input[type="time"],
+.event-form input[type="number"],
+.event-form textarea,
+.event-form select {
+  width: 100%;
+  padding: 1rem 1.1rem;
+  background: rgba(30, 30, 50, 0.18);
+  border: 1.7px solid #2e2e4d;
+  border-radius: 11px;
+  color: #00d1ff;
+  font-size: 1rem;
+  outline: none;
+  transition: border 0.2s, box-shadow 0.2s, background 0.2s;
+  font-family: inherit;
+  box-sizing: border-box;
+  box-shadow: 0 0 8px #00ffc822;
+  letter-spacing: 0.2px;
+}
+.event-form input:focus,
+.event-form textarea:focus,
+.event-form select:focus {
+  border: 1.7px solid #00ffc8;
+  box-shadow: 0 0 0 2px #00ffc822, 0 0 8px #a259ff44;
+  background: rgba(30, 30, 50, 0.28);
+  color: #fff;
+}
+
+/* Textarea */
+.event-form textarea {
+  min-height: 70px;
+  resize: vertical;
+}
+
+/* Date y Time: iconos y estilos */
+.event-form input[type="date"],
+.event-form input[type="time"] {
+  color-scheme: dark;
+  background: rgba(30, 30, 50, 0.18);
+  border-radius: 11px;
+  border: 1.7px solid #2e2e4d;
+  font-size: 1.07rem;
+  padding-right: 0.7rem;
+  color: #00ffc8;
+}
+.event-form select {
+  appearance: none;
+  background: rgba(30, 30, 50, 0.18); /* Fondo fijo */
+  background-image: url("data:image/svg+xml,%3Csvg width='18' height='12' viewBox='0 0 18 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2 2L9 9L16 2' stroke='%2300ffc8' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1.2rem center;
+  background-size: 1.3em;
+  font-weight: 600;
+  color: #00ffc8;
+  transition: color 0.2s;
+}
+.event-form select:focus {
+  background: rgba(30, 30, 50, 0.18); /* Fondo sigue igual */
+  color: #a259ff; /* Color de texto cambia sutilmente al focus */
+}
+
+/* Opciones del select: solo padding, NO color */
+.event-form option {
+  padding: 0.5em 1em;
+  /* NO color aquí */
+}
+/* Autocompletado */
+.autocomplete-list {
+  position: absolute;
+  z-index: 20;
+  background: #181a2a;
+  border-radius: 12px;
+  max-height: 220px;
+  overflow-y: auto;
+  width: 100%;
+  margin-top: 4px;
+  padding: 0;
+  list-style: none;
+  box-shadow: 0 6px 18px #00ffc822;
+  border: 1.7px solid #00ffc8;
+  animation: fadeIn 0.18s;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.autocomplete-item {
+  padding: 13px 18px;
+  cursor: pointer;
+  color: #fff;
+  font-size: 1.05rem;
+  transition: background 0.18s, color 0.18s;
+  border-bottom: 1px solid rgba(0, 255, 200, 0.07);
+}
+.autocomplete-item:last-child {
+  border-bottom: none;
+}
+.autocomplete-item:hover,
+.autocomplete-item:active {
+  background: #00ffc8;
+  color: #181a2a;
+}
+/* Checkbox */
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+/* Checkbox */
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin-bottom: 0.5rem;
+  font-size: 1.05rem;
+  color: #fff;
+}
+.checkbox-label input[type="checkbox"] {
+  accent-color: #00ffc8;
+  width: 1.2em;
+  height: 1.2em;
+  box-shadow: 0 0 6px #00ffc822;
+}
+.submit-button {
+  padding: 1rem 1.3rem;
+  background: linear-gradient(135deg, #00ffc8 60%, #a259ff 100%);
+  color: #181a2a;
+  border: none;
+  border-radius: 13px;
+  font-weight: bold;
+  font-size: 1.13rem;
+  cursor: pointer;
+  transition: transform 0.18s, box-shadow 0.18s, background 0.18s;
+  box-shadow: 0 2px 12px #00ffc822;
+  letter-spacing: 0.5px;
+  text-shadow: 0 0 8px #00ffc8aa;
+}
+.submit-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 24px #a259ff55;
+  background: linear-gradient(135deg, #a259ff 60%, #00ffc8 100%);
+  color: #fff;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .modal-event-content.create-event-modal {
+    padding: 1.2rem 0.5rem 1.5rem 0.5rem;
+    max-width: 98vw;
+  }
+  .event-form input,
+  .event-form textarea,
+  .event-form select {
+    font-size: 0.98rem;
+    padding: 0.7rem 0.7rem;
+  }
+}

@@ -20,7 +20,8 @@ import Players from "./pages/Players";
 import { useContext } from "react";
 import AuthContext from "./context/AuthContext";
 import { PacmanLoader } from "react-spinners";
-
+import { Toaster } from "sonner";
+import ManagementCenter from "./pages/ManagementCenter";
 
 export default function App() {
   const [showSearch, setShowSearch] = useState(false);
@@ -56,7 +57,6 @@ export default function App() {
           path="/lobby"
           element={
             <PrivateRoute>
-              {" "}
               <Lobby />
             </PrivateRoute>
           }
@@ -74,7 +74,7 @@ export default function App() {
         <Route
           path="/users/me"
           element={
-            <PrivateRoute> 
+            <PrivateRoute>
               <ProfilePage />
             </PrivateRoute>
           }
@@ -84,9 +84,19 @@ export default function App() {
           element={
             <PrivateRoute>
               <EditProfile />
-            </PrivateRoute>}
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/management"
+          element={
+            <PrivateRoute>
+              <ManagementCenter />
+            </PrivateRoute>
+          }
         />
       </Routes>
+      <Toaster richColors position="bottom-right" />
     </div>
   );
 }

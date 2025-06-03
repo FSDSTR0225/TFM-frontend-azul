@@ -1,339 +1,52 @@
-.events-container {
-  padding: 32px;
-  background: linear-gradient(to bottom, #0a0a1e, #0d1b2a);
-  color: white;
+.event-page {
+  position: relative;
+  padding: 2rem 1rem;
   min-height: 100vh;
-  font-family: "Segoe UI", sans-serif;
+  overflow: hidden;
+  font-family: "Orbitron", sans-serif;
+  color: #fff;
 }
 
-.events-header {
+.title-event-page {
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  text-shadow: 0 0 10px #00f0ff, 0 0 20px #00f0ff55;
+}
+
+.all-events {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  background: rgba(10, 10, 30, 0.6);
-  border: 1px solid #66fcf1;
-  border-radius: 12px;
-  padding: 24px;
-  margin-bottom: 32px;
-  backdrop-filter: blur(8px);
-  box-shadow: 0 0 12px #00ffff33;
+  gap: 2.2rem;
+  max-width: 1500px;
+  margin: 2rem auto;
+  padding: 0 5vw;
 }
 
-.create-event-container {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 8px;
-}
-
-.create-event-btn {
-  background: #00fff7;
-  color: #0a0a1e;
-  border: none;
-  padding: 14px 24px;
-  border-radius: 14px;
-  font-weight: bold;
-  font-size: 18px;
-  box-shadow: 0 0 12px #00fff788;
-  cursor: pointer;
-  transition: background 0.3s, transform 0.2s;
-}
-
-.create-event-btn:hover {
-  background: #00d1ff;
-  transform: scale(1.05);
-}
-
-.search-bar {
-  padding: 10px 16px;
-  border-radius: 8px;
-  border: none;
-  width: 100%;
-  background: rgba(255, 255, 255, 0.05);
-  color: white;
-  outline: none;
-}
-
-.filters {
-  display: flex;
-  justify-content: center;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-
-.filter-btn {
-  background: #66fcf1;
-  color: #0a0a1e;
-  border: none;
-  border-radius: 8px;
-  padding: 8px 14px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: background 0.2s;
-}
-
-.filter-btn:hover {
-  background: #00d1ff;
-}
-
-.event-section {
-  margin-top: 32px;
-}
-
-.event-section h2 {
-  margin-bottom: 16px;
-  color: #66fcf1;
-  font-size: 24px;
-  border-bottom: 2px solid #66fcf1;
-  padding-bottom: 4px;
-}
-
-.highlighted-events {
-  display: flex;
-  gap: 16px;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-bottom: 24px;
-}
-
-.highlight-card {
-  background: #fdf6d8;
-  color: #0a0a1e;
-  border-radius: 12px;
-  padding: 16px;
-  width: 160px;
-  box-shadow: 0 0 8px #00000033;
-  text-align: center;
-}
-
-.highlight-day {
-  font-weight: bold;
-  font-size: 14px;
-}
-
-.highlight-hour {
-  display: block;
-  margin-bottom: 6px;
-  font-size: 13px;
-}
-
-.details-btn {
-  margin-top: 8px;
-  background: #0a0a1e;
-  color: #66fcf1;
-  border: none;
-  padding: 6px 12px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: background 0.3s ease;
-}
-
-.details-btn:hover {
-  background: #66fcf1;
-  color: #0a0a1e;
-}
-
-.event-list {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.event-card {
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 10px;
-  padding: 12px 16px;
-  cursor: pointer;
-  transition: background 0.2s, box-shadow 0.2s;
-  border-left: 4px solid #66fcf1;
-}
-
-.event-card:hover {
-  background: rgba(255, 255, 255, 0.08);
-  box-shadow: 0 0 12px #66fcf1aa;
-}
-
-.event-summary {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.event-icon {
-  font-size: 28px;
-  margin-right: 12px;
-  color: #66fcf1;
-}
-
-.event-info h3 {
-  margin: 0;
-  color: #66fcf1;
-}
-
-.event-meta {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font-weight: bold;
-  color: #66fcf1;
-}
-
-.view-btn {
-  background: #66fcf1;
-  border: none;
-  padding: 4px 10px;
-  border-radius: 6px;
-  color: #0a0a1e;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-.view-btn:hover {
-  background: #00d1ff;
-}
-
-.event-details {
-  margin-top: 12px;
-  padding-left: 16px;
-  border-left: 2px solid #66fcf1;
-  font-size: 14px;
-  color: #ddd;
-}
-
-.pagination {
-  text-align: center;
-  margin-top: 24px;
-  font-weight: bold;
-  color: #66fcf1;
-}
-
-/* Modal backdrop */
-.modal-backdrop {
+/* Imagen de fondo */
+.event-page::before {
+  content: "";
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(10, 10, 30, 0.85);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 999;
+  background-image: url("../../1.jpg");
+  background-size: cover;
+  background-position: center;
+  filter: blur(6px) brightness(0.9);
+  z-index: -2;
 }
 
-/* Modal */
-.modal {
-  background: #0a0a1e;
-  border-radius: 12px;
-  padding: 24px;
-  width: 320px;
-  box-shadow: 0 0 20px #00ffffaa;
-  color: white;
-}
-
-.modal h2 {
-  margin-top: 0;
-  color: #66fcf1;
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.modal-form input,
-.modal-form select {
+/* Capa oscura overlay */
+.event-page::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
-  padding: 10px 12px;
-  margin-bottom: 12px;
-  border-radius: 8px;
-  border: none;
-  background: rgba(255, 255, 255, 0.1);
-  color: white;
-  font-size: 14px;
-}
-
-.modal-form input::placeholder {
-  color: #ccc;
-}
-
-.modal-form input:focus,
-.modal-form select:focus {
-  outline: none;
-  box-shadow: 0 0 6px #66fcf1;
-  border-radius: 8px;
-}
-
-.modal-form select {
-  appearance: none;
-  cursor: pointer;
-}
-
-.modal-buttons {
-  display: flex;
-  justify-content: space-between;
-}
-
-.save-btn {
-  background: #66fcf1;
-  border: none;
-  padding: 10px 18px;
-  border-radius: 8px;
-  font-weight: bold;
-  color: #0a0a1e;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-
-.save-btn:hover {
-  background: #00d1ff;
-}
-
-.cancel-btn {
-  background: #0a0a1e;
-  border: 1px solid #66fcf1;
-  padding: 10px 18px;
-  border-radius: 8px;
-  font-weight: bold;
-  color: #66fcf1;
-  cursor: pointer;
-  transition: background 0.2s, color 0.2s;
-}
-
-.cancel-btn:hover {
-  background: #66fcf1;
-  color: #0a0a1e;
-}
-
-.edit-delete-buttons {
-  margin-top: 12px;
-  display: flex;
-  gap: 12px;
-  justify-content: flex-end;
-}
-
-.edit-btn,
-.delete-btn {
-  padding: 6px 14px;
-  border-radius: 8px;
-  border: none;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-
-.edit-btn {
-  background: #66fcf1;
-  color: #0a0a1e;
-}
-
-.edit-btn:hover {
-  background: #00d1ff;
-}
-
-.delete-btn {
-  background: #ff4c4c;
-  color: white;
-}
-
-.delete-btn:hover {
-  background: #ff1a1a;
+  height: 100%;
+  background: rgba(10, 10, 20, 0.6);
+  z-index: -1;
 }

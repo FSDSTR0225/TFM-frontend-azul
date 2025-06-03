@@ -1,0 +1,154 @@
+.events-today-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2.2rem;
+  justify-content: center;
+  align-items: flex-start;
+  margin: 2.5rem 0;
+}
+
+.events-today-card {
+  position: relative;
+  z-index: 2;
+  max-width: 650px;
+  min-width: 400px;
+  margin: 0 auto;
+  padding: 1.7rem 1.7rem 2.1rem 1.7rem;
+  border-radius: 22px;
+  background: linear-gradient(
+    135deg,
+    rgba(20, 28, 40, 0.97) 0%,
+    rgba(0, 255, 255, 0.1) 100%
+  );
+  border: 2.5px solid #00f0ff44;
+  backdrop-filter: blur(22px) saturate(120%);
+  box-shadow: 0 6px 40px #00f0ff33, 0 2px 12px #000a;
+  color: #fff;
+  text-align: left;
+  font-family: "Audiowide", "Orbitron", "Montserrat", sans-serif;
+  font-size: 1.13rem;
+  letter-spacing: 0.3px;
+  overflow: hidden;
+  animation: pulse-shine 2.5s infinite cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55),
+    box-shadow 0.3s;
+}
+
+.events-today-card:hover {
+  transform: scale(1.045) translateY(-2px);
+  box-shadow: 0 0 60px #00f0ff77, 0 2px 24px #000c;
+}
+
+/* Plataforma arriba a la derecha */
+.events-platform-card-lobby {
+  position: absolute;
+  top: 1.1rem;
+  right: 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(0, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 0.25rem 0.8rem 0.25rem 0.5rem;
+  box-shadow: 0 0 10px #00f0ff44;
+  border: 1.5px solid #00f0ff55;
+  z-index: 3;
+}
+
+.events-icon-platform-card-lobby {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 4px #00f0ff99);
+}
+
+.events-platform-name {
+  font-size: 1.01rem;
+  font-weight: 700;
+  color: #00f0ff;
+  letter-spacing: 0.5px;
+  text-shadow: 0 0 6px #00f0ff77;
+}
+
+/* Título destacado */
+.card-title-events {
+  font-size: 1.35rem;
+  margin-bottom: 1.8rem;
+  color: #00fff2;
+  font-weight: bold;
+  text-align: left;
+  letter-spacing: 1.2px;
+  text-shadow: 0 0 12px #00f0ff99, 0 0 2px #fff;
+}
+
+.events-title-card-lobby {
+  font-size: 1.15rem;
+  margin-bottom: 1.8rem;
+  text-align: center;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: 1.1px;
+  text-shadow: 0 0 8px #00f0ff44;
+  margin-top: 0.1rem;
+}
+
+/* Hora destacada */
+.events-date-card-lobby {
+  font-size: 1.18rem;
+  margin: 0.7rem 0 0.3rem 0;
+  color: #00ffc8;
+  font-weight: 700;
+  letter-spacing: 0.7px;
+  text-shadow: 0 0 8px #00f0ff55;
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.events-date-card-lobby strong {
+  color: #fff;
+  font-weight: 900;
+  margin-right: 0.3em;
+  letter-spacing: 0.5px;
+}
+
+/* Juego destacado */
+.events-game-card-lobby {
+  font-size: 1.08rem;
+  margin: 0.2rem 0 0.2rem 0;
+  color: #00ffc8;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.events-game-card-lobby strong {
+  color: white;
+  font-weight: 900;
+  margin-right: 0.3em;
+  letter-spacing: 0.5px;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .events-today-card {
+    max-width: 98vw;
+    padding: 1.1rem 0.7rem 1.1rem 0.7rem;
+    font-size: 1rem;
+    border-radius: 14px;
+  }
+  .events-platform-card-lobby {
+    top: 0.5rem;
+    right: 0.5rem;
+    padding: 0.18rem 0.5rem 0.18rem 0.3rem;
+    border-radius: 8px;
+  }
+  .events-title-card-lobby {
+    font-size: 1.13rem;
+  }
+  .events-date-card-lobby {
+    font-size: 1.01rem;
+  }
+}
