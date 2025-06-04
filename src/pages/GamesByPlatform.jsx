@@ -35,6 +35,10 @@ function GamesByPlatform() {
   useEffect(() => {
     setLoading(true); // Cambiar el estado de carga a true antes de hacer la petición,cada vez que se renderice
     const fetchGames = async () => {
+      const response = await fetch(`${API_URL}/platforms/${platformId}/games`);
+
+      const data = await response.json();
+      console.log("Fetched data:", data);
       try {
         const response = await fetch(
           `${API_URL}/platforms/${platformId}/games`
@@ -45,6 +49,8 @@ function GamesByPlatform() {
         const data = await response.json();
         setGames(data.games);
         setPlatform(data.platform); // Guardar la plataforma en el estado
+        setGames(data.games);
+        setPlatform(data.platform);
       } catch (error) {
         console.error("Error fetching games:", error);
       }
@@ -53,7 +59,8 @@ function GamesByPlatform() {
     fetchGames();
   }, [platformId]); // UsseEffect se ejecuta cuando cambia el platformId, si el usuario cambia el platformId cambiando de platadorma,se ejecuta el fetch de nuevo.
 
-  if (loading) {
+  if (loading || !platform) {
+    // Si está cargando o no hay plataforma, muestra loading...
     // Si está cargando, muestra loading...(luego libreria Ruben)
     return (
       <div className="loading-container">

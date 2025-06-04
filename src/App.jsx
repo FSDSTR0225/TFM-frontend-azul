@@ -9,7 +9,7 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
 import NavBar from "./components/NavBar";
-import SearchInputExplore from "./components/searchInputExplore";
+import SearchInputExplore from "./components/SearchInputExplore";
 import Events from "./pages/Events";
 import ProfilePage from "./pages/Profile2";
 import EditProfile from "./pages/EditProfile";
@@ -22,6 +22,7 @@ import AuthContext from "./context/AuthContext";
 import { PacmanLoader } from "react-spinners";
 import { Toaster } from "sonner";
 import ManagementCenter from "./pages/ManagementCenter";
+import MyEvents from "./pages/MyEvents";
 
 export default function App() {
   const [showSearch, setShowSearch] = useState(false);
@@ -92,6 +93,14 @@ export default function App() {
           element={
             <PrivateRoute>
               <ManagementCenter />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/my-events"
+          element={
+            <PrivateRoute>
+              <MyEvents />
             </PrivateRoute>
           }
         />

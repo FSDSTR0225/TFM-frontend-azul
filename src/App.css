@@ -8,13 +8,12 @@
 
 body {
   font-family: "Poppins", sans-serif;
-  background-image: linear-gradient(
-    to bottom right,
-    var(--dark-blue),
-    var(--light-blue)
-  );
+  background: rgba(10, 10, 20, 0.9);
+  backdrop-filter: blur(8px);
   color: white;
   min-height: 100vh;
+  position: relative;
+  min-height: 100%;
 }
 
 h1,

@@ -24,7 +24,6 @@
   padding: 0 5vw;
 }
 
-/* Imagen de fondo */
 .event-page::before {
   content: "";
   position: fixed;
@@ -32,14 +31,13 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url("../../1.jpg");
+  background-image: url("../../public/1.jpg");
   background-size: cover;
   background-position: center;
   filter: blur(6px) brightness(0.9);
   z-index: -2;
 }
 
-/* Capa oscura overlay */
 .event-page::after {
   content: "";
   position: fixed;

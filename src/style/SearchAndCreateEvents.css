@@ -17,7 +17,6 @@
   box-shadow: 0 0 20px rgba(0, 255, 255, 0.08);
 }
 
-/* Input de búsqueda */
 .search-input-event {
   flex: 1;
   padding: 0.9rem 1.2rem;
@@ -40,7 +39,6 @@
   box-shadow: 0 0 8px rgba(0, 255, 255, 0.2);
 }
 
-/* Botón de crear evento */
 .create-event-btn {
   padding: 0.75rem 1.4rem;
   background: linear-gradient(135deg, #00ffc8, #0072ff);
@@ -59,7 +57,6 @@
   box-shadow: 0 6px 20px rgba(0, 255, 255, 0.3);
 }
 
-/* Responsive */
 @media (max-width: 640px) {
   .search-create-event {
     flex-direction: column;

@@ -189,9 +189,9 @@ function EditEventForm({ event, onClose, onUpdate }) {
 
   return (
     <div
-      className="modal-overlay"
+      className="modal-overlay-events"
       onClick={(e) => {
-        if (e.target.classList.contains("modal-overlay")) {
+        if (e.target.classList.contains("modal-overlay-events")) {
           onClose();
         }
       }}
