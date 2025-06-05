@@ -14,7 +14,7 @@ function ShowEvent() {
             <div className="event-image">
               <img src="/src/assets/valorant2.jpg" alt="Imagen del evento" />
             </div>
-            <h2 className="event-title">Partida Ranked Valorant</h2>
+            <h2 className="event-title-show">Partida Ranked Valorant</h2>
 
             <div className="event-game">
               <span>Valorant</span>

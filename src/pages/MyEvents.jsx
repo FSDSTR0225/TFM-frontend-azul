@@ -9,18 +9,15 @@ const API_URL = import.meta.env.VITE_API_URL;
 
 function MyEvents() {
   const [loading, setLoading] = useState(true);
-  const [eventsfiltered, setEventsFiltered] = useState("todos");
-  const [allMyEvents, setAllMyEvents] = useState([]);
+  const [eventsfiltered, setEventsFiltered] = useState("creados");
   const [myEventsCreated, setMyEventsCreated] = useState([]);
   const [myEventsJoined, setMyEventsJoined] = useState([]);
-  const [totalAll, setTotalAll] = useState(0);
   const [createdTotal, setCreatedTotal] = useState(0);
   const [joinedTotal, setJoinedTotal] = useState(0);
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [showModal, setShowModal] = useState(false);
 
-  const authContext = useContext(AuthContext);
-  const { token, isLoggedIn } = authContext;
+  const { token, isLoggedIn } = useContext(AuthContext);
 
   const handleEventClick = (event) => {
     setSelectedEvent(event);
@@ -31,69 +28,50 @@ function MyEvents() {
     const fetchMyEvents = async () => {
       if (!isLoggedIn) return;
 
-      const url =
-        eventsfiltered === "todos"
-          ? `${API_URL}/events/my-events`
-          : eventsfiltered === "creados"
-          ? `${API_URL}/events/my-events/created`
-          : eventsfiltered === "unido"
-          ? `${API_URL}/events/my-events/joined`
-          : null;
-      if (!url) {
-        setLoading(false);
-        return;
-      }
       try {
-        const response = await fetch(url, {
+        const creados = await fetch(`${API_URL}/events/my-events/created`, {
           headers: { Authorization: `Bearer ${token}` },
         });
+        const creadosData = await creados.json();
+        setMyEventsCreated(
+          Array.isArray(creadosData.eventos) ? creadosData.eventos : []
+        );
+        setCreatedTotal(creadosData.total || 0);
 
-        if (!response.ok) throw new Error("Error al obtener eventos");
-
-        const data = await response.json();
-        console.log("Evento recibido:", data.eventos);
-        if (eventsfiltered === "todos") {
-          setAllMyEvents(Array.isArray(data.eventos) ? data.eventos : []);
-          setTotalAll(data.total);
-        } else if (eventsfiltered === "creados") {
-          setMyEventsCreated(Array.isArray(data.eventos) ? data.eventos : []);
-          setCreatedTotal(data.total);
-        } else if (eventsfiltered === "unido") {
-          setMyEventsJoined(Array.isArray(data.eventos) ? data.eventos : []);
-          setJoinedTotal(data.total);
-        }
+        const unidos = await fetch(`${API_URL}/events/my-events/joined`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        const unidosData = await unidos.json();
+        setMyEventsJoined(
+          Array.isArray(unidosData.eventos) ? unidosData.eventos : []
+        );
+        setJoinedTotal(unidosData.total || 0);
 
         setLoading(false);
       } catch (error) {
-        console.error("Error al obtener solicitudess:", error);
+        console.error("Error al obtener eventos:", error);
         setLoading(false);
       }
     };
+
     fetchMyEvents();
-  }, [isLoggedIn, token, eventsfiltered]);
+  }, [isLoggedIn, token]);
 
-  // para gestionar la eliminación de eventos y que se actualicen las listas y sus totales para los badges
   const handleEventDeleted = (id) => {
-    setAllMyEvents((prev) => prev.filter((e) => e._id !== id)); // Filtramos el evento eliminado de la lista de todos los eventos
-    setMyEventsCreated((prev) => prev.filter((e) => e._id !== id)); // Filtramos el evento eliminado de la lista de eventos creados
-    setMyEventsJoined((prev) => prev.filter((e) => e._id !== id)); // Filtramos el evento eliminado de la lista de eventos unidos
+    setMyEventsCreated((prev) => prev.filter((e) => e._id !== id));
+    setMyEventsJoined((prev) => prev.filter((e) => e._id !== id));
 
-    if (eventsfiltered === "todos")
-      setTotalAll((prev) => prev - 1); // Actualizamos el total de eventos
-    else if (eventsfiltered === "creados") setCreatedTotal((prev) => prev - 1);
-    // Actualizamos el total de eventos creados
-    else if (eventsfiltered === "unido") setJoinedTotal((prev) => prev - 1); // Actualizamos el total de eventos unidos
+    if (eventsfiltered === "creados") setCreatedTotal((prev) => prev - 1);
+    else if (eventsfiltered === "unido") setJoinedTotal((prev) => prev - 1);
 
     setShowModal(false);
   };
 
   if (loading) {
-    // Si está cargando, muestra...
     return (
       <div className="loading-container">
-        <h1 className="loading-title">Cargando plataformas...</h1>
-        <PacmanLoader color="#FFD700" size={40} />{" "}
-        {/* Los componentes de React spinner reciben css en el propio componente */}
+        <h1 className="loading-title">Cargando eventos...</h1>
+        <PacmanLoader color="#FFD700" size={40} />
       </div>
     );
   }
@@ -102,17 +80,10 @@ function MyEvents() {
     <div className="myEvents-container">
       <div className="myEvents-btns">
         <button
-          className={eventsfiltered === "todos" ? "active-btn" : ""}
-          onClick={() => setEventsFiltered("todos")}
-        >
-          Todos mis eventos
-          <span className="badge-total">{totalAll}</span>
-        </button>
-        <button
           className={eventsfiltered === "creados" ? "active-btn" : ""}
           onClick={() => setEventsFiltered("creados")}
         >
-          Eventos creados por mi
+          Eventos creados por mí
           <span className="badge-total">{createdTotal}</span>
         </button>
         <button
@@ -123,6 +94,7 @@ function MyEvents() {
           <span className="badge-total">{joinedTotal}</span>
         </button>
       </div>
+
       <div className="myEvents-tab">
         {showModal && selectedEvent && (
           <EventDetails
@@ -132,37 +104,33 @@ function MyEvents() {
             onEventDeleted={handleEventDeleted}
           />
         )}
-        {eventsfiltered === "todos" &&
-          allMyEvents.map((event) => (
-            <EventCard
-              key={event._id}
-              event={event}
-              onClick={() => handleEventClick(event)}
-            />
-          ))}
-        {eventsfiltered === "todos" && myEventsCreated.length === 0 && (
-          <p className="no-events-msg">
-            No tienes eventos todavia.¡Únete o crea el tuyo propio!
-          </p>
-        )}
+
         {eventsfiltered === "creados" &&
-          myEventsCreated.map((event) => (
-            <EventCard
-              key={event._id}
-              event={event}
-              onClick={() => handleEventClick(event)}
-            />
+          (myEventsCreated.length > 0 ? (
+            myEventsCreated.map((event) => (
+              <EventCard
+                key={event._id}
+                event={event}
+                onClick={() => handleEventClick(event)}
+              />
+            ))
+          ) : (
+            <p className="no-events-msg">Aún no has creado ningún evento.</p>
           ))}
-        {eventsfiltered === "creados" && myEventsCreated.length === 0 && (
-          <p className="no-events-msg">Aún no has creado ningún evento.</p>
-        )}
+
         {eventsfiltered === "unido" &&
-          myEventsJoined.map((event) => (
-            <EventCard
-              key={event._id}
-              event={event}
-              onClick={() => handleEventClick(event)}
-            />
+          (myEventsJoined.length > 0 ? (
+            myEventsJoined.map((event) => (
+              <EventCard
+                key={event._id}
+                event={event}
+                onClick={() => handleEventClick(event)}
+              />
+            ))
+          ) : (
+            <p className="no-events-msg">
+              No te has unido a ningún evento aún.
+            </p>
           ))}
       </div>
     </div>
@@ -170,3 +138,40 @@ function MyEvents() {
 }
 
 export default MyEvents;
+
+//PARTE ELIMINADA PARA LA PESTAÑA DE "TODOS MIS EVENTOS"
+// const [allMyEvents, setAllMyEvents] = useState([]);
+// const [totalAll, setTotalAll] = useState(0);
+
+// En useEffect:
+// const all = await fetch(`${API_URL}/events/my-events`, {
+//   headers: { Authorization: `Bearer ${token}` },
+// });
+// const allData = await all.json();
+// setAllMyEvents(Array.isArray(allData.eventos) ? allData.eventos : []);
+// setTotalAll(allData.total || 0);
+
+// En botones:
+// <button
+//   className={eventsfiltered === "todos" ? "active-btn" : ""}
+//   onClick={() => setEventsFiltered("todos")}
+// >
+//   Todos mis eventos
+//   <span className="badge-total">{totalAll}</span>
+// </button>
+
+// En renderizado de eventos:
+// {eventsfiltered === "todos" &&
+//   (allMyEvents.length > 0 ? (
+//     allMyEvents.map((event) => (
+//       <EventCard
+//         key={event._id}
+//         event={event}
+//         onClick={() => handleEventClick(event)}
+//       />
+//     ))
+//   ) : (
+//     <p className="no-events-msg">
+//       No tienes eventos todavía. ¡Únete o crea el tuyo propio!
+//     </p>
+//   ))}

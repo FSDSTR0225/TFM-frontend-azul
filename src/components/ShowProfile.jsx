@@ -36,7 +36,7 @@ function ShowProfile() {
 
         {/* COLUMNA DERECHA */}
         <div className="profile-preview">
-          <div className="profile-card float-card reveal">
+          <div className="profile-card-show float-card reveal">
             <div className="profile-avatar">
               <img src="/src/assets/gamer2.png" alt="avatar" />
             </div>
@@ -65,11 +65,11 @@ function ShowProfile() {
 
             <div className="profile-section">
               <h3>Plataformas</h3>
-              <div className="platform-icons">
-                <FaDesktop className="platform-icon" title="PC" />
-                <FaPlaystation className="platform-icon" title="PS5" />
-                <FaXbox className="platform-icon" title="Xbox" />
-                <FaMobileAlt className="platform-icon" title="Mobile" />
+              <div className="platform-icons-show">
+                <FaDesktop className="platform-icon-show" title="PC" />
+                <FaPlaystation className="platform-icon-show" title="PS5" />
+                <FaXbox className="platform-icon-show" title="Xbox" />
+                <FaMobileAlt className="platform-icon-show" title="Mobile" />
               </div>
             </div>
 

@@ -439,3 +439,19 @@
     border-radius: 9px;
   }
 }
+
+.pending-btn {
+  background-color: #555;
+  color: #ccc;
+  cursor: not-allowed;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+.event-actions p {
+  margin-top: 8px;
+  color: #aaa;
+  font-style: italic;
+}

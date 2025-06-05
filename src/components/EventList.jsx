@@ -1,8 +1,10 @@
 import React from "react";
 import mocksEvent from "./mocks/mocksEvent";
 import "../style/EventList.css";
+import { useNavigate } from "react-router-dom";
 
 function EventList() {
+  const navigate = useNavigate();
   return (
     <section className="event-section">
       <h2 className="section-title">
@@ -16,7 +18,7 @@ function EventList() {
               alt={event.game}
               className="event-img-list"
             />
-            <h3 className="event-title">{event.title}</h3>
+            <h3 className="event-title-list">{event.title}</h3>
             <p className="event-date">
               {event.date} - {event.time}h
             </p>
@@ -24,8 +26,8 @@ function EventList() {
 
             <h2 className="event-game">{event.game}</h2>
             <div className="event-join">
-              <button>Unirse</button>
-              <button>Detalles</button>
+              <button onClick={() => navigate("/login")}>Unirse</button>
+              <button onClick={() => navigate("/register")}>Detalles</button>
             </div>
           </div>
         ))}

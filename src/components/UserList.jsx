@@ -1,8 +1,11 @@
 import React from "react";
 import mocksUser from "./mocks/mocksUser";
 import "../style/UserList.css";
+import { useNavigate } from "react-router-dom";
 
 function UserList() {
+  const navigate = useNavigate();
+
   return (
     <section className="user-section">
       <h2 className="section-title">
@@ -20,7 +23,7 @@ function UserList() {
               />
             </div>
             <div className="user-info">
-              <h3 className="username">{user.username}</h3>
+              <h3 className="username-mock-list">{user.username}</h3>
               <div className="user-genres">
                 {user.genre.map((genre, index) => (
                   <span key={index} className="genre-tag">
@@ -29,8 +32,10 @@ function UserList() {
                 ))}
               </div>
               <div className="user-explore">
-                <button>Conectar</button>
-                <button>Ver perfil</button>
+                <button onClick={() => navigate("/login")}>Conectar</button>
+                <button onClick={() => navigate("/register")}>
+                  Ver perfil
+                </button>
               </div>
             </div>
           </div>

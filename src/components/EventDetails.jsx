@@ -35,6 +35,14 @@ function EventDetails({ event, onClose, setSelectedEvent, onEventDeleted }) {
       });
       console.log("Response:", response);
       if (!response.ok) {
+        const errorData = await response.json();
+        if (errorData.message?.includes("solicitud para unirte")) {
+          toast.info("Ya has enviado una solicitud para este evento.", {
+            className: "mi-toast",
+            icon: "",
+          });
+          return;
+        }
         throw new Error("Error al unirse al evento");
       }
 
@@ -177,14 +185,26 @@ function EventDetails({ event, onClose, setSelectedEvent, onEventDeleted }) {
 
         {!isCreator && !isParticipant && (
           <div className="event-actions">
-            <button
-              className="join-btn"
-              onClick={handleJoinEvent}
-              disabled={isFull}
-              title={isFull ? "Este evento está completo" : ""}
-            >
-              {isPrivate ? "Solicitar unirse" : "Unirse al evento"}
-            </button>
+            {event.hasPendingRequest ? (
+              <>
+                <button disabled className="pending-btn">
+                  Solicitud pendiente
+                </button>
+                <p>
+                  Ya has solicitado unirte. Espera la aprobación del creador del
+                  evento.
+                </p>
+              </>
+            ) : (
+              <button
+                className="join-btn"
+                onClick={handleJoinEvent}
+                disabled={isFull}
+                title={isFull ? "Este evento está completo" : ""}
+              >
+                {isPrivate ? "Solicitar unirse" : "Unirse al evento"}
+              </button>
+            )}
           </div>
         )}
 

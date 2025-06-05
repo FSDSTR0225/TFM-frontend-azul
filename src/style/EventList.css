@@ -50,7 +50,7 @@
   box-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
 }
 
-.event-img {
+.event-img-list {
   width: 56px;
   height: 56px;
   object-fit: contain;
@@ -58,7 +58,7 @@
   filter: drop-shadow(0 0 6px #00ffff66);
 }
 
-.event-title {
+.event-title-list {
   font-size: 1rem;
   color: #00ffff;
   margin-bottom: 0.4rem;
