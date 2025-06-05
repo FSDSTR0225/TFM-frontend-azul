@@ -21,14 +21,25 @@
   gap: 1.8rem;
 }
 
-.daily-summary-title,
+/* Cada bloque interno (nuevos amigos, solicitudes, etc.) */
+.daily-content > div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  min-height: 60px; /* 👈 asegura coherencia visual en bloques cortos */
+}
+
 .newfriends-title,
+.join-event-title,
+.daily-summary-title,
 .notification-title,
-.join-event-title {
-  font-size: 1.4rem;
-  font-weight: bold;
-  color: #00ffff;
-  text-shadow: 0 0 6px #00ffff44;
+.approved-summary-title,
+.upcoming-summary-title {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #333;
+  font-size: 1rem;
+  line-height: 1.4;
+  color: #76e2f2;
 }
 
 .newfriends-list,
@@ -40,29 +51,16 @@
 
 .newfriends-list li,
 .approved-summary li,
-.upcoming-summary p,
 .notification-summary p,
-.join-event-summary p {
+.join-event-summary p,
+.upcoming-summary p {
   padding: 0.5rem 0;
   border-bottom: 1px solid #333;
-  font-size: 0.95rem;
+  font-size: 0.85rem;
   line-height: 1.4;
-  color: #ddd;
-}
-
-.approved-summary h3,
-.upcoming-summary h3 {
-  color: #76e2f2;
-}
-
-.upcoming-summary p {
-  font-weight: 500;
-}
-
-.notification-summary p,
-.join-event-summary p {
   font-style: italic;
   color: #ccc;
+  font-weight: 500;
 }
 
 .no-data-wrapper {

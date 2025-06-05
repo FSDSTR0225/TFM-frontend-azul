@@ -60,7 +60,7 @@ function DailySummary({ summary }) {
             )}
             {approvedEvent.length > 0 && (
               <div className="approved-summary">
-                <h3>Eventos aprobados</h3>
+                <h3 className="approved-summary-title">Eventos aprobados</h3>
                 <ul>
                   {approvedEvent.map((approved) => (
                     <li key={approved.eventId}>{approved.message}</li>
@@ -70,7 +70,7 @@ function DailySummary({ summary }) {
             )}
             {upcomingEvents.length > 0 && (
               <div className="upcoming-summary">
-                <h3>Eventos programados</h3>
+                <h3 className="upcoming-summary-title">Eventos programados</h3>
                 <p>
                   Tienes {upcomingEvents.length} evento
                   {upcomingEvents.length > 1 ? "s" : ""} esta semana
