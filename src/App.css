@@ -9,7 +9,6 @@
 body {
   font-family: "Poppins", sans-serif;
   background: rgba(10, 10, 20, 0.9);
-  backdrop-filter: blur(8px);
   color: white;
   min-height: 100vh;
   position: relative;
