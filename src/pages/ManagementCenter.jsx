@@ -162,7 +162,7 @@ function ManagementCenter() {
   if (loading) {
     return (
       <div className="loading-container">
-        <h1 className="loading-title">Cargando plataformas...</h1>
+        <h1 className="loading-title">Cargando el centro de gestión...</h1>
         <PacmanLoader color="#FFD700" size={40} />
       </div>
     );

@@ -81,7 +81,7 @@
   );
 }
 
-.event-card.float-card {
+.event-card-show.float-card {
   position: absolute;
   top: 0;
   left: 50%;
@@ -100,7 +100,7 @@
   z-index: 2;
 }
 
-.event-card.float-card.reveal {
+.event-card-show.float-card.reveal {
   animation: slideFromEnvelope 10s ease-in-out infinite;
 }
 
@@ -182,7 +182,7 @@
     height: 250px;
   }
 
-  .event-card.float-card {
+  .event-card-show.float-card {
     max-width: 90%;
     padding: 1.5rem;
   }

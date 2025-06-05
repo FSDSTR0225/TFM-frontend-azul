@@ -10,7 +10,7 @@ function ShowEvent() {
     <section className="event-glass-section">
       <div className="event-wrapper-glass">
         <div className="event-preview">
-          <div className="event-card float-card reveal">
+          <div className="event-card-show float-card reveal">
             <div className="event-image">
               <img src="/src/assets/valorant2.jpg" alt="Imagen del evento" />
             </div>
