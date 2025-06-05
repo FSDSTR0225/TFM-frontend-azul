@@ -7,59 +7,58 @@ export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(null); // Token JWT
   const [isLoggedIn, setIsLoggedIn] = useState(false); // Estado de sesión
   const [loading, setLoading] = useState(true); // Estado de carga
+  const fetchUserProfile = async (token) => {
+    try {
+      const res = await fetch("http://localhost:3000/users/me", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (!res.ok) throw new Error("Token inválido o expirado");
+
+      const data = await res.json();
+      setUser(data.user);
+      setToken(token);
+      setIsLoggedIn(true);
+    } catch (err) {
+      console.error("Error al cargar perfil:", err.message);
+      logout();
+    }finally {
+      setLoading(false);
+    }
+  };
 
   // ✔ Cargar sesión automáticamente al arrancar si hay token en localStorage
   useEffect(() => {
     const savedSession = localStorage.getItem("user");
+    try {
+       
     if (!savedSession) {
       setLoading(false);
       return;
     }
-
-    const fetchUserProfile = async (token) => {
-      try {
-        const res = await fetch("http://localhost:3000/users/me", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-
-        if (!res.ok) throw new Error("Token inválido o expirado");
-
-        const data = await res.json();
-        setUser(data.user);
-        setToken(token);
-        setIsLoggedIn(true);
-      } catch (err) {
-        console.error("Error al cargar perfil:", err.message);
-        logout();
-      }
-    };
-
-    try {
       const sessionData = JSON.parse(savedSession);
 
-      if (sessionData?.token && sessionData?.user) {
-        setUser(sessionData.user);
-        setToken(sessionData.token);
-        setIsLoggedIn(true);
-      } else if (sessionData?.token) {
+      if (sessionData?.token) {
         fetchUserProfile(sessionData.token);
+      }else {
+        logout();
+        setLoading(false);
       }
     } catch (e) {
       console.error("JSON parse error:", e);
       logout();
-    } finally {
       setLoading(false);
     }
   }, []);
 
   // ✔ Login manual (cuando te registras o haces login)
-  const login = (user, token) => {
-    setUser(user);
-    setToken(token);
+  const login = async ( token) => {
+    localStorage.setItem("user", JSON.stringify({ token }));
+    await fetchUserProfile(token);
+   
     setIsLoggedIn(true);
-    localStorage.setItem("user", JSON.stringify({ token, user }));
   };
 
   // ✔ Logout total
@@ -68,6 +67,7 @@ export const AuthProvider = ({ children }) => {
     setToken(null);
     setIsLoggedIn(false);
     localStorage.removeItem("user");
+    setLoading(false);
   };
 
   return (
