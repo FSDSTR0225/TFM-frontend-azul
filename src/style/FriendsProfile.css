@@ -1,0 +1,94 @@
+/* FriendsProfile.css */
+
+.friends-profile {
+  display: flex;
+    flex-direction: column;
+    align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+ 
+  background-color: #78b3f2; /* stesso azzurro dello sfondo */
+  min-height: 100vh;
+  font-family: "Orbitron", sans-serif; /* o il font usato nel resto del sito */
+}
+
+.friends-profile-content {
+  flex: 1;
+  padding: 2rem;
+  color: #001f3f;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.friend-requests {
+  background: rgba(255, 255, 255, 0.15);
+  border: 2px solid #fff;
+  border-radius: 16px;
+  padding: 1.5rem;
+  backdrop-filter: blur(5px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.friend-requests h3 {
+  margin-bottom: 1rem;
+  color: #ffffff;
+  font-size: 1.4rem;
+  text-shadow: 0 0 4px #000;
+}
+
+.friend-request {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  padding: 0.75rem;
+  border-radius: 12px;
+  background-color: rgba(255, 255, 255, 0.2);
+  transition: background 0.3s ease;
+}
+
+.friend-request:hover {
+  background-color: rgba(255, 255, 255, 0.35);
+}
+
+.friend-request img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  object-fit: cover;
+}
+
+.friend-request p {
+  flex: 1;
+  font-weight: bold;
+  color: #fff;
+}
+
+.friend-request button {
+  background-color: #00ffc3;
+  border: none;
+  border-radius: 20px;
+  padding: 0.5rem 1rem;
+  margin-left: 0.5rem;
+  cursor: pointer;
+  color: #001f3f;
+  font-weight: bold;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.friend-request button:hover {
+  background-color: #00e6b4;
+  transform: scale(1.05);
+}
+
+.friend-request button:nth-child(3) {
+  background-color: #ff4f4f;
+  color: #fff;
+}
+
+.friend-request button:nth-child(3):hover {
+  background-color: #e04040;
+}

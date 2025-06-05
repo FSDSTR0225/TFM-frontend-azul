@@ -16,6 +16,7 @@ import EditProfile from "./pages/EditProfile";
 import GameDetails from "./pages/GameDetails";
 import Lobby from "./pages/Lobby";
 import PrivateRoute from "./components/PrivateRoute";
+import FriendsProfile from "./pages/FriendsProfile";  
 import Players from "./pages/Players";
 import { useContext } from "react";
 import AuthContext from "./context/AuthContext";
@@ -101,6 +102,14 @@ export default function App() {
           element={
             <PrivateRoute>
               <MyEvents />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/friends"
+          element={
+            <PrivateRoute>
+              <FriendsProfile />
             </PrivateRoute>
           }
         />

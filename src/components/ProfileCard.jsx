@@ -9,29 +9,47 @@ import { Link } from "react-router-dom";
 import blankImg from "/images/profile/blankImg.jpg";
 import { PacmanLoader } from "react-spinners";
 import { useNavigate } from "react-router-dom";
+
 const ProfileCard = () => {
   const { setUser, token, user, isLoggedIn } = useContext(AuthContext);
-  const API_URL = import.meta.env.VITE_API_URL;
-  // const [user, setUser] = useState(null);
   const [refreshKey, setRefreshKey] = useState(0);
- 
+  const API_URL = import.meta.env.VITE_API_URL;
+  const navigate = useNavigate();
+  // const [user, setUser] = useState(null);
   const triggerRefresh = () => {
     setRefreshKey((prev) => prev + 1);
   };
+  
   useEffect(() => {
     const fetchProfile = async () => {
-
       try {
         const response = await fetch(`${API_URL}/users/me`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
-
         if (!response.ok) throw new Error("Error al obtener detalles");
-
         const data = await response.json();
-     
+      setUser(data.user);
+      } catch (error) {
+        console.error("Error al obtener el perfil:", error);
+      }
+    };
+    fetchProfile();
+  }, []);
+
+  console.log("user", user);
+  
+  useEffect(() => {
+    const fetchProfile = async () => {
+      try {
+        const response = await fetch(`${API_URL}/users/me`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        if (!response.ok) throw new Error("Error al obtener detalles");
+        const data = await response.json();
         setUser(data.user);
       } catch (error) {
         console.error("Error al obtener el perfil:", error);
@@ -40,14 +58,12 @@ const ProfileCard = () => {
     if (isLoggedIn && token) {
       fetchProfile();
     }
-  }, [refreshKey, isLoggedIn, token]);
+  }, [refreshKey, isLoggedIn, token, API_URL, setUser]);
 
-  const navigate = useNavigate();
-  
-    if (!isLoggedIn) {
-      navigate("/login");
-    }
-  
+
+  if (!isLoggedIn) {
+    navigate("/login");
+  }
 
   if (!user) {
     return <PacmanLoader color="#FFD700" size={40} />; // spinner/placeholder temporaneo
@@ -56,7 +72,7 @@ const ProfileCard = () => {
     <div className="profile-card">
       <div className="avatar-container">
         <img className="avatar" src={user.avatar || blankImg} alt="Avatar" />
-        <Link to="/edit/profile" state={user} className="edit-button">
+        <Link to="/edit/profile"  className="edit-button">
           ✏️{" "}
         </Link>
       </div>
@@ -66,10 +82,7 @@ const ProfileCard = () => {
         triggerRefresh={triggerRefresh}
         platforms={user.platforms || ["khKH", "hgygsdy", "ygyas"]}
       />
-      <FriendsList
-        triggerRefresh={triggerRefresh}
-        friends={user.friends || ["khKH", "hgygsdy", "ygyas"]}
-      />
+      <FriendsList triggerRefresh={triggerRefresh} friends={user.friends || ["khKH", "hgygsdy", "ygyas"]}/>
       <FavoriteGamesList
         triggerRefresh={triggerRefresh}
         games={user.favoriteGames || ["khKH", "hgygsdy", "ygyas"]}
