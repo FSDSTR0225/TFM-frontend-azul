@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Select from "react-select";
 import "../style/CreateEventModal.css";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -192,18 +194,16 @@ function CreateEventModal({ onClose, onCreate }) {
             onChange={handleChange}
             required
           />
-          <input
-            type="date"
-            name="date"
-            value={formData.date}
-            onChange={handleChange}
-            required
-          />
-          <input
-            type="time"
-            name="time"
-            value={formData.time}
-            onChange={handleChange}
+          <DatePicker
+            selected={formData.date}
+            onChange={(date) => setFormData({ ...formData, date })}
+            showTimeSelect
+            timeFormat="HH:mm"
+            timeIntervals={15}
+            dateFormat="dd/MM/yyyy h:mm aa"
+            placeholderText="Selecciona fecha y hora"
+            calendarClassName="custom-datepicker-calendar"
+            popperClassName="custom-datepicker-popper"
             required
           />
 
