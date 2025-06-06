@@ -11,30 +11,30 @@ const FriendsProfile = () => {
   const [friends, setFriends] = useState([]);
   const [friendRequestsSent, setFriendRequestsSent] = useState([]);
   const [friendRequestsReceived, setFriendRequestsReceived] = useState([]);
- const[refreshKey, setRefreshKey] = useState(0);
+  const [refreshKey, setRefreshKey] = useState(0);
   const triggerRefresh = () => {
     setRefreshKey((prev) => prev + 1);
   };
   const navigate = useNavigate();
   const url = import.meta.env.VITE_API_URL;
 
-// Lista de amigos
-useEffect(() => {
-  if (!isLoggedIn) {
-    navigate("/login");
-  } else {
-    fetch(`${url}/users/me`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        setFriends(data.user.friends || []);
+  // Lista de amigos
+  useEffect(() => {
+    if (!isLoggedIn) {
+      navigate("/login");
+    } else {
+      fetch(`${url}/users/me`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       })
-      .catch((err) => console.error("Errore nel recupero amici:", err));
-  }
-}, [isLoggedIn, token, navigate, refreshKey]);
+        .then((res) => res.json())
+        .then((data) => {
+          setFriends(data.user.friends || []);
+        })
+        .catch((err) => console.error("Errore nel recupero amici:", err));
+    }
+  }, [isLoggedIn, token, navigate, refreshKey]);
 
   // Solicitudes de amistad recibidas
   useEffect(() => {
@@ -80,11 +80,11 @@ useEffect(() => {
         setFriendRequestsReceived((prev) =>
           prev.filter((req) => req._id !== requestId)
         );
-       triggerRefresh();
+        triggerRefresh();
       })
       .catch((err) => console.error("Error al aceptar solicitud:", err));
   };
-// Rechazar solicitud de amistad
+  // Rechazar solicitud de amistad
   const rejectFriendRequest = (requestId) => {
     fetch(`${url}/friends/requests/${requestId}/reject`, {
       method: "PUT",
@@ -97,27 +97,27 @@ useEffect(() => {
         setFriendRequestsReceived((prev) =>
           prev.filter((req) => req._id !== requestId)
         );
-       triggerRefresh(); // Aquí podrías actualizar la lista de amigos si es necesario
+        triggerRefresh(); // Aquí podrías actualizar la lista de amigos si es necesario
       })
       .catch((err) => console.error("Error al rechazar solicitud:", err));
   };
-const deleteFriendRequest = (requestId) => {
-  fetch(`${url}/friends/requests/${requestId}`, {
-    method: "DELETE",
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  })
-    .then((res) => res.json())
-    .then(() => {
-      setFriendRequestsSent((prev) =>
-        prev.filter((req) => req._id !== requestId)
-      );
-      // Aquí podrías actualizar la lista de amigos si es necesario
+  const deleteFriendRequest = (requestId) => {
+    fetch(`${url}/friends/requests/${requestId}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
     })
-    .catch((err) => console.error("Error al eliminar solicitud:", err));
-};
-  
+      .then((res) => res.json())
+      .then(() => {
+        setFriendRequestsSent((prev) =>
+          prev.filter((req) => req._id !== requestId)
+        );
+        // Aquí podrías actualizar la lista de amigos si es necesario
+      })
+      .catch((err) => console.error("Error al eliminar solicitud:", err));
+  };
+
   return (
     <div className="friends-profile">
       <Sidebar />
@@ -151,7 +151,9 @@ const deleteFriendRequest = (requestId) => {
               </div>
             ))
           ) : (
-            <p className="no-friend-requests">No tienes solicitudes de amistad.</p>
+            <p className="no-friend-requests">
+              No tienes solicitudes de amistad.
+            </p>
           )}
         </div>
         <div className="friend-requests sent">
@@ -175,7 +177,9 @@ const deleteFriendRequest = (requestId) => {
               </div>
             ))
           ) : (
-            <p className="no-friend-requests">No has enviado solicitudes de amistad.</p>
+            <p className="no-friend-requests">
+              No has enviado solicitudes de amistad.
+            </p>
           )}
         </div>
       </div>
