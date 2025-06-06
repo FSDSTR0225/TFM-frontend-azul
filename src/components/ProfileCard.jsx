@@ -38,7 +38,7 @@ const ProfileCard = () => {
     fetchProfile();
   }, []);
 
-  console.log("user", user);
+
   
   useEffect(() => {
     const fetchProfile = async () => {
