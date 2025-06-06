@@ -126,7 +126,7 @@ const FriendsProfile = () => {
               </div>
             ))
           ) : (
-            <p>No tienes solicitudes de amistad.</p>
+            <p className="no-friend-requests">No tienes solicitudes de amistad.</p>
           )}
         </div>
         <div className="friend-requests sent">
@@ -149,7 +149,7 @@ const FriendsProfile = () => {
               </div>
             ))
           ) : (
-            <p>No has enviado solicitudes de amistad.</p>
+            <p className="no-friend-requests">No has enviado solicitudes de amistad.</p>
           )}
         </div>
       </div>

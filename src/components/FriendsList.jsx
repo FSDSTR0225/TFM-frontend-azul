@@ -44,7 +44,7 @@ const FriendsList = ({ friends, triggerRefresh }) => {
                 X
               </button>
             </div>
-            <p>{friend.user.username}</p>
+            <p className="circle-text">{friend.user.username}</p>
           </div>
         ))}
       </div>

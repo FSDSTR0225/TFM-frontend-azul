@@ -3,7 +3,7 @@
   height: 100vh;
   min-width: 180px;
   background-color: #140a3e;
-  border-right: 2px solid #2196f3;
+  border-right: 2px solid #66fcf1;
   padding: 1rem;
   box-sizing: border-box;
   position: fixed;
@@ -34,12 +34,12 @@
 
 .sidebar-link {
   text-decoration: none;
-  color: #1565c0;
+  color: #66fcf1;
   font-size: 1rem;
   font-weight: 500;
   transition: color 0.2s;
 }
 
 .sidebar-link:hover {
-  color: #0d47a1;
+  color: #0095d9;
 }

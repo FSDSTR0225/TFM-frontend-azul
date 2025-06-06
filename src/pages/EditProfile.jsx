@@ -143,8 +143,9 @@ const onSubmit = async (formDatas) => {
 };
 
   return (
+  <div className="edit-profile-container">
+    <Sidebar />
     <div className="edit-profile">
-      <Sidebar />
       <h2>Modifica tus datos</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
         <label htmlFor="username">Username:</label>
@@ -211,6 +212,7 @@ const onSubmit = async (formDatas) => {
         <button type="submit">Save</button>
       </form>
     </div>
+  </div>
   );
 };
 

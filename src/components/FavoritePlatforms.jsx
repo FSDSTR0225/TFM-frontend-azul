@@ -50,7 +50,7 @@ const FavoritePlatforms = ({ platforms, triggerRefresh }) => {
             >
               X
             </button>
-            <p>{platform.name}</p>
+            <p className="platform-name">{platform.name}</p>
           </div>
         ))}
       </div>
