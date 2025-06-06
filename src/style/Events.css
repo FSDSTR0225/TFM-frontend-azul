@@ -47,3 +47,20 @@
   background: rgba(10, 10, 20, 0.6);
   z-index: -1;
 }
+
+.mini-events-section {
+  margin-bottom: 30px;
+}
+
+.section-title {
+  font-size: 18px;
+  color: #66fcf1;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.mini-events-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+}

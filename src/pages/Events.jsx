@@ -1,7 +1,8 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useRef } from "react";
 import { PacmanLoader } from "react-spinners";
 import AuthContext from "../context/AuthContext";
 import EventCard from "../components/EventCard";
+import EventCardMini from "../components/EventCardMini";
 import EventDetails from "../components/EventDetails";
 import SearchAndCreateEvents from "../components/SearchAndCreateEvents";
 import "../style/Events.css";
@@ -14,6 +15,7 @@ const Events = () => {
   const [error, setError] = useState(null);
   const [eventDetails, setEventDetails] = useState(null); // Estado para almacenar los detalles del evento seleccionado
   const [searchEvents, setSearchEvents] = useState("");
+  const eventRefs = useRef({});
 
   const { isLoggedIn } = useContext(AuthContext);
 
@@ -53,6 +55,13 @@ const Events = () => {
       setEventDetails(data.currentEvent); // Guardamos el evento detallado
     } catch (error) {
       console.error("Error al obtener el evento completo:", error);
+    }
+  };
+
+  const handleMiniCardEventClick = (eventId) => {
+    const ref = eventRefs.current[eventId];
+    if (ref && ref.scrollIntoView) {
+      ref.scrollIntoView({ behavior: "smooth", block: "center" });
     }
   };
 
@@ -129,21 +138,47 @@ const Events = () => {
         setSearchEvents={setSearchEvents}
         onCreate={handleCreateEvent}
       />
+
+      <section className="mini-events-section">
+        <h2 className="section-title">Proximos Eventos</h2>
+        {filteredEvents.length === 0 ? (
+          <p>No hay eventos disponibles en este momento.</p>
+        ) : (
+          <div className="mini-events-grid">
+            {[...filteredEvents]
+              .sort((a, b) => new Date(a.date) - new Date(b.date)) // ordenar de más próximo a más lejano
+              .slice(0, 6)
+              .map((event) => (
+                <EventCardMini
+                  key={event.id}
+                  event={event}
+                  onClick={() => handleMiniCardEventClick(event.id)}
+                />
+              ))}
+          </div>
+        )}
+      </section>
+
       <section className="all-events">
         {filteredEvents.length === 0 ? (
           <p>No hay eventos disponibles en este momento.</p>
         ) : (
           filteredEvents.map((event) => (
-            <EventCard
+            <div
               key={event.id}
-              event={event}
-              onClick={() => {
-                handleEventClick(event.id);
-              }}
-            />
+              ref={(el) => (eventRefs.current[event.id] = el)} // <--- Aquí asignas la ref
+            >
+              <EventCard
+                event={event}
+                onClick={() => {
+                  handleEventClick(event.id);
+                }}
+              />
+            </div>
           ))
         )}
       </section>
+
       {eventDetails && (
         <EventDetails
           event={eventDetails}
