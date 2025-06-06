@@ -5,8 +5,11 @@ import { FaUsers } from "react-icons/fa";
 import { MdOutlineEmojiEvents } from "react-icons/md";
 import { GrChatOption } from "react-icons/gr";
 import "../style/ExplainCards.css";
+import { useNavigate } from "react-router-dom";
 
 function ExplainCards() {
+  const navigate = useNavigate();
+
   return (
     <section className="explain-section">
       <h2 className="explain-title">¿Qué puedes hacer en Link2Play?</h2>
@@ -24,7 +27,7 @@ function ExplainCards() {
           </p>
 
           <div className="card-btn">
-            <button>Explorar</button>
+            <button onClick={() => navigate("/players")}>Explorar</button>
           </div>
         </div>
         <div className="card2">
@@ -40,7 +43,7 @@ function ExplainCards() {
           </p>
 
           <div className="card-btn">
-            <button>Explorar</button>
+            <button onClick={() => navigate("/events")}>Explorar</button>
           </div>
         </div>
         <div className="card3">
@@ -56,7 +59,7 @@ function ExplainCards() {
           </p>
 
           <div className="card-btn">
-            <button>Explorar</button>
+            <button onClick={() => navigate("/post")}>Explorar</button>
           </div>
         </div>
         <div className="card4">

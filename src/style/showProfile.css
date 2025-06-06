@@ -80,7 +80,7 @@
   );
 }
 
-.profile-card.float-card {
+.profile-card-show.float-card {
   position: absolute;
   top: 0;
   left: 50%;
@@ -99,7 +99,7 @@
   z-index: 2;
 }
 
-.profile-card.float-card.reveal {
+.profile-card-show.float-card.reveal {
   animation: slideFromEnvelope 10s ease-in-out infinite;
 }
 
@@ -176,7 +176,7 @@
   color: #ffffffcc;
 }
 
-.platform-icons {
+.platform-icons-show {
   display: flex;
   gap: 1rem;
   font-size: 1.2rem;
@@ -201,7 +201,7 @@
     height: 250px;
   }
 
-  .profile-card.float-card {
+  .profile-card-show.float-card {
     max-width: 90%;
     padding: 1.5rem;
   }

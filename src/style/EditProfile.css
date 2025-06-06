@@ -1,10 +1,19 @@
+.edit-profile-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100vh;
+  background-image: url('../../1.jpg');
+}
 .edit-profile {
-  max-width: 600px;
-  margin: 3rem auto;
+  width: 60%;
+  margin: auto;
   padding: 2rem;
   border: 2px solid #1565c0;
   border-radius: 20px;
   background-color: #003764;
+   background: linear-gradient(135deg, #140a3e 80%, #2a2b4a 20%);
+   opacity: 0.97;
   font-family: "Poppins", sans-serif;
   box-shadow: 0 0 20px rgba(21, 101, 192, 0.1);
 }
@@ -32,12 +41,12 @@
 .edit-profile input[type="password"],
 .edit-profile input[type="file"] {
   padding: 0.7rem 1rem;
-  border: 2px solid #ccc;
+  border: 2px solid #66fcf1;
   border-radius: 12px;
   font-size: 1rem;
   font-family: inherit;
   transition: border 0.2s;
-  color: #8c00ff;
+  color: #0095d9;
   background-color: transparent;
 }
 
@@ -52,7 +61,7 @@
 }
 
 .edit-profile button[type="submit"] {
-  background-color: #e673f3;
+  background-color: #0095d9;
   color: white;
   padding: 0.8rem 1.2rem;
   font-size: 1rem;

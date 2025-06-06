@@ -50,7 +50,7 @@ const FavoriteGamesList = ({ games, triggerRefresh }) => {
                 X
               </button>
             </div>
-            <p>{game.name}</p>
+            <p className="circle-text">{game.name}</p>
           </div>
         ))}
       </div>

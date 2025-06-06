@@ -12,8 +12,8 @@ const Sidebar = () => {
         <span className="logo-text"></span>
       </div>
       <nav className="sidebar-nav">
-        <Link to="/edit/profile"  className="sidebar-link">Perfil</Link>
-        <Link to="/friends" className="sidebar-link">Amigos</Link>
+        <Link to="/edit/profile"  className="sidebar-link">Datos del Perfil</Link>
+        <Link to="/friends" className="sidebar-link">Gestion Amigos</Link>
         <Link to="/events" className="sidebar-link">Eventos</Link>
         <Link to="/games" className="sidebar-link">Juegos</Link>
         <Link to="/settings" className="sidebar-link">Configuraciones</Link>
