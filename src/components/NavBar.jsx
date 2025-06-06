@@ -89,7 +89,7 @@ const NavBar = ({ setSearch, showSearch, setShowSearch }) => {
             <>
               <li>
                 <NavLink
-                  to="/Mensajes"
+                  to="/messages"
                   className={({ isActive }) =>
                     isActive ? "active-link" : "nav-link"
                   }

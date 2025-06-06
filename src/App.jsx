@@ -18,12 +18,14 @@ import Lobby from "./pages/Lobby";
 import PrivateRoute from "./components/PrivateRoute";
 import FriendsProfile from "./pages/FriendsProfile";
 import Players from "./pages/Players";
+import {Mensajes} from "./pages/Mensajes";
 import { useContext } from "react";
 import AuthContext from "./context/AuthContext";
 import { PacmanLoader } from "react-spinners";
 import { Toaster } from "sonner";
 import ManagementCenter from "./pages/ManagementCenter";
 import MyEvents from "./pages/MyEvents";
+import { Mensajes } from "./pages/Mensajes";
 
 export default function App() {
   const [showSearch, setShowSearch] = useState(false);
@@ -117,6 +119,14 @@ export default function App() {
           element={
             <PrivateRoute>
               <FriendsProfile />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/messages"
+          element={
+            <PrivateRoute>
+              <Mensajes/>
             </PrivateRoute>
           }
         />
