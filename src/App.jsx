@@ -24,6 +24,7 @@ import { PacmanLoader } from "react-spinners";
 import { Toaster } from "sonner";
 import ManagementCenter from "./pages/ManagementCenter";
 import MyEvents from "./pages/MyEvents";
+import { Mensajes } from "./pages/Mensajes";
 
 export default function App() {
   const [showSearch, setShowSearch] = useState(false);
@@ -117,6 +118,14 @@ export default function App() {
           element={
             <PrivateRoute>
               <FriendsProfile />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/messages"
+          element={
+            <PrivateRoute>
+              <Mensajes />
             </PrivateRoute>
           }
         />
