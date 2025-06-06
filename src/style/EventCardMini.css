@@ -1,0 +1,62 @@
+/* src/style/MiniEventCard.css */
+.event-card-mini {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.event-card-mini:hover {
+  background: none;
+  border: none;
+}
+
+.mini-event-card {
+  background: linear-gradient(to right, #0b0c10, #1f2833);
+  border: 1px solid #66fcf1;
+  border-radius: 12px;
+  padding: 12px;
+  color: #c5c6c7;
+  transition: transform 0.2s ease;
+  font-size: 13px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.mini-event-card:hover {
+  transform: scale(1.03);
+  border-color: #00fff7;
+}
+
+.mini-event-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.mini-platform-icon {
+  width: 24px;
+  height: 40px;
+  object-fit: contain;
+}
+
+.mini-event-title {
+  color: #66fcf1;
+  font-weight: bold;
+  font-size: 13px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.mini-event-info {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 13px;
+}
+
+.mini-info-line {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}

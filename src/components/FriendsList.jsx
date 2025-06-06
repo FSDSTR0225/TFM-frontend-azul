@@ -7,9 +7,9 @@ const FriendsList = ({ friends, triggerRefresh }) => {
   const { token } = useContext(AuthContext);
   const [modalOpen, setModalOpen] = useState(false);
   const url = import.meta.env.VITE_API_URL;
-  console.log(friends);
+  
   const handleDelete = (id) => {
-    fetch(`${url}/profile/friends/${id}`, {
+    fetch(`${url}/friends/${id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -34,17 +34,17 @@ const FriendsList = ({ friends, triggerRefresh }) => {
         {friends.map((friend, index) => (
           <div className="circle-wrapper" key={index}>
             <div className="circle blue" key={index}>
-              <img src={friend.user.avatar} alt={friend.user.username} className="favorite-game-img"></img>
+              <img src={friend.user.avatar|| friend.avatar} alt={friend.user.username|| friend.username} className="favorite-game-img"></img>
               <button
-                onClick={() => handleDelete(friend.user._id)}
+                onClick={() => handleDelete(friend.user._id|| friend._id)}
                 className="delete-button"
                 key={friend.user._id}
-                aria-label={`Eliminar ${friend.user.username}`}
+                aria-label={`Eliminar ${friend.user.username|| friend.username}`} 
               >
                 X
               </button>
             </div>
-            <p>{friend.user.username}</p>
+            <p className="circle-text">{friend.user.username|| friend.username}</p>
           </div>
         ))}
       </div>
