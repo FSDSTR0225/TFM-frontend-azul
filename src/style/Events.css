@@ -211,6 +211,14 @@
   opacity: 0.6;
   box-shadow: none;
 }
+.mini-events-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+}
+.mini-events-section {
+  margin-bottom: 30px;
+}
 
 @media (max-width: 900px) {
   .all-events {

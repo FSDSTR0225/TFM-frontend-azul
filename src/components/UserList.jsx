@@ -8,7 +8,7 @@ function UserList() {
 
   return (
     <section className="user-section">
-      <h2 className="section-title">
+      <h2 className="section-title-user-list">
         <img src="/src/assets/gamer.png" alt="gamers" />
         Sugerencias de jugadores
       </h2>

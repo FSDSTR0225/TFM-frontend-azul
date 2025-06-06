@@ -7,7 +7,7 @@ function EventList() {
   const navigate = useNavigate();
   return (
     <section className="event-section">
-      <h2 className="section-title">
+      <h2 className="section-title-event-list">
         <img src="/src/assets/joystick.png" alt="controller" /> Próximos eventos
       </h2>
       <div className="card-event">
