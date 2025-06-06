@@ -68,19 +68,18 @@ function CreateEventModal({ onClose, onCreate }) {
   const [formData, setFormData] = useState({
     title: "",
     description: "",
-    date: "",
-    time: "",
+    date: null, // importante: null, no string
     game: "",
-    platform: null, // Solo una plataforma
+    platform: null,
     maxParticipants: "",
     requiresApproval: false,
   });
 
   const [error, setError] = useState("");
-  const [gameQuery, setGameQuery] = useState(""); // Consulta para autocompletar juegos,guarda lo que el usuario escribe en el input de búsqueda de juegos
-  const [gameSuggestions, setGameSuggestions] = useState([]); // Sugerencias de juegos que va devolviendo el backend a medida que el usuario escribe, se actualiza con los resultados de la búsqueda
-  const [platformOptions, setPlatformOptions] = useState([]); // Opciones de plataformas
-  const [showSuggestions, setShowSuggestions] = useState(false); // Estado para si se muestran o no las sugerencias de juegos
+  const [gameQuery, setGameQuery] = useState("");
+  const [gameSuggestions, setGameSuggestions] = useState([]);
+  const [platformOptions, setPlatformOptions] = useState([]);
+  const [showSuggestions, setShowSuggestions] = useState(false);
 
   useEffect(() => {
     if (gameQuery.length < 2) {
@@ -136,7 +135,6 @@ function CreateEventModal({ onClose, onCreate }) {
       !formData.title ||
       !formData.description ||
       !formData.date ||
-      !formData.time ||
       !formData.game ||
       !formData.platform
     ) {
@@ -144,12 +142,10 @@ function CreateEventModal({ onClose, onCreate }) {
       return;
     }
 
-    const fullDateTime = new Date(`${formData.date}T${formData.time}`);
-
     const finalData = {
       ...formData,
-      date: fullDateTime,
-      platform: formData.platform.value, // Solo un id
+      date: formData.date,
+      platform: formData.platform.value,
       maxParticipants:
         formData.maxParticipants === ""
           ? null
@@ -186,14 +182,15 @@ function CreateEventModal({ onClose, onCreate }) {
             required
           />
           <textarea
-            maxLength={200} // Limita la descripción a 200 caracteres
-            rows={5} // Ajusta el número de filas del textarea
+            maxLength={200}
+            rows={5}
             name="description"
             placeholder="Descripción"
             value={formData.description}
             onChange={handleChange}
             required
           />
+
           <DatePicker
             selected={formData.date}
             onChange={(date) => setFormData({ ...formData, date })}
