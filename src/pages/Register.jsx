@@ -6,6 +6,7 @@ import TextField from "@mui/material/TextField";
 import ModalMUI from "../components/ModalMUI/ModalMUI";
 import { Button } from "@mui/material";
 import AuthContext from "../context/AuthContext";
+import sideImg from "/images/register/3.jpg";
 
 export default function Register() {
   const navigate = useNavigate();
@@ -61,7 +62,7 @@ export default function Register() {
     <div className="Register">
       <div className="Register__wrapper">
         <div className="Register__fotoContainer">
-          <video
+          {/* <video
             autoPlay
             loop
             muted
@@ -70,7 +71,8 @@ export default function Register() {
           >
             <source src="/videos/videogamer1.mp4" type="video/mp4" />
             Tu navegador no soporta video HTML5.
-          </video>
+          </video> */}
+          <img className="Register__foto" src={sideImg} />
         </div>
         <div className="RegisterForm__Container">
           <div className="RegisterForm__Title">Register Now</div>

@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { Button, TextField } from "@mui/material";
 import AuthContext from "../context/AuthContext";
 import LoginSuccessModal from "../components/ModalMUI/LoginSuccessModal.jsx";
+import sideImg from "/images/register/3.jpg";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -66,7 +67,7 @@ export default function Login() {
     <div className="Register">
       <div className="Register__wrapper">
         <div className="Register__fotoContainer">
-          <video
+          {/* <video
             autoPlay
             loop
             muted
@@ -75,7 +76,8 @@ export default function Login() {
           >
             <source src="/videos/videogamer3.mp4" type="video/mp4" />
             Tu navegador no soporta video HTML5.
-          </video>
+          </video> */}
+          <img className="Register__foto" src={sideImg} />
         </div>
         <div className="RegisterForm__Container">
           <div className="RegisterForm__Title">Login and play!</div>
