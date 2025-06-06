@@ -18,6 +18,7 @@ import Lobby from "./pages/Lobby";
 import PrivateRoute from "./components/PrivateRoute";
 import FriendsProfile from "./pages/FriendsProfile";
 import Players from "./pages/Players";
+import {Mensajes} from "./pages/Mensajes";
 import { useContext } from "react";
 import AuthContext from "./context/AuthContext";
 import { PacmanLoader } from "react-spinners";
@@ -125,7 +126,7 @@ export default function App() {
           path="/messages"
           element={
             <PrivateRoute>
-              <Mensajes />
+              <Mensajes/>
             </PrivateRoute>
           }
         />
