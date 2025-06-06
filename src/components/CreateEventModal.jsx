@@ -200,14 +200,13 @@ function CreateEventModal({ onClose, onCreate }) {
             showTimeSelect
             timeFormat="HH:mm"
             timeIntervals={15}
-            dateFormat="dd/MM/yyyy h:mm aa"
+            dateFormat="dd/MM/yyyy HH:mm"
             placeholderText="Selecciona fecha y hora"
             calendarClassName="custom-datepicker-calendar"
             popperClassName="custom-datepicker-popper"
             required
           />
 
-          {/*  Autocompletado del juego */}
           <div style={{ position: "relative" }}>
             <input
               type="text"
@@ -241,7 +240,6 @@ function CreateEventModal({ onClose, onCreate }) {
             )}
           </div>
 
-          {/*  Selector de plataforma con react-select (solo una) */}
           <Select
             className="react-select-container"
             classNamePrefix="react-select"
