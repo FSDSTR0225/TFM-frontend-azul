@@ -51,12 +51,13 @@
 .mini-event-info {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 10px;
   font-size: 13px;
 }
 
 .mini-info-line {
   display: flex;
-  align-items: center;
+  align-items: left;
   gap: 4px;
 }
