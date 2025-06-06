@@ -13,7 +13,6 @@ body {
   min-height: 100vh;
   position: relative;
   min-height: 100%;
-  overflow: hidden;
 }
 
 h1,
