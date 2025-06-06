@@ -1,11 +1,8 @@
-/* ===== LINK2PLAY - Login & Register Stylesheet ===== */
 .Register {
+  position: relative;
   width: 100%;
   height: 100vh;
-  background: rgba(10, 10, 20, 0.9);
-  background-image: url("/images/fondo-gamer.jpg");
-  background-size: cover;
-  background-position: center;
+  background: rgba(10, 10, 20, 0.9); /* fallback por si no carga el video */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -17,7 +14,7 @@
   box-shadow: 0 0 30px rgba(0, 255, 255, 0.1);
   border-radius: 20px;
   overflow: hidden;
-  max-width: 950px;
+  max-width: 1020px;
   width: 100%;
 }
 
@@ -25,12 +22,17 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex: 1;
+  position: relative;
 }
 
-.Register__foto {
+.Register__videoLateral {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  display: block;
+  border-radius: 20px 0 0 20px;
+  filter: brightness(0.8) blur(0.5px);
 }
 
 /* ===== Form Container ===== */
@@ -116,7 +118,6 @@
   transition: background-color 5000s ease-in-out 0s;
 }
 
-/*  Fix extra para password autofill en Chrome */
 .Register input[type="password"]:-webkit-autofill,
 .Register input[type="password"]:-webkit-autofill:hover,
 .Register input[type="password"]:-webkit-autofill:focus,
@@ -177,6 +178,200 @@
     height: 10rem;
   }
 
+  .Register__videoLateral {
+    width: 100%;
+    height: 100%;
+    border-radius: 20px 20px 0 0;
+  }
+
+  .RegisterForm__Container {
+    border-radius: 0 0 20px 20px;
+  }
+
+  .RegisterForm__Title {
+    padding: 1rem;
+  }
+}
+
+/* 
+.Register {
+  width: 100%;
+  height: 100vh;
+  background: rgba(10, 10, 20, 0.9);
+  background-image: url("/images/fondo-gamer.jpg");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.Register__wrapper {
+  display: flex;
+  box-shadow: 0 0 30px rgba(0, 255, 255, 0.1);
+  border-radius: 20px;
+  overflow: hidden;
+  max-width: 950px;
+  width: 100%;
+}
+
+.Register__fotoContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Register__foto {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+.RegisterForm__Container {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 3rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.1);
+  transition: all 0.3s ease-in-out;
+  border-radius: 0 40px 40px 0;
+}
+
+.RegisterForm__Title {
+  font-family: "Audiowide", cursive;
+  font-size: 2.8rem;
+  color: #00f0ff;
+  text-align: center;
+  margin-bottom: 2rem;
+  letter-spacing: 1.5px;
+  text-shadow: 0 0 10px #00f0ff90;
+  padding: 2rem;
+}
+
+.RegisterForm {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  width: 100%;
+  align-items: center;
+}
+
+.RegisterForm__input {
+  width: 20rem;
+}
+
+
+.RegisterForm__input input {
+  background-color: transparent !important;
+  color: #ffffff !important;
+  caret-color: #00ffff;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.RegisterForm__input fieldset {
+  border: none !important;
+}
+
+.RegisterForm__input label {
+  color: rgba(255, 255, 255, 0.6) !important;
+}
+
+.MuiInput-underline:before {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3) !important;
+}
+
+.MuiInput-underline:hover:before {
+  border-bottom: 1px solid #00f0ff !important;
+}
+
+.MuiInput-underline:after {
+  border-bottom: 2px solid #00f0ff !important;
+}
+
+.MuiInputLabel-root.Mui-focused {
+  color: #00f0ff !important;
+}
+
+
+.Register input:-webkit-autofill,
+.Register input:-webkit-autofill:hover,
+.Register input:-webkit-autofill:focus,
+.Register input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0px 1000px transparent inset !important;
+  -webkit-text-fill-color: #fff !important;
+  caret-color: #00ffff;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+
+.Register input[type="password"]:-webkit-autofill,
+.Register input[type="password"]:-webkit-autofill:hover,
+.Register input[type="password"]:-webkit-autofill:focus,
+.Register input[type="password"]:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0px 1000px transparent inset !important;
+  background-color: transparent !important;
+  -webkit-text-fill-color: #fff !important;
+  caret-color: #00ffff !important;
+  transition: background-color 9999s ease-in-out 0s;
+}
+
+
+.RegisterForm__button {
+  font-size: 1.2rem;
+  background: linear-gradient(to right, #00f0ff, #0088ff);
+  color: #fff;
+  padding: 0.7rem 1.5rem;
+  border: none;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: 0.3s ease;
+  box-shadow: 0 0 15px #00f0ff60;
+}
+
+.RegisterForm__button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 25px #00f0ff;
+}
+
+
+.signup__text {
+  color: #ffffffcc;
+  text-align: center;
+}
+
+.signup__text__strong {
+  text-decoration: underline;
+  font-weight: 800;
+  margin-left: 0.5rem;
+  color: #00f0ff;
+  cursor: pointer;
+}
+
+.signup__text__strong:hover {
+  color: #00b8e6;
+}
+
+
+@media only screen and (max-width: 900px) {
+  .Register__wrapper {
+    flex-direction: column;
+    width: 90%;
+    margin: auto;
+  }
+
+  .Register__fotoContainer {
+    overflow: hidden;
+    height: 10rem;
+  }
+
   .Register__foto {
     width: 100%;
     border-radius: 20px 20px 0 0;
@@ -189,4 +384,4 @@
   .RegisterForm__Title {
     padding: 1rem;
   }
-}
+} */

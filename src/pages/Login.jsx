@@ -1,6 +1,5 @@
 import React, { useState, useContext } from "react";
 import "./../style/register.css";
-import sideImg from "/images/register/3.jpg";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 // import ModalMUI from "../components/ModalMUI/ModalMUI";
@@ -67,7 +66,16 @@ export default function Login() {
     <div className="Register">
       <div className="Register__wrapper">
         <div className="Register__fotoContainer">
-          <img className="Register__foto" src={sideImg} />
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="Register__videoLateral"
+          >
+            <source src="/videos/videogamer3.mp4" type="video/mp4" />
+            Tu navegador no soporta video HTML5.
+          </video>
         </div>
         <div className="RegisterForm__Container">
           <div className="RegisterForm__Title">Login and play!</div>
@@ -142,11 +150,8 @@ export default function Login() {
     </div>
   );
 }
-// List of validation rules supported:
-// required
-// min
-// max
-// minLength
-// maxLength
-// pattern
-// validate
+
+// import sideImg from "/images/register/3.jpg";
+{
+  /* <img className="Register__foto" src={sideImg} /> */
+}
