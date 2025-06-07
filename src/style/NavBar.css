@@ -141,17 +141,20 @@
   min-width: 220px;
   background: linear-gradient(135deg, #181a2a 80%, #23243a 100%);
   border-radius: 14px;
+  border-top-left-radius: 1px;
+  border-top-right-radius: 1px;
   box-shadow: 0 0 24px #00ffc8cc, 0 0 0 2px #23243a, 0 0 60px #00ffc822;
   padding: 12px 0;
   list-style: none;
-  z-index: 1200;
+  z-index: 20;
   border: 2px solid #00ffc8;
   animation: dropdownFadeIn 0.22s ease-in-out;
   overflow: hidden;
   font-family: "Audiowide", "Orbitron", "Poppins", Arial, sans-serif;
+  top: 150%;
   left: -50%;
-  top: 88%;
-  transform: none;
+  right: auto;
+  margin-top: 11px; /* igual que en user */
 }
 .dropdown-user {
   display: none;
@@ -170,7 +173,7 @@
   overflow: hidden;
   font-family: "Audiowide", "Orbitron", "Poppins", Arial, sans-serif;
   top: 100%;
-  right: -8px;
+  right: -20px;
   left: auto;
   margin-top: 11px;
 }
@@ -297,6 +300,28 @@
   box-shadow: 0 0 8px #00ffc8cc;
 }
 
+.dropdown-platforms.show {
+  display: block;
+  margin-top: 11px;
+  animation: dropdownFadeIn 0.2s ease-in-out;
+  box-shadow: inset 0 2px 6px rgba(0, 255, 255, 0.15),
+    0 10px 30px rgba(0, 255, 255, 0.25), 0 0 12px rgba(0, 255, 255, 0.3);
+  border-top: none;
+}
+
+/* Opcional: pestañita visual igual que user */
+.dropdown-platforms.show::before {
+  content: "";
+  position: absolute;
+  top: -6px;
+  left: 24px;
+  width: 20px;
+  height: 6px;
+  background: #66fcf1;
+  border-radius: 0 0 6px 6px;
+  box-shadow: 0 0 8px #00ffc8cc;
+}
+
 .dropdown-bridge {
   position: absolute;
   top: 100%;
@@ -304,4 +329,13 @@
   height: 10px;
   width: 100%;
   z-index: 10;
+}
+
+.dropdown-platforms-bridge {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  height: 12px;
+  width: 100%;
+  z-index: 20;
 }
