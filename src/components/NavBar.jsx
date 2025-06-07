@@ -10,20 +10,20 @@ const API_URL = import.meta.env.VITE_API_URL;
 const NavBar = ({ setSearch, showSearch, setShowSearch }) => {
   const authContext = useContext(AuthContext);
   const [platforms, setPlatforms] = useState([]);
+  const [isUserOpen, setIsUserOpen] = useState(false);
+  const [isPlatOpen, setIsPlatOpen] = useState(false);
 
   useEffect(() => {
-    const fetchPlatforms = async () => {
+    (async () => {
       try {
-        const response = await fetch(`${API_URL}/platforms`);
-        if (!response.ok) throw new Error("Error fetching platforms");
-        const data = await response.json();
-        setPlatforms(data.platforms);
-      } catch (error) {
-        console.error("Error al cargar plataformas en navbar:", error);
+        const res = await fetch(`${API_URL}/platforms`);
+        if (!res.ok) throw new Error();
+        const { platforms } = await res.json();
+        setPlatforms(platforms);
+      } catch {
+        console.error("Error fetching platforms");
       }
-    };
-
-    fetchPlatforms();
+    })();
   }, []);
 
   const toggleExplore = () => {
@@ -34,19 +34,19 @@ const NavBar = ({ setSearch, showSearch, setShowSearch }) => {
   return (
     <nav className="navbar">
       <div className="navbar-logo">
-        {authContext.isLoggedIn ? (
-          <NavLink to="/lobby" className="logo">
-            Link2play
-          </NavLink>
-        ) : (
-          <NavLink to="/" className="logo">
-            Link2play
-          </NavLink>
-        )}
+        <NavLink to={authContext.isLoggedIn ? "/lobby" : "/"} className="logo">
+          Link2play
+        </NavLink>
       </div>
+
       <div className="navbar-center">
         <ul className="navbar-links">
-          <li className="dropdown">
+          {/* ==== PLATFORMS DROPDOWN ==== */}
+          <li
+            className="dropdown"
+            onMouseEnter={() => setIsPlatOpen(true)}
+            onMouseLeave={() => setIsPlatOpen(false)}
+          >
             <NavLink
               to="/games"
               className={({ isActive }) =>
@@ -55,16 +55,19 @@ const NavBar = ({ setSearch, showSearch, setShowSearch }) => {
             >
               Juegos
             </NavLink>
-            <ul className="dropdown-platforms">
-              {platforms.map((platform) => (
-                <li key={platform._id}>
-                  <NavLink to={`/platforms/${platform._id}/games`}>
-                    {platform.name}
-                  </NavLink>
+
+            {/* bridge invisible para mantener hover */}
+            <div className="dropdown-platforms-bridge" />
+
+            <ul className={`dropdown-platforms ${isPlatOpen ? "show" : ""}`}>
+              {platforms.map((p) => (
+                <li key={p._id}>
+                  <NavLink to={`/platforms/${p._id}/games`}>{p.name}</NavLink>
                 </li>
               ))}
             </ul>
           </li>
+
           <li>
             <NavLink
               to="/events"
@@ -85,6 +88,7 @@ const NavBar = ({ setSearch, showSearch, setShowSearch }) => {
               Comunidad
             </NavLink>
           </li>
+
           {authContext.isLoggedIn && (
             <>
               <li>
@@ -131,23 +135,30 @@ const NavBar = ({ setSearch, showSearch, setShowSearch }) => {
                 isActive ? "active-link" : "nav-link"
               }
             >
-              Login in/Sign Up
+              Login/Sign Up
             </NavLink>
           </li>
         ) : (
-          <li className="navbar-user">
+          <li
+            className="navbar-user dropdown"
+            onMouseEnter={() => setIsUserOpen(true)}
+            onMouseLeave={() => setIsUserOpen(false)}
+          >
             <img
               src={authContext.user?.avatar || blankImg}
               alt="Avatar"
               className="navbar-avatar"
             />
             <NavLink to="/users/me" id="perfil">
-              {/* <span className="navbar-username">{user.username}</span> */}
               <span className="navbar-username">
-                {authContext.user?.username}
+                {authContext.user.username}
               </span>
             </NavLink>
-            <ul className="dropdown-user">
+
+            {/* bridge invisible para mantener hover */}
+            <div className="dropdown-bridge" />
+
+            <ul className={`dropdown-user ${isUserOpen ? "show" : ""}`}>
               <li>
                 <NavLink to="/edit/profile" className="dropdown-options">
                   Editar perfil
