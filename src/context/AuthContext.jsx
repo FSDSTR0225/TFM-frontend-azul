@@ -24,7 +24,7 @@ export const AuthProvider = ({ children }) => {
     } catch (err) {
       console.error("Error al cargar perfil:", err.message);
       logout();
-    }finally {
+    } finally {
       setLoading(false);
     }
   };
@@ -33,16 +33,19 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const savedSession = localStorage.getItem("user");
     try {
-       
-    if (!savedSession) {
-      setLoading(false);
-      return;
-    }
+      if (!savedSession) {
+        setLoading(false);
+        return;
+      }
+
       const sessionData = JSON.parse(savedSession);
 
+      console.log("🧠 Sesión cargada desde localStorage:", sessionData);
+
       if (sessionData?.token) {
+        console.log("🔐 Token encontrado, llamando a fetchUserProfile...");
         fetchUserProfile(sessionData.token);
-      }else {
+      } else {
         logout();
         setLoading(false);
       }
@@ -54,10 +57,11 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   // ✔ Login manual (cuando te registras o haces login)
-  const login = async ( token) => {
+  const login = async (token) => {
+    console.log("🚀 Ejecutando login con token:", token);
     localStorage.setItem("user", JSON.stringify({ token }));
     await fetchUserProfile(token);
-   
+
     setIsLoggedIn(true);
   };
 

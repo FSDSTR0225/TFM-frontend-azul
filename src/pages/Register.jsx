@@ -41,7 +41,7 @@ export default function Register() {
       .then((res) => {
         if (res.ok) {
           setIsModalSuccess(true);
-          setTimeout(() => navigate("/"), 2000);
+          setTimeout(() => navigate("/lobby"), 2000);
         } else {
           setIsModalSuccess(false);
         }
@@ -49,7 +49,11 @@ export default function Register() {
         return res.json();
       })
       .then((result) => {
-        authContext.login(result.user, result.access_token);
+        console.log("🧠 Resultado del registro:", result);
+        console.log("🧠 Token recibido:", result.access_token);
+        console.log("🧠 Usuario recibido:", result.user);
+
+        authContext.login(result.access_token);
       })
       .catch((err) => {
         console.error(err);
