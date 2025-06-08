@@ -9,9 +9,10 @@ const API_URL = import.meta.env.VITE_API_URL;
 
 const NavBar = ({ setSearch, showSearch, setShowSearch }) => {
   const authContext = useContext(AuthContext);
+
   const [platforms, setPlatforms] = useState([]);
-  const [isUserOpen, setIsUserOpen] = useState(false);
-  const [isPlatOpen, setIsPlatOpen] = useState(false);
+  const [isUserOpen, setIsUserOpen] = useState(false); // Estado para el dropdown de usuario
+  const [isPlatOpen, setIsPlatOpen] = useState(false); // Estado para el dropdown de plataformas
 
   useEffect(() => {
     (async () => {
@@ -41,7 +42,6 @@ const NavBar = ({ setSearch, showSearch, setShowSearch }) => {
 
       <div className="navbar-center">
         <ul className="navbar-links">
-          {/* ==== PLATFORMS DROPDOWN ==== */}
           <li
             className="dropdown"
             onMouseEnter={() => setIsPlatOpen(true)}

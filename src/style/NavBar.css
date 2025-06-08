@@ -333,9 +333,9 @@
 
 .dropdown-platforms-bridge {
   position: absolute;
-  top: 100%;
-  left: 0;
+  top: 150%;
+  left: 0%;
   height: 12px;
   width: 100%;
-  z-index: 20;
+  z-index: 10;
 }
