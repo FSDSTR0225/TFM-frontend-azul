@@ -4,15 +4,17 @@ import AuthContext from "../context/AuthContext";
 import { FaSearchengin } from "react-icons/fa6";
 import "../style/NavBar.css";
 import blankImg from "/images/profile/blankImg.jpg";
+import SearchInputExplore from "./SearchInputExplore";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
-const NavBar = ({ setSearch, showSearch, setShowSearch }) => {
+const NavBar = ({ showSearch, setShowSearch }) => {
   const authContext = useContext(AuthContext);
 
   const [platforms, setPlatforms] = useState([]);
   const [isUserOpen, setIsUserOpen] = useState(false); // Estado para el dropdown de usuario
   const [isPlatOpen, setIsPlatOpen] = useState(false); // Estado para el dropdown de plataformas
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     (async () => {
@@ -111,7 +113,7 @@ const NavBar = ({ setSearch, showSearch, setShowSearch }) => {
                   Jugadores
                 </NavLink>
               </li>
-              <li>
+              <li className="navbar-explore">
                 <button
                   className="navbar-btn"
                   onClick={toggleExplore}
@@ -120,6 +122,13 @@ const NavBar = ({ setSearch, showSearch, setShowSearch }) => {
                 >
                   <FaSearchengin className="navbar-icon" />
                 </button>
+                {showSearch && (
+                  <SearchInputExplore
+                    search={search}
+                    setSearch={setSearch}
+                    showSearch={showSearch}
+                  />
+                )}
               </li>
             </>
           )}

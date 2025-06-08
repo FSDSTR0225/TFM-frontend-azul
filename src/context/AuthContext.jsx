@@ -40,10 +40,7 @@ export const AuthProvider = ({ children }) => {
 
       const sessionData = JSON.parse(savedSession);
 
-      console.log("🧠 Sesión cargada desde localStorage:", sessionData);
-
       if (sessionData?.token) {
-        console.log("🔐 Token encontrado, llamando a fetchUserProfile...");
         fetchUserProfile(sessionData.token);
       } else {
         logout();
@@ -58,7 +55,6 @@ export const AuthProvider = ({ children }) => {
 
   // ✔ Login manual (cuando te registras o haces login)
   const login = async (token) => {
-    console.log("🚀 Ejecutando login con token:", token);
     localStorage.setItem("user", JSON.stringify({ token }));
     await fetchUserProfile(token);
 

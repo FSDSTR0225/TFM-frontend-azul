@@ -20,7 +20,7 @@ const SearchInputExplore = ({ search, setSearch, showSearch }) => {
   };
 
   useEffect(() => {
-    if (search.trim() === "") {
+    if (!search || search.trim() === "") {
       setResults({ users: [], games: [], events: [] });
       return;
     }

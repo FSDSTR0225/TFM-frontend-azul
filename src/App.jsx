@@ -28,7 +28,6 @@ import MyEvents from "./pages/MyEvents";
 
 export default function App() {
   const [showSearch, setShowSearch] = useState(false);
-  const [search, setSearch] = useState("");
 
   const { loading } = useContext(AuthContext);
 
@@ -47,13 +46,6 @@ export default function App() {
     <div className="App">
       <NavBar showSearch={showSearch} setShowSearch={setShowSearch} />
 
-      {showSearch && (
-        <SearchInputExplore
-          search={search}
-          setSearch={setSearch}
-          showSearch={showSearch}
-        />
-      )}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route
