@@ -1,14 +1,13 @@
 import React, { useEffect, useState, useContext } from "react";
 import { NavLink } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
-import { FaSearchengin } from "react-icons/fa6";
 import "../style/NavBar.css";
 import blankImg from "/images/profile/blankImg.jpg";
 import SearchInputExplore from "./SearchInputExplore";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
-const NavBar = ({ showSearch, setShowSearch }) => {
+const NavBar = ({ showSearch }) => {
   const authContext = useContext(AuthContext);
 
   const [platforms, setPlatforms] = useState([]);
@@ -29,10 +28,10 @@ const NavBar = ({ showSearch, setShowSearch }) => {
     })();
   }, []);
 
-  const toggleExplore = () => {
-    setShowSearch(!showSearch);
-    if (showSearch) setSearch("");
-  };
+  // const toggleExplore = () => {
+  //   setShowSearch(!showSearch);
+  //   if (showSearch) setSearch("");
+  // };
 
   return (
     <nav className="navbar">
@@ -114,21 +113,11 @@ const NavBar = ({ showSearch, setShowSearch }) => {
                 </NavLink>
               </li>
               <li className="navbar-explore">
-                <button
-                  className="navbar-btn"
-                  onClick={toggleExplore}
-                  title="Explorar juegos"
-                  aria-label="Buscar juegos"
-                >
-                  <FaSearchengin className="navbar-icon" />
-                </button>
-                {showSearch && (
-                  <SearchInputExplore
-                    search={search}
-                    setSearch={setSearch}
-                    showSearch={showSearch}
-                  />
-                )}
+                <SearchInputExplore
+                  search={search}
+                  setSearch={setSearch}
+                  showSearch={showSearch}
+                />
               </li>
             </>
           )}
@@ -149,7 +138,7 @@ const NavBar = ({ showSearch, setShowSearch }) => {
           </li>
         ) : (
           <li
-            className="navbar-user dropdown"
+            className="navbar-user-dropdown"
             onMouseEnter={() => setIsUserOpen(true)}
             onMouseLeave={() => setIsUserOpen(false)}
           >

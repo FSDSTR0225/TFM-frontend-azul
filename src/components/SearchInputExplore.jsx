@@ -1,10 +1,11 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import "../style/SearchInputExplore.css";
+import { FaSearchengin } from "react-icons/fa6";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
-const SearchInputExplore = ({ search, setSearch, showSearch }) => {
+const SearchInputExplore = ({ search, setSearch }) => {
   const [results, setResults] = useState({ users: [], games: [], events: [] });
   const timeoutRef = useRef(null);
   const navigate = useNavigate();
@@ -42,14 +43,14 @@ const SearchInputExplore = ({ search, setSearch, showSearch }) => {
   return (
     <section className="search-section">
       <div id="search-container">
-        {showSearch && (
-          <input
-            value={search}
-            onChange={(event) => setSearch(event.target.value)}
-            type="text"
-            placeholder="Busca jugadores afines, eventos, juegos..."
-          />
-        )}
+        <FaSearchengin className="navbar-icon" />
+
+        <input
+          value={search}
+          onChange={(event) => setSearch(event.target.value)}
+          type="text"
+          placeholder="Explorar"
+        />
       </div>
 
       {(results.users.length > 0 ||
