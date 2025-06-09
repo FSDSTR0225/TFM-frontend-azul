@@ -25,6 +25,8 @@ import { Toaster } from "sonner";
 import ManagementCenter from "./pages/ManagementCenter";
 import MyEvents from "./pages/MyEvents";
 import { Mensajes } from "./pages/Mensajes";
+import MyScrollBar from "./components/MyScrollBar";
+import ExploreGames from "./components/ExploreGames";
 
 export default function App() {
   const [showSearch, setShowSearch] = useState(false);
@@ -45,84 +47,87 @@ export default function App() {
   return (
     <div className="App">
       <NavBar showSearch={showSearch} setShowSearch={setShowSearch} />
-      <main>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route
-            path="/lobby"
-            element={
-              <PrivateRoute>
-                <Lobby />
-              </PrivateRoute>
-            }
-          />
-          <Route path="/games" element={<Games />} />
-          <Route
-            path="/platforms/:platformId/games"
-            element={<GamesByPlatform />}
-          />
-          <Route path="/games/:id" element={<GameDetails />} />
-          <Route path="/events" element={<Events />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} />
-          <Route
-            path="/players"
-            element={
-              <PrivateRoute>
-                <Players />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/users/me"
-            element={
-              <PrivateRoute>
-                <ProfilePage />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/edit/profile"
-            element={
-              <PrivateRoute>
-                <EditProfile />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/management"
-            element={
-              <PrivateRoute>
-                <ManagementCenter />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/my-events"
-            element={
-              <PrivateRoute>
-                <MyEvents />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/friends"
-            element={
-              <PrivateRoute>
-                <FriendsProfile />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/messages"
-            element={
-              <PrivateRoute>
-                <Mensajes />
-              </PrivateRoute>
-            }
-          />
-        </Routes>
-      </main>
+      <MyScrollBar>
+        <main>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route
+              path="/lobby"
+              element={
+                <PrivateRoute>
+                  <Lobby />
+                </PrivateRoute>
+              }
+            />
+            <Route path="/explore/games" element={<ExploreGames />} />
+            <Route path="/games" element={<Games />} />
+            <Route
+              path="/platforms/:platformId/games"
+              element={<GamesByPlatform />}
+            />
+            <Route path="/games/:id" element={<GameDetails />} />
+            <Route path="/events" element={<Events />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/login" element={<Login />} />
+            <Route
+              path="/players"
+              element={
+                <PrivateRoute>
+                  <Players />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/users/me"
+              element={
+                <PrivateRoute>
+                  <ProfilePage />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/edit/profile"
+              element={
+                <PrivateRoute>
+                  <EditProfile />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/management"
+              element={
+                <PrivateRoute>
+                  <ManagementCenter />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/my-events"
+              element={
+                <PrivateRoute>
+                  <MyEvents />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/friends"
+              element={
+                <PrivateRoute>
+                  <FriendsProfile />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/messages"
+              element={
+                <PrivateRoute>
+                  <Mensajes />
+                </PrivateRoute>
+              }
+            />
+          </Routes>
+        </main>
+      </MyScrollBar>
       <Toaster richColors position="bottom-right" />
     </div>
   );

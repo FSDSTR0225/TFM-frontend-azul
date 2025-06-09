@@ -36,15 +36,14 @@ const SearchInputExplore = ({ search, setSearch }) => {
     if (type === "user") navigate(`/users/${item.username}`);
     if (type === "game") navigate(`/games/${item.rawgId || item.id}`);
     if (type === "event") navigate(`/events/${item._id}`);
-    setSearch(""); // Limpiar input tras clic
-    setResults({ users: [], games: [], events: [] }); // Ocultar resultados
+    setSearch("");
+    setResults({ users: [], games: [], events: [] });
   };
 
   return (
     <section className="search-section">
       <div id="search-container">
         <FaSearchengin className="navbar-icon" />
-
         <input
           value={search}
           onChange={(event) => setSearch(event.target.value)}
@@ -60,7 +59,7 @@ const SearchInputExplore = ({ search, setSearch }) => {
           {results.users.length > 0 && (
             <div className="results-block">
               <h4>Jugadores</h4>
-              {results.users.map((user) => (
+              {results.users.slice(0, 3).map((user) => (
                 <div
                   key={user._id}
                   className="search-result"
@@ -70,13 +69,25 @@ const SearchInputExplore = ({ search, setSearch }) => {
                   <span>{user.username}</span>
                 </div>
               ))}
+              {results.users.length > 3 && (
+                <div
+                  className="see-more"
+                  onClick={() =>
+                    navigate(
+                      `/explore/users?query=${encodeURIComponent(search)}`
+                    )
+                  }
+                >
+                  Ver más jugadores
+                </div>
+              )}
             </div>
           )}
 
           {results.games.length > 0 && (
             <div className="results-block">
               <h4>Juegos</h4>
-              {results.games.map((game) => (
+              {results.games.slice(0, 10).map((game) => (
                 <div
                   key={game._id}
                   className="search-result"
@@ -86,13 +97,25 @@ const SearchInputExplore = ({ search, setSearch }) => {
                   <span>{game.name}</span>
                 </div>
               ))}
+              {results.games.length > 10 && (
+                <div
+                  className="see-more"
+                  onClick={() =>
+                    navigate(
+                      `/explore/games?query=${encodeURIComponent(search)}`
+                    )
+                  }
+                >
+                  Ver más juegos
+                </div>
+              )}
             </div>
           )}
 
           {results.events.length > 0 && (
             <div className="results-block">
               <h4>Eventos</h4>
-              {results.events.map((event) => (
+              {results.events.slice(0, 3).map((event) => (
                 <div
                   key={event._id}
                   className="search-result"
@@ -102,6 +125,18 @@ const SearchInputExplore = ({ search, setSearch }) => {
                   <small>{new Date(event.date).toLocaleDateString()}</small>
                 </div>
               ))}
+              {results.events.length > 3 && (
+                <div
+                  className="see-more"
+                  onClick={() =>
+                    navigate(
+                      `/explore/events?query=${encodeURIComponent(search)}`
+                    )
+                  }
+                >
+                  Ver más eventos
+                </div>
+              )}
             </div>
           )}
         </div>

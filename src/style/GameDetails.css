@@ -1,15 +1,16 @@
 .game-background {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  min-height: 100%;
-  background-position: center top;
+  width: 100vw;
+  height: 100vh;
+  background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   z-index: -1;
   filter: blur(10px) brightness(0.6);
   transition: background-image 0.3s ease-in-out;
+  pointer-events: none;
 }
 
 .game-details-content {
