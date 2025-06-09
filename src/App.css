@@ -1,27 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Audiowide&family=Poppins:wght@400;600&display=swap");
 
+/* Reset base */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-body {
-  font-family: "Poppins", sans-serif;
-  background: rgba(10, 10, 20, 0.9);
-  color: white;
-  min-height: 100vh;
-  position: relative;
-  min-height: 100%;
-}
-
-h1,
-h2,
-h3,
-.logo {
-  font-family: "Audiowide", cursive;
-}
-
+/* Variables globales */
 :root {
   --dark-blue: #003b5c;
   --light-blue: #0095d9;
@@ -34,6 +20,57 @@ h3,
   --light-gray: rgb(205, 205, 205);
 }
 
+/* Tipografías */
+body {
+  font-family: "Poppins", sans-serif;
+  background: rgba(10, 10, 20, 0.9);
+  color: white;
+  min-height: 100vh;
+  overflow: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: auto;
+  scrollbar-color: rgba(102, 252, 241, 0.3) transparent;
+}
+
+h1,
+h2,
+h3,
+.logo {
+  font-family: "Audiowide", cursive;
+}
+
+/* Contenido principal */
+main {
+  height: calc(100vh - 72px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+/* Scrollbar global - WebKit */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(102, 252, 241, 0.2);
+  backdrop-filter: blur(3px);
+  border-radius: 10px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+  transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #66fcf1, #00e0ff);
+  box-shadow: 0 0 8px #00fff088;
+}
+
+/* Loader */
 .loading-container {
   display: flex;
   flex-direction: column;
@@ -52,6 +89,7 @@ h3,
   text-shadow: 0 0 10px #00f0ff;
 }
 
+/* Toast personalizado */
 .mi-toast {
   background: rgba(20, 30, 50, 0.92) !important;
   border: 1.5px solid #00f0ff44 !important;
@@ -73,18 +111,7 @@ h3,
   gap: 1rem;
 }
 
-@keyframes toastPopIn {
-  0% {
-    transform: translateY(30px) scale(0.95);
-    opacity: 0;
-  }
-  100% {
-    transform: translateY(0) scale(1);
-    opacity: 1;
-  }
-}
-
-/* Icono decorativo a la izquierda */
+/* Icono decorativo izquierdo */
 .mi-toast::before {
   content: "";
   position: absolute;
@@ -98,7 +125,7 @@ h3,
   user-select: none;
 }
 
-/* Botón de cerrar (si lo usas) */
+/* Botón de cierre */
 .mi-toast .toast-close-btn {
   position: absolute;
   right: 1rem;
@@ -111,11 +138,24 @@ h3,
   cursor: pointer;
   transition: color 0.2s;
 }
+
 .mi-toast .toast-close-btn:hover {
   color: #ff1744;
 }
 
-/* Responsive */
+/* Animación del toast */
+@keyframes toastPopIn {
+  0% {
+    transform: translateY(30px) scale(0.95);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+/* Responsive toast */
 @media (max-width: 500px) {
   .mi-toast {
     padding: 0.8rem 0.7rem 0.8rem 2.2rem !important;

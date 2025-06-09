@@ -16,6 +16,10 @@ const NavBar = ({ showSearch }) => {
   const [search, setSearch] = useState("");
 
   useEffect(() => {
+    setIsUserOpen(false);
+  }, [authContext.isLoggedIn]); // Resetea el dropdown de usuario al cambiar el estado de login haciendo que se inicialice en falso
+
+  useEffect(() => {
     (async () => {
       try {
         const res = await fetch(`${API_URL}/platforms`);

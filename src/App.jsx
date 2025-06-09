@@ -35,7 +35,7 @@ export default function App() {
     // Si está cargando, muestra...
     return (
       <div className="loading-container">
-        <h1 className="loading-title">Cargando plataformas...</h1>
+        <h1 className="loading-title">Cargando lobby...</h1>
         <PacmanLoader color="#FFD700" size={40} />{" "}
         {/* Los componentes de React spinner reciben css en el propio componente */}
       </div>
@@ -45,83 +45,84 @@ export default function App() {
   return (
     <div className="App">
       <NavBar showSearch={showSearch} setShowSearch={setShowSearch} />
-
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route
-          path="/lobby"
-          element={
-            <PrivateRoute>
-              <Lobby />
-            </PrivateRoute>
-          }
-        />
-        <Route path="/games" element={<Games />} />
-        <Route
-          path="/platforms/:platformId/games"
-          element={<GamesByPlatform />}
-        />
-        <Route path="/games/:id" element={<GameDetails />} />
-        <Route path="/events" element={<Events />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} />
-        <Route
-          path="/players"
-          element={
-            <PrivateRoute>
-              <Players />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/users/me"
-          element={
-            <PrivateRoute>
-              <ProfilePage />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/edit/profile"
-          element={
-            <PrivateRoute>
-              <EditProfile />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/management"
-          element={
-            <PrivateRoute>
-              <ManagementCenter />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/my-events"
-          element={
-            <PrivateRoute>
-              <MyEvents />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/friends"
-          element={
-            <PrivateRoute>
-              <FriendsProfile />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/messages"
-          element={
-            <PrivateRoute>
-              <Mensajes />
-            </PrivateRoute>
-          }
-        />
-      </Routes>
+      <main>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route
+            path="/lobby"
+            element={
+              <PrivateRoute>
+                <Lobby />
+              </PrivateRoute>
+            }
+          />
+          <Route path="/games" element={<Games />} />
+          <Route
+            path="/platforms/:platformId/games"
+            element={<GamesByPlatform />}
+          />
+          <Route path="/games/:id" element={<GameDetails />} />
+          <Route path="/events" element={<Events />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
+          <Route
+            path="/players"
+            element={
+              <PrivateRoute>
+                <Players />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/users/me"
+            element={
+              <PrivateRoute>
+                <ProfilePage />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/edit/profile"
+            element={
+              <PrivateRoute>
+                <EditProfile />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/management"
+            element={
+              <PrivateRoute>
+                <ManagementCenter />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/my-events"
+            element={
+              <PrivateRoute>
+                <MyEvents />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/friends"
+            element={
+              <PrivateRoute>
+                <FriendsProfile />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/messages"
+            element={
+              <PrivateRoute>
+                <Mensajes />
+              </PrivateRoute>
+            }
+          />
+        </Routes>
+      </main>
       <Toaster richColors position="bottom-right" />
     </div>
   );

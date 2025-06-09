@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect, useCallback } from "react";
 
 const AuthContext = createContext(); // Creamos el contexto
 
@@ -7,27 +7,40 @@ export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(null); // Token JWT
   const [isLoggedIn, setIsLoggedIn] = useState(false); // Estado de sesión
   const [loading, setLoading] = useState(true); // Estado de carga
-  const fetchUserProfile = async (token) => {
-    try {
-      const res = await fetch("http://localhost:3000/users/me", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
 
-      if (!res.ok) throw new Error("Token inválido o expirado");
+  // ✔ Logout total
+  const logout = useCallback(() => {
+    setUser(null);
+    setToken(null);
+    setIsLoggedIn(false);
+    localStorage.removeItem("user");
+    setLoading(false);
+  }, []);
 
-      const data = await res.json();
-      setUser(data.user);
-      setToken(token);
-      setIsLoggedIn(true);
-    } catch (err) {
-      console.error("Error al cargar perfil:", err.message);
-      logout();
-    } finally {
-      setLoading(false);
-    }
-  };
+  const fetchUserProfile = useCallback(
+    async (token) => {
+      try {
+        const res = await fetch("http://localhost:3000/users/me", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        if (!res.ok) throw new Error("Token inválido o expirado");
+
+        const data = await res.json();
+        setUser(data.user);
+        setToken(token);
+        setIsLoggedIn(true);
+      } catch (err) {
+        console.error("Error al cargar perfil:", err.message);
+        logout();
+      } finally {
+        setLoading(false);
+      }
+    },
+    [logout]
+  );
 
   // ✔ Cargar sesión automáticamente al arrancar si hay token en localStorage
   useEffect(() => {
@@ -51,7 +64,7 @@ export const AuthProvider = ({ children }) => {
       logout();
       setLoading(false);
     }
-  }, []);
+  }, [fetchUserProfile, logout]);
 
   // ✔ Login manual (cuando te registras o haces login)
   const login = async (token) => {
@@ -59,15 +72,6 @@ export const AuthProvider = ({ children }) => {
     await fetchUserProfile(token);
 
     setIsLoggedIn(true);
-  };
-
-  // ✔ Logout total
-  const logout = () => {
-    setUser(null);
-    setToken(null);
-    setIsLoggedIn(false);
-    localStorage.removeItem("user");
-    setLoading(false);
   };
 
   return (
