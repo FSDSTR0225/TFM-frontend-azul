@@ -112,3 +112,42 @@
   transform: scale(1.05);
   box-shadow: 0 0 20px rgba(0, 255, 255, 0.6);
 }
+
+@media (max-width: 600px) {
+  .event-section {
+    padding: 3rem 0.6rem;
+  }
+
+  .event-section .section-title-event-list {
+    font-size: 1.3rem;
+    flex-direction: column;
+    gap: 0.4rem;
+    margin-bottom: 2rem;
+  }
+
+  .event-section .section-title-event-list img {
+    width: 28px;
+    height: 28px;
+    margin-bottom: 0;
+  }
+
+  .next-event {
+    padding: 1.2rem 0.9rem;
+    max-width: 100%;
+  }
+
+  .event-title-list {
+    font-size: 0.95rem;
+  }
+
+  .event-date,
+  .event-players,
+  .event-game {
+    font-size: 0.85rem;
+  }
+
+  .event-join button {
+    font-size: 0.85rem;
+    padding: 0.45rem 0.9rem;
+  }
+}

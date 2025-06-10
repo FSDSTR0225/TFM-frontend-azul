@@ -304,3 +304,30 @@
   scrollbar-width: thin;
   scrollbar-color: #00ffc855 transparent;
 }
+
+@media (max-width: 480px) {
+  .modal-event-content.create-event-modal {
+    padding: 1.5rem 1rem 1.5rem 1rem;
+    border-radius: 18px;
+  }
+
+  .modal-event-content h2 {
+    font-size: 1.3rem;
+  }
+
+  .submit-button {
+    font-size: 1rem;
+    padding: 0.8rem 1rem;
+  }
+
+  .autocomplete-item {
+    font-size: 0.95rem;
+    padding: 10px 14px;
+  }
+
+  .close-btn {
+    font-size: 1.5rem;
+    top: 0.8rem;
+    right: 1rem;
+  }
+}

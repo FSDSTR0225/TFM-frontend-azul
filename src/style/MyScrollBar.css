@@ -50,6 +50,17 @@
   }
 }
 
+@media (max-width: 600px) {
+  .scrollbar-container {
+    max-height: 60vh;
+    overflow-y: auto;
+  }
+
+  .scrollbar-thumb-y {
+    min-height: 30px !important;
+  }
+}
+
 /* 
 .scrollbar-container {
   background: transparent !important;

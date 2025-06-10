@@ -27,6 +27,7 @@ import MyEvents from "./pages/MyEvents";
 import { Mensajes } from "./pages/Mensajes";
 import MyScrollBar from "./components/MyScrollBar";
 import ExploreGames from "./components/ExploreGames";
+import ExploreUsers from "./components/ExploreUsers";
 
 export default function App() {
   const [showSearch, setShowSearch] = useState(false);
@@ -60,6 +61,7 @@ export default function App() {
               }
             />
             <Route path="/explore/games" element={<ExploreGames />} />
+            <Route path="/explore/users" element={<ExploreUsers />} />
             <Route path="/games" element={<Games />} />
             <Route
               path="/platforms/:platformId/games"

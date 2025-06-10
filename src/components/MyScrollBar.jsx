@@ -8,8 +8,11 @@ export default function MyScrollBar({ children }) {
       style={{
         height: "calc(100vh - 72px)",
         padding: "0 0.3rem",
+        width: "100%",
+        overflowX: "auto",
       }}
-      noScrollX
+      removeTracksWhenNotUsed
+      noScrollX={false} // aseguramos que permita scroll-x si realmente se requiere
     >
       {children}
     </Scrollbar>

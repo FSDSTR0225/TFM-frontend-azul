@@ -133,11 +133,13 @@
   }
 }
 
+/* Responsive: Explore */
 @media (max-width: 900px) {
   .game-grid {
     grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
     gap: 1.2rem;
   }
+
   .game-card img {
     height: 140px;
   }
@@ -147,13 +149,16 @@
   .explore-games-page {
     padding: 1.2rem 0.5rem;
   }
+
   .game-grid {
     grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
     gap: 0.7rem;
   }
+
   .game-card img {
     height: 90px;
   }
+
   .explore-games-page h2 {
     font-size: 1.3rem;
   }
