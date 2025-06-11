@@ -6,6 +6,7 @@ import { useContext } from "react";
 // import EventSuggestion from "../components/EventSuggestion";
 import Dashboard from "../components/Dashboard";
 import EventsToday from "../components/EventsToday";
+import WidgetSystem from "../components/WidgetSystem";
 import "../style/Lobby.css";
 
 function Lobby() {
@@ -30,6 +31,9 @@ function Lobby() {
         <div className="lobby-events-right">
           <EventsToday />
         </div>
+      </div>
+      <div className="lobby-widgets-container">
+        <WidgetSystem />
       </div>
     </div>
   );

@@ -2,8 +2,8 @@
 
 html {
   font-size: 16px;
-  overflow: hidden;
-  max-width: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 /* Reset base */
@@ -37,7 +37,8 @@ body {
   background: rgba(10, 10, 20, 0.9);
   color: white;
   min-height: 100vh;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
   scroll-behavior: smooth;
   scrollbar-width: thin;
   scrollbar-color: var(--scrollbar-thumb-base) var(--scrollbar-track-bg);
@@ -53,9 +54,9 @@ h3,
 
 /* Contenedor principal */
 main {
-  height: auto;
-  overflow: hidden;
-  scroll-behavior: smooth;
+  min-height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 ::-webkit-scrollbar {

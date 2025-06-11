@@ -58,7 +58,7 @@ function Dashboard() {
   }
 
   return (
-    <div className="dashboard - contentS">
+    <div className="dashboard-content">
       <DailySummary summary={summary} />
     </div>
   );

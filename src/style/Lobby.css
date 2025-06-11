@@ -10,7 +10,40 @@
   align-items: center;
   gap: 2rem;
 }
+.lobby-main-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
+  height: auto;
+  min-height: 100vh;
+  overflow: visible; /* Deja que los hijos crezcan sin cortar */
+  padding-bottom: 4rem; /* Espacio para evitar corte por abajo */
+}
+.lobby-dashboard-left {
+  flex: 1 1 400px;
+  min-width: 300px;
+  max-width: 600px;
+}
 
+.lobby-events-right {
+  flex: 1 1 300px;
+  min-width: 280px;
+  max-width: 500px;
+}
+
+.lobby-widgets-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  display: block;
+  height: auto;
+  overflow: visible;
+}
 .lobby-title-container {
   width: 100%;
   max-width: 800px;
@@ -70,7 +103,7 @@
   }
 }
 
-.dashboard-content,
+/* .dashboard-content, */
 .daily-summary-container,
 .suggestions-container {
   background-color: rgba(0, 0, 0, 0.65);
@@ -91,7 +124,7 @@
     font-size: 1.5rem;
   }
 
-  .dashboard-content,
+  /* .dashboard-content, */
   .daily-summary-container,
   .suggestions-container {
     padding: 1rem;
