@@ -24,7 +24,7 @@ import { PacmanLoader } from "react-spinners";
 import { Toaster } from "sonner";
 import ManagementCenter from "./pages/ManagementCenter";
 import MyEvents from "./pages/MyEvents";
-import Mensajes from "./pages/Mensajes";
+import { Mensajes } from "./pages/Mensajes";
 
 export default function App() {
   const [showSearch, setShowSearch] = useState(false);
