@@ -109,7 +109,6 @@ function CreateEventModal({ onClose, onCreate }) {
   }, [gameQuery, gameSelected]);
 
   const handleGameSelect = async (game) => {
-    console.log(" handleGameSelect ejecutado", game);
     setFormData((prev) => ({ ...prev, game: game._id, platform: null }));
     setGameQuery(game.name);
     setGameSelected(false);
@@ -234,12 +233,8 @@ function CreateEventModal({ onClose, onCreate }) {
                 setTimeout(() => {
                   if (!preventCloseRef.current) {
                     // si no se ha hecho click en un item, cerramos las sugerencias
-                    console.log(
-                      " No se seleccionó juego, cerramos sugerencias"
-                    );
+
                     setShowSuggestions(false);
-                  } else {
-                    console.log(" Click válido, no cerramos sugerencias");
                   }
                   preventCloseRef.current = false; // reseteamos el valor de referencia
                 }, 100);
@@ -247,25 +242,22 @@ function CreateEventModal({ onClose, onCreate }) {
               autoComplete="off"
               required
             />
-            {gameSuggestions.length > 0 &&
-              showSuggestions &&
-              (console.log(" Renderizando suggestions"),
-              (
-                <ul className="autocomplete-list">
-                  {gameSuggestions.map((game) => (
-                    <li
-                      key={game._id}
-                      onMouseDown={() => {
-                        preventCloseRef.current = true;
-                        handleGameSelect(game);
-                      }}
-                      className="autocomplete-item"
-                    >
-                      {game.name}
-                    </li>
-                  ))}
-                </ul>
-              ))}
+            {gameSuggestions.length > 0 && showSuggestions && (
+              <ul className="autocomplete-list">
+                {gameSuggestions.map((game) => (
+                  <li
+                    key={game._id}
+                    onMouseDown={() => {
+                      preventCloseRef.current = true;
+                      handleGameSelect(game);
+                    }}
+                    className="autocomplete-item"
+                  >
+                    {game.name}
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
 
           <Select
