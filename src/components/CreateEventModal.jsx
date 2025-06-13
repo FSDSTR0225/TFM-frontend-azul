@@ -91,11 +91,17 @@ function CreateEventModal({ onClose, onCreate }) {
     const fetchGames = async () => {
       try {
         const res = await fetch(`${API_URL}/search/games?query=${gameQuery}`);
+
+        if (!res.ok || !data.games) {
+          throw new Error("No se pudieron obtener los juegos");
+        }
         const data = await res.json();
         setGameSuggestions(data.games);
         setShowSuggestions(true);
       } catch (err) {
         console.error("Error buscando juegos:", err);
+        setGameSuggestions([]); // Evita que se quede en null
+        setShowSuggestions(false);
       }
     };
 
@@ -103,7 +109,7 @@ function CreateEventModal({ onClose, onCreate }) {
   }, [gameQuery, gameSelected]);
 
   const handleGameSelect = async (game) => {
-    console.log("✅ handleGameSelect ejecutado", game);
+    console.log(" handleGameSelect ejecutado", game);
     setFormData((prev) => ({ ...prev, game: game._id, platform: null }));
     setGameQuery(game.name);
     setGameSelected(false);
@@ -229,11 +235,11 @@ function CreateEventModal({ onClose, onCreate }) {
                   if (!preventCloseRef.current) {
                     // si no se ha hecho click en un item, cerramos las sugerencias
                     console.log(
-                      "❌ No se seleccionó juego, cerramos sugerencias"
+                      " No se seleccionó juego, cerramos sugerencias"
                     );
                     setShowSuggestions(false);
                   } else {
-                    console.log("🛑 Click válido, no cerramos sugerencias");
+                    console.log(" Click válido, no cerramos sugerencias");
                   }
                   preventCloseRef.current = false; // reseteamos el valor de referencia
                 }, 100);
@@ -243,7 +249,7 @@ function CreateEventModal({ onClose, onCreate }) {
             />
             {gameSuggestions.length > 0 &&
               showSuggestions &&
-              (console.log("💡 Renderizando suggestions"),
+              (console.log(" Renderizando suggestions"),
               (
                 <ul className="autocomplete-list">
                   {gameSuggestions.map((game) => (
