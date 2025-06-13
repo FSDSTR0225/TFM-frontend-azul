@@ -111,10 +111,10 @@ function WidgetSystem() {
         isBounded={true}
         isDraggable={true}
         isResizable={true}
-        resizeHandles={["se"]} // Permite redimensionar los widgets desde la esquina sureste, sur y este
-        onResize={(layout, oldItem, newItem) => {
-          console.log("Resizing", newItem);
-        }}
+        resizeHandles={["se"]} // Permite redimensionar los widgets desde la esquina marcada
+        // onResize={(layout, oldItem, newItem) => {
+        //   console.log("Resizing", newItem);
+        // }}
         onLayoutChange={handleLayoutChange}
       >
         {widgetList.map((widget) => (

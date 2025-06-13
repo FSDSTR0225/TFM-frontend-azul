@@ -76,7 +76,7 @@ function ExploreUsers() {
                 }
                 alt={user.username}
               />
-              <h4>{user.username}</h4>
+              <h4 data-fullname={user.username}>{user.username}</h4>
               <div className="users-explore-btn">
                 <button className="btn-connect">Conectar</button>
                 <button

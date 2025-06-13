@@ -17,8 +17,8 @@ export default function Login() {
   const [isModalSuccess, setIsModalSuccess] = useState(true);
 
   const modalText = {
-    success: "Login succes! Now lets play",
-    fail: "Login Fail. Please try again Later",
+    success: "¿Listo para jugar?",
+    fail: "Login fallido. Por favor, inténtalo de nuevo más tarde.",
   };
   const url = "http://localhost:3000/auth/login";
   const {

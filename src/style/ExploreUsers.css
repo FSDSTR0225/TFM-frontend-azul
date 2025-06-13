@@ -107,6 +107,24 @@
   font-family: "Audiowide", "Poppins", Arial, sans-serif;
   font-weight: 600;
   letter-spacing: 0.5px;
+  text-overflow: ellipsis; /* Añade los puntos supensivos*/
+  white-space: nowrap; /* Evista qeu salte de linea si es largo*/
+  overflow: hidden; /* Oculta lo que sobrepasa el ancho*/
+}
+
+.users-card-explore h4:hover:after {
+  content: attr(data-fullname); /*Obtiene el valor del atributo data-fulltime*/
+  position: absolute;
+  top: 5px; /* bottom: 30px; para arriba */
+  right: 30px;
+  background: none;
+  color: #00ffc8;
+  padding: 4px 8px;
+  border-radius: 6px;
+  white-space: nowrap;
+  font-size: 0.7rem;
+  z-index: 999;
+  pointer-events: none;
 }
 
 .users-explore-btn {
