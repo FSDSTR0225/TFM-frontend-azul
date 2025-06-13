@@ -45,8 +45,10 @@ export const AuthProvider = ({ children }) => {
         setIsLoggedIn(true);
         if (!socket.connected) {
           socket.connect(); // Conectamos el socket manualmente al iniciar sesión
+
           console.log("Socket conectado manualmente");
         }
+
         if (!hasEmittedConnection.current) {
           socket.emit("userConnected", data.user._id); // Emitimos el evento de conexión del usuario que se ha conectado
           hasEmittedConnection.current = true; // Marcar como emitido

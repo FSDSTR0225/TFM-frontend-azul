@@ -92,7 +92,7 @@ function CreateEventModal({ onClose, onCreate }) {
       try {
         const res = await fetch(`${API_URL}/search/games?query=${gameQuery}`);
 
-        if (!res.ok || !data.games) {
+        if (!res.ok) {
           throw new Error("No se pudieron obtener los juegos");
         }
         const data = await res.json();

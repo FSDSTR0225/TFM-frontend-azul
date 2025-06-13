@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import AuthContext from "../context/AuthContext";
 import { PacmanLoader } from "react-spinners";
 import "../style/FriendsOnlineWidget.css";
-
+import { socket } from "../sockect";
 const API_URL = import.meta.env.VITE_API_URL;
 
 function FriendsOnlineWidget() {
@@ -31,6 +31,10 @@ function FriendsOnlineWidget() {
 
     fetchOnlineFriends();
   }, [token]);
+
+  socket.on("userConnected", (userId) => {
+    console.log(`Usuario ${userId} conectado`);
+  });
 
   if (!token) return null;
 
