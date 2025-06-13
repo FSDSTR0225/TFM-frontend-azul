@@ -1,8 +1,12 @@
-.lobby-content {
-  background: linear-gradient(135deg, #0a0a0a, #003366);
-  background-image: url("/images/try.jpg");
+body {
+  background: url("/images/try.jpg"), linear-gradient(135deg, #0a0a0a, #003366);
   background-size: cover;
-  background-position: center;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.lobby-content {
+  margin: 0 auto;
   min-height: 100vh;
   padding: 2rem;
   display: flex;
@@ -10,37 +14,52 @@
   align-items: center;
   gap: 2rem;
 }
-.lobby-main-section {
+
+.lobby-section-main {
   display: flex;
+  flex-direction: row;
+  justify-content: space-around;
   flex-wrap: wrap;
-  justify-content: center;
+  align-items: center;
   gap: 2rem;
   width: 100%;
-  max-width: 1300px;
+  max-width: 1400px;
   margin: 0 auto;
   height: auto;
-  min-height: 100vh;
-  overflow: visible; /* Deja que los hijos crezcan sin cortar */
-  padding-bottom: 4rem; /* Espacio para evitar corte por abajo */
+  min-height: 320px;
+  overflow: visible;
+  padding-bottom: 1rem;
 }
+
 .lobby-dashboard-left {
   flex: 1 1 400px;
   min-width: 300px;
-  max-width: 600px;
+  max-width: 500px;
+  text-align: start;
+  height: 100%;
+  margin-right: 2rem;
+  padding: 2.5rem;
 }
 
 .lobby-events-right {
   flex: 1 1 300px;
   min-width: 280px;
   max-width: 500px;
+  padding-top: 2rem;
+}
+
+.lobby-section-widgets {
+  margin-top: 0;
 }
 
 .lobby-widgets-container {
   width: 100%;
   max-width: 1200px;
-  margin: 2rem auto;
+  margin: 0 auto; /* Quita el margin-top/margin-bottom */
+  margin-top: 1.5rem;
   padding: 0 1rem;
   display: block;
+  min-height: 300px;
   height: auto;
   overflow: visible;
 }
@@ -64,6 +83,8 @@
   transform-origin: right center;
   text-align: center;
   width: 100%;
+  padding: 0.5rem 0;
+  margin-top: 2rem;
 }
 
 .lobby-subtitle {
@@ -75,6 +96,7 @@
   text-shadow: 0 0 10px #00ffff88, 0 0 4px #181a2a;
   animation: slideInFromLeft 1s ease-out forwards;
   transform-origin: left center;
+  margin-bottom: 5rem;
 }
 
 @keyframes slideInFromLeft {
@@ -112,6 +134,19 @@
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
   width: 100%;
   max-width: 800px;
+}
+
+@media (max-width: 900px) {
+  .lobby-section-main {
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+  .lobby-dashboard-left,
+  .lobby-events-right {
+    max-width: 100%;
+    margin-right: 0;
+    padding: 1.2rem;
+  }
 }
 
 @media (max-width: 600px) {

@@ -1,11 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Audiowide&family=Poppins:wght@400;600&display=swap");
 
-html {
-  font-size: 16px;
-  overflow-x: hidden;
-  overflow-y: auto;
-}
-
 /* Reset base */
 * {
   margin: 0;
@@ -13,25 +7,31 @@ html {
   box-sizing: border-box;
 }
 
-/* Variables globales */
-:root {
-  --dark-blue: #003b5c;
-  --light-blue: #0095d9;
-  --florecent-blue: #66fcf1;
-  --light-green: #00b2a9;
-  --main-yellow: #ffdd00;
-  --light-orange: #ff6f61;
-  --white: #f0f4f8;
-  --dark-gray: rgb(69, 69, 69);
-  --light-gray: rgb(205, 205, 205);
-
-  --scrollbar-track-bg: linear-gradient(135deg, #181a2a 60%, #23243a 100%);
-  --scrollbar-thumb-base: linear-gradient(120deg, #00ffc8 10%, #66fcf1 90%);
-  --scrollbar-thumb-hover: linear-gradient(120deg, #66fcf1 10%, #00ffc8 90%);
-  --scrollbar-shadow: 0 0 16px #00ffc8cc, 0 0 8px #66fcf1cc inset;
+html,
+body {
+  height: 100vh;
+  min-height: 100vh;
+  max-height: 100vh;
+  overflow: hidden !important;
+  font-family: "Poppins", sans-serif;
+  background: rgba(10, 10, 20, 0.9);
+  color: white;
 }
 
-/* Tipografías */
+main {
+  min-height: 100%;
+  height: auto;
+  max-height: none;
+  overflow: visible;
+}
+
+/* html {
+  font-size: 16px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+
 body {
   font-family: "Poppins", sans-serif;
   background: rgba(10, 10, 20, 0.9);
@@ -44,22 +44,14 @@ body {
   scrollbar-color: var(--scrollbar-thumb-base) var(--scrollbar-track-bg);
 }
 
-/* Encabezados */
-h1,
-h2,
-h3,
-.logo {
-  font-family: "Audiowide", cursive;
-}
 
-/* Contenedor principal */
 main {
   min-height: 100vh;
   overflow-x: hidden;
   overflow-y: auto;
-}
+} */
 
-::-webkit-scrollbar {
+/* ::-webkit-scrollbar {
   width: 14px;
   background: transparent;
 }
@@ -84,10 +76,36 @@ main {
   filter: brightness(1.2) saturate(1.3);
   animation: neon-glow-fast 0.8s infinite alternate;
 }
-/* Firefox */
+
 * {
   scrollbar-width: thin;
   scrollbar-color: #00ffc8 #181a2a;
+} */
+
+/* Variables globales */
+:root {
+  --dark-blue: #003b5c;
+  --light-blue: #0095d9;
+  --florecent-blue: #66fcf1;
+  --light-green: #00b2a9;
+  --main-yellow: #ffdd00;
+  --light-orange: #ff6f61;
+  --white: #f0f4f8;
+  --dark-gray: rgb(69, 69, 69);
+  --light-gray: rgb(205, 205, 205);
+
+  --scrollbar-track-bg: linear-gradient(135deg, #181a2a 60%, #23243a 100%);
+  --scrollbar-thumb-base: linear-gradient(120deg, #00ffc8 10%, #66fcf1 90%);
+  --scrollbar-thumb-hover: linear-gradient(120deg, #66fcf1 10%, #00ffc8 90%);
+  --scrollbar-shadow: 0 0 16px #00ffc8cc, 0 0 8px #66fcf1cc inset;
+}
+
+/* Encabezados */
+h1,
+h2,
+h3,
+.logo {
+  font-family: "Audiowide", cursive;
 }
 
 @keyframes neon-glow {
@@ -112,11 +130,22 @@ main {
 }
 
 .loading-container {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  /* background: url("/images/prueba12.jpg"); */
+  background-image: url("/images/prueba12.jpg"),
+    linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8));
+  background-blend-mode: overlay;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  width: 100vw;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 60vh;
   text-align: center;
   color: #ffffff;
   font-family: "Orbitron", sans-serif;

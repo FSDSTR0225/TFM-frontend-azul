@@ -1,18 +1,40 @@
 import React from "react";
 import AuthContext from "../context/AuthContext";
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
 // import DailySummary from "../components/DailySummary";
 // import PlayerSuggestion from "../components/PlayerSuggestion";
 // import EventSuggestion from "../components/EventSuggestion";
 import Dashboard from "../components/Dashboard";
 import EventsToday from "../components/EventsToday";
 import WidgetSystem from "../components/WidgetSystem";
+import { PacmanLoader } from "react-spinners";
 import "../style/Lobby.css";
 
 function Lobby() {
+  const [showLoading, setShowLoading] = useState(true);
+
   const authContext = useContext(AuthContext);
 
+  useEffect(() => {
+    if (authContext.user) {
+      // Loading mínimo de 2 segundos
+      const timeout = setTimeout(() => setShowLoading(false), 1200);
+      return () => clearTimeout(timeout);
+    }
+  }, [authContext.user]);
+
   if (!authContext.user) return null;
+
+  if (showLoading) {
+    // Si está cargando, muestra...
+    return (
+      <div className="loading-container">
+        <h1 className="loading-title">Prepárando tu lobby</h1>
+        <PacmanLoader color="#FFD700" size={40} />{" "}
+        {/* Los componentes de React spinner reciben css en el propio componente */}
+      </div>
+    );
+  }
 
   return (
     <div className="lobby-content">
@@ -22,19 +44,19 @@ function Lobby() {
         </h1>
         <h2 className="lobby-subtitle">¿Listo para jugar hoy?</h2>
       </div>
-
-      <div className="lobby-main-section">
+      <section className="lobby-section-main">
         <div className="lobby-dashboard-left">
           <Dashboard />
         </div>
-
         <div className="lobby-events-right">
           <EventsToday />
         </div>
-      </div>
-      <div className="lobby-widgets-container">
-        <WidgetSystem />
-      </div>
+      </section>
+      <section className="lobby-section-widgets">
+        <div className="lobby-widgets-container">
+          <WidgetSystem />
+        </div>
+      </section>
     </div>
   );
 }

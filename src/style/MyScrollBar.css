@@ -17,7 +17,6 @@
   position: relative !important;
   transition: background 0.3s, box-shadow 0.3s, filter 0.3s !important;
   min-height: 40px !important;
-  /* Efecto de brillo animado */
   animation: neon-glow 2.2s infinite alternate !important;
 }
 
@@ -28,7 +27,6 @@
   animation: neon-glow-fast 0.8s infinite alternate !important;
 }
 
-/* Animación de glow neón */
 @keyframes neon-glow {
   0% {
     box-shadow: 0 0 12px #00ffc8cc, 0 0 4px #66fcf1cc inset;

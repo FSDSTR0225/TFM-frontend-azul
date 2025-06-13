@@ -49,10 +49,6 @@ export default function Register() {
         return res.json();
       })
       .then((result) => {
-        console.log("🧠 Resultado del registro:", result);
-        console.log("🧠 Token recibido:", result.access_token);
-        console.log("🧠 Usuario recibido:", result.user);
-
         authContext.login(result.access_token);
       })
       .catch((err) => {

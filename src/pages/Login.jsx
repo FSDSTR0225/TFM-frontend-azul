@@ -49,7 +49,7 @@ export default function Login() {
 
           setTimeout(() => {
             navigate("/lobby");
-          }, 2000);
+          }, 1000);
         } else {
           setIsModalSuccess(false);
         }

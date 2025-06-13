@@ -38,11 +38,12 @@
   border: 1px solid #333;
   border-radius: 16px;
   overflow: hidden;
-  padding: 12px;
+  padding: 10px;
   box-shadow: 0 0 20px rgba(0, 255, 255, 0.15);
   backdrop-filter: blur(10px);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   height: 100%;
+  min-height: 0;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -55,19 +56,23 @@
 
 /* Resize handle para que se vea más claro que se puede redimensionar */
 .react-resizable-handle {
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  bottom: 0;
-  right: 0;
-  background: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 20 L20 0' stroke='%23ccc' stroke-width='2'/%3E%3C/svg%3E")
+  width: 16px;
+  height: 16px;
+  margin-top: auto; /* empuja hacia abajo */
+  margin-left: auto; /* empuja hacia la derecha */
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Cpath d='M10 16 L16 10 M6 16 L16 6 M2 16 L16 2' stroke='%23ccc' stroke-width='1'/%3E%3C/svg%3E")
     no-repeat center center;
+  opacity: 0.3;
+  transition: opacity 0.2s;
+  border: none;
+  box-shadow: none;
+  background-size: 16px 16px;
   cursor: se-resize;
   z-index: 10;
 }
 
 .react-grid-layout {
-  height: auto !important;
+  height: 100%;
   min-height: 300px;
 }
 

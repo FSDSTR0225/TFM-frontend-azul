@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Select from "react-select";
 import "../style/CreateEventModal.css";
 import DatePicker from "react-datepicker";
@@ -80,9 +80,10 @@ function CreateEventModal({ onClose, onCreate }) {
   const [gameSuggestions, setGameSuggestions] = useState([]);
   const [platformOptions, setPlatformOptions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
+  const [gameSelected, setGameSelected] = useState(false);
 
   useEffect(() => {
-    if (gameQuery.length < 2) {
+    if (!gameSelected || gameQuery.length < 2) {
       setGameSuggestions([]);
       return;
     }
@@ -99,11 +100,13 @@ function CreateEventModal({ onClose, onCreate }) {
     };
 
     fetchGames();
-  }, [gameQuery]);
+  }, [gameQuery, gameSelected]);
 
   const handleGameSelect = async (game) => {
+    console.log("✅ handleGameSelect ejecutado", game);
     setFormData((prev) => ({ ...prev, game: game._id, platform: null }));
     setGameQuery(game.name);
+    setGameSelected(false);
     setGameSuggestions([]);
     setShowSuggestions(false);
 
@@ -155,6 +158,8 @@ function CreateEventModal({ onClose, onCreate }) {
     onClose();
   };
 
+  const preventCloseRef = useRef(false);
+
   return (
     <div
       className="modal-overlay-events"
@@ -177,6 +182,7 @@ function CreateEventModal({ onClose, onCreate }) {
             type="text"
             name="title"
             placeholder="Título del evento"
+            maxLength={30}
             value={formData.title}
             onChange={handleChange}
             required
@@ -211,30 +217,49 @@ function CreateEventModal({ onClose, onCreate }) {
               value={gameQuery}
               onChange={(e) => {
                 setGameQuery(e.target.value);
+                setGameSelected(true);
                 setShowSuggestions(true);
               }}
               onFocus={() => {
                 if (gameSuggestions.length > 0) setShowSuggestions(true);
               }}
+              // para evitar que se cierre el dropdown al hacer click en un item,onBlur sirve para detectar cuando el input pierde el foco
               onBlur={() => {
-                setTimeout(() => setShowSuggestions(false), 100);
+                setTimeout(() => {
+                  if (!preventCloseRef.current) {
+                    // si no se ha hecho click en un item, cerramos las sugerencias
+                    console.log(
+                      "❌ No se seleccionó juego, cerramos sugerencias"
+                    );
+                    setShowSuggestions(false);
+                  } else {
+                    console.log("🛑 Click válido, no cerramos sugerencias");
+                  }
+                  preventCloseRef.current = false; // reseteamos el valor de referencia
+                }, 100);
               }}
               autoComplete="off"
               required
             />
-            {gameSuggestions.length > 0 && showSuggestions && (
-              <ul className="autocomplete-list">
-                {gameSuggestions.map((game) => (
-                  <li
-                    key={game._id}
-                    onMouseDown={() => handleGameSelect(game)}
-                    className="autocomplete-item"
-                  >
-                    {game.name}
-                  </li>
-                ))}
-              </ul>
-            )}
+            {gameSuggestions.length > 0 &&
+              showSuggestions &&
+              (console.log("💡 Renderizando suggestions"),
+              (
+                <ul className="autocomplete-list">
+                  {gameSuggestions.map((game) => (
+                    <li
+                      key={game._id}
+                      onMouseDown={() => {
+                        preventCloseRef.current = true;
+                        handleGameSelect(game);
+                      }}
+                      className="autocomplete-item"
+                    >
+                      {game.name}
+                    </li>
+                  ))}
+                </ul>
+              ))}
           </div>
 
           <Select
