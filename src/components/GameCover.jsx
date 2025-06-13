@@ -7,6 +7,7 @@ function GameCover({ game }) {
     <div className="game-cover">
       <Link to={`/games/${game.rawgId}`} className="game-link">
         <img
+          loading="lazy"
           src={game.image || game.imageUrl || game.background_image}
           alt={game.name}
           className="game-img"

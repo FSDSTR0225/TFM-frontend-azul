@@ -375,3 +375,28 @@
     padding: 1rem;
   }
 }
+
+@media only screen and (max-width: 600px) {
+  .RegisterForm__Title {
+    font-size: 2rem;
+    padding: 1rem 0.5rem;
+  }
+
+  .RegisterForm__Container {
+    padding: 2rem 1.5rem;
+  }
+
+  .RegisterForm {
+    gap: 1.5rem;
+  }
+
+  .RegisterForm__input {
+    width: 100%;
+  }
+
+  .RegisterForm__button {
+    font-size: 1rem;
+    padding: 0.6rem 1.2rem;
+    width: 100%;
+  }
+}

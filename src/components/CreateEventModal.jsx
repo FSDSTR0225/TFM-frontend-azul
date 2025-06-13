@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Select from "react-select";
 import "../style/CreateEventModal.css";
 import DatePicker from "react-datepicker";
@@ -80,9 +80,10 @@ function CreateEventModal({ onClose, onCreate }) {
   const [gameSuggestions, setGameSuggestions] = useState([]);
   const [platformOptions, setPlatformOptions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
+  const [gameSelected, setGameSelected] = useState(false);
 
   useEffect(() => {
-    if (gameQuery.length < 2) {
+    if (!gameSelected || gameQuery.length < 2) {
       setGameSuggestions([]);
       return;
     }
@@ -90,20 +91,27 @@ function CreateEventModal({ onClose, onCreate }) {
     const fetchGames = async () => {
       try {
         const res = await fetch(`${API_URL}/search/games?query=${gameQuery}`);
+
+        if (!res.ok) {
+          throw new Error("No se pudieron obtener los juegos");
+        }
         const data = await res.json();
         setGameSuggestions(data.games);
         setShowSuggestions(true);
       } catch (err) {
         console.error("Error buscando juegos:", err);
+        setGameSuggestions([]); // Evita que se quede en null
+        setShowSuggestions(false);
       }
     };
 
     fetchGames();
-  }, [gameQuery]);
+  }, [gameQuery, gameSelected]);
 
   const handleGameSelect = async (game) => {
     setFormData((prev) => ({ ...prev, game: game._id, platform: null }));
     setGameQuery(game.name);
+    setGameSelected(false);
     setGameSuggestions([]);
     setShowSuggestions(false);
 
@@ -155,6 +163,8 @@ function CreateEventModal({ onClose, onCreate }) {
     onClose();
   };
 
+  const preventCloseRef = useRef(false);
+
   return (
     <div
       className="modal-overlay-events"
@@ -177,6 +187,7 @@ function CreateEventModal({ onClose, onCreate }) {
             type="text"
             name="title"
             placeholder="Título del evento"
+            maxLength={30}
             value={formData.title}
             onChange={handleChange}
             required
@@ -211,13 +222,22 @@ function CreateEventModal({ onClose, onCreate }) {
               value={gameQuery}
               onChange={(e) => {
                 setGameQuery(e.target.value);
+                setGameSelected(true);
                 setShowSuggestions(true);
               }}
               onFocus={() => {
                 if (gameSuggestions.length > 0) setShowSuggestions(true);
               }}
+              // para evitar que se cierre el dropdown al hacer click en un item,onBlur sirve para detectar cuando el input pierde el foco
               onBlur={() => {
-                setTimeout(() => setShowSuggestions(false), 100);
+                setTimeout(() => {
+                  if (!preventCloseRef.current) {
+                    // si no se ha hecho click en un item, cerramos las sugerencias
+
+                    setShowSuggestions(false);
+                  }
+                  preventCloseRef.current = false; // reseteamos el valor de referencia
+                }, 100);
               }}
               autoComplete="off"
               required
@@ -227,7 +247,10 @@ function CreateEventModal({ onClose, onCreate }) {
                 {gameSuggestions.map((game) => (
                   <li
                     key={game._id}
-                    onMouseDown={() => handleGameSelect(game)}
+                    onMouseDown={() => {
+                      preventCloseRef.current = true;
+                      handleGameSelect(game);
+                    }}
                     className="autocomplete-item"
                   >
                     {game.name}

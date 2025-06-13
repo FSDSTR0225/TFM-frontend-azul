@@ -159,3 +159,34 @@ select {
     flex-direction: column;
   }
 }
+
+@media only screen and (max-width: 600px) {
+  .PlayerSearch {
+    padding: 1rem;
+    min-height: auto;
+  }
+
+  .player-search-container {
+    width: 100%;
+    margin-top: 30px;
+    padding: 0 1rem;
+  }
+
+  .player-search-container h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+  }
+
+  .player-search-container input,
+  .player-search-container select {
+    width: 100%;
+    font-size: 0.95rem;
+    padding: 0.6rem;
+  }
+
+  .player-search-button {
+    width: 100%;
+    font-size: 1rem;
+    padding: 0.7rem;
+  }
+}

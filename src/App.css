@@ -7,6 +7,81 @@
   box-sizing: border-box;
 }
 
+html,
+body {
+  height: 100vh;
+  min-height: 100vh;
+  max-height: 100vh;
+  overflow: hidden !important;
+  font-family: "Poppins", sans-serif;
+  background: rgba(10, 10, 20, 0.9);
+  color: white;
+}
+
+main {
+  min-height: 100%;
+  height: auto;
+  max-height: none;
+  overflow: visible;
+}
+
+/* html {
+  font-size: 16px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+
+body {
+  font-family: "Poppins", sans-serif;
+  background: rgba(10, 10, 20, 0.9);
+  color: white;
+  min-height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb-base) var(--scrollbar-track-bg);
+}
+
+
+main {
+  min-height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+} */
+
+/* ::-webkit-scrollbar {
+  width: 14px;
+  background: transparent;
+}
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-track-bg);
+  border-radius: 10px;
+  box-shadow: 0 0 12px #00ffc822 inset;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb-base);
+  border-radius: 10px;
+  border: 2px solid #181a2a;
+  background-clip: padding-box;
+  box-shadow: 0 0 12px #00ffc8cc, 0 0 4px #66fcf1cc inset;
+  animation: neon-glow 2.2s infinite alternate;
+  min-height: 40px;
+  transition: background 0.3s, box-shadow 0.3s, filter 0.3s;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover);
+  box-shadow: 0 0 32px #00ffc8cc, 0 0 12px #66fcf1cc inset;
+  filter: brightness(1.2) saturate(1.3);
+  animation: neon-glow-fast 0.8s infinite alternate;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #00ffc8 #181a2a;
+} */
+
 /* Variables globales */
 :root {
   --dark-blue: #003b5c;
@@ -18,20 +93,14 @@
   --white: #f0f4f8;
   --dark-gray: rgb(69, 69, 69);
   --light-gray: rgb(205, 205, 205);
+
+  --scrollbar-track-bg: linear-gradient(135deg, #181a2a 60%, #23243a 100%);
+  --scrollbar-thumb-base: linear-gradient(120deg, #00ffc8 10%, #66fcf1 90%);
+  --scrollbar-thumb-hover: linear-gradient(120deg, #66fcf1 10%, #00ffc8 90%);
+  --scrollbar-shadow: 0 0 16px #00ffc8cc, 0 0 8px #66fcf1cc inset;
 }
 
-/* Tipografías */
-body {
-  font-family: "Poppins", sans-serif;
-  background: rgba(10, 10, 20, 0.9);
-  color: white;
-  min-height: 100vh;
-  overflow: auto;
-  scroll-behavior: smooth;
-  scrollbar-width: auto;
-  scrollbar-color: rgba(102, 252, 241, 0.3) transparent;
-}
-
+/* Encabezados */
 h1,
 h2,
 h3,
@@ -39,44 +108,44 @@ h3,
   font-family: "Audiowide", cursive;
 }
 
-/* Contenido principal */
-main {
-  height: calc(100vh - 72px);
-  overflow-y: auto;
-  overflow-x: hidden;
-  scroll-behavior: smooth;
+@keyframes neon-glow {
+  0% {
+    box-shadow: 0 0 8px #00ffc8cc, 0 0 2px #66fcf1cc inset;
+    filter: brightness(1) saturate(1);
+  }
+  100% {
+    box-shadow: 0 0 18px #00ffc8cc, 0 0 6px #66fcf1cc inset;
+    filter: brightness(1.08) saturate(1.12);
+  }
+}
+@keyframes neon-glow-fast {
+  0% {
+    box-shadow: 0 0 18px #00ffc8cc, 0 0 6px #66fcf1cc inset;
+    filter: brightness(1.1) saturate(1.2);
+  }
+  100% {
+    box-shadow: 0 0 32px #00ffc8cc, 0 0 12px #66fcf1cc inset;
+    filter: brightness(1.18) saturate(1.25);
+  }
 }
 
-/* Scrollbar global - WebKit */
-::-webkit-scrollbar {
-  width: 12px;
-}
-
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-  background: rgba(102, 252, 241, 0.2);
-  backdrop-filter: blur(3px);
-  border-radius: 10px;
-  border: 2px solid transparent;
-  background-clip: content-box;
-  transition: background 0.3s ease;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #66fcf1, #00e0ff);
-  box-shadow: 0 0 8px #00fff088;
-}
-
-/* Loader */
 .loading-container {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  /* background: url("/images/prueba12.jpg"); */
+  background-image: url("/images/prueba12.jpg"),
+    linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8));
+  background-blend-mode: overlay;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  width: 100vw;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 60vh;
   text-align: center;
   color: #ffffff;
   font-family: "Orbitron", sans-serif;
@@ -111,7 +180,6 @@ main {
   gap: 1rem;
 }
 
-/* Icono decorativo izquierdo */
 .mi-toast::before {
   content: "";
   position: absolute;
@@ -125,7 +193,6 @@ main {
   user-select: none;
 }
 
-/* Botón de cierre */
 .mi-toast .toast-close-btn {
   position: absolute;
   right: 1rem;
@@ -143,7 +210,6 @@ main {
   color: #ff1744;
 }
 
-/* Animación del toast */
 @keyframes toastPopIn {
   0% {
     transform: translateY(30px) scale(0.95);
@@ -155,7 +221,6 @@ main {
   }
 }
 
-/* Responsive toast */
 @media (max-width: 500px) {
   .mi-toast {
     padding: 0.8rem 0.7rem 0.8rem 2.2rem !important;

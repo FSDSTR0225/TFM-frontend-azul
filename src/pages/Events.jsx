@@ -5,6 +5,7 @@ import EventCard from "../components/EventCard";
 import EventCardMini from "../components/EventCardMini";
 import EventDetails from "../components/EventDetails";
 import SearchAndCreateEvents from "../components/SearchAndCreateEvents";
+import { useLocation } from "react-router-dom";
 import "../style/Events.css";
 
 const API_URL = import.meta.env.VITE_API_URL;
@@ -14,10 +15,20 @@ const Events = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [eventDetails, setEventDetails] = useState(null); // Estado para almacenar los detalles del evento seleccionado
-  const [searchEvents, setSearchEvents] = useState("");
+  const [searchEvents, setSearchEvents] = useState(""); // Estado para almacenar la búsqueda de eventos
   const eventRefs = useRef({});
 
   const { isLoggedIn } = useContext(AuthContext);
+
+  const location = useLocation();
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const query = params.get("query");
+    if (query) {
+      setSearchEvents(query.toLocaleLowerCase());
+    }
+  }, [location.search]);
 
   useEffect(() => {
     const fetchEvents = async () => {
@@ -38,7 +49,7 @@ const Events = () => {
       }
     };
     fetchEvents();
-  }, []);
+  }, [location.search]); // Dependencia para recargar eventos al cambiar la búsqueda y location.search para que se actualice al cambiar la URL
 
   const handleEventClick = async (eventId) => {
     try {
@@ -132,6 +143,12 @@ const Events = () => {
   return (
     <div className="event-page">
       <h1 className="title-event-page">Explora y crea eventos</h1>
+      {/* {searchEvents && (
+        <div className="search-chip">
+          <span>{searchEvents}</span>
+          <button onClick={() => setSearchEvents("")}>✕</button>
+        </div>
+      )} */}
       <SearchAndCreateEvents
         isLoggedIn={isLoggedIn}
         searchEvents={searchEvents}

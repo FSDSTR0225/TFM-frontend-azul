@@ -47,7 +47,7 @@ function GameDetails() {
     return (
       <div className="loading-container">
         <PacmanLoader color="#FFD700" size={40} />
-        <h2>Cargando detalles...</h2>
+        <h2>Cargando ficha del juego...</h2>
       </div>
     );
   }

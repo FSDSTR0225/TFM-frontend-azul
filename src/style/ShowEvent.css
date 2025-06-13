@@ -187,3 +187,42 @@
     padding: 1.5rem;
   }
 }
+
+@media (max-width: 640px) {
+  .event-info {
+    padding-left: 0;
+    text-align: center;
+  }
+
+  .event-info h2 {
+    font-size: 1.5rem;
+  }
+
+  .event-info p,
+  .event-info li {
+    font-size: 0.9rem;
+  }
+
+  .event-title-show {
+    font-size: 1.1rem;
+  }
+
+  .event-description {
+    font-size: 0.8rem;
+  }
+
+  .event-preview {
+    height: 220px;
+    max-width: 100%;
+  }
+
+  .event-card-show.float-card {
+    height: auto;
+    padding: 1.2rem;
+  }
+
+  .event-image img {
+    width: 40%;
+    height: auto;
+  }
+}

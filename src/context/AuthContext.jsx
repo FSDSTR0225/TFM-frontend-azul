@@ -1,4 +1,6 @@
 import { createContext, useState, useEffect, useCallback } from "react";
+import { socket } from "../sockect";
+import { useRef } from "react";
 
 const AuthContext = createContext(); // Creamos el contexto
 
@@ -8,14 +10,23 @@ export const AuthProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false); // Estado de sesión
   const [loading, setLoading] = useState(true); // Estado de carga
 
+  const hasEmittedConnection = useRef(false);
+
   // ✔ Logout total
   const logout = useCallback(() => {
+    if (user?._id) {
+      //si hay usuario logueado
+      // Emitimos el evento de desconexión del usuario que se ha desconectado
+      socket.emit("userDisconnected", user._id); // Avisamos que cierra sesión manualmente
+    }
+    socket.disconnect(); // Desconectamos el socket al hacer logout
+
     setUser(null);
     setToken(null);
     setIsLoggedIn(false);
     localStorage.removeItem("user");
     setLoading(false);
-  }, []);
+  }, [user?._id]);
 
   const fetchUserProfile = useCallback(
     async (token) => {
@@ -32,6 +43,19 @@ export const AuthProvider = ({ children }) => {
         setUser(data.user);
         setToken(token);
         setIsLoggedIn(true);
+        if (!socket.connected) {
+          socket.connect(); // Conectamos el socket manualmente al iniciar sesión
+          socket.on("userConnected", (userId) => {
+            console.log(`Usuario ${userId} conectado`);
+          });
+
+          console.log("Socket conectado manualmente");
+        }
+
+        if (!hasEmittedConnection.current) {
+          socket.emit("userConnect", data.user._id); // Emitimos el evento de conexión del usuario que se ha conectado
+          hasEmittedConnection.current = true; // Marcar como emitido
+        }
       } catch (err) {
         console.error("Error al cargar perfil:", err.message);
         logout();

@@ -106,3 +106,45 @@
   transform: scale(1.05);
   box-shadow: 0 0 20px rgba(0, 255, 255, 0.6);
 }
+
+@media (max-width: 640px) {
+  .user-section {
+    padding: 3rem 1rem;
+  }
+
+  .user-section .section-title-user-list {
+    font-size: 1.4rem;
+    gap: 0.4rem;
+    margin-bottom: 2.5rem;
+    flex-direction: column;
+  }
+
+  .user-section .section-title-user-list img {
+    width: 28px;
+    height: 28px;
+  }
+
+  .user-list {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.2rem;
+  }
+
+  .user-card {
+    padding: 1.5rem 1rem;
+    max-width: 100%;
+  }
+
+  .username-mock-list {
+    font-size: 0.95rem;
+  }
+
+  .genre-tag {
+    font-size: 0.65rem;
+    padding: 3px 8px;
+  }
+
+  .user-card button {
+    font-size: 0.8rem;
+    padding: 0.4rem 0.9rem;
+  }
+}
