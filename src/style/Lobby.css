@@ -1,9 +1,9 @@
-body {
+/* body {
   background: url("/images/try.jpg"), linear-gradient(135deg, #0a0a0a, #003366);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
-}
+} */
 
 .lobby-content {
   margin: 0 auto;

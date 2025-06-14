@@ -3,13 +3,13 @@ import GridLayout from "react-grid-layout";
 import AuthContext from "../context/AuthContext";
 import "../style/WidgetSystem.css";
 import FriendsOnlineWidget from "./FriendsOnlineWidget";
-import EventCalendarWidget from "./EventCalendarWidget";
+import CalendarWidget from "./CalendarWidget";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
 const widgetComponents = {
-  friends: <FriendsOnlineWidget />,
-  calendar: <EventCalendarWidget />,
+  friends: () => <FriendsOnlineWidget />, //asi podemos pasar props si las necesitamos
+  calendar: () => <CalendarWidget />,
 };
 
 function WidgetSystem() {
@@ -28,18 +28,26 @@ function WidgetSystem() {
     fetchWidgets();
   }, [token]);
 
-  const layout = widgetList.map((widget, index) => ({
-    i: widget._id,
-    x: widget.x ?? (index * 2) % 12,
-    y: widget.y ?? Math.floor(index / 6),
-    w: widget.w ?? 3,
-    h: widget.h ?? 2,
-    minW: 2,
-    maxW: 12,
-    minH: 2,
-    maxH: 10,
-    static: false,
-  }));
+  const layout = widgetList.map((widget, index) => {
+    const layoutItem = {
+      i: widget._id,
+      x: widget.x ?? (index * 2) % 12,
+      y: widget.y ?? Math.floor(index / 6),
+      w: widget.w ?? 3,
+      h: widget.h ?? 2,
+      minW: 2,
+      maxW: 12,
+      minH: 2,
+      maxH: 10,
+      static: false,
+    };
+
+    if (widget.type === "calendar") {
+      console.log("📏 Tamaño del widget calendario:", layoutItem);
+    }
+
+    return layoutItem;
+  });
 
   // esta función se llama cuando se cambia la disposición de los widgets y actualiza la posición y tamaño de cada widget en el backend al soltar el widget en la nueva posición
   const handleLayoutChange = async (newLayout) => {
@@ -62,6 +70,7 @@ function WidgetSystem() {
       });
 
       const data = await res.json();
+      console.log("Widgets desde el backend:", data.widgets);
 
       if (res.ok) {
         setWidgetList(data.widgets); // opcional: actualiza el estado
@@ -73,6 +82,7 @@ function WidgetSystem() {
     }
   };
 
+  // Función para añadir el widget de amigos online
   const handleAddFriendsWidget = async () => {
     try {
       const res = await fetch(`${API_URL}/dashboard/widgets/friends`, {
@@ -94,10 +104,34 @@ function WidgetSystem() {
     }
   };
 
+  // Función para añadir el widget de calendario de eventos
+  const handleAddCalendarWidget = async () => {
+    try {
+      const resp = await fetch(`${API_URL}/dashboard/widgets/calendar`, {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (!resp.ok) {
+        throw new Error("Error al exportar widget Calendar");
+      }
+
+      const data = await resp.json();
+      setWidgetList(data.widgets);
+    } catch (error) {
+      console.error("Error al añadir widget:", error);
+    }
+  };
+
   return (
     <div className="widget-system">
       <button className="add-widget-btn" onClick={handleAddFriendsWidget}>
-        + Añadir widget de amigos
+        + Añadir widget de amigos online
+      </button>
+      <button className="add-widget-btn" onClick={handleAddCalendarWidget}>
+        + Añadir widget calendario de eventos
       </button>
       <GridLayout
         className="layout"
@@ -119,7 +153,7 @@ function WidgetSystem() {
       >
         {widgetList.map((widget) => (
           <div key={widget._id} className="widget-box">
-            {widgetComponents[widget.type]}
+            {widgetComponents[widget.type]?.()}
           </div>
         ))}
       </GridLayout>
