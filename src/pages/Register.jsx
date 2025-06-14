@@ -7,20 +7,22 @@ import { Button } from "@mui/material";
 import AuthContext from "../context/AuthContext";
 import sideImg from "/images/register/3.jpg";
 import RegisterSuccessModal from "../components/ModalMUI/RegisterSuccessModal.jsx";
+import { PacmanLoader } from "react-spinners";
 
 export default function Register() {
   const navigate = useNavigate();
   const authContext = useContext(AuthContext);
 
+  const API_URL = import.meta.env.VITE_API_URL;
+
   const [isShowModal, setIsShowModal] = useState(false);
   const [isModalSuccess, setIsModalSuccess] = useState(true);
+  const [error, setError] = useState(null);
 
   const modalText = {
     success: "Bienvenido a Link2PLay",
     fail: "Inténtalo de nuevo en unos minutos",
   };
-
-  const url = "http://localhost:3000/auth/register";
 
   const {
     register,
@@ -29,33 +31,32 @@ export default function Register() {
   } = useForm();
 
   const onSubmit = async (formDatas) => {
-    await fetch(url, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        username: formDatas.username,
-        email: formDatas.email,
-        password: formDatas.password,
-      }),
-    })
-      .then((res) => {
-        if (res.ok) {
-          setIsModalSuccess(true);
-          setTimeout(() => navigate("/lobby"), 2000);
-        } else {
-          setIsModalSuccess(false);
-        }
-        setIsShowModal(true);
-        return res.json();
-      })
-      .then((result) => {
-        authContext.login(result.access_token);
-      })
-      .catch((err) => {
-        console.error(err);
-        setIsModalSuccess(false);
-        setIsShowModal(true);
+    try {
+      const response = await fetch(`${API_URL}/auth/register`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          username: formDatas.username,
+          email: formDatas.email,
+          password: formDatas.password,
+        }),
       });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.message || "Error al registrar usuario");
+      }
+      authContext.login(result.access_token);
+      setIsModalSuccess(true);
+      setIsShowModal(true);
+      setTimeout(() => navigate("/lobby"), 2000);
+    } catch (error) {
+      console.error("Error en el registro", error.message);
+      setError({ message: error.message });
+      setIsModalSuccess(false);
+      setIsShowModal(true);
+    }
   };
 
   return (
@@ -76,6 +77,9 @@ export default function Register() {
         </div>
         <div className="RegisterForm__Container">
           <div className="RegisterForm__Title">Register Now</div>
+
+          {error && <p className="error">{error.message}</p>}
+
           <form className="RegisterForm" onSubmit={handleSubmit(onSubmit)}>
             <TextField
               className="RegisterForm__input"
@@ -143,6 +147,7 @@ export default function Register() {
         onClose={() => setIsShowModal(false)}
         isSuccess={isModalSuccess}
         modalText={modalText}
+        errorText={error?.message}
       />
     </div>
   );

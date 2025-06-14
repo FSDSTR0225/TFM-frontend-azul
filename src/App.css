@@ -158,6 +158,13 @@ h3,
   text-shadow: 0 0 10px #00f0ff;
 }
 
+.error {
+  color: #ff4d4f;
+  font-size: 0.9rem;
+  margin-top: 10px;
+  text-align: center;
+}
+
 /* Toast personalizado */
 .mi-toast {
   background: rgba(20, 30, 50, 0.92) !important;
