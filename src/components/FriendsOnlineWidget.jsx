@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useCallback } from "react";
 import AuthContext from "../context/AuthContext";
 import { PacmanLoader } from "react-spinners";
 import "../style/FriendsOnlineWidget.css";
@@ -6,35 +6,44 @@ import { socket } from "../sockect";
 const API_URL = import.meta.env.VITE_API_URL;
 
 function FriendsOnlineWidget() {
-  const [friends, setFriends] = useState([]);
+  const [onlineFriends, setOnlineFriends] = useState([]); // Estado para almacenar los amigos en línea
   const [loading, setLoading] = useState(true);
 
   const { token } = useContext(AuthContext);
 
-  useEffect(() => {
-    if (!token) return;
+  const fetchOnlineFriends = useCallback(async () => {
+    if (!token) return; // Si no hay token, no hacemos la petición
+    try {
+      const res = await fetch(`${API_URL}/friends/online`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
 
-    const fetchOnlineFriends = async () => {
-      try {
-        const res = await fetch(`${API_URL}/friends/online`, {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-
-        const data = await res.json();
-        setFriends(data.onlineFriends);
-      } catch (error) {
-        console.error("Error al cargar los amigos en línea:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchOnlineFriends();
+      const data = await res.json();
+      setOnlineFriends(data.onlineFriends);
+    } catch (error) {
+      console.error("Error al cargar los amigos en línea:", error);
+    } finally {
+      setLoading(false);
+    }
   }, [token]);
 
-  socket.on("userConnected", (userId) => {
-    console.log(`Usuario ${userId} conectado`);
-  });
+  useEffect(() => {
+    fetchOnlineFriends();
+  }, [fetchOnlineFriends]);
+
+  useEffect(() => {
+    if (!token) return;
+    const handleUserConnect = () => fetchOnlineFriends();
+    const handleUserDisconnect = () => fetchOnlineFriends();
+
+    socket.on("userConnected", handleUserConnect);
+    socket.on("userDisconnected", handleUserDisconnect);
+
+    return () => {
+      socket.off("userConnected", handleUserConnect);
+      socket.off("userDisconnected", handleUserDisconnect);
+    };
+  }, [token, fetchOnlineFriends]);
 
   if (!token) return null;
 
@@ -52,10 +61,10 @@ function FriendsOnlineWidget() {
   return (
     <div className="friends-online-widget">
       <h3>Amigos en línea</h3>
-      {friends.length === 0 ? (
+      {onlineFriends.length === 0 ? (
         <p>No hay amigos conectados ahora mismo.</p>
       ) : (
-        friends.map((friend) => (
+        onlineFriends.map((friend) => (
           <div key={friend.id} className="friend-item">
             <div className="avatar-online wrapper">
               <img
