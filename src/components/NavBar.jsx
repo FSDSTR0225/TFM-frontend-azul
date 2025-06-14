@@ -154,7 +154,12 @@ const NavBar = ({ showSearch }) => {
             <NavLink to="/users/me" id="perfil">
               <span
                 className="navbar-username"
-                data-fullname={authContext.user.username}
+                // data-fullname={authContext.user.username}
+                title={
+                  authContext.user.username.length > 12
+                    ? authContext.user.username
+                    : ""
+                }
               >
                 {authContext.user.username}
               </span>

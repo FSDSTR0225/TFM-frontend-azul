@@ -136,18 +136,18 @@
   font-weight: bold;
   font-size: 1rem;
   color: #00d1ff;
-  max-width: 130px; /* Ajusta el ancho,asi se ven 10 caracteres*/
+  max-width: 140px; /* Ajusta el ancho,asi se ven 10 caracteres*/
   text-overflow: ellipsis; /* Añade los puntos supensivos*/
   white-space: nowrap; /* Evista qeu salte de linea si es largo*/
   overflow: hidden; /* Oculta lo que sobrepasa el ancho*/
 }
 
 /* Para mostrar nombre completo al hacer hover*/
-.navbar-username:hover::after {
-  content: attr(data-fullname); /*Obtiene el valor del atributo data-fulltime*/
-  position: absolute;
-  top: 30px; /* bottom: 30px; para arriba */
-  right: -20px;
+/* .navbar-username:hover::after {
+  content: attr(data-fullname); Obtiene el valor del atributo data-fulltime */
+/* position: absolute; */
+/* top: 30px; bottom: 30px; para arriba */
+/* right: -20px;
   background: none;
   color: #00ffc8;
   padding: 4px 8px;
@@ -156,7 +156,7 @@
   font-size: 0.7rem;
   z-index: 999;
   pointer-events: none;
-}
+} */
 
 @keyframes dropdownFadeIn {
   from {
