@@ -19,10 +19,11 @@
   border-radius: 50%;
 }
 
-.marked-date {
-  background: #00ffff !important;
-  color: #000 !important;
+.event-day {
+  background: #ffd700 !important;
+  color: #222 !important;
   border-radius: 50%;
+  position: relative;
 }
 
 /* .marked-date {

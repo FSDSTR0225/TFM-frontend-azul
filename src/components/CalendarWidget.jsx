@@ -8,7 +8,7 @@ const API_URL = import.meta.env.VITE_API_URL;
 
 function CalendarWidget() {
   // const [events, setEvents] = useState([]);
-  const [markedDates, setMarkedDates] = useState([]); // Array para almacenar las fechas marcadas en el calendario
+  const [eventDates, setEventDates] = useState([]); // Array para almacenar las fechas marcadas en el calendario
 
   const { token } = useContext(AuthContext);
 
@@ -27,7 +27,7 @@ function CalendarWidget() {
         const dates = data.eventos.map((event) =>
           new Date(event.date).toDateString()
         ); // hacemos un map para obtener un array de fechas en formato string
-        setMarkedDates(dates); // Actualizamos el estado con las fechas marcadas
+        setEventDates(dates); // Actualizamos el estado con las fechas marcadas
       } catch (error) {
         console.error("Error al cargar eventos del usuario:", error);
       }
@@ -40,9 +40,9 @@ function CalendarWidget() {
 
   const tileClassName = ({ date, view }) => {
     if (view === "month") {
-      const dateStr = date.toDateString();
-      if (markedDates.includes(dateStr)) {
-        return "marked-date";
+      const dateStr = date.toDateString().split("T")[0]; // Convertimos la fecha a string y nos quedamos solo con la parte de la fecha, le hacemos un split para quitar la hora
+      if (eventDates.includes(dateStr)) {
+        return "event-day";
       }
     }
     return null;
