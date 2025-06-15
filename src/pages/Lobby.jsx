@@ -11,21 +11,21 @@ import { PacmanLoader } from "react-spinners";
 import "../style/Lobby.css";
 
 function Lobby() {
-  const [showLoading, setShowLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
 
   const authContext = useContext(AuthContext);
 
   useEffect(() => {
     if (authContext.user) {
       // Loading mínimo de 2 segundos
-      const timeout = setTimeout(() => setShowLoading(false), 1200);
+      const timeout = setTimeout(() => setLoading(false), 1200);
       return () => clearTimeout(timeout);
     }
   }, [authContext.user]);
 
   if (!authContext.user) return null;
 
-  if (showLoading) {
+  if (loading) {
     // Si está cargando, muestra...
     return (
       <div className="loading-container">
