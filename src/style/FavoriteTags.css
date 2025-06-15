@@ -1,21 +1,26 @@
 .favorite-tags-container {
-  padding: 20px;
+  padding: 28px 20px;
   max-width: 800px;
-  margin: 0 auto;
-  background: rgba(0, 0, 0, 0.6);
-  border-radius: 16px;
-  backdrop-filter: blur(8px);
+  margin: 32px auto;
+  background: rgba(20, 24, 32, 0.92);
+  border-radius: 18px;
+  box-shadow: 0 0 24px #222a, 0 2px 8px #000a;
+  backdrop-filter: blur(8px) saturate(110%);
   color: #fff;
+  border: 1.5px solid #23243a;
 }
 
 .favorite-tags-title {
-  font-size: 28px;
-  margin-bottom: 20px;
+  font-size: 2rem;
+  margin-bottom: 24px;
   text-align: center;
+  font-family: "AudioWide", Arial, sans-serif;
+  color: #66fcf1;
+  letter-spacing: 1px;
 }
 
 .tag-section {
-  margin-bottom: 30px;
+  margin-bottom: 32px;
 }
 
 .tag-title {
@@ -28,6 +33,7 @@
 .tag-chip-container {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center; /* ✅ Aquí se centra horizontalmente */
   gap: 8px;
   margin-bottom: 10px;
 }
@@ -35,18 +41,23 @@
 .tag-chip {
   display: inline-flex;
   align-items: center;
-  background-color: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 20px;
-  padding: 6px 12px;
-  font-size: 14px;
+  background: #23243a;
+  border: 1px solid #444;
+  border-radius: 18px;
+  padding: 6px 14px;
+  font-size: 1rem;
   color: #fff;
-  backdrop-filter: blur(4px);
-  transition: background-color 0.2s ease;
+  font-family: "Poppins", Arial, sans-serif;
+  box-shadow: 0 2px 8px #2224;
+  transition: background 0.2s, color 0.2s, border 0.2s;
+  cursor: pointer;
+  position: relative;
 }
 
 .tag-chip:hover {
-  background-color: rgba(255, 255, 255, 0.2);
+  background: #31344a;
+  color: #ffd700;
+  border: 1px solid #ffd700;
 }
 
 .tag-chip button {
@@ -65,43 +76,77 @@
 }
 
 .tag-toggle-btn {
-  margin-top: 6px;
-  background-color: #444;
-  border: none;
-  padding: 6px 12px;
-  border-radius: 6px;
-  color: white;
+  margin-top: 8px;
+  background: #23243a;
+  border: 1px solid #444;
+  padding: 7px 18px;
+  border-radius: 8px;
+  color: #66fcf1;
+  font-weight: 600;
+  font-family: "Poppins", Arial, sans-serif;
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  box-shadow: 0 0 8px #2224;
+  transition: background 0.2s, color 0.2s, border 0.2s;
+  letter-spacing: 0.5px;
 }
 
 .tag-toggle-btn:hover {
-  background-color: #666;
+  background: #31344a;
+  color: #ffd700;
+  border: 1px solid #ffd700;
 }
 
 .tag-options-list {
-  margin-top: 10px;
-  padding: 10px;
-  background-color: #111;
-  border: 1px solid #333;
-  border-radius: 10px;
+  margin-top: 12px;
+  padding: 12px 8px;
+  background: #181a2a;
+  border: 1px solid #23243a;
+  border-radius: 12px;
   list-style: none;
   max-width: 100%;
+  box-shadow: 0 0 8px #2224;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
 .tag-option {
-  padding: 8px 10px;
+  padding: 7px 14px;
   cursor: pointer;
-  border-bottom: 1px solid #222;
-  transition: background-color 0.2s ease;
+  border-radius: 14px;
+  background: #23243a;
+  color: #fff;
+  font-size: 1rem;
+  margin: 2px 0;
+  border: 1px solid transparent;
+  transition: background 0.2s, color 0.2s, border 0.2s;
+  font-family: "Poppins", Arial, sans-serif;
 }
 
 .tag-option:hover {
-  background-color: #222;
+  background: #31344a;
+  color: #ffd700;
+  border: 1px solid #ffd700;
 }
 
 .loading-text {
   text-align: center;
-  font-size: 18px;
-  color: #ccc;
+  font-size: 1.1rem;
+  color: #66fcf1;
+  margin-top: 18px;
+  letter-spacing: 1px;
+}
+
+/* Responsive */
+@media (max-width: 700px) {
+  .favorite-tags-container {
+    padding: 10px 2px;
+    max-width: 98vw;
+  }
+
+  .tag-chip,
+  .tag-option {
+    font-size: 0.95rem;
+    padding: 6px 10px;
+  }
 }
