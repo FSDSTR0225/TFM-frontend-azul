@@ -1,0 +1,107 @@
+.favorite-tags-container {
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 16px;
+  backdrop-filter: blur(8px);
+  color: #fff;
+}
+
+.favorite-tags-title {
+  font-size: 28px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.tag-section {
+  margin-bottom: 30px;
+}
+
+.tag-title {
+  font-size: 20px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding-bottom: 4px;
+}
+
+.tag-chip-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.tag-chip {
+  display: inline-flex;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  padding: 6px 12px;
+  font-size: 14px;
+  color: #fff;
+  backdrop-filter: blur(4px);
+  transition: background-color 0.2s ease;
+}
+
+.tag-chip:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.tag-chip button {
+  background: none;
+  border: none;
+  color: #ff6666;
+  margin-left: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0;
+}
+
+.tag-chip button:hover {
+  color: #ff4c4c;
+}
+
+.tag-toggle-btn {
+  margin-top: 6px;
+  background-color: #444;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.tag-toggle-btn:hover {
+  background-color: #666;
+}
+
+.tag-options-list {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #111;
+  border: 1px solid #333;
+  border-radius: 10px;
+  list-style: none;
+  max-width: 100%;
+}
+
+.tag-option {
+  padding: 8px 10px;
+  cursor: pointer;
+  border-bottom: 1px solid #222;
+  transition: background-color 0.2s ease;
+}
+
+.tag-option:hover {
+  background-color: #222;
+}
+
+.loading-text {
+  text-align: center;
+  font-size: 18px;
+  color: #ccc;
+}

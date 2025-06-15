@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 import blankImg from "/images/profile/blankImg.jpg";
 import { PacmanLoader } from "react-spinners";
 import { useNavigate } from "react-router-dom";
+import FavoriteTags from "./FavoriteTags";
 
 const ProfileCard = () => {
   const { setUser, token, user, isLoggedIn } = useContext(AuthContext);
@@ -19,7 +20,7 @@ const ProfileCard = () => {
   const triggerRefresh = () => {
     setRefreshKey((prev) => prev + 1);
   };
-  
+
   useEffect(() => {
     const fetchProfile = async () => {
       try {
@@ -30,7 +31,7 @@ const ProfileCard = () => {
         });
         if (!response.ok) throw new Error("Error al obtener detalles");
         const data = await response.json();
-      setUser(data.user);
+        setUser(data.user);
       } catch (error) {
         console.error("Error al obtener el perfil:", error);
       }
@@ -38,8 +39,6 @@ const ProfileCard = () => {
     fetchProfile();
   }, []);
 
-
-  
   useEffect(() => {
     const fetchProfile = async () => {
       try {
@@ -60,7 +59,6 @@ const ProfileCard = () => {
     }
   }, [refreshKey, isLoggedIn, token, API_URL, setUser]);
 
-
   if (!isLoggedIn) {
     navigate("/login");
   }
@@ -72,7 +70,7 @@ const ProfileCard = () => {
     <div className="profile-card">
       <div className="avatar-container">
         <img className="avatar" src={user.avatar || blankImg} alt="Avatar" />
-        <Link to="/edit/profile"  className="edit-button">
+        <Link to="/edit/profile" className="edit-button">
           ✏️{" "}
         </Link>
       </div>
@@ -82,7 +80,10 @@ const ProfileCard = () => {
         triggerRefresh={triggerRefresh}
         platforms={user.platforms || ["khKH", "hgygsdy", "ygyas"]}
       />
-      <FriendsList triggerRefresh={triggerRefresh} friends={user.friends || ["khKH", "hgygsdy", "ygyas"]}/>
+      <FriendsList
+        triggerRefresh={triggerRefresh}
+        friends={user.friends || ["khKH", "hgygsdy", "ygyas"]}
+      />
       <FavoriteGamesList
         triggerRefresh={triggerRefresh}
         games={user.favoriteGames || ["khKH", "hgygsdy", "ygyas"]}
@@ -91,6 +92,7 @@ const ProfileCard = () => {
         triggerRefresh={triggerRefresh}
         events={user.events || ["khKH", "hgygsdy", "ygyas"]}
       />
+      <FavoriteTags user={user} />
     </div>
   );
 };
