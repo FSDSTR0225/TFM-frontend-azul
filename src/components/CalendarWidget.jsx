@@ -24,7 +24,9 @@ function CalendarWidget() {
 
         // setEvents(data);
 
-        const dates = data.map((event) => new Date(event.date).toDateString()); // hacemos un map para obtener un array de fechas en formato string
+        const dates = data.eventos.map((event) =>
+          new Date(event.date).toDateString()
+        ); // hacemos un map para obtener un array de fechas en formato string
         setMarkedDates(dates); // Actualizamos el estado con las fechas marcadas
       } catch (error) {
         console.error("Error al cargar eventos del usuario:", error);

@@ -1,6 +1,7 @@
 import { createContext, useState, useEffect, useCallback } from "react";
 import { socket } from "../sockect";
 import { useRef } from "react";
+import { useNavigate } from "react-router-dom";
 
 const AuthContext = createContext(); // Creamos el contexto
 
@@ -8,9 +9,12 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null); // Info del usuario
   const [token, setToken] = useState(null); // Token JWT
   const [isLoggedIn, setIsLoggedIn] = useState(false); // Estado de sesión
+  const [islogout, setIsLogout] = useState(false); // Estado de logout
   const [loading, setLoading] = useState(true); // Estado de carga
 
   const hasEmittedConnection = useRef(false);
+
+  const navigate = useNavigate();
 
   // ✔ Logout total
   const logout = useCallback(() => {
@@ -26,7 +30,9 @@ export const AuthProvider = ({ children }) => {
     setIsLoggedIn(false);
     localStorage.removeItem("user");
     setLoading(false);
-  }, [user?._id]);
+    setIsLogout(true);
+    navigate("/");
+  }, [user?._id, navigate]);
 
   const fetchUserProfile = useCallback(
     async (token) => {
@@ -43,6 +49,7 @@ export const AuthProvider = ({ children }) => {
         setUser(data.user);
         setToken(token);
         setIsLoggedIn(true);
+        setIsLogout(false);
         if (!socket.connected) {
           socket.connect(); // Conectamos el socket manualmente al iniciar sesión
           console.log("Socket conectado al iniciar sesión");
@@ -90,7 +97,7 @@ export const AuthProvider = ({ children }) => {
   const login = async (token) => {
     localStorage.setItem("user", JSON.stringify({ token }));
     await fetchUserProfile(token);
-
+    setIsLogout(false);
     setIsLoggedIn(true);
   };
 
@@ -104,6 +111,7 @@ export const AuthProvider = ({ children }) => {
         login,
         logout,
         loading,
+        islogout,
       }}
     >
       {children}
