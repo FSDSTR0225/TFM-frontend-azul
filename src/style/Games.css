@@ -73,6 +73,9 @@
   filter: blur(6px) brightness(0.6);
   z-index: -2;
 } */
+.games-section {
+  margin-top: 4rem;
+}
 
 .unified-glass-block {
   background: rgba(0, 0, 0, 0.107);
@@ -82,21 +85,21 @@
   max-width: 1600px;
   width: 100%;
   box-shadow: 0 0 40px #00f0ff33;
-  animation: fadeInUp 0.8s ease forwards;
+  animation: fadeInUpSoft 2.2s cubic-bezier(0.33, 1, 0.68, 1) forwards;
+  animation-delay: 0.15s;
+  will-change: transform, opacity, filter;
 }
 
-.games-section {
-  margin-top: 4rem;
-}
-
-@keyframes fadeInUp {
+@keyframes fadeInUpSoft {
   0% {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(20px) scale(0.995);
+    filter: blur(3px);
   }
   100% {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
+    filter: blur(0);
   }
 }
 
