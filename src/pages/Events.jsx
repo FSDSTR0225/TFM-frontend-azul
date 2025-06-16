@@ -164,7 +164,7 @@ const Events = () => {
           <div className="mini-events-grid">
             {[...filteredEvents]
               .sort((a, b) => new Date(a.date) - new Date(b.date)) // ordenar de más próximo a más lejano
-              .slice(0, 6)
+              .slice(0, 5)
               .map((event) => (
                 <EventCardMini
                   key={event.id}

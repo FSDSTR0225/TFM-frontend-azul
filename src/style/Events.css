@@ -227,8 +227,13 @@
 }
 .mini-events-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 12px;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+  justify-items: center;
+  padding: 0 1rem;
+  margin: 2rem auto;
+  width: 100%;
+  max-width: 1400px;
 }
 .mini-events-section {
   margin-bottom: 30px;
