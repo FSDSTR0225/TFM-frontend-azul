@@ -254,26 +254,41 @@
 .react-datepicker__time-box {
   background: linear-gradient(135deg, #23243a 80%, #2a2b4a 100%) !important;
   border: 1.5px solid rgba(0, 255, 200, 0.15);
-  border-radius: 16px;
+  border-radius: 2px; /* variar*/
   box-shadow: 0 0 20px #00ffc822;
   color: #00ffc8;
-  font-family: "Orbitron", sans-serif;
+  font-family: "Audiowide", "Orbitron", sans-serif;
   backdrop-filter: blur(10px);
 }
 
 .react-datepicker__current-month {
-  font-size: 1.2rem;
+  font-size: 1.1rem !important;
   font-weight: bold;
   color: #00ffc8;
   text-shadow: 0 0 6px #00ffc8aa;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.5rem !important;
+}
+
+.react-datepicker__day--keyboard-selected {
+  background-color: #00ffc88d;
+  color: #f2f3ef;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #00ffc822;
+}
+
+.react-datepicker-time__header {
+  background: linear-gradient(135deg, #23243a 80%, #2a2b4a 100%);
+  color: #00ffc8;
+  font-weight: bold;
+  font-size: 1.1rem;
+  text-shadow: 0 0 12px #00ffc8cc, 0 0 2px #a259ff;
 }
 
 .react-datepicker__day,
 .react-datepicker__day-name,
 .react-datepicker__time-list-item {
   color: #ccc;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   transition: background 0.2s ease, color 0.2s ease;
   text-align: center;
 }
