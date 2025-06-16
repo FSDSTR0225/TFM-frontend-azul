@@ -247,7 +247,7 @@
 }
 
 .section-title-next-events {
-  font-size: 1.4rem;
+  font-size: 2rem;
   margin-bottom: 2rem;
   text-align: center;
   color: #00ffc8 !;
@@ -296,6 +296,43 @@
 .search-chip button:hover {
   transform: scale(1.1);
   color: #ff4e4e;
+}
+
+.pagination-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-top: 2rem;
+}
+
+.pagination-controls button {
+  background-color: #1f2833;
+  border: 1px solid #66fcf1;
+  color: #66fcf1;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-family: "Audiowide", sans-serif;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 1.1rem;
+}
+
+.pagination-controls span {
+  color: #66fcf1;
+  font-family: "Audiowide", sans-serif;
+  font-size: 1.1rem;
+  margin: 0 8px;
+}
+
+.pagination-controls button:hover:not(:disabled) {
+  background-color: #0b0c10;
+  border-color: #00fff7;
+}
+
+.pagination-controls button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
 }
 
 @media (max-width: 900px) {

@@ -1,13 +1,5 @@
 .event-card-pro {
-  background: linear-gradient(
-    to right,
-    #0b0c10,
-    #1f2833
-  ); /*  background: linear-gradient(
-    135deg,
-    rgba(10, 20, 40, 0.92) 70%,
-    rgba(30, 40, 60, 0.96) 100%
-  );*/
+  background: linear-gradient(to right, #0b0c10, #1f2833);
   border-radius: 22px;
   padding: 1.7rem 2.2rem 1.5rem 2.2rem;
   margin: 1.7rem auto;
@@ -130,13 +122,14 @@
 
 .btn-card-event-pro {
   background: linear-gradient(135deg, #00ffc8 60%, #a259ff 100%);
-  color: #23243a;
+  color: rgb(54, 52, 52);
   border: none;
   border-radius: 100px;
   font-weight: bold;
   font-size: 1.07rem;
   padding: 0.7em 2.2em;
   cursor: pointer;
+  font-family: "Audiowide", sans-serif;
   box-shadow: 0 2px 12px #00ffc822;
   transition: background 0.18s, color 0.18s, transform 0.12s;
 }

@@ -16,7 +16,10 @@ const Events = () => {
   const [error, setError] = useState(null);
   const [eventDetails, setEventDetails] = useState(null); // Estado para almacenar los detalles del evento seleccionado
   const [searchEvents, setSearchEvents] = useState(""); // Estado para almacenar la búsqueda de eventos
+  const [currentPage, setCurrentPage] = useState(1); // Estado para la paginación
+
   const eventRefs = useRef({});
+  const eventsPerPage = 10;
 
   const { isLoggedIn } = useContext(AuthContext);
 
@@ -85,6 +88,23 @@ const Events = () => {
       event.title?.toLowerCase().includes(searchEvents.toLowerCase()) ||
       event.game?.name?.toLowerCase().includes(searchEvents.toLowerCase())
   );
+
+  const indexOfLastEvent = currentPage * eventsPerPage; // Índice del último evento en la página actual = pagina actual * eventos por página,ej: si estamos en la página 1 y hay 10 eventos por página, indexOfLastEvent será 10
+  const indexOfFirstEvent = indexOfLastEvent - eventsPerPage; // Índice del primer evento en la página actual = índice del último evento - eventos por página, ej: si estamos en la página 1(10*1) y hay 10 eventos por página, indexOfFirstEvent será 0(10-10)
+  const currentEvents = filteredEvents.slice(
+    indexOfFirstEvent,
+    indexOfLastEvent
+  ); // usamos .slice para obtener los eventos de la página actual, ej: si estamos en la página 1 y hay 10 eventos por página, currentEvents será los eventos del 0 al 9
+  const totalPages = Math.ceil(filteredEvents.length / eventsPerPage); // Total de páginas = número total de eventos / eventos por página, ej: si hay 25 eventos y hay 10 eventos por página, totalPages será 3 (25/10=2.5, redondeado a 3)math.ceil redondea hacia arriba el número de páginas totales.
+
+  // Funciones para manejar la paginación
+  const handleNextPage = () => {
+    if (currentPage < totalPages) setCurrentPage(currentPage + 1);
+  };
+
+  const handlePrevPage = () => {
+    if (currentPage > 1) setCurrentPage(currentPage - 1);
+  };
 
   const { token } = useContext(AuthContext); // para enviar el token al backend
 
@@ -186,7 +206,7 @@ const Events = () => {
             No hay eventos disponibles en este momento.
           </p>
         ) : (
-          filteredEvents.map((event) => (
+          currentEvents.map((event) => (
             <div
               key={event.id}
               ref={(el) => (eventRefs.current[event.id] = el)} // <--- Aquí asignas la ref
@@ -201,6 +221,22 @@ const Events = () => {
           ))
         )}
       </section>
+      {totalPages > 1 && (
+        <div className="pagination-controls">
+          <button onClick={handlePrevPage} disabled={currentPage === 1}>
+            ← Anterior
+          </button>
+          <span>
+            {currentPage} / {totalPages}
+          </span>
+          <button
+            onClick={handleNextPage}
+            disabled={currentPage === totalPages}
+          >
+            Siguiente →
+          </button>
+        </div>
+      )}
 
       {eventDetails && (
         <EventDetails
