@@ -1,9 +1,11 @@
 .event-card-pro {
   background: linear-gradient(to right, #0b0c10, #1f2833);
-  border-radius: 22px;
-  padding: 1.7rem 2.2rem 1.5rem 2.2rem;
-  margin: 1.7rem auto;
-  width: 1200px;
+  border-radius: 20px;
+  padding: 2.2rem 2.5rem 2rem 2.5rem;
+  margin: 2.2rem auto;
+  width: 100%;
+  max-width: 900px;
+  min-width: 320px;
   box-shadow: 0 0 32px #00ffc8cc, 0 0 0 2px #23243a;
   border: 2px solid rgba(0, 255, 200, 0.13);
   color: #fff;
@@ -12,12 +14,18 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  gap: 1.2rem;
+  gap: 1.5rem;
   animation: modalPopIn 0.25s cubic-bezier(0.68, -0.55, 0.27, 1.55);
 }
+
 .event-card-pro:hover {
   transform: translateY(-6px) scale(1.02);
   box-shadow: 0 0 36px #00ffc8cc, 0 0 0 2.5px #a259ff;
+}
+
+.event-card-pro:hover {
+  transform: translateY(-8px) scale(1.025);
+  box-shadow: 0 8px 36px #00ffc8cc, 0 0 0 2.5px #a259ff;
 }
 
 .event-header-pro {
@@ -29,8 +37,8 @@
 }
 
 .platform-icon-event {
-  width: 35px;
-  height: 35px;
+  width: 55px;
+  height: 55px;
   margin-top: 0.6rem;
   margin-bottom: 0.6rem;
   object-fit: contain;
@@ -138,6 +146,140 @@
   color: #fff;
   transform: scale(1.07);
 }
+
+/*
+.event-header-pro {
+  display: flex;
+  align-items: center;
+  gap: 1.3rem;
+  margin-bottom: 1.2rem;
+  position: relative;
+}
+
+.platform-icon-event {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 8px #00ffffcc);
+  transition: transform 0.3s;
+}
+
+.event-title-pro {
+  flex: 1 1 auto;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #00ffc8;
+  text-shadow: 0 0 10px #00ffc8cc;
+  margin: 0 1.2rem;
+  letter-spacing: 0.7px;
+  font-family: "Audiowide", "Orbitron", "Poppins", sans-serif;
+}
+
+.event-date-badge {
+  background: #a259ffcc;
+  color: #fff;
+  border-radius: 10px;
+  padding: 0.5em 1.2em;
+  font-size: 1.08rem;
+  font-weight: 600;
+  box-shadow: 0 0 10px #a259ff55;
+  text-align: right;
+  line-height: 1.2;
+  letter-spacing: 0.5px;
+  font-family: "Poppins", Arial, sans-serif;
+}
+
+.event-main-pro {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1.2rem 2.2rem;
+  margin-bottom: 1.2rem;
+}
+
+.event-info-block {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  font-size: 1.08rem;
+  color: #ddd;
+  font-weight: 500;
+  background: rgba(0, 255, 200, 0.09);
+  border-radius: 10px;
+  padding: 0.6em 1.3em;
+  box-shadow: 0 0 10px #00ffc822;
+  min-width: 180px;
+  transition: background 0.2s, color 0.2s;
+}
+
+.event-info-label {
+  color: #00ffc8;
+  font-weight: 600;
+  margin-right: 0.2em;
+}
+
+.event-info-value {
+  color: #fff;
+  font-weight: 600;
+}
+
+.participants {
+  color: #00ffe5;
+  font-weight: bold;
+  background: rgba(0, 255, 200, 0.13);
+}
+
+.full {
+  color: #ff6b6b;
+  font-weight: bold;
+  background: rgba(255, 107, 107, 0.18);
+  box-shadow: 0 0 12px #ff6b6b55;
+}
+
+.event-icon {
+  font-size: 1.15em;
+  margin-right: 0.2em;
+}
+
+.event-description {
+  font-size: 1.08rem;
+  color: #e0e0e0;
+  margin: 0.7rem 0 0.2rem 0;
+  line-height: 1.5;
+  font-family: "Poppins", Arial, sans-serif;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 8px;
+  padding: 0.7em 1.2em;
+  box-shadow: 0 0 6px #00ffc811;
+}
+
+.event-btn-block-centered {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1.2rem;
+}
+
+.btn-card-event-pro {
+  background: linear-gradient(135deg, #00ffc8 60%, #a259ff 100%);
+  color: #23243a;
+  border: none;
+  border-radius: 100px;
+  font-weight: bold;
+  font-size: 1.09rem;
+  padding: 0.8em 2.4em;
+  cursor: pointer;
+  font-family: "Audiowide", "Orbitron", "Poppins", sans-serif;
+  box-shadow: 0 2px 12px #00ffc822;
+  transition: background 0.18s, color 0.18s, transform 0.12s;
+}
+.btn-card-event-pro:hover {
+  background: linear-gradient(135deg, #a259ff 60%, #00ffc8 100%);
+  color: #fff;
+  transform: scale(1.07);
+}
+  */
 
 /* Responsive */
 @media (max-width: 700px) {
