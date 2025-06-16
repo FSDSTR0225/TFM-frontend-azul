@@ -26,6 +26,7 @@
   flex-direction: column;
   gap: 15px;
   width: 250px;
+  height: 160px;
 }
 
 .mini-event-card:hover {
