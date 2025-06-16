@@ -33,6 +33,7 @@
   gap: clamp(10px, 4vw, 34px); /* rESPONSIVE GAP*/
   list-style: none;
   align-items: center;
+  gap: 4rem;
   margin: 0;
   padding: 0;
   font-family: "Audiowide", sans-serif;
