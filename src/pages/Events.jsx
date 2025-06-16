@@ -143,18 +143,21 @@ const Events = () => {
   return (
     <div className="event-page">
       <h1 className="title-event-page">Explora y crea eventos</h1>
+
       {/* {searchEvents && (
         <div className="search-chip">
           <span>{searchEvents}</span>
           <button onClick={() => setSearchEvents("")}>✕</button>
         </div>
       )} */}
-      <SearchAndCreateEvents
-        isLoggedIn={isLoggedIn}
-        searchEvents={searchEvents}
-        setSearchEvents={setSearchEvents}
-        onCreate={handleCreateEvent}
-      />
+      <div className="center-search-create">
+        <SearchAndCreateEvents
+          isLoggedIn={isLoggedIn}
+          searchEvents={searchEvents}
+          setSearchEvents={setSearchEvents}
+          onCreate={handleCreateEvent}
+        />
+      </div>
 
       <section className="mini-events-section">
         <h2 className="section-title-next-events">Próximos Eventos</h2>
