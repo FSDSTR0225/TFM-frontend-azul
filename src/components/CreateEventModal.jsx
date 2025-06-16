@@ -283,7 +283,7 @@ function CreateEventModal({ onClose, onCreate }) {
             onChange={handleChange}
             min={0}
             max={10}
-            pattern="[0-9]*" // Asegura que solo se ingresen números
+            pattern="[0-9]*" // Pas solo números
             title="Máximo de participantes, 0 para sin límite"
           />
 
