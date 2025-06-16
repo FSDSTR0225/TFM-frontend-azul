@@ -100,8 +100,9 @@
   background: #55e39e;
   color: #f8f6f6;
   border-radius: 50%;
+  transform: scale(0.88);
   position: relative;
-  box-shadow: 0 0 12px #ffd70088, 0 0 2px #fff;
+  box-shadow: 0 0 12px #ffd70088, 0 0 2px #070707;
   font-weight: bold;
 }
 
