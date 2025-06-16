@@ -41,7 +41,7 @@ function EventCard({ event, onClick }) {
           <span className="event-icon">👥</span>
           <span className="event-info-label">Participantes:</span>
           <span className="event-info-value">
-            {event.maxParticipants
+            {event.maxParticipants && event.participants.lengt > 0
               ? `${event.participants}/${event.maxParticipants}`
               : "Sin límite"}
           </span>

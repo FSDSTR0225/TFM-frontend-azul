@@ -131,7 +131,7 @@ function EventDetails({ event, onClose, setSelectedEvent, onEventDeleted }) {
         <span className="close-btn" onClick={onClose} aria-label="Cerrar modal">
           ✖
         </span>
-        <div className="details-event-content">
+        <section className="details-event-content">
           <div className="event-organizer">
             {event.creatorAvatar && (
               <img
@@ -155,12 +155,12 @@ function EventDetails({ event, onClose, setSelectedEvent, onEventDeleted }) {
             </p>
           </div>
 
-          <section className="modal-description">
+          <div className="modal-description">
             <h3>📝 Descripción</h3>
             <p>{event.description}</p>
-          </section>
+          </div>
 
-          <section className="modal-participants">
+          <div className="modal-participants">
             <h3>👥 Participantes</h3>
             {event.participants.length === 0 ? (
               <p>No hay participantes aún.</p>
@@ -180,8 +180,8 @@ function EventDetails({ event, onClose, setSelectedEvent, onEventDeleted }) {
                 ))}
               </ul>
             )}
-          </section>
-        </div>
+          </div>
+        </section>
 
         {!isCreator && !isParticipant && (
           <div className="event-actions">

@@ -289,7 +289,7 @@ function EditEventForm({ event, onClose, onUpdate }) {
             placeholder="Máximo de participantes (opcional)"
             value={formData.maxParticipants}
             onChange={handleChange}
-            min={1}
+            min={0}
           />
 
           <label className="checkbox-label">

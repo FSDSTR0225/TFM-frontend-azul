@@ -72,8 +72,8 @@
 }
 
 .event-platform-icon-corner {
-  width: 42px;
-  height: 42px;
+  width: 55px;
+  height: 55px;
   object-fit: contain;
   filter: drop-shadow(0 0 6px #00ffffcc);
   transition: transform 0.3s ease;
@@ -114,14 +114,20 @@
 .organizer-name {
   font-weight: 600;
   color: #00ffc8;
+  font-family: "Audiowide", "Orbitron", "Montserrat", sans-serif;
 }
 
 .event-info {
   margin-bottom: 1.2rem;
   z-index: 2;
   position: relative;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 0.2rem;
 }
 .event-info p {
+  font-family: "Audiowide", "Orbitron", "Montserrat", sans-serif;
   margin: 0.5rem 0;
   font-size: 1.05rem;
   color: #e0e0e0;
@@ -130,13 +136,13 @@
 .event-info span {
   font-weight: bold;
   color: #00e6ff;
-  text-shadow: 0 0 4px #00ffc8aa;
 }
 
 .modal-description {
   margin-top: 1.2rem;
   z-index: 2;
   position: relative;
+  font-family: "Audiowide", "Orbitron", "Montserrat", sans-serif;
 }
 .modal-description h3 {
   color: #00ffc8;
@@ -154,6 +160,7 @@
   margin-top: 1.6rem;
   z-index: 2;
   position: relative;
+  font-family: "Audiowide", "Orbitron", "Montserrat", sans-serif;
 }
 .modal-participants h3 {
   color: #a259ff;
@@ -317,9 +324,15 @@
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: auto;
+  grid-template-areas:
+    "header"
+    "info"
+    "description"
+    "participants"
+    "actions";
   gap: 1.2rem;
   padding: 1.2rem;
-  margin-top: 1.2rem;
+  margin: 0 auto !important;
   z-index: 2;
   position: relative;
 }
@@ -353,7 +366,7 @@
   background: linear-gradient(90deg, #00ffc8 0%, #5f8eff 100%);
   color: #0d0d1f;
   font-family: "Audiowide", "Orbitron", "Montserrat", sans-serif;
-  font-size: 0.8em;
+  font-size: 0.95em;
   font-weight: 700;
   padding: 0.7rem 1.7rem;
   border: none;
@@ -387,7 +400,7 @@
   background: linear-gradient(90deg, #ff1744 0%, #ff5e62 100%);
   color: #fff;
   font-family: "Audiowide", "Orbitron", "Montserrat", sans-serif;
-  font-size: 0.8em;
+  font-size: 0.95em;
   font-weight: 700;
   padding: 0.7rem 1.2rem;
   border: none;

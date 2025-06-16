@@ -278,20 +278,24 @@ function CreateEventModal({ onClose, onCreate }) {
           <input
             type="number"
             name="maxParticipants"
-            placeholder="Máximo de participantes (opcional)"
+            placeholder="Máximo de participantes, 0 para sin límite"
             value={formData.maxParticipants}
             onChange={handleChange}
-            min={1}
+            min={0}
+            max={10}
+            pattern="[0-9]*" // Asegura que solo se ingresen números
+            title="Máximo de participantes, 0 para sin límite"
           />
 
           <label className="checkbox-label">
             <input
+              title="Marca si el evento es privado"
               type="checkbox"
               name="requiresApproval"
               checked={formData.requiresApproval}
               onChange={handleChange}
             />
-            ¿Requiere aprobación?
+            ¿Evento privado?
           </label>
 
           <button type="submit" className="submit-button">
