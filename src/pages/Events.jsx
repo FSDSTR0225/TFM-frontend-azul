@@ -157,9 +157,9 @@ const Events = () => {
       />
 
       <section className="mini-events-section">
-        <h2 className="section-title">Proximos Eventos</h2>
+        <h2 className="section-title-next-events">Próximos Eventos</h2>
         {filteredEvents.length === 0 ? (
-          <p>No hay eventos disponibles en este momento.</p>
+          <p></p>
         ) : (
           <div className="mini-events-grid">
             {[...filteredEvents]
@@ -177,8 +177,11 @@ const Events = () => {
       </section>
 
       <section className="all-events">
+        <p className="section-title-next-events">Eventos disponibles</p>
         {filteredEvents.length === 0 ? (
-          <p>No hay eventos disponibles en este momento.</p>
+          <p className="no-events-title">
+            No hay eventos disponibles en este momento.
+          </p>
         ) : (
           filteredEvents.map((event) => (
             <div

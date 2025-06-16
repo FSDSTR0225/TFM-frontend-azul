@@ -12,6 +12,8 @@
   background: linear-gradient(to right, #0b0c10, #1f2833);
   border: 1px solid #66fcf1;
   border-radius: 12px;
+  font-family: "Audiowide", sans-serif;
+  margin-top: 2rem;
   padding: 12px;
   color: #c5c6c7;
   transition: transform 0.2s ease;

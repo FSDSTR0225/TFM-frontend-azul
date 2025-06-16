@@ -14,12 +14,12 @@
   margin-bottom: 2rem;
 }
 
-h1 {
+.header-management-content h1 {
   font-size: 2rem;
   margin-bottom: 0.3rem;
 }
 
-p {
+.header-management-content p {
   margin-bottom: 1.5rem;
   font-size: 1rem;
   color: #aaa;
