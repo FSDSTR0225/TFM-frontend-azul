@@ -1,5 +1,8 @@
 import React from "react";
 import "../style/EventCard.css";
+import { BsController } from "react-icons/bs";
+import { RiTeamFill } from "react-icons/ri";
+import { GiBossKey } from "react-icons/gi";
 
 function formatDateTime(dateString) {
   const date = new Date(dateString);
@@ -26,19 +29,25 @@ function EventCard({ event, onClick }) {
           className="platform-icon-event"
         />
         <h3 className="event-title-pro">{event.title}</h3>
-        <span className="event-icon">🧑‍💼</span>
+        <span className="event-icon">
+          <GiBossKey />
+        </span>
         <span className="event-info-label">Creador:</span>
         <span className="event-date-badge">{event.creator.username}</span>
       </div>
 
       <div className="event-main-pro">
         <div className="event-info-block">
-          <span className="event-icon">🎮</span>
+          <span className="event-icon">
+            <BsController />
+          </span>
           <span className="event-info-label">Juego:</span>
           <span className="event-info-value">{event.game.name}</span>
         </div>
         <div className={`event-info-block ${isFull ? "full" : "participants"}`}>
-          <span className="event-icon">👥</span>
+          <span className="event-icon">
+            <RiTeamFill />
+          </span>
           <span className="event-info-label">Participantes:</span>
           <span className="event-info-value">
             {event.maxParticipants && event.participants.lengt > 0

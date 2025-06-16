@@ -21,21 +21,22 @@ function ShowEvent() {
             </div>
 
             <div className="event-datetime">
-              <FcOvertime className="event-icon" />{" "}
+              <FcOvertime className="event-icon-show" />{" "}
               <span>26/05/2025 - 21:00h</span>
             </div>
 
             <div className="event-platform">
-              <FaDesktop className="event-icon" />
+              <FaDesktop className="event-icon-show" />
               <span> PC </span>
             </div>
 
             <div className="event-players2">
-              <FaUsers className="event-icon" /> <span> 1/5 jugadores</span>
+              <FaUsers className="event-icon-show" />{" "}
+              <span> 1/5 jugadores</span>
             </div>
 
             <div className="event-status">
-              <GiBoxTrap className="event-icon" /> <span>Abierto</span>
+              <GiBoxTrap className="event-icon-show" /> <span>Abierto</span>
             </div>
 
             <p className="event-description">
