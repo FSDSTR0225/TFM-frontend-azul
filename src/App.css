@@ -9,82 +9,24 @@
 
 html,
 body {
-  height: 100vh;
   min-height: 100vh;
-  max-height: 100vh;
-  overflow: hidden !important;
+  /* overflow: hidden !important; */
+  overflow-x: hidden;
+  overflow-y: auto;
   font-family: "Poppins", sans-serif;
-  background: rgba(10, 10, 20, 0.9);
+  background: rgba(10, 10, 20, 0.575);
   color: white;
-  background: url("/images/try.jpg"), linear-gradient(135deg, #0a0a0a, #003366);
+  /* background: url("/images/try.jpg"), linear-gradient(135deg, #0a0a0a, #003366);
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: center center;
+  background-position: center center; */
 }
 
 main {
-  min-height: 100%;
-  height: auto;
-  max-height: none;
-  overflow: visible;
-}
-
-/* html {
-  font-size: 16px;
-  overflow-x: hidden;
-  overflow-y: auto;
-}
-
-
-body {
-  font-family: "Poppins", sans-serif;
-  background: rgba(10, 10, 20, 0.9);
-  color: white;
   min-height: 100vh;
+  background-color: inherit;
   overflow-x: hidden;
-  overflow-y: auto;
-  scroll-behavior: smooth;
-  scrollbar-width: thin;
-  scrollbar-color: var(--scrollbar-thumb-base) var(--scrollbar-track-bg);
 }
-
-
-main {
-  min-height: 100vh;
-  overflow-x: hidden;
-  overflow-y: auto;
-} */
-
-/* ::-webkit-scrollbar {
-  width: 14px;
-  background: transparent;
-}
-::-webkit-scrollbar-track {
-  background: var(--scrollbar-track-bg);
-  border-radius: 10px;
-  box-shadow: 0 0 12px #00ffc822 inset;
-}
-::-webkit-scrollbar-thumb {
-  background: var(--scrollbar-thumb-base);
-  border-radius: 10px;
-  border: 2px solid #181a2a;
-  background-clip: padding-box;
-  box-shadow: 0 0 12px #00ffc8cc, 0 0 4px #66fcf1cc inset;
-  animation: neon-glow 2.2s infinite alternate;
-  min-height: 40px;
-  transition: background 0.3s, box-shadow 0.3s, filter 0.3s;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: var(--scrollbar-thumb-hover);
-  box-shadow: 0 0 32px #00ffc8cc, 0 0 12px #66fcf1cc inset;
-  filter: brightness(1.2) saturate(1.3);
-  animation: neon-glow-fast 0.8s infinite alternate;
-}
-
-* {
-  scrollbar-width: thin;
-  scrollbar-color: #00ffc8 #181a2a;
-} */
 
 /* Variables globales */
 :root {
@@ -239,3 +181,60 @@ h3,
     min-width: 0 !important;
   }
 }
+
+/* html {
+  font-size: 16px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+
+body {
+  font-family: "Poppins", sans-serif;
+  background: rgba(10, 10, 20, 0.9);
+  color: white;
+  min-height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb-base) var(--scrollbar-track-bg);
+}
+
+
+main {
+  min-height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+} */
+
+/* ::-webkit-scrollbar {
+  width: 14px;
+  background: transparent;
+}
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-track-bg);
+  border-radius: 10px;
+  box-shadow: 0 0 12px #00ffc822 inset;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb-base);
+  border-radius: 10px;
+  border: 2px solid #181a2a;
+  background-clip: padding-box;
+  box-shadow: 0 0 12px #00ffc8cc, 0 0 4px #66fcf1cc inset;
+  animation: neon-glow 2.2s infinite alternate;
+  min-height: 40px;
+  transition: background 0.3s, box-shadow 0.3s, filter 0.3s;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover);
+  box-shadow: 0 0 32px #00ffc8cc, 0 0 12px #66fcf1cc inset;
+  filter: brightness(1.2) saturate(1.3);
+  animation: neon-glow-fast 0.8s infinite alternate;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #00ffc8 #181a2a;
+} */

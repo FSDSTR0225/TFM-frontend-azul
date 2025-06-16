@@ -15,11 +15,12 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url("../../1.jpg");
+  background-image: url("/images/1.jpg");
   background-size: cover;
   background-position: center;
   filter: blur(6px) brightness(0.7) saturate(1.2);
   z-index: -2;
+  pointer-events: none;
 }
 
 .event-page::after {

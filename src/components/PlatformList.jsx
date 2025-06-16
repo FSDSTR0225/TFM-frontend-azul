@@ -1,14 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { PacmanLoader } from "react-spinners";
+// import { PacmanLoader } from "react-spinners";
 import "../style/PlatformList.css";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
 function PlatformList() {
   const [platforms, setPlatforms] = useState([]); // Almacenar las plataformas
-  const [loading, setLoading] = useState(true); // Almacenar el estado de carga,esta cargando?asi poder mostrar un loading
+  // const [loading, setLoading] = useState(true); // Almacenar el estado de carga,esta cargando?asi poder mostrar un loading
 
   useEffect(() => {
     const fetchPlatforms = async () => {
@@ -22,21 +22,20 @@ function PlatformList() {
       } catch (error) {
         console.error("Error fetching platforms:", error);
       }
-      setLoading(false); // Cambiar el estado de carga a false,podemos ponerle tiempo usando setTimeout setTimeout(() => {setLoading(false);}, 5000);
     };
     fetchPlatforms(); // Llamar a la función para obtener las plataformas
   }, []); // El array vacío significa que el efecto se ejecuta solo una vez al montar el componente
 
-  if (loading) {
-    // Si está cargando, muestra...
-    return (
-      <div className="loading-container">
-        <h1 className="loading-title">Cargando plataformas...</h1>
-        <PacmanLoader color="#FFD700" size={40} />{" "}
-        {/* Los componentes de React spinner reciben css en el propio componente */}
-      </div>
-    );
-  }
+  // if (loading) {
+  //   // Si está cargando, muestra...
+  //   return (
+  //     <div className="loading-container">
+  //       <h1 className="loading-title">Cargando plataformas...</h1>
+  //       <PacmanLoader color="#FFD700" size={40} />{" "}
+  //       {/* Los componentes de React spinner reciben css en el propio componente */}
+  //     </div>
+  //   );
+  // }
 
   return (
     <>

@@ -24,6 +24,7 @@
     url("../assets/prueba2.jpg") center/cover no-repeat;
   filter: blur(6px) brightness(0.9);
   z-index: -2;
+  pointer-events: none;
 }
 
 .section-divider {

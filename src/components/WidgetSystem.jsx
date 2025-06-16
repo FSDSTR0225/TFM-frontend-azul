@@ -4,12 +4,16 @@ import AuthContext from "../context/AuthContext";
 import "../style/WidgetSystem.css";
 import FriendsOnlineWidget from "./FriendsOnlineWidget";
 import CalendarWidget from "./CalendarWidget";
+import SuggestedUsersWidget from "./SuggestedUsersWidget";
+import SuggestedGamesWidget from "./SuggestedGamesWidget";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
 const widgetComponents = {
   friends: () => <FriendsOnlineWidget />, //asi podemos pasar props si las necesitamos
   calendar: () => <CalendarWidget />,
+  suggestedUsers: () => <SuggestedUsersWidget />,
+  suggestedGames: () => <SuggestedGamesWidget />,
 };
 
 function WidgetSystem() {
@@ -138,6 +142,46 @@ function WidgetSystem() {
     }
   };
 
+  const handleAddUserSuggestionWidget = async () => {
+    try {
+      const resp = await fetch(`${API_URL}/dashboard/widgets/userSuggestions`, {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (!resp.ok) {
+        throw new Error("Error al añadir widget de sugerencia de usuarios");
+      }
+
+      const data = await resp.json();
+      setWidgetList(data.widgets);
+    } catch (error) {
+      console.error("Error al añadir widget:", error);
+    }
+  };
+
+  const handleAddGameSuggestionWidget = async () => {
+    try {
+      const resp = await fetch(`${API_URL}/dashboard/widgets/gameSuggestions`, {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (!resp.ok) {
+        throw new Error("Error al añadir widget de sugerencia de juegos");
+      }
+
+      const data = await resp.json();
+      setWidgetList(data.widgets);
+    } catch (error) {
+      console.error("Error al añadir widget:", error);
+    }
+  };
+
   return (
     <div className="widget-system">
       <button className="add-widget-btn" onClick={handleAddFriendsWidget}>
@@ -145,6 +189,18 @@ function WidgetSystem() {
       </button>
       <button className="add-widget-btn" onClick={handleAddCalendarWidget}>
         + Añadir widget calendario de eventos
+      </button>
+      <button
+        className="add-widget-btn"
+        onClick={handleAddUserSuggestionWidget}
+      >
+        + Añadir widget de sugerencia de usuarios
+      </button>
+      <button
+        className="add-widget-btn"
+        onClick={handleAddGameSuggestionWidget}
+      >
+        + Añadir widget de sugerencia de juegos
       </button>
       <GridLayout
         className="layout"
