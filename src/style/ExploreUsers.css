@@ -158,13 +158,13 @@
   transform: translateY(-2px) scale(1.04);
 }
 
-.btn-connect {
+.btn-connect-explore {
   border-color: #66fcf1;
   color: #66fcf1;
   font-weight: bold;
 }
 
-.btn-connect:hover {
+.btn-connect-explore:hover {
   background-color: #66fcf133;
   color: #181a2a;
   border-color: #00ffc8;

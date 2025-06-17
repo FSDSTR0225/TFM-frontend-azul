@@ -98,12 +98,12 @@
 }
 
 .btn-connect {
-  color: #00ffc8;
-  border: 2px solid #00ffc8;
-  background: rgba(0, 255, 200, 0.07);
+  color: #66fcf1;
+  border: 2px solid #66fcf1;
+  background: linear-gradient(90deg, #23243a 70%, #00fff71a 100%);
 }
 .btn-connect:hover {
-  background: #00ffc8;
+  background: #66fcf1;
   color: #0b1a2a;
   box-shadow: 0 0 12px #00ffc8aa;
 }
@@ -111,11 +111,12 @@
 .btn-profile {
   color: #66fcf1;
   border: 2px solid #66fcf1;
+  background: linear-gradient(90deg, #23243a 70%, #00fff71a 100%);
 }
 .btn-profile:hover {
   background: #66fcf1;
   color: #0b1a2a;
-  box-shadow: 0 0 12px #66fcf1aa;
+  box-shadow: 0 0 12px #00ffc8aa;
 }
 
 .btn-suggestion {
