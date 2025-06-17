@@ -72,7 +72,9 @@ function SuggestedUsersWidget() {
                 src={suggest.avatar}
                 alt={suggest.username}
               />
-              <span className="username-suggestion">{suggest.username}</span>
+              <span className="username-suggestion" title={suggest.username}>
+                {suggest.username}
+              </span>
               <div className="users-suggest-btn">
                 <button className="btn-connect">Conectar</button>
                 <button
