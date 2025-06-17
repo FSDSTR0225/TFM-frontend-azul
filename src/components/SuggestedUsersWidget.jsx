@@ -24,6 +24,13 @@ function SuggestedUsersWidget() {
         );
 
         const data = await response.json();
+
+        if (!response.ok) {
+          setError(data.message || "Error al cargar sugerencias");
+          setLoading(false);
+          return;
+        }
+
         setSuggestedUsers(data.suggestions);
         setLoading(false);
       } catch (error) {
@@ -43,6 +50,8 @@ function SuggestedUsersWidget() {
   if (loading) {
     return <div>Cargando sugerencias...</div>;
   }
+
+  if (error) return <div>{error}</div>;
 
   return (
     <div className="suggestions-widget-content">
