@@ -153,6 +153,7 @@ function FavoriteTags({ user }) {
   const [showThemes, setShowThemes] = useState(false);
   const [showModes, setShowModes] = useState(false);
   const [showOthers, setShowOthers] = useState(false);
+  const [maxOption, setMaxOption] = useState("");
 
   const { token } = useContext(AuthContext);
 
@@ -198,11 +199,13 @@ function FavoriteTags({ user }) {
   };
 
   const handleOnClick = async (tagsType, value) => {
-    if (
-      favoriteTags[tagsType].includes(value) ||
-      favoriteTags[tagsType].length >= 5
-    )
+    if (favoriteTags[tagsType].includes(value)) return;
+
+    if (favoriteTags[tagsType].length >= 5) {
+      setMaxOption("Máximo 5 tags seleccionados");
+      setTimeout(() => setMaxOption(""), 2000);
       return;
+    }
 
     try {
       const response = await fetch(`${API_URL}/profile/tags/${tagsType}`, {
@@ -253,22 +256,29 @@ function FavoriteTags({ user }) {
         >
           {showGenres ? "Cerrar" : "Añadir"}
         </button>
+        {maxOption && <div className="max-tags-option">{maxOption}</div>}
         {showGenres && (
           <ul className="tag-options-list">
             {genreOptions.map((genre) => {
               const isSelected = favoriteTags.genres.includes(genre.value);
               const isMax = favoriteTags.genres.length >= 5;
-              const isDisabled = isMax || isSelected;
+              const isDisabled = isSelected;
               return (
                 <li
                   key={genre.value}
                   className={`tag-option${isDisabled ? " disabled" : ""}`}
                   onClick={() => {
-                    if (!isDisabled) handleOnClick("genres", genre.value);
+                    if (isSelected) return;
+                    if (isMax) {
+                      setMaxOption("Máximo 5 tags seleccionados");
+                      setTimeout(() => setMaxOption(""), 1200);
+                      return;
+                    }
+                    handleOnClick("genres", genre.value);
                   }}
                   style={{
-                    pointerEvents: isDisabled ? "none" : "auto",
-                    cursor: isDisabled ? "not-allowed" : "pointer",
+                    pointerEvents: isSelected ? "none" : "auto",
+                    cursor: isSelected ? "not-allowed" : "pointer",
                   }}
                 >
                   {genre.label}
@@ -296,22 +306,29 @@ function FavoriteTags({ user }) {
         >
           {showThemes ? "Cerrar" : "Añadir"}
         </button>
+        {maxOption && <div className="max-tags-option">{maxOption}</div>}
         {showThemes && (
           <ul className="tag-options-list">
             {themeOptions.map((theme) => {
               const isSelected = favoriteTags.themes.includes(theme.value);
               const isMax = favoriteTags.themes.length >= 5;
-              const isDisabled = isMax || isSelected;
+              const isDisabled = isSelected;
               return (
                 <li
                   key={theme.value}
                   className={`tag-option${isDisabled ? " disabled" : ""}`}
                   onClick={() => {
-                    if (!isDisabled) handleOnClick("themes", theme.value);
+                    if (isSelected) return;
+                    if (isMax) {
+                      setMaxOption("Máximo 5 tags seleccionados");
+                      setTimeout(() => setMaxOption(""), 1200);
+                      return;
+                    }
+                    handleOnClick("themes", theme.value);
                   }}
                   style={{
-                    pointerEvents: isDisabled ? "none" : "auto",
-                    cursor: isDisabled ? "not-allowed" : "pointer",
+                    pointerEvents: isSelected ? "none" : "auto",
+                    cursor: isSelected ? "not-allowed" : "pointer",
                   }}
                 >
                   {theme.label}
@@ -339,22 +356,29 @@ function FavoriteTags({ user }) {
         >
           {showModes ? "Cerrar" : "Añadir"}
         </button>
+        {maxOption && <div className="max-tags-option">{maxOption}</div>}
         {showModes && (
           <ul className="tag-options-list">
             {modeOptions.map((mode) => {
               const isSelected = favoriteTags.modes.includes(mode.value);
               const isMax = favoriteTags.modes.length >= 5;
-              const isDisabled = isMax || isSelected;
+              const isDisabled = isSelected;
               return (
                 <li
                   key={mode.value}
                   className={`tag-option${isDisabled ? " disabled" : ""}`}
                   onClick={() => {
-                    if (!isDisabled) handleOnClick("modes", mode.value);
+                    if (isSelected) return;
+                    if (isMax) {
+                      setMaxOption("Máximo 5 tags seleccionados");
+                      setTimeout(() => setMaxOption(""), 1200);
+                      return;
+                    }
+                    handleOnClick("modes", mode.value);
                   }}
                   style={{
-                    pointerEvents: isDisabled ? "none" : "auto",
-                    cursor: isDisabled ? "not-allowed" : "pointer",
+                    pointerEvents: isSelected ? "none" : "auto",
+                    cursor: isSelected ? "not-allowed" : "pointer",
                   }}
                 >
                   {mode.label}
@@ -382,22 +406,29 @@ function FavoriteTags({ user }) {
         >
           {showOthers ? "Cerrar" : "Añadir"}
         </button>
+        {maxOption && <div className="max-tags-option">{maxOption}</div>}
         {showOthers && (
           <ul className="tag-options-list">
             {othersOptions.map((other) => {
               const isSelected = favoriteTags.others.includes(other.value);
               const isMax = favoriteTags.others.length >= 5;
-              const isDisabled = isMax || isSelected;
+              const isDisabled = isSelected;
               return (
                 <li
                   key={other.value}
                   className={`tag-option${isDisabled ? " disabled" : ""}`}
                   onClick={() => {
-                    if (!isDisabled) handleOnClick("others", other.value);
+                    if (isSelected) return;
+                    if (isMax) {
+                      setMaxOption("Máximo 5 tags seleccionados");
+                      setTimeout(() => setMaxOption(""), 1200);
+                      return;
+                    }
+                    handleOnClick("others", other.value);
                   }}
                   style={{
-                    pointerEvents: isDisabled ? "none" : "auto",
-                    cursor: isDisabled ? "not-allowed" : "pointer",
+                    pointerEvents: isSelected ? "none" : "auto",
+                    cursor: isSelected ? "not-allowed" : "pointer",
                   }}
                 >
                   {other.label}

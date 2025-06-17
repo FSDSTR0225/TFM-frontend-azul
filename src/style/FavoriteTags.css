@@ -129,12 +129,20 @@
   border: 1px solid #ffd700;
 }
 
-.loading-text {
+.max-tags-option {
+  background: rgba(255, 107, 107, 0.13);
+  color: #ff6b6b;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 10px;
+  padding: 0.5em 1.2em;
+  margin: 0.7em auto 0.7em auto; /* margen arriba y abajo */
   text-align: center;
-  font-size: 1.1rem;
-  color: #66fcf1;
-  margin-top: 18px;
-  letter-spacing: 1px;
+  box-shadow: 0 0 8px #ff6b6b33;
+  letter-spacing: 0.5px;
+  transition: opacity 0.3s;
+  max-width: 320px;
+  animation: popInMsg 0.4s cubic-bezier(0.33, 1, 0.68, 1);
 }
 
 /* Responsive */
