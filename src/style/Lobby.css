@@ -95,7 +95,7 @@
 .lobby-widgets-container {
   width: 100%;
   max-width: 1200px;
-  margin: 0 auto; /* Quita el margin-top/margin-bottom */
+  margin: 0 auto;
   margin-top: 1.5rem;
   padding: 0 1rem;
   display: block;
