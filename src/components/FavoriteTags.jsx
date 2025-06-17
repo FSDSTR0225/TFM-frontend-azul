@@ -1,5 +1,73 @@
-import { React, useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
+import AuthContext from "../context/AuthContext";
 import "../style/FavoriteTags.css";
+
+// Diccionario de traducción
+const tagTranslations = {
+  // Géneros
+  Action: "Acción",
+  Adventure: "Aventura",
+  RPG: "Rol",
+  Shooter: "Disparos",
+  Strategy: "Estrategia",
+  Sports: "Deportes",
+  Fighting: "Pelea",
+  Simulation: "Simulación",
+  Racing: "Carreras",
+  Indie: "Indie",
+  Puzzle: "Puzzle",
+  Platformer: "Plataformas",
+  Arcade: "Arcade",
+  // Modos
+  Singleplayer: "Un jugador",
+  Multiplayer: "Multijugador",
+  "Co-op": "Cooperativo",
+  "Online Co-op": "Cooperativo en línea",
+  "Split-screen": "Pantalla dividida",
+  PvP: "PvP",
+  PvE: "PvE",
+  MMO: "Masivo en línea (MMO)",
+  "Battle Royale": "Battle Royale",
+  Campaign: "Campaña",
+  Sandbox: "Mundo abierto",
+  "Cross-Platform Multiplayer": "Juego cruzado (Cross-play)",
+  "Local Multiplayer": "Juego local",
+  // Temas
+  Fantasy: "Fantasía",
+  "Sci-fi": "Ciencia ficción",
+  Horror: "Terror",
+  Cyberpunk: "Cyberpunk",
+  "Post-apocalyptic": "Post-apocalíptico",
+  Steampunk: "Steampunk",
+  Medieval: "Medieval",
+  Zombie: "Zombis",
+  Space: "Espacio",
+  Mystery: "Misterio",
+  War: "Guerra",
+  Crime: "Crimen",
+  Survival: "Supervivencia",
+  Epic: "Épico",
+  Apocalypse: "Apocalipsis",
+  Noir: "Noir",
+  Mythology: "Mitología",
+  Roguelike: "Roguelike",
+  "Card Game": "Juego de cartas",
+  Western: "Western",
+  Aliens: "Aliens",
+  Dinosaurs: "Dinosaurios",
+  Spy: "Espionaje",
+  // Otros
+  Crafting: "Crafteo",
+  Exploration: "Exploración",
+  Loot: "Saqueo",
+  Stealth: "Sigilo",
+  Tactical: "Combate táctico",
+  Building: "Construcción",
+  Permadeath: "Muerte permanente",
+  "Turn-Based": "Por turnos",
+  "Real-Time": "Tiempo real",
+  "Resource Management": "Gestión de recursos",
+};
 
 const genreOptions = [
   { label: "Acción", value: "Action" },
@@ -72,6 +140,8 @@ const othersOptions = [
   { label: "Gestión de recursos", value: "Resource Management" },
 ];
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 function FavoriteTags({ user }) {
   const [favoriteTags, setFavoriteTags] = useState({
     genres: [],
@@ -83,6 +153,8 @@ function FavoriteTags({ user }) {
   const [showThemes, setShowThemes] = useState(false);
   const [showModes, setShowModes] = useState(false);
   const [showOthers, setShowOthers] = useState(false);
+
+  const { token } = useContext(AuthContext);
 
   useEffect(() => {
     if (user?.favoriteTags) {
@@ -100,21 +172,60 @@ function FavoriteTags({ user }) {
     setters[type]?.((prev) => !prev);
   };
 
-  const handleRemoveTag = (type, value) => {
-    setFavoriteTags((prev) => {
-      const updated = prev[type].filter((item) => item !== value);
-      return { ...prev, [type]: updated };
-    });
+  // NUEVO: Eliminar tag en backend y frontend
+  const handleRemoveTag = async (tagsType, value) => {
+    try {
+      const response = await fetch(
+        `${API_URL}/profile/tags/${tagsType}/${encodeURIComponent(value)}`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      if (!response.ok) {
+        throw new Error("Error al eliminar tag");
+      }
+      const data = await response.json();
+      setFavoriteTags((prev) => ({
+        ...prev,
+        [tagsType]: data.favoriteTags[tagsType],
+      }));
+    } catch (error) {
+      console.error("Error al eliminar tag:", error);
+    }
   };
 
-  const handleOnClick = (type, value) => {
-    setFavoriteTags((prev) => {
-      const current = prev[type] || [];
-      const updated = current.includes(value)
-        ? current.filter((item) => item !== value)
-        : [...current, value];
-      return { ...prev, [type]: updated };
-    });
+  const handleOnClick = async (tagsType, value) => {
+    if (
+      favoriteTags[tagsType].includes(value) ||
+      favoriteTags[tagsType].length >= 5
+    )
+      return;
+
+    try {
+      const response = await fetch(`${API_URL}/profile/tags/${tagsType}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ tag: value }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Error al añadir tags");
+      }
+
+      const data = await response.json();
+      setFavoriteTags((prev) => ({
+        ...prev,
+        [tagsType]: data.favoriteTags[tagsType],
+      }));
+    } catch (error) {
+      console.error("Error al añadir tag:", error);
+    }
   };
 
   if (!user || !user.favoriteTags) {
@@ -125,12 +236,13 @@ function FavoriteTags({ user }) {
     <div className="favorite-tags-container">
       <h1 className="favorite-tags-title">Perfil Gamer</h1>
 
+      {/* Géneros favoritos */}
       <div className="tag-section">
         <h2 className="tag-title">Géneros favoritos</h2>
         <div className="tag-chip-container">
           {favoriteTags.genres.map((tag) => (
             <span key={tag} className="tag-chip">
-              {tag}
+              {tagTranslations[tag] || tag}
               <button onClick={() => handleRemoveTag("genres", tag)}>x</button>
             </span>
           ))}
@@ -143,21 +255,41 @@ function FavoriteTags({ user }) {
         </button>
         {showGenres && (
           <ul className="tag-options-list">
-            {genreOptions.map((genre) => (
-              <li
-                key={genre.value}
-                className="tag-option"
-                onClick={() => handleOnClick("genres", genre.value)}
-              >
-                {genre.label}
-              </li>
-            ))}
+            {genreOptions.map((genre) => {
+              const isSelected = favoriteTags.genres.includes(genre.value);
+              const isMax = favoriteTags.genres.length >= 5;
+              const isDisabled = isMax || isSelected;
+              return (
+                <li
+                  key={genre.value}
+                  className={`tag-option${isDisabled ? " disabled" : ""}`}
+                  onClick={() => {
+                    if (!isDisabled) handleOnClick("genres", genre.value);
+                  }}
+                  style={{
+                    pointerEvents: isDisabled ? "none" : "auto",
+                    cursor: isDisabled ? "not-allowed" : "pointer",
+                  }}
+                >
+                  {genre.label}
+                </li>
+              );
+            })}
           </ul>
         )}
       </div>
 
+      {/* Temáticas favoritas */}
       <div className="tag-section">
         <h2 className="tag-title">Temáticas favoritas</h2>
+        <div className="tag-chip-container">
+          {favoriteTags.themes.map((tag) => (
+            <span key={tag} className="tag-chip">
+              {tagTranslations[tag] || tag}
+              <button onClick={() => handleRemoveTag("themes", tag)}>x</button>
+            </span>
+          ))}
+        </div>
         <button
           className="tag-toggle-btn"
           onClick={() => handleOnToggle("themes")}
@@ -166,21 +298,41 @@ function FavoriteTags({ user }) {
         </button>
         {showThemes && (
           <ul className="tag-options-list">
-            {themeOptions.map((theme) => (
-              <li
-                key={theme.value}
-                className="tag-option"
-                onClick={() => handleOnClick("themes", theme.value)}
-              >
-                {theme.label}
-              </li>
-            ))}
+            {themeOptions.map((theme) => {
+              const isSelected = favoriteTags.themes.includes(theme.value);
+              const isMax = favoriteTags.themes.length >= 5;
+              const isDisabled = isMax || isSelected;
+              return (
+                <li
+                  key={theme.value}
+                  className={`tag-option${isDisabled ? " disabled" : ""}`}
+                  onClick={() => {
+                    if (!isDisabled) handleOnClick("themes", theme.value);
+                  }}
+                  style={{
+                    pointerEvents: isDisabled ? "none" : "auto",
+                    cursor: isDisabled ? "not-allowed" : "pointer",
+                  }}
+                >
+                  {theme.label}
+                </li>
+              );
+            })}
           </ul>
         )}
       </div>
 
+      {/* Modos de juego */}
       <div className="tag-section">
         <h2 className="tag-title">Modos de juego</h2>
+        <div className="tag-chip-container">
+          {favoriteTags.modes.map((tag) => (
+            <span key={tag} className="tag-chip">
+              {tagTranslations[tag] || tag}
+              <button onClick={() => handleRemoveTag("modes", tag)}>x</button>
+            </span>
+          ))}
+        </div>
         <button
           className="tag-toggle-btn"
           onClick={() => handleOnToggle("modes")}
@@ -189,21 +341,41 @@ function FavoriteTags({ user }) {
         </button>
         {showModes && (
           <ul className="tag-options-list">
-            {modeOptions.map((mode) => (
-              <li
-                key={mode.value}
-                className="tag-option"
-                onClick={() => handleOnClick("modes", mode.value)}
-              >
-                {mode.label}
-              </li>
-            ))}
+            {modeOptions.map((mode) => {
+              const isSelected = favoriteTags.modes.includes(mode.value);
+              const isMax = favoriteTags.modes.length >= 5;
+              const isDisabled = isMax || isSelected;
+              return (
+                <li
+                  key={mode.value}
+                  className={`tag-option${isDisabled ? " disabled" : ""}`}
+                  onClick={() => {
+                    if (!isDisabled) handleOnClick("modes", mode.value);
+                  }}
+                  style={{
+                    pointerEvents: isDisabled ? "none" : "auto",
+                    cursor: isDisabled ? "not-allowed" : "pointer",
+                  }}
+                >
+                  {mode.label}
+                </li>
+              );
+            })}
           </ul>
         )}
       </div>
 
+      {/* Otras mecánicas */}
       <div className="tag-section">
         <h2 className="tag-title">Otras mecánicas</h2>
+        <div className="tag-chip-container">
+          {favoriteTags.others.map((tag) => (
+            <span key={tag} className="tag-chip">
+              {tagTranslations[tag] || tag}
+              <button onClick={() => handleRemoveTag("others", tag)}>x</button>
+            </span>
+          ))}
+        </div>
         <button
           className="tag-toggle-btn"
           onClick={() => handleOnToggle("others")}
@@ -212,15 +384,26 @@ function FavoriteTags({ user }) {
         </button>
         {showOthers && (
           <ul className="tag-options-list">
-            {othersOptions.map((other) => (
-              <li
-                key={other.value}
-                className="tag-option"
-                onClick={() => handleOnClick("others", other.value)}
-              >
-                {other.label}
-              </li>
-            ))}
+            {othersOptions.map((other) => {
+              const isSelected = favoriteTags.others.includes(other.value);
+              const isMax = favoriteTags.others.length >= 5;
+              const isDisabled = isMax || isSelected;
+              return (
+                <li
+                  key={other.value}
+                  className={`tag-option${isDisabled ? " disabled" : ""}`}
+                  onClick={() => {
+                    if (!isDisabled) handleOnClick("others", other.value);
+                  }}
+                  style={{
+                    pointerEvents: isDisabled ? "none" : "auto",
+                    cursor: isDisabled ? "not-allowed" : "pointer",
+                  }}
+                >
+                  {other.label}
+                </li>
+              );
+            })}
           </ul>
         )}
       </div>

@@ -12,8 +12,8 @@ const API_URL = import.meta.env.VITE_API_URL;
 const widgetComponents = {
   friends: () => <FriendsOnlineWidget />, //asi podemos pasar props si las necesitamos
   calendar: () => <CalendarWidget />,
-  suggestedUsers: () => <SuggestedUsersWidget />,
-  suggestedGames: () => <SuggestedGamesWidget />,
+  userSuggestions: () => <SuggestedUsersWidget />,
+  gameSuggestions: () => <SuggestedGamesWidget />,
 };
 
 function WidgetSystem() {

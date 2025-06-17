@@ -295,7 +295,7 @@ function CreateEventModal({ onClose, onCreate }) {
               checked={formData.requiresApproval}
               onChange={handleChange}
             />
-            ¿Evento privado?
+            ¿Privado? Tú decides quién puede unirse.
           </label>
 
           <button type="submit" className="submit-button">
