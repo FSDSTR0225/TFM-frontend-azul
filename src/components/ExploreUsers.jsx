@@ -78,7 +78,7 @@ function ExploreUsers() {
               />
               <h4 data-fullname={user.username}>{user.username}</h4>
               <div className="users-explore-btn">
-                <button className="btn-connect">Conectar</button>
+                <button className="btn-connect-explore">Conectar</button>
                 <button
                   className="btn-profile"
                   onClick={() => navigate(`/users/${user._id || user.id}`)}
