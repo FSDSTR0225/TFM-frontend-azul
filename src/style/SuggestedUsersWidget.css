@@ -1,67 +1,166 @@
-/* Contenedor general del widget */
 .suggestions-widget-content {
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 16px;
-  padding: 16px;
-  backdrop-filter: blur(8px);
-  box-shadow: 0 0 12px rgba(0, 0, 0, 0.4);
+  width: 100%;
+  max-height: 100%;
+  padding: 16px 12px;
+  border-radius: 20px;
+  background: linear-gradient(120deg, #181c2b 80%, #23243a 100%);
+  box-shadow: 0 0 24px #00ffc822, 0 2px 8px #000a;
   color: #fff;
-  font-family: "Audiowide", sans-serif;
+  font-family: "Audiowide", Arial, sans-serif;
+  overflow-y: auto;
+  scroll-behavior: smooth;
 }
 
-/* Lista de sugerencias */
+/* Scrollbar personalizada */
+.suggestions-widget-content::-webkit-scrollbar {
+  width: 8px;
+}
+.suggestions-widget-content::-webkit-scrollbar-thumb {
+  background-color: #00ffc8aa;
+  border-radius: 6px;
+}
+.suggestions-widget-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
 .card-suggestion-container {
-  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
   padding: 0;
   margin: 0;
-  display: grid;
-  gap: 12px;
+  list-style: none;
 }
 
-/* Cada tarjeta de usuario */
+/* Tarjeta rectangular compacta */
 .suggestion-content {
   display: flex;
   align-items: center;
-  background: rgba(255, 255, 255, 0.08);
-  padding: 10px 14px;
-  border-radius: 12px;
+  justify-content: space-between;
+  background: linear-gradient(145deg, #181c2b, #202334);
+  border: 2px solid #00ffc8;
+  border-radius: 18px;
+  padding: 12px 14px;
+  box-shadow: 0 0 12px #00ffc822;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  max-height: 90px;
+  min-height: 80px;
   position: relative;
-  transition: background 0.3s;
 }
 
 .suggestion-content:hover {
-  background: rgba(255, 255, 255, 0.12);
+  transform: scale(1.02);
+  box-shadow: 0 0 20px #00ffc8cc;
+  border-color: #66fcf1;
 }
 
-/* Avatar del usuario */
 .img-suggestion-user {
-  width: 40px;
-  height: 40px;
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
+  border: 2px solid #00ffc8;
   object-fit: cover;
-  margin-right: 12px;
-  border: 2px solid #444;
+  box-shadow: 0 0 10px #00ffc8cc;
+  flex-shrink: 0;
 }
 
-/* Nombre del usuario */
 .username-suggestion {
-  flex-grow: 1;
-  font-size: 16px;
+  flex: 1;
+  margin-left: 12px;
+  font-size: 0.85rem;
   font-weight: bold;
-  color: #f0f0f0;
+  color: #00ffc8;
+  text-shadow: 0 0 8px #00ffc8cc;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 120px;
 }
 
-/* Botón para quitar sugerencia */
-.btn-suggestion {
-  font-size: 16px;
-  color: #ff6666;
-  cursor: pointer;
-  padding: 4px 8px;
+.users-suggest-btn {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-left: 14px;
+}
+
+.btn-connect,
+.btn-profile {
+  font-size: 0.55rem;
+  padding: 6px 10px;
   border-radius: 8px;
-  transition: background 0.2s, transform 0.2s;
+  font-weight: bold;
+  cursor: pointer;
+  font-family: "Audiowide", Arial, sans-serif;
+  background: transparent;
+  transition: all 0.2s ease;
+  white-space: nowrap;
 }
 
+.btn-connect {
+  color: #00ffc8;
+  border: 2px solid #00ffc8;
+  background: rgba(0, 255, 200, 0.07);
+}
+.btn-connect:hover {
+  background: #00ffc8;
+  color: #0b1a2a;
+  box-shadow: 0 0 12px #00ffc8aa;
+}
+
+.btn-profile {
+  color: #66fcf1;
+  border: 2px solid #66fcf1;
+}
+.btn-profile:hover {
+  background: #66fcf1;
+  color: #0b1a2a;
+  box-shadow: 0 0 12px #66fcf1aa;
+}
+
+.btn-suggestion {
+  position: absolute;
+  top: 8px;
+  left: 9px;
+  font-size: 0.7rem;
+  color: #ff4d4d8c;
+  font-weight: bold;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  z-index: 10;
+  transition: transform 0.2s ease;
+}
 .btn-suggestion:hover {
-  background: rgba(255, 100, 100, 0.2);
   transform: scale(1.1);
+  color: #ff2222;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .suggestion-content {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px 12px;
+    height: auto;
+  }
+
+  .users-suggest-btn {
+    flex-direction: row;
+    margin-top: 8px;
+    gap: 8px;
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .username-suggestion {
+    margin-left: 0;
+    margin-top: 4px;
+  }
+
+  .btn-suggestion {
+    top: 6px;
+    right: 8px;
+    left: auto;
+  }
 }

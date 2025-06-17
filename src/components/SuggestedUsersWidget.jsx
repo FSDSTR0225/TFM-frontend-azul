@@ -1,5 +1,6 @@
 import { React, useEffect, useState, useContext } from "react";
 import AuthContext from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 import "../style/SuggestedUsersWidget.css";
 
 const API_URL = import.meta.env.VITE_API_URL;
@@ -10,6 +11,8 @@ function SuggestedUsersWidget() {
   const [error, setError] = useState(null);
 
   const { token } = useContext(AuthContext);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchUsersSuggestions = async () => {
@@ -70,8 +73,18 @@ function SuggestedUsersWidget() {
                 alt={suggest.username}
               />
               <span className="username-suggestion">{suggest.username}</span>
+              <div className="users-suggest-btn">
+                <button className="btn-connect">Conectar</button>
+                <button
+                  className="btn-profile"
+                  onClick={() => navigate(`/users/${suggest._id}`)}
+                >
+                  Ver perfil
+                </button>
+              </div>
               <span
                 className="btn-suggestion"
+                title="Eliminar sugerencia"
                 onClick={() => handleOnClick(suggest._id)}
               >
                 X
