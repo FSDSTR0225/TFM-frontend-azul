@@ -38,7 +38,7 @@ export default function App() {
     // Si está cargando, muestra...
     return (
       <div className="loading-container">
-        <h1 className="loading-title">Cargando lobby...</h1>
+        <h1 className="loading-title">Preparando tu lobby...</h1>
         <PacmanLoader color="#FFD700" size={40} />{" "}
         {/* Los componentes de React spinner reciben css en el propio componente */}
       </div>
