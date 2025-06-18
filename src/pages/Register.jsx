@@ -49,7 +49,7 @@ export default function Register() {
         return res.json();
       })
       .then((result) => {
-        authContext.login(result.user, result.access_token);
+        authContext.login(result.access_token);
       })
       .catch((err) => {
         console.error(err);
