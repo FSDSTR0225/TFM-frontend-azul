@@ -40,7 +40,7 @@ function WidgetSystem() {
     h: widget.h ?? 2,
     minW: 2,
     maxW: 12,
-    minH: 2,
+    minH: 1,
     maxH: 10,
     static: false,
   }));
