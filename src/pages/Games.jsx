@@ -9,7 +9,7 @@ function Games() {
   useEffect(() => {
     const timeout = setTimeout(() => {
       setLoading(false);
-    }, 1500);
+    }, 1000);
 
     return () => clearTimeout(timeout); // Limpia el temporizador al desmontar el componente
   }, []);

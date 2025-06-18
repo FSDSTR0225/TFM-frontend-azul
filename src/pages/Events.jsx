@@ -44,7 +44,9 @@ const Events = () => {
 
         const data = await response.json();
         setEvents(data.events);
-        setLoading(false);
+        setTimeout(() => {
+          setLoading(false);
+        }, 1000);
       } catch (error) {
         console.error("Error fetching data:", error);
         setError(error.message);
