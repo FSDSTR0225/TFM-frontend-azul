@@ -20,7 +20,7 @@ const PlayerSearch = () => {
     const delayFetch = setTimeout(() => {
       if (gameQuery.length > 2) {
         console.log("Buscando juegos con query:", gameQuery);
-        fetch(`${API_URL}/users/?query=${gameQuery}`)
+        fetch(`${API_URL}/search/games/?query=${gameQuery}`)
           .then((response) => response.json())
           .then((data) => {
             console.log("Juegos recibidos:", data.games);
