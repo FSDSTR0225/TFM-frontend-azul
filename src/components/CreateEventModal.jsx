@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Select from "react-select";
 import "../style/CreateEventModal.css";
 import DatePicker from "react-datepicker";
@@ -68,22 +68,22 @@ function CreateEventModal({ onClose, onCreate }) {
   const [formData, setFormData] = useState({
     title: "",
     description: "",
-    date: "",
-    time: "",
+    date: null, // importante: null, no string
     game: "",
-    platform: null, // Solo una plataforma
+    platform: null,
     maxParticipants: "",
     requiresApproval: false,
   });
 
   const [error, setError] = useState("");
-  const [gameQuery, setGameQuery] = useState(""); // Consulta para autocompletar juegos,guarda lo que el usuario escribe en el input de búsqueda de juegos
-  const [gameSuggestions, setGameSuggestions] = useState([]); // Sugerencias de juegos que va devolviendo el backend a medida que el usuario escribe, se actualiza con los resultados de la búsqueda
-  const [platformOptions, setPlatformOptions] = useState([]); // Opciones de plataformas
-  const [showSuggestions, setShowSuggestions] = useState(false); // Estado para si se muestran o no las sugerencias de juegos
+  const [gameQuery, setGameQuery] = useState("");
+  const [gameSuggestions, setGameSuggestions] = useState([]);
+  const [platformOptions, setPlatformOptions] = useState([]);
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  const [gameSelected, setGameSelected] = useState(false);
 
   useEffect(() => {
-    if (gameQuery.length < 2) {
+    if (!gameSelected || gameQuery.length < 2) {
       setGameSuggestions([]);
       return;
     }
@@ -91,20 +91,27 @@ function CreateEventModal({ onClose, onCreate }) {
     const fetchGames = async () => {
       try {
         const res = await fetch(`${API_URL}/search/games?query=${gameQuery}`);
+
+        if (!res.ok) {
+          throw new Error("No se pudieron obtener los juegos");
+        }
         const data = await res.json();
         setGameSuggestions(data.games);
         setShowSuggestions(true);
       } catch (err) {
         console.error("Error buscando juegos:", err);
+        setGameSuggestions([]); // Evita que se quede en null
+        setShowSuggestions(false);
       }
     };
 
     fetchGames();
-  }, [gameQuery]);
+  }, [gameQuery, gameSelected]);
 
   const handleGameSelect = async (game) => {
     setFormData((prev) => ({ ...prev, game: game._id, platform: null }));
     setGameQuery(game.name);
+    setGameSelected(false);
     setGameSuggestions([]);
     setShowSuggestions(false);
 
@@ -136,7 +143,6 @@ function CreateEventModal({ onClose, onCreate }) {
       !formData.title ||
       !formData.description ||
       !formData.date ||
-      !formData.time ||
       !formData.game ||
       !formData.platform
     ) {
@@ -144,12 +150,10 @@ function CreateEventModal({ onClose, onCreate }) {
       return;
     }
 
-    const fullDateTime = new Date(`${formData.date}T${formData.time}`);
-
     const finalData = {
       ...formData,
-      date: fullDateTime,
-      platform: formData.platform.value, // Solo un id
+      date: formData.date,
+      platform: formData.platform.value,
       maxParticipants:
         formData.maxParticipants === ""
           ? null
@@ -158,6 +162,8 @@ function CreateEventModal({ onClose, onCreate }) {
     onCreate(finalData);
     onClose();
   };
+
+  const preventCloseRef = useRef(false);
 
   return (
     <div
@@ -181,19 +187,21 @@ function CreateEventModal({ onClose, onCreate }) {
             type="text"
             name="title"
             placeholder="Título del evento"
+            maxLength={30}
             value={formData.title}
             onChange={handleChange}
             required
           />
           <textarea
-            maxLength={200} // Limita la descripción a 200 caracteres
-            rows={5} // Ajusta el número de filas del textarea
+            maxLength={200}
+            rows={5}
             name="description"
             placeholder="Descripción"
             value={formData.description}
             onChange={handleChange}
             required
           />
+
           <DatePicker
             selected={formData.date}
             onChange={(date) => setFormData({ ...formData, date })}
@@ -214,13 +222,22 @@ function CreateEventModal({ onClose, onCreate }) {
               value={gameQuery}
               onChange={(e) => {
                 setGameQuery(e.target.value);
+                setGameSelected(true);
                 setShowSuggestions(true);
               }}
               onFocus={() => {
                 if (gameSuggestions.length > 0) setShowSuggestions(true);
               }}
+              // para evitar que se cierre el dropdown al hacer click en un item,onBlur sirve para detectar cuando el input pierde el foco
               onBlur={() => {
-                setTimeout(() => setShowSuggestions(false), 100);
+                setTimeout(() => {
+                  if (!preventCloseRef.current) {
+                    // si no se ha hecho click en un item, cerramos las sugerencias
+
+                    setShowSuggestions(false);
+                  }
+                  preventCloseRef.current = false; // reseteamos el valor de referencia
+                }, 100);
               }}
               autoComplete="off"
               required
@@ -230,7 +247,10 @@ function CreateEventModal({ onClose, onCreate }) {
                 {gameSuggestions.map((game) => (
                   <li
                     key={game._id}
-                    onMouseDown={() => handleGameSelect(game)}
+                    onMouseDown={() => {
+                      preventCloseRef.current = true;
+                      handleGameSelect(game);
+                    }}
                     className="autocomplete-item"
                   >
                     {game.name}

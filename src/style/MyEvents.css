@@ -37,3 +37,22 @@
   border-radius: 20px;
   margin-left: 8px;
 }
+
+@media (max-width: 500px) {
+  .myEvents-btns {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .myEvents-btns button {
+    width: 100%;
+    max-width: 300px;
+    text-align: center;
+  }
+
+  .badge-total {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+  }
+}

@@ -1,0 +1,70 @@
+.friends-online-widget {
+  padding: 1rem;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.15);
+  color: #ffffff;
+  font-family: "Arial", sans-serif;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.friends-online-widget h3 {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  color: #00ffff;
+  text-shadow: 0 0 4px rgba(0, 255, 255, 0.4);
+}
+
+.friends-online-widget p {
+  font-size: 0.95rem;
+  color: #ccc;
+  opacity: 0.8;
+}
+
+.friend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 0.5rem;
+  border-radius: 12px;
+  margin-bottom: 0.75rem;
+  transition: background 0.3s ease;
+}
+
+.friend-item:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.friend-online-avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #00ffcc;
+}
+
+.friend-online-name {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #ffffff;
+}
+
+.avatar-online-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.online-indicator {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 10px;
+  height: 10px;
+  background-color: #00ff55;
+  border: 2px solid #121212;
+  border-radius: 50%;
+  box-shadow: 0 0 6px #00ff55;
+}

@@ -1,52 +1,57 @@
 import React, { useEffect, useState, useContext } from "react";
 import { NavLink } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
-import { FaSearchengin } from "react-icons/fa6";
 import "../style/NavBar.css";
 import blankImg from "/images/profile/blankImg.jpg";
+import SearchInputExplore from "./SearchInputExplore";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
-const NavBar = ({ setSearch, showSearch, setShowSearch }) => {
+const NavBar = ({ showSearch }) => {
   const authContext = useContext(AuthContext);
+
   const [platforms, setPlatforms] = useState([]);
+  const [isUserOpen, setIsUserOpen] = useState(false); // Estado para el dropdown de usuario
+  const [isPlatOpen, setIsPlatOpen] = useState(false); // Estado para el dropdown de plataformas
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
-    const fetchPlatforms = async () => {
-      try {
-        const response = await fetch(`${API_URL}/platforms`);
-        if (!response.ok) throw new Error("Error fetching platforms");
-        const data = await response.json();
-        setPlatforms(data.platforms);
-      } catch (error) {
-        console.error("Error al cargar plataformas en navbar:", error);
-      }
-    };
+    setIsUserOpen(false);
+  }, [authContext.isLoggedIn]); // Resetea el dropdown de usuario al cambiar el estado de login haciendo que se inicialice en falso
 
-    fetchPlatforms();
+  useEffect(() => {
+    (async () => {
+      try {
+        const res = await fetch(`${API_URL}/platforms`);
+        if (!res.ok) throw new Error();
+        const { platforms } = await res.json();
+        setPlatforms(platforms);
+      } catch {
+        console.error("Error fetching platforms");
+      }
+    })();
   }, []);
 
-  const toggleExplore = () => {
-    setShowSearch(!showSearch);
-    if (showSearch) setSearch("");
-  };
+  // const toggleExplore = () => {
+  //   setShowSearch(!showSearch);
+  //   if (showSearch) setSearch("");
+  // };
 
   return (
     <nav className="navbar">
       <div className="navbar-logo">
-        {authContext.isLoggedIn ? (
-          <NavLink to="/lobby" className="logo">
-            Link2play
-          </NavLink>
-        ) : (
-          <NavLink to="/" className="logo">
-            Link2play
-          </NavLink>
-        )}
+        <NavLink to={authContext.isLoggedIn ? "/lobby" : "/"} className="logo">
+          Link2play
+        </NavLink>
       </div>
+
       <div className="navbar-center">
         <ul className="navbar-links">
-          <li className="dropdown">
+          <li
+            className="dropdown"
+            onMouseEnter={() => setIsPlatOpen(true)}
+            onMouseLeave={() => setIsPlatOpen(false)}
+          >
             <NavLink
               to="/games"
               className={({ isActive }) =>
@@ -55,16 +60,19 @@ const NavBar = ({ setSearch, showSearch, setShowSearch }) => {
             >
               Juegos
             </NavLink>
-            <ul className="dropdown-platforms">
-              {platforms.map((platform) => (
-                <li key={platform._id}>
-                  <NavLink to={`/platforms/${platform._id}/games`}>
-                    {platform.name}
-                  </NavLink>
+
+            {/* bridge invisible para mantener hover */}
+            <div className="dropdown-platforms-bridge" />
+
+            <ul className={`dropdown-platforms ${isPlatOpen ? "show" : ""}`}>
+              {platforms.map((p) => (
+                <li key={p._id}>
+                  <NavLink to={`/platforms/${p._id}/games`}>{p.name}</NavLink>
                 </li>
               ))}
             </ul>
           </li>
+
           <li>
             <NavLink
               to="/events"
@@ -85,6 +93,7 @@ const NavBar = ({ setSearch, showSearch, setShowSearch }) => {
               Comunidad
             </NavLink>
           </li>
+
           {authContext.isLoggedIn && (
             <>
               <li>
@@ -107,15 +116,12 @@ const NavBar = ({ setSearch, showSearch, setShowSearch }) => {
                   Jugadores
                 </NavLink>
               </li>
-              <li>
-                <button
-                  className="navbar-btn"
-                  onClick={toggleExplore}
-                  title="Explorar juegos"
-                  aria-label="Buscar juegos"
-                >
-                  <FaSearchengin className="navbar-icon" />
-                </button>
+              <li className="navbar-explore">
+                <SearchInputExplore
+                  search={search}
+                  setSearch={setSearch}
+                  showSearch={showSearch}
+                />
               </li>
             </>
           )}
@@ -131,23 +137,33 @@ const NavBar = ({ setSearch, showSearch, setShowSearch }) => {
                 isActive ? "active-link" : "nav-link"
               }
             >
-              Login in/Sign Up
+              Login/Sign Up
             </NavLink>
           </li>
         ) : (
-          <li className="navbar-user">
+          <li
+            className="navbar-user-dropdown"
+            onMouseEnter={() => setIsUserOpen(true)}
+            onMouseLeave={() => setIsUserOpen(false)}
+          >
             <img
               src={authContext.user?.avatar || blankImg}
               alt="Avatar"
               className="navbar-avatar"
             />
             <NavLink to="/users/me" id="perfil">
-              {/* <span className="navbar-username">{user.username}</span> */}
-              <span className="navbar-username">
-                {authContext.user?.username}
+              <span
+                className="navbar-username"
+                data-fullname={authContext.user.username}
+              >
+                {authContext.user.username}
               </span>
             </NavLink>
-            <ul className="dropdown-user">
+
+            {/* bridge invisible para mantener hover */}
+            <div className="dropdown-bridge" />
+
+            <ul className={`dropdown-user ${isUserOpen ? "show" : ""}`}>
               <li>
                 <NavLink to="/edit/profile" className="dropdown-options">
                   Editar perfil

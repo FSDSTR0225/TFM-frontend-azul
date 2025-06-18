@@ -3,10 +3,10 @@ import "./../style/register.css";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import TextField from "@mui/material/TextField";
-import ModalMUI from "../components/ModalMUI/ModalMUI";
 import { Button } from "@mui/material";
 import AuthContext from "../context/AuthContext";
 import sideImg from "/images/register/3.jpg";
+import RegisterSuccessModal from "../components/ModalMUI/RegisterSuccessModal.jsx";
 
 export default function Register() {
   const navigate = useNavigate();
@@ -16,8 +16,8 @@ export default function Register() {
   const [isModalSuccess, setIsModalSuccess] = useState(true);
 
   const modalText = {
-    success: "Now you are ready to play our games!",
-    fail: "Register Fail. Please try again later.",
+    success: "Bienvenido a Link2PLay",
+    fail: "Inténtalo de nuevo en unos minutos",
   };
 
   const url = "http://localhost:3000/auth/register";
@@ -41,7 +41,7 @@ export default function Register() {
       .then((res) => {
         if (res.ok) {
           setIsModalSuccess(true);
-          setTimeout(() => navigate("/"), 2000);
+          setTimeout(() => navigate("/lobby"), 2000);
         } else {
           setIsModalSuccess(false);
         }
@@ -85,7 +85,7 @@ export default function Register() {
               defaultValue=""
               {...register("username", {
                 required: true,
-                minLength: 6,
+                minLength: 4,
                 maxLength: 20,
               })}
               error={!!errors.username}
@@ -123,7 +123,7 @@ export default function Register() {
               error={!!errors.password}
               helperText={
                 errors.password
-                  ? "Password must be at least 6 characters, with capital letters and numbers."
+                  ? "La contraseña debe tener al menos 6 caracteres, incluyendo una mayúscula y un número."
                   : null
               }
             />
@@ -138,10 +138,10 @@ export default function Register() {
         </div>
       </div>
 
-      <ModalMUI
-        isShowModal={isShowModal}
-        setIsShowModal={setIsShowModal}
-        isModalSuccess={isModalSuccess}
+      <RegisterSuccessModal
+        show={isShowModal}
+        onClose={() => setIsShowModal(false)}
+        isSuccess={isModalSuccess}
         modalText={modalText}
       />
     </div>

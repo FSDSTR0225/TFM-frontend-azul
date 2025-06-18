@@ -21,7 +21,7 @@
   align-items: center;
   justify-content: center;
   margin: auto; /* Centrado horizontal */
-  margin-top: 50px; /* Ajusta según lo necesites para acercarlo al borde superior */
+  margin-top: 50px; /* Ajusta según lo necesites */
 }
 
 .player-search-container h2 {
@@ -42,16 +42,85 @@ select {
   margin-bottom: 1rem;
 }
 
+/* Estilo de la lista de jugadores */
+.player-search-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 1rem;
+}
+
+/* Tarjeta de jugador */
+.player-search-card {
+  display: flex;
+  align-items: center;
+  background: #1a1a1a; /* Fondo oscuro */
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Avatar del jugador */
+.player-search-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin-right: 15px;
+  border: 2px solid #007bff;
+}
+
+/* Información del jugador */
+.player-search-info {
+  flex-grow: 1;
+}
+
+.player-search-name {
+  font-size: 18px;
+  font-weight: bold;
+  color: #66fcf1;
+}
+
+/* Botones dentro de la tarjeta */
+.player-search-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 5px;
+}
+
+/* Botón de ver perfil */
+.view-profile-button {
+  background: #00ffea;
+  color: black;
+  border: none;
+  padding: 8px 12px;
+  font-size: 14px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.view-profile-button:hover {
+  background: #00d1c1;
+}
+
+/* Estilos de botones Buscar y Restablecer */
+.search-clear-buttons {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 600px;
+  margin-top: 15px;
+}
+
 .player-search-button {
   font-size: 1.2rem;
   border: none;
   background-color: var(--dark-blue);
   color: var(--white);
-  padding: 0.8rem;
+  padding: 0.8rem 1.5rem;
   cursor: pointer;
   border-radius: 5px;
   transition: background-color 0.3s ease;
-  margin-top: 1rem;
 }
 
 .player-search-button:hover {
@@ -60,13 +129,22 @@ select {
   color: #66fcf1;
 }
 
-ul {
-  list-style: none;
-  padding: 0;
-  margin-top: 1rem;
+.clear-filters-button {
+  font-size: 1.2rem;
+  border: none;
+  background-color: #5e181f;
+  color: var(--white);
+  padding: 0.8rem 1.5rem;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
 }
 
-/* Mobile Adaptation */
+.clear-filters-button:hover {
+  background-color: #b02a37;
+}
+
+/* Adaptación a dispositivos móviles */
 @media only screen and (max-width: 768px) {
   .PlayerSearch {
     padding: 1rem;
@@ -75,5 +153,40 @@ ul {
   .player-search-container input,
   select {
     width: 90%;
+  }
+
+  .search-clear-buttons {
+    flex-direction: column;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .PlayerSearch {
+    padding: 1rem;
+    min-height: auto;
+  }
+
+  .player-search-container {
+    width: 100%;
+    margin-top: 30px;
+    padding: 0 1rem;
+  }
+
+  .player-search-container h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+  }
+
+  .player-search-container input,
+  .player-search-container select {
+    width: 100%;
+    font-size: 0.95rem;
+    padding: 0.6rem;
+  }
+
+  .player-search-button {
+    width: 100%;
+    font-size: 1rem;
+    padding: 0.7rem;
   }
 }

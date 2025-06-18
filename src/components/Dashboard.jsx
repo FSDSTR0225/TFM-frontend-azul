@@ -8,7 +8,6 @@ const API_URL = import.meta.env.VITE_API_URL;
 
 function Dashboard() {
   const [summary, setSummary] = useState(null);
-  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null); // Estado para almacenar el error, si lo hay.
 
   const { token } = useContext(AuthContext);
@@ -29,11 +28,9 @@ function Dashboard() {
         const data = await response.json();
         console.log("Respuesta backend:", data);
         setSummary(data);
-        setLoading(false);
       } catch (error) {
         console.error("Error fetching data:", error);
         setError(error.message);
-        setLoading(false);
       }
     };
     fetchData();
@@ -41,24 +38,13 @@ function Dashboard() {
 
   if (!token) return null;
 
-  if (loading) {
-    // Si está cargando, muestra...
-    return (
-      <div className="loading-container">
-        <h1 className="loading-title">Cargando plataformas...</h1>
-        <PacmanLoader color="#FFD700" size={40} />{" "}
-        {/* Los componentes de React spinner reciben css en el propio componente */}
-      </div>
-    );
-  }
-
   if (error) {
     // Si hay un error, muestra el mensaje de error
     return <div>Error: {error}</div>;
   }
 
   return (
-    <div className="dashboard - contentS">
+    <div className="dashboard-content">
       <DailySummary summary={summary} />
     </div>
   );

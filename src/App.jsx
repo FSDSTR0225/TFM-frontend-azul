@@ -27,6 +27,7 @@ import ManagementCenter from "./pages/ManagementCenter";
 import MyEvents from "./pages/MyEvents";
 
 
+
 export default function App() {
   const [showSearch, setShowSearch] = useState(false);
   const [search, setSearch] = useState("");

@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
 import Select from "react-select";
 import AuthContext from "../context/AuthContext";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import "../style/CreateEventModal.css";
 
 const API_URL = import.meta.env.VITE_API_URL;
@@ -65,8 +67,7 @@ function EditEventForm({ event, onClose, onUpdate }) {
   const [formData, setFormData] = useState({
     title: event.title,
     description: event.description,
-    date: event.date.split("T")[0],
-    time: new Date(event.date).toISOString().slice(11, 16),
+    date: new Date(event.date),
     game: event.game._id || event.game,
     platform: {
       value: event.platform._id || event.platform,
@@ -80,6 +81,8 @@ function EditEventForm({ event, onClose, onUpdate }) {
   const [gameSuggestions, setGameSuggestions] = useState([]);
   const [platformOptions, setPlatformOptions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
+  const [error, setError] = useState("");
+  const [isEditingGame, setIsEditingGame] = useState(false);
 
   const { token } = useContext(AuthContext);
 
@@ -89,7 +92,7 @@ function EditEventForm({ event, onClose, onUpdate }) {
   }, [event.game.name]);
 
   useEffect(() => {
-    if (gameQuery.length < 2) {
+    if (gameQuery.length < 2 || !isEditingGame) {
       setGameSuggestions([]);
       return;
     }
@@ -106,7 +109,7 @@ function EditEventForm({ event, onClose, onUpdate }) {
     };
 
     fetchGames();
-  }, [gameQuery]);
+  }, [gameQuery, isEditingGame]);
 
   const handleGameSelect = async (game) => {
     setFormData((prev) => ({ ...prev, game: game._id, platform: null }));
@@ -143,19 +146,16 @@ function EditEventForm({ event, onClose, onUpdate }) {
       !formData.title ||
       !formData.description ||
       !formData.date ||
-      !formData.time ||
       !formData.game ||
       !formData.platform
     ) {
-      alert("Por favor, completa todos los campos obligatorios.");
+      setError("Por favor, completa todos los campos obligatorios.");
       return;
     }
 
-    const fullDateTime = new Date(`${formData.date}T${formData.time}`);
-
     const finalData = {
       ...formData,
-      date: fullDateTime,
+      date: formData.date,
       game: formData.game._id || formData.game,
       platform: formData.platform.value || formData.platform,
       maxParticipants:
@@ -200,8 +200,12 @@ function EditEventForm({ event, onClose, onUpdate }) {
         <span className="close-edit-btn" onClick={onClose} title="Cerrar">
           ✖
         </span>
+
+        {error && <p className="error-message">{error}</p>}
+
         <form className="event-form" onSubmit={handleSubmit} autoComplete="off">
           <input
+            maxLength={30}
             type="text"
             name="title"
             placeholder="Título del evento"
@@ -218,18 +222,16 @@ function EditEventForm({ event, onClose, onUpdate }) {
             onChange={handleChange}
             required
           />
-          <input
-            type="date"
-            name="date"
-            value={formData.date}
-            onChange={handleChange}
-            required
-          />
-          <input
-            type="time"
-            name="time"
-            value={formData.time}
-            onChange={handleChange}
+          <DatePicker
+            selected={formData.date}
+            onChange={(date) => setFormData({ ...formData, date })}
+            showTimeSelect
+            timeFormat="HH:mm"
+            timeIntervals={15}
+            dateFormat="dd/MM/yyyy HH:mm"
+            placeholderText="Selecciona fecha y hora"
+            calendarClassName="custom-datepicker-calendar"
+            popperClassName="custom-datepicker-popper"
             required
           />
 
@@ -240,7 +242,7 @@ function EditEventForm({ event, onClose, onUpdate }) {
               value={gameQuery}
               onChange={(e) => {
                 setGameQuery(e.target.value);
-                setShowSuggestions(true);
+                setIsEditingGame(true);
               }}
               onFocus={() => {
                 if (gameSuggestions.length > 0) setShowSuggestions(true);

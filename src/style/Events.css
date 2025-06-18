@@ -220,6 +220,50 @@
   margin-bottom: 30px;
 }
 
+.search-chip {
+  display: inline-flex;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  font-size: 0.875rem;
+  padding: 6px 10px;
+  border-radius: 20px;
+  margin-bottom: 1rem;
+  margin-top: 0.5rem;
+  margin-left: 0.5rem;
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 8px rgba(0, 255, 255, 0.1);
+  transition: all 0.2s ease;
+  opacity: 0;
+  transform: scale(0.95);
+  animation: fadeInChip 0.3s forwards;
+}
+
+@keyframes fadeInChip {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.search-chip button {
+  background: none;
+  border: none;
+  color: #fff;
+  margin-left: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 0;
+  line-height: 1;
+  transition: transform 0.2s ease;
+}
+
+.search-chip button:hover {
+  transform: scale(1.1);
+  color: #ff4e4e;
+}
+
 @media (max-width: 900px) {
   .all-events {
     max-width: 98vw;
@@ -227,6 +271,35 @@
   }
   .event-card {
     padding: 1.2rem 1rem 1rem 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .title-event-page {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .event-card {
+    padding: 1rem 0.8rem;
+    border-radius: 14px;
+  }
+
+  .event-card .event-title {
+    font-size: 1.25rem;
+  }
+
+  .event-card .event-info,
+  .event-card .event-meta,
+  .event-card .event-description,
+  .event-card .event-participants {
+    font-size: 0.95rem;
+  }
+
+  .event-card .join-btn,
+  .event-card .details-btn {
+    font-size: 0.9rem;
+    padding: 0.6rem 1.4rem;
   }
 }
 
@@ -260,5 +333,48 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     gap: 12px;
+  }
+}
+
+/* Móviles pequeños (menos de 480px) */
+@media (max-width: 480px) {
+  .title-event-page {
+    font-size: 1.3rem;
+  }
+
+  .event-card {
+    padding: 0.6rem 0.4rem;
+    border-radius: 10px;
+  }
+
+  .event-card .event-title {
+    font-size: 1.1rem;
+  }
+
+  .event-card .event-info,
+  .event-card .event-meta,
+  .event-card .event-description,
+  .event-card .event-participants {
+    font-size: 0.87rem;
+  }
+
+  .event-card .event-platform,
+  .event-card .event-date {
+    font-size: 0.85rem;
+  }
+
+  .event-card .join-btn,
+  .event-card .details-btn {
+    font-size: 0.85rem;
+    padding: 0.5rem 1rem;
+  }
+
+  .search-chip {
+    font-size: 0.75rem;
+    padding: 4px 8px;
+  }
+
+  .search-chip button {
+    font-size: 0.85rem;
   }
 }

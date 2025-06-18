@@ -480,7 +480,7 @@ export default ManagementCenter;
 //     // Si está cargando, muestra...
 //     return (
 //       <div className="loading-container">
-//         <h1 className="loading-title">Cargando plataformas...</h1>
+//         <h1 className="loading-title">Cargando solicitudes...</h1>
 //         <PacmanLoader color="#FFD700" size={40} />{" "}
 //         {/* Los componentes de React spinner reciben css en el propio componente */}
 //       </div>
