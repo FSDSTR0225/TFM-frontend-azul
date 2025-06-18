@@ -1,0 +1,180 @@
+/* Contenedor principal del widget */
+.game-suggestion-container {
+  width: 100%;
+  height: 310px;
+  max-height: none;
+  /* min-height: 300px; */
+  padding: 9px 12px;
+  border-radius: 14px;
+  background: inherit;
+  /* box-shadow: 0 0 24px #00ffc822, 0 2px 8px #000a; */
+  color: #fff;
+  font-family: "Audiowide", Arial, sans-serif;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 10px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.suggestion-content-game {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+/* Tarjeta individual con fondo y blur estilo search-result */
+.game-suggested {
+  position: relative; /* evita que el Link lo sobreescriba */
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  background: linear-gradient(
+    135deg,
+    rgba(10, 20, 40, 0.92) 70%,
+    rgba(30, 40, 60, 0.96) 100%
+  );
+  /* background: rgba(10, 10, 30, 0.7); */
+  /* background: rgba(0, 255, 255, 0.08); */
+  backdrop-filter: blur(8px);
+  box-shadow: 0 0 12px rgba(0, 255, 255, 0.1);
+  border: 1px solid rgba(0, 255, 255, 0.1);
+  cursor: pointer;
+  transition: background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.game-suggested:hover {
+  background: rgba(0, 255, 255, 0.06);
+  box-shadow: 0 0 14px rgba(0, 255, 255, 0.2);
+}
+
+.game-suggested-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  text-decoration: none; /* sin subrayado */
+  color: inherit; /* hereda el cyan del span */
+}
+
+/* Imagen estilo buscador */
+.img-suggest-game {
+  width: 32px;
+  height: 32px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid #00fff0;
+  flex-shrink: 0;
+}
+
+/* Nombre del juego a la derecha */
+.name-suggest-game {
+  font-size: 0.85rem;
+  font-family: "Audiowide", sans-serif;
+  color: #00f0ff; /* cyan */
+  text-shadow: 0 0 3px #00fff088;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.game-suggested-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: inherit;
+  width: 100%;
+}
+
+/* Estado sin sugerencias */
+.no-suggestions-game {
+  text-align: center;
+  font-size: 13px;
+  color: #aaa;
+  margin-top: 8px;
+}
+
+/* Responsive: tarjetas un poco más pequeñas */
+@media (max-width: 500px) {
+  .suggestion-content-game {
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  }
+
+  .img-suggest-game {
+    height: 60px;
+  }
+
+  .name-suggest-game {
+    font-size: 0.66rem;
+  }
+}
+
+.dots-loader {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  height: 40px; /* ajustable */
+}
+
+.dots-loader::before,
+.dots-loader::after,
+.dots-loader span {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background-color: #00ffc8cc;
+  border-radius: 50%;
+  animation: blinkDots 1.4s infinite ease-in-out both;
+}
+
+.dots-loader span {
+  animation-delay: 0.2s;
+}
+
+.dots-loader::after {
+  animation-delay: 0.4s;
+}
+
+/* Scrollbar personalizada */
+.game-suggestion-container::-webkit-scrollbar {
+  /* width: 6px; */
+  width: 0px;
+}
+.game-suggestion-container::-webkit-scrollbar-thumb {
+  background-color: #7074733a;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.game-suggestion-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.game-suggestion-container::-webkit-scrollbar-thumb:hover {
+  background-color: #00ffc8aa;
+}
+
+@keyframes blinkDots {
+  0%,
+  80%,
+  100% {
+    transform: scale(0);
+    opacity: 0.3;
+  }
+  40% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
