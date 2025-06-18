@@ -19,6 +19,7 @@
 .suggestions-widget-content::-webkit-scrollbar-thumb {
   background-color: #7074733a;
   border-radius: 4px;
+  cursor: pointer;
 }
 .suggestions-widget-content::-webkit-scrollbar-track {
   background: transparent;

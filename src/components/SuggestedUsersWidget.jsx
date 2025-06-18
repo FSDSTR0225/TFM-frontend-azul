@@ -18,7 +18,7 @@ function SuggestedUsersWidget() {
     const fetchUsersSuggestions = async () => {
       try {
         const response = await fetch(
-          `${API_URL}/dashboard/widgets/suggestions/user`,
+          `${API_URL}/dashboard/widgets/suggestions/users`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
