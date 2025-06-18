@@ -17,11 +17,15 @@
   width: 6px;
 }
 .suggestions-widget-content::-webkit-scrollbar-thumb {
-  background-color: #00ffc8aa;
+  background-color: #7074733a;
   border-radius: 4px;
 }
 .suggestions-widget-content::-webkit-scrollbar-track {
   background: transparent;
+}
+
+.suggestions-widget-content::-webkit-scrollbar-thumb:hover {
+  background-color: #00ffc8aa;
 }
 
 .card-suggestion-container {
