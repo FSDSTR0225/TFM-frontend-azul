@@ -67,7 +67,7 @@ input::placeholder {
   color: #9ca3af;
 }
 
-button {
+.send-chat-button {
   padding: 10px 20px;
   background: linear-gradient(145deg, #00ffff, #646cff);
   color: white;
@@ -78,7 +78,7 @@ button {
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-button:hover {
+.send-chat-button:hover {
   background: linear-gradient(145deg, #535bf2, #00e0e0);
   box-shadow: 0 0 8px rgba(100, 108, 255, 0.5);
   transform: translateY(-1px);
