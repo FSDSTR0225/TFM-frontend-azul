@@ -80,7 +80,7 @@ function ExploreUsers() {
               <div className="users-explore-btn">
                 <button className="btn-connect-explore">Conectar</button>
                 <button
-                  className="btn-profile"
+                  className="btn-explore-profile"
                   onClick={() => navigate(`/users/${user._id || user.id}`)}
                 >
                   Ver perfil

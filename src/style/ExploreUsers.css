@@ -152,7 +152,7 @@
 
 .users-explore-btn button:hover {
   background-color: #00ffc822;
-  color: #181a2a;
+  color: whitesmoke;
   border-color: #66fcf1;
   box-shadow: 0 0 16px #00ffc8cc;
   transform: translateY(-2px) scale(1.04);
@@ -162,6 +162,19 @@
   border-color: #66fcf1;
   color: #66fcf1;
   font-weight: bold;
+}
+
+.btn-explore-profile {
+  background-color: #00e0ff;
+  color: #181a2a;
+  border: 1.5px solid #00e0ff;
+  font-weight: bold;
+}
+
+.btn-explore-profile:hover {
+  background-color: #00e0ff88;
+  color: whitesmoke !important;
+  border-color: #00e0ff;
 }
 
 .btn-connect-explore:hover {
