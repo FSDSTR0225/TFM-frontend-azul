@@ -32,7 +32,7 @@
 
 /* Tarjeta individual con fondo y blur estilo search-result */
 .game-suggested {
-  position: relative; /* evita que el Link lo sobreescriba */
+  position: relative;
   display: flex;
   align-items: center;
   gap: 10px;
