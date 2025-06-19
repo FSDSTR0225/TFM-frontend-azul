@@ -1,7 +1,11 @@
 .friends-online-widget {
   padding: 1rem;
   border-radius: 16px;
-  background: rgba(255, 255, 255, 0.08);
+  background: linear-gradient(
+    135deg,
+    rgba(10, 15, 30, 0.8),
+    rgba(30, 40, 60, 0.85)
+  );
   backdrop-filter: blur(10px);
   box-shadow: 0 0 15px rgba(0, 255, 255, 0.15);
   color: #ffffff;
