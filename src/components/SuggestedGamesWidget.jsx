@@ -10,6 +10,7 @@ function SuggestedGamesWidget() {
   const { token } = useContext(AuthContext);
   const [suggestedGames, setSuggestedGames] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [nextUpdate, setNextUpdate] = useState(null);
 
   const navigate = useNavigate();
 
@@ -30,6 +31,7 @@ function SuggestedGamesWidget() {
         }
         const data = await response.json();
         setSuggestedGames(data.gamesSuggested);
+        setNextUpdate(data.nextUpdate);
         setLoading(false);
       } catch (error) {
         console.error("Error al ...", error);
@@ -44,15 +46,20 @@ function SuggestedGamesWidget() {
     // return () => clearInterval(interval); // Limpieza
   }, [token]);
 
-  if (loading) {
-    return <div className="dots-loader" />;
-  }
-
   const handleNavigation = (url) => {
     navigate(url);
   };
   const handleOnClick = (game) => {
     handleNavigation(`/games/${game.rawgId || game._id}`);
+  };
+
+  const formatTimeLeft = (ms) => {
+    const totalHours = Math.floor(ms / (1000 * 60 * 60));
+    const days = Math.floor(totalHours / 24);
+    const hours = totalHours % 24;
+    return `${days} día${days !== 1 ? "s" : ""} y ${hours} hora${
+      hours !== 1 ? "s" : ""
+    }`;
   };
 
   // const handleDeleteGame = async (id) => {
@@ -78,9 +85,17 @@ function SuggestedGamesWidget() {
   //     console.error("Error al cargar sugerencia extra", error);
   //   }
   // };
+  if (loading) {
+    return <div className="dots-loader" />;
+  }
 
   return (
     <div className="game-suggestion-container">
+      {nextUpdate && (
+        <p className="suggestion-update-timer">
+          Nuevas sugerencias en: <span>{formatTimeLeft(nextUpdate)}</span>
+        </p>
+      )}
       {suggestedGames.length > 0 ? (
         <ul className="suggestion-content-game">
           {suggestedGames.map((game) => (
