@@ -6,6 +6,7 @@ import FriendsOnlineWidget from "./FriendsOnlineWidget";
 import CalendarWidget from "./CalendarWidget";
 import SuggestedUsersWidget from "./SuggestedUsersWidget";
 import SuggestedGamesWidget from "./SuggestedGamesWidget";
+import { toast } from "sonner";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -108,12 +109,17 @@ function WidgetSystem() {
           Authorization: `Bearer ${token}`,
         },
       });
-
+      const data = await response.json();
       if (!response.ok) {
-        throw new Error("Error fetching widget");
+        if (response.status === 400 && data.message === "El widget ya existe") {
+          toast.info("Ya tienes este widget añadido.", {
+            className: "mi-toast",
+            icon: "",
+          });
+        }
+        throw new Error(data.message || "Error fetching widget");
       }
 
-      const data = await response.json();
       setWidgetList(data.widgets);
       setShowMenu(false);
     } catch (error) {
@@ -211,7 +217,7 @@ function WidgetSystem() {
           className="add-widget-btn"
           onClick={() => setShowMenu((prev) => !prev)}
         >
-          + Añadir widget
+          ⋮ Widgets
         </button>
         {showMenu && (
           <ul className="widget-menu">
