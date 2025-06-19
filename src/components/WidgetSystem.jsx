@@ -18,6 +18,7 @@ const widgetComponents = {
 
 function WidgetSystem() {
   const [widgetList, setWidgetList] = useState([]); // Estado para almacenar los widgets
+  const [showMenu, setShowMenu] = useState(false);
 
   const { token } = useContext(AuthContext);
 
@@ -99,109 +100,134 @@ function WidgetSystem() {
     }
   };
 
-  // Función para añadir el widget de amigos online
-  const handleAddFriendsWidget = async () => {
+  const handleAddWidget = async (type) => {
     try {
-      const res = await fetch(`${API_URL}/dashboard/widgets/friends`, {
+      const response = await fetch(`${API_URL}/dashboard/widgets/${type}`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
 
-      const data = await res.json();
-
-      if (res.ok) {
-        setWidgetList(data.widgets); // Actualiza el listado con lo nuevo
-      } else {
-        console.error("Error al añadir widget:", data.message);
-      }
-    } catch (error) {
-      console.error("Error al añadir widget:", error);
-    }
-  };
-
-  // Función para añadir el widget de calendario de eventos
-  const handleAddCalendarWidget = async () => {
-    try {
-      const resp = await fetch(`${API_URL}/dashboard/widgets/calendar`, {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-
-      if (!resp.ok) {
-        throw new Error("Error al exportar widget Calendar");
+      if (!response.ok) {
+        throw new Error("Error fetching widget");
       }
 
-      const data = await resp.json();
+      const data = await response.json();
       setWidgetList(data.widgets);
+      setShowMenu(false);
     } catch (error) {
-      console.error("Error al añadir widget:", error);
+      console.error("Error al añadir widget", error);
     }
   };
 
-  const handleAddUserSuggestionWidget = async () => {
-    try {
-      const resp = await fetch(`${API_URL}/dashboard/widgets/userSuggestions`, {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+  // // Función para añadir el widget de amigos online
+  // const handleAddFriendsWidget = async () => {
+  //   try {
+  //     const res = await fetch(`${API_URL}/dashboard/widgets/friends`, {
+  //       method: "POST",
+  //       headers: {
+  //         Authorization: `Bearer ${token}`,
+  //       },
+  //     });
 
-      if (!resp.ok) {
-        throw new Error("Error al añadir widget de sugerencia de usuarios");
-      }
+  //     const data = await res.json();
 
-      const data = await resp.json();
-      setWidgetList(data.widgets);
-    } catch (error) {
-      console.error("Error al añadir widget:", error);
-    }
-  };
+  //     if (res.ok) {
+  //       setWidgetList(data.widgets); // Actualiza el listado con lo nuevo
+  //     } else {
+  //       console.error("Error al añadir widget:", data.message);
+  //     }
+  //   } catch (error) {
+  //     console.error("Error al añadir widget:", error);
+  //   }
+  // };
 
-  const handleAddGameSuggestionWidget = async () => {
-    try {
-      const resp = await fetch(`${API_URL}/dashboard/widgets/gameSuggestions`, {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+  // // Función para añadir el widget de calendario de eventos
+  // const handleAddCalendarWidget = async () => {
+  //   try {
+  //     const resp = await fetch(`${API_URL}/dashboard/widgets/calendar`, {
+  //       method: "POST",
+  //       headers: {
+  //         Authorization: `Bearer ${token}`,
+  //       },
+  //     });
 
-      if (!resp.ok) {
-        throw new Error("Error al añadir widget de sugerencia de juegos");
-      }
+  //     if (!resp.ok) {
+  //       throw new Error("Error al exportar widget Calendar");
+  //     }
 
-      const data = await resp.json();
-      setWidgetList(data.widgets);
-    } catch (error) {
-      console.error("Error al añadir widget:", error);
-    }
-  };
+  //     const data = await resp.json();
+  //     setWidgetList(data.widgets);
+  //   } catch (error) {
+  //     console.error("Error al añadir widget:", error);
+  //   }
+  // };
+
+  // const handleAddUserSuggestionWidget = async () => {
+  //   try {
+  //     const resp = await fetch(`${API_URL}/dashboard/widgets/userSuggestions`, {
+  //       method: "POST",
+  //       headers: {
+  //         Authorization: `Bearer ${token}`,
+  //       },
+  //     });
+
+  //     if (!resp.ok) {
+  //       throw new Error("Error al añadir widget de sugerencia de usuarios");
+  //     }
+
+  //     const data = await resp.json();
+  //     setWidgetList(data.widgets);
+  //   } catch (error) {
+  //     console.error("Error al añadir widget:", error);
+  //   }
+  // };
+
+  // const handleAddGameSuggestionWidget = async () => {
+  //   try {
+  //     const resp = await fetch(`${API_URL}/dashboard/widgets/gameSuggestions`, {
+  //       method: "POST",
+  //       headers: {
+  //         Authorization: `Bearer ${token}`,
+  //       },
+  //     });
+
+  //     if (!resp.ok) {
+  //       throw new Error("Error al añadir widget de sugerencia de juegos");
+  //     }
+
+  //     const data = await resp.json();
+  //     setWidgetList(data.widgets);
+  //   } catch (error) {
+  //     console.error("Error al añadir widget:", error);
+  //   }
+  // };
 
   return (
     <div className="widget-system">
-      <button className="add-widget-btn" onClick={handleAddFriendsWidget}>
-        + Añadir widget de amigos online
-      </button>
-      <button className="add-widget-btn" onClick={handleAddCalendarWidget}>
-        + Añadir widget calendario de eventos
-      </button>
-      <button
-        className="add-widget-btn"
-        onClick={handleAddUserSuggestionWidget}
-      >
-        + Añadir widget de sugerencia de usuarios
-      </button>
-      <button
-        className="add-widget-btn"
-        onClick={handleAddGameSuggestionWidget}
-      >
-        + Añadir widget de sugerencia de juegos
-      </button>
+      <div className="add-widget-container">
+        <button
+          className="add-widget-btn"
+          onClick={() => setShowMenu((prev) => !prev)}
+        >
+          + Añadir widget
+        </button>
+        {showMenu && (
+          <ul className="widget-menu">
+            <li onClick={() => handleAddWidget("friends")}>Amigos Online</li>
+            <li onClick={() => handleAddWidget("calendar")}>
+              Calendario de eventos
+            </li>
+            <li onClick={() => handleAddWidget("userSuggestions")}>
+              Sugerencias de usuarios
+            </li>
+            <li onClick={() => handleAddWidget("gameSuggestions")}>
+              Sugerencias de juegos
+            </li>
+          </ul>
+        )}
+      </div>
       <GridLayout
         className="layout"
         layout={layout}

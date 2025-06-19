@@ -62,6 +62,35 @@
   border-color: #00ffc8;
 }
 
+.add-widget-container {
+  position: relative;
+  display: inline-block;
+}
+
+.widget-menu {
+  position: absolute;
+  top: 40px;
+  left: 0;
+  z-index: 10;
+  background: #1c1c1c;
+  border: 1px solid #444;
+  border-radius: 8px;
+  list-style: none;
+  padding: 8px;
+  width: 220px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+}
+
+.widget-menu li {
+  padding: 10px;
+  cursor: pointer;
+  color: #fff;
+}
+
+.widget-menu li:hover {
+  background-color: #2a2a2a;
+}
+
 /*jsansjknsajnsajknasjksankjsansanksa*/
 
 /* Resize handle para que se vea más claro que se puede redimensionar */
