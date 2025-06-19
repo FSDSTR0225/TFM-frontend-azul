@@ -50,6 +50,18 @@
   border: 1px solid rgba(0, 255, 255, 0.1);
   cursor: pointer;
   transition: background 0.2s ease, box-shadow 0.2s ease;
+  animation: fadeInGame 0.25s ease-in;
+}
+
+@keyframes fadeInGame {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .game-suggested:hover {
@@ -177,4 +189,28 @@
     transform: scale(1);
     opacity: 1;
   }
+}
+
+.btn-suggestion {
+  position: absolute;
+  right: 8px;
+  top: 6px;
+  font-size: 13px;
+  color: #ff4e4e;
+  cursor: pointer;
+  font-weight: bold;
+  transition: color 0.2s ease;
+}
+
+.btn-suggestion:hover {
+  color: #ffaaaa;
+}
+
+.next-update-info {
+  font-size: 0.8rem;
+  color: #66fcf1;
+  text-align: center;
+  margin-top: 10px;
+  font-family: "Audiowide", sans-serif;
+  text-shadow: 0 0 4px #00ffff88;
 }
