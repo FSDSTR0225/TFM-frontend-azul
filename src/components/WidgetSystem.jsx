@@ -7,6 +7,7 @@ import CalendarWidget from "./CalendarWidget";
 import SuggestedUsersWidget from "./SuggestedUsersWidget";
 import SuggestedGamesWidget from "./SuggestedGamesWidget";
 import { toast } from "sonner";
+import SuggestedEventsWidget from "./SuggestedEventsWidget";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -15,6 +16,7 @@ const widgetComponents = {
   calendar: () => <CalendarWidget />,
   userSuggestions: () => <SuggestedUsersWidget />,
   gameSuggestions: () => <SuggestedGamesWidget />,
+  eventSuggestions: () => <SuggestedEventsWidget />,
 };
 
 function WidgetSystem() {
@@ -152,89 +154,6 @@ function WidgetSystem() {
     }
   };
 
-  // // Función para añadir el widget de amigos online
-  // const handleAddFriendsWidget = async () => {
-  //   try {
-  //     const res = await fetch(`${API_URL}/dashboard/widgets/friends`, {
-  //       method: "POST",
-  //       headers: {
-  //         Authorization: `Bearer ${token}`,
-  //       },
-  //     });
-
-  //     const data = await res.json();
-
-  //     if (res.ok) {
-  //       setWidgetList(data.widgets); // Actualiza el listado con lo nuevo
-  //     } else {
-  //       console.error("Error al añadir widget:", data.message);
-  //     }
-  //   } catch (error) {
-  //     console.error("Error al añadir widget:", error);
-  //   }
-  // };
-
-  // // Función para añadir el widget de calendario de eventos
-  // const handleAddCalendarWidget = async () => {
-  //   try {
-  //     const resp = await fetch(`${API_URL}/dashboard/widgets/calendar`, {
-  //       method: "POST",
-  //       headers: {
-  //         Authorization: `Bearer ${token}`,
-  //       },
-  //     });
-
-  //     if (!resp.ok) {
-  //       throw new Error("Error al exportar widget Calendar");
-  //     }
-
-  //     const data = await resp.json();
-  //     setWidgetList(data.widgets);
-  //   } catch (error) {
-  //     console.error("Error al añadir widget:", error);
-  //   }
-  // };
-
-  // const handleAddUserSuggestionWidget = async () => {
-  //   try {
-  //     const resp = await fetch(`${API_URL}/dashboard/widgets/userSuggestions`, {
-  //       method: "POST",
-  //       headers: {
-  //         Authorization: `Bearer ${token}`,
-  //       },
-  //     });
-
-  //     if (!resp.ok) {
-  //       throw new Error("Error al añadir widget de sugerencia de usuarios");
-  //     }
-
-  //     const data = await resp.json();
-  //     setWidgetList(data.widgets);
-  //   } catch (error) {
-  //     console.error("Error al añadir widget:", error);
-  //   }
-  // };
-
-  // const handleAddGameSuggestionWidget = async () => {
-  //   try {
-  //     const resp = await fetch(`${API_URL}/dashboard/widgets/gameSuggestions`, {
-  //       method: "POST",
-  //       headers: {
-  //         Authorization: `Bearer ${token}`,
-  //       },
-  //     });
-
-  //     if (!resp.ok) {
-  //       throw new Error("Error al añadir widget de sugerencia de juegos");
-  //     }
-
-  //     const data = await resp.json();
-  //     setWidgetList(data.widgets);
-  //   } catch (error) {
-  //     console.error("Error al añadir widget:", error);
-  //   }
-  // };
-
   return (
     <div className="widget-system">
       <div className="add-widget-container">
@@ -250,11 +169,14 @@ function WidgetSystem() {
             <li onClick={() => handleAddWidget("calendar")}>
               Calendario de eventos
             </li>
-            <li onClick={() => handleAddWidget("userSuggestions")}>
-              Sugerencias de usuarios
+            <li onClick={() => handleAddWidget("eventSuggestions")}>
+              Eventos sugeridos
             </li>
             <li onClick={() => handleAddWidget("gameSuggestions")}>
-              Sugerencias de juegos
+              Juegos sugeridos
+            </li>
+            <li onClick={() => handleAddWidget("userSuggestions")}>
+              Usuarios sugeridos
             </li>
           </ul>
         )}
