@@ -95,14 +95,15 @@
 }
 
 .lobby-widgets-container {
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  /* max-width: 1200px; */
+  /* margin: 0 auto; */
   margin-top: 1.5rem;
-  padding: 0 1rem;
+  padding: 0;
   display: block;
   min-height: 300px;
-  height: auto;
   overflow: visible;
 }
 

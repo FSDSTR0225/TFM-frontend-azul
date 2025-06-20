@@ -239,13 +239,14 @@ function WidgetSystem() {
         layout={layout}
         cols={12}
         rowHeight={150}
-        width={1200}
+        width={window.innerWidth}
         autoSize={true}
         preventCollision={true}
         compactType={null}
         isBounded={true}
         isDraggable={true}
         isResizable={true}
+        verticalCompact={false}
         resizeHandles={["se"]} // Permite redimensionar los widgets desde la esquina marcada
         // onResize={(layout, oldItem, newItem) => {
         //   console.log("Resizing", newItem);
