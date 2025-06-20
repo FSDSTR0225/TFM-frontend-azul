@@ -265,13 +265,15 @@ function WidgetSystem() {
         cols={12}
         rowHeight={150}
         width={window.innerWidth}
-        autoSize={true}
+        // autoSize={true}
         preventCollision={true}
         compactType={null}
-        isBounded={true}
+        isBounded={false}
+        useCSSTransforms={true}
         isDraggable={true}
         isResizable={true}
         verticalCompact={false}
+        margin={[20, 20]}
         resizeHandles={["se"]} // Permite redimensionar los widgets desde la esquina marcada
         // onResize={(layout, oldItem, newItem) => {
         //   console.log("Resizing", newItem);
