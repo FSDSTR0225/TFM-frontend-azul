@@ -40,7 +40,8 @@ function WidgetSystem() {
     y: widget.y ?? Math.floor(index / 6),
     w: widget.w ?? 3,
     h: widget.h ?? 2,
-    minW: 2,
+    // minW: 1, //minW: widget.type === "calendar" ? 1 : 2, para ajustar según el tipo de widget
+    minW: widget.type === "userSuggestions" ? 2 : 1,
     maxW: 12,
     minH: 1,
     maxH: 10,
@@ -122,6 +123,30 @@ function WidgetSystem() {
 
       setWidgetList(data.widgets);
       setShowMenu(false);
+    } catch (error) {
+      console.error("Error al añadir widget", error);
+    }
+  };
+
+  const handleRemoveWidget = async (widgetId) => {
+    try {
+      const response = await fetch(`${API_URL}/dashboard/widgets/${widgetId}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error("Error...");
+      }
+      const data = await response.json();
+      setWidgetList((prevList) => prevList.filter((w) => w._id !== widgetId));
+      setShowMenu(false);
+
+      toast.success(data.message || "Widget eliminado", {
+        className: "mi-toast",
+      });
     } catch (error) {
       console.error("Error al añadir widget", error);
     }
@@ -255,6 +280,13 @@ function WidgetSystem() {
       >
         {widgetList.map((widget) => (
           <div key={widget._id} className="widget-box">
+            <span
+              className="delete-widget-button"
+              onClick={() => handleRemoveWidget(widget._id)}
+              title="Eliminar widget"
+            >
+              X
+            </span>
             {widgetComponents[widget.type]?.()}
           </div>
         ))}

@@ -63,6 +63,7 @@
   justify-content: flex-start;
   color: #66fcf1;
   font-family: "Audiowide", sans-serif;
+  position: relative;
 }
 
 .widget-box:hover {
@@ -73,7 +74,7 @@
 
 .add-widget-container {
   position: relative;
-  margin-left: 24px;
+  margin-left: 70px;
   margin-top: 1.5rem;
   display: inline-block;
 }
@@ -133,6 +134,25 @@
   min-height: 1200px; /* O más, para permitir espacio vertical */
   height: auto; /* Deja que crezca según los widgets */
   overflow: visible; /* NO scroll aquí */
+}
+
+.delete-widget-button {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: transparent;
+  border: none;
+  color: whitesmoke;
+  font-size: 0.7rem;
+  cursor: pointer;
+  z-index: 10;
+  border-radius: 4px;
+  padding: 2px 6px;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.delete-widget-button:hover {
+  color: #fa6f6f;
 }
 
 /* Prevenir que se deforme el fondo o el layout general */
