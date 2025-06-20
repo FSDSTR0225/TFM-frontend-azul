@@ -91,8 +91,13 @@ function EventsToday() {
                   alt={`Icono de ${event.platform.name}`}
                   className="events-icon-platform-card-lobby"
                 />
-                <span className="events-platform-name">
-                  {event.platform.name}
+                <span
+                  className="events-platform-name"
+                  title={event.platform.name}
+                >
+                  {event.platform.name === "Nintendo Switch"
+                    ? "Switch"
+                    : event.platform.name}
                 </span>
               </div>
             </div>

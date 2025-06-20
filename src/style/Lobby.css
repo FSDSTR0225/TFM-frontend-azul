@@ -77,14 +77,14 @@
   max-width: 500px;
   text-align: start;
   height: 100%;
-  margin-right: 2rem;
+  /* margin-right: 2rem; */
   padding: 2.5rem;
 }
 
 .lobby-events-right {
   flex: 1 1 300px;
   min-width: 280px;
-  max-width: 500px;
+  max-width: 850px;
   padding-top: 2rem;
 }
 

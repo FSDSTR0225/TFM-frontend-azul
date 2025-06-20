@@ -187,7 +187,7 @@ function CreateEventModal({ onClose, onCreate }) {
             type="text"
             name="title"
             placeholder="Título del evento"
-            maxLength={30}
+            maxLength={20}
             value={formData.title}
             onChange={handleChange}
             required
