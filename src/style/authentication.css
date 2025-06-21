@@ -11,6 +11,7 @@
     rgba(30, 40, 60, 0.85)
   );
   font-family: "Audiowide", sans-serif;
+  position: fixed !important;
 }
 
 .auth-form {

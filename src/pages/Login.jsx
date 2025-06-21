@@ -58,10 +58,15 @@ export default function Login() {
     <div className="auth-container">
       <div className="auth-form glass">
         <div className="RegisterForm__Title">Login and play!</div>
-        <form className="RegisterForm" onSubmit={handleSubmit(onSubmit)}>
+        <form
+          className="RegisterForm"
+          autoComplete="on"
+          onSubmit={handleSubmit(onSubmit)}
+        >
           <TextField
             className="RegisterForm__input"
             type="text"
+            autoComplete="username"
             {...register("login", {
               required: true,
               maxLength: 35,
@@ -79,6 +84,7 @@ export default function Login() {
           <TextField
             className="RegisterForm__input"
             type="password"
+            autoComplete="current-password"
             {...register("password", {
               required: true,
               maxLength: 35,

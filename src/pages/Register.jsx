@@ -61,13 +61,18 @@ export default function Register() {
         <div className="RegisterForm__Title">Register Now</div>
         {error && <p className="error">{error.message}</p>}
 
-        <form className="RegisterForm" onSubmit={handleSubmit(onSubmit)}>
+        <form
+          className="RegisterForm"
+          autoComplete="off"
+          onSubmit={handleSubmit(onSubmit)}
+        >
           <TextField
             className="RegisterForm__input"
             type="text"
             label="Username"
             variant="standard"
             defaultValue=""
+            autoComplete="new-username"
             {...register("username", {
               required: true,
               minLength: 4,
@@ -82,6 +87,7 @@ export default function Register() {
             label="Email"
             variant="standard"
             defaultValue=""
+            autoComplete="new-email"
             {...register("email", {
               required: true,
               minLength: 10,
@@ -97,6 +103,7 @@ export default function Register() {
             label="Password"
             variant="standard"
             defaultValue=""
+            autoComplete="new-password"
             {...register("password", {
               required: true,
               minLength: 6,
