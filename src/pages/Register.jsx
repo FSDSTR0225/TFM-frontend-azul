@@ -1,18 +1,16 @@
 import React, { useState, useContext } from "react";
-import "./../style/register.css";
+import "./../style/authentication.css";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import TextField from "@mui/material/TextField";
 import { Button } from "@mui/material";
 import AuthContext from "../context/AuthContext";
-import sideImg from "/images/register/3.jpg";
+import sideImg from "/images/register/prueba10.jpg";
 import RegisterSuccessModal from "../components/ModalMUI/RegisterSuccessModal.jsx";
-import { PacmanLoader } from "react-spinners";
 
 export default function Register() {
   const navigate = useNavigate();
   const authContext = useContext(AuthContext);
-
   const API_URL = import.meta.env.VITE_API_URL;
 
   const [isShowModal, setIsShowModal] = useState(false);
@@ -43,7 +41,6 @@ export default function Register() {
       });
 
       const result = await response.json();
-
       if (!response.ok) {
         throw new Error(result.message || "Error al registrar usuario");
       }
@@ -52,7 +49,6 @@ export default function Register() {
       setIsShowModal(true);
       setTimeout(() => navigate("/lobby"), 2000);
     } catch (error) {
-      console.error("Error en el registro", error.message);
       setError({ message: error.message });
       setIsModalSuccess(false);
       setIsShowModal(true);
@@ -60,86 +56,81 @@ export default function Register() {
   };
 
   return (
-    <div className="Register">
-      <div className="Register__wrapper">
-        <div className="Register__fotoContainer">
-          {/* <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="Register__videoLateral"
+    <div className="auth-container">
+      <div className="auth-form glass">
+        <div className="RegisterForm__Title">Register Now</div>
+        {error && <p className="error">{error.message}</p>}
+
+        <form className="RegisterForm" onSubmit={handleSubmit(onSubmit)}>
+          <TextField
+            className="RegisterForm__input"
+            type="text"
+            label="Username"
+            variant="standard"
+            defaultValue=""
+            {...register("username", {
+              required: true,
+              minLength: 4,
+              maxLength: 20,
+            })}
+            error={!!errors.username}
+            helperText={errors.username ? "Please enter valid username!" : null}
+          />
+          <TextField
+            className="RegisterForm__input"
+            type="text"
+            label="Email"
+            variant="standard"
+            defaultValue=""
+            {...register("email", {
+              required: true,
+              minLength: 10,
+              maxLength: 35,
+              pattern: /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/,
+            })}
+            error={!!errors.email}
+            helperText={errors.email ? "Please enter valid email!" : null}
+          />
+          <TextField
+            className="RegisterForm__input"
+            type="password"
+            label="Password"
+            variant="standard"
+            defaultValue=""
+            {...register("password", {
+              required: true,
+              minLength: 6,
+              maxLength: 35,
+              pattern: /^(?=.*[0-9])(?=.*[A-Z]).{6,}$/,
+            })}
+            error={!!errors.password}
+            helperText={
+              errors.password
+                ? "Mínimo 6 caracteres, una mayúscula y un número."
+                : null
+            }
+          />
+          <Button
+            variant="contained"
+            className="RegisterForm__button"
+            type="submit"
           >
-            <source src="/videos/videogamer1.mp4" type="video/mp4" />
-            Tu navegador no soporta video HTML5.
-          </video> */}
-          <img className="Register__foto" src={sideImg} />
-        </div>
-        <div className="RegisterForm__Container">
-          <div className="RegisterForm__Title">Register Now</div>
-
-          {error && <p className="error">{error.message}</p>}
-
-          <form className="RegisterForm" onSubmit={handleSubmit(onSubmit)}>
-            <TextField
-              className="RegisterForm__input"
-              type="text"
-              label="Username"
-              variant="standard"
-              defaultValue=""
-              {...register("username", {
-                required: true,
-                minLength: 4,
-                maxLength: 20,
-              })}
-              error={!!errors.username}
-              helperText={
-                errors.username ? "Please enter valid username!" : null
-              }
-            />
-            <TextField
-              className="RegisterForm__input"
-              type="text"
-              label="Email"
-              variant="standard"
-              defaultValue=""
-              {...register("email", {
-                required: true,
-                minLength: 10,
-                maxLength: 35,
-                pattern: /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/,
-              })}
-              error={!!errors.email}
-              helperText={errors.email ? "Please enter valid email!" : null}
-            />
-            <TextField
-              className="RegisterForm__input"
-              type="text"
-              label="Password"
-              variant="standard"
-              defaultValue=""
-              {...register("password", {
-                required: true,
-                minLength: 6,
-                maxLength: 35,
-                pattern: /^(?=.*[0-9])(?=.*[A-Z]).{6,}$/,
-              })}
-              error={!!errors.password}
-              helperText={
-                errors.password
-                  ? "La contraseña debe tener al menos 6 caracteres, incluyendo una mayúscula y un número."
-                  : null
-              }
-            />
-            <Button
-              variant="contained"
-              className="RegisterForm__button"
-              type="submit"
+            Register
+          </Button>
+          <p className="signup__text">
+            Already have an account?{" "}
+            <strong
+              className="signup__text__strong"
+              onClick={() => navigate("/login")}
             >
-              Register
-            </Button>
-          </form>
-        </div>
+              Sign in
+            </strong>
+          </p>
+        </form>
+      </div>
+
+      <div className="auth-visual">
+        <img src={sideImg} alt="gaming background" />
       </div>
 
       <RegisterSuccessModal
@@ -151,9 +142,4 @@ export default function Register() {
       />
     </div>
   );
-}
-
-// import sideImg from "/images/register/3.jpg";
-{
-  /* <img className="Register__foto" src={sideImg} /> */
 }

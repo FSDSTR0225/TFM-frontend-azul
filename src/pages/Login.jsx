@@ -1,16 +1,14 @@
 import React, { useState, useContext } from "react";
-import "./../style/register.css";
+import "./../style/authentication.css";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-// import ModalMUI from "../components/ModalMUI/ModalMUI";
 import { Button, TextField } from "@mui/material";
 import AuthContext from "../context/AuthContext";
 import LoginSuccessModal from "../components/ModalMUI/LoginSuccessModal.jsx";
-import sideImg from "/images/register/3.jpg";
+import sideImg from "/images/register/prueba10.jpg";
 
 export default function Login() {
   const navigate = useNavigate();
-
   const authContext = useContext(AuthContext);
 
   const [isShowModal, setIsShowModal] = useState(false);
@@ -20,20 +18,19 @@ export default function Login() {
     success: "¿Listo para jugar?",
     fail: "Login fallido. Por favor, inténtalo de nuevo más tarde.",
   };
+
   const url = "http://localhost:3000/auth/login";
+
   const {
     register,
     handleSubmit,
-    // watch,
     formState: { errors },
   } = useForm();
 
   const onSubmit = async (formDatas) => {
     await fetch(url, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         login: formDatas.login,
         password: formDatas.password,
@@ -41,19 +38,13 @@ export default function Login() {
     })
       .then(async (res) => {
         const result = await res.json();
-        console.log(result);
-
         if (res.ok) {
           setIsModalSuccess(true);
           authContext.login(result.access_token);
-
-          setTimeout(() => {
-            navigate("/lobby");
-          }, 1000);
+          setTimeout(() => navigate("/lobby"), 1000);
         } else {
           setIsModalSuccess(false);
         }
-
         setIsShowModal(true);
       })
       .catch((err) => {
@@ -64,85 +55,64 @@ export default function Login() {
   };
 
   return (
-    <div className="Register">
-      <div className="Register__wrapper">
-        <div className="Register__fotoContainer">
-          {/* <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="Register__videoLateral"
+    <div className="auth-container">
+      <div className="auth-form glass">
+        <div className="RegisterForm__Title">Login and play!</div>
+        <form className="RegisterForm" onSubmit={handleSubmit(onSubmit)}>
+          <TextField
+            className="RegisterForm__input"
+            type="text"
+            {...register("login", {
+              required: true,
+              maxLength: 35,
+              minLength: 4,
+            })}
+            aria-invalid={errors.login ? "true" : "false"}
+            error={errors.login}
+            label="Username or Email"
+            defaultValue=""
+            helperText={
+              errors.login ? "Please enter valid username or email!" : null
+            }
+            variant="standard"
+          />
+          <TextField
+            className="RegisterForm__input"
+            type="password"
+            {...register("password", {
+              required: true,
+              maxLength: 35,
+              minLength: 6,
+            })}
+            aria-invalid={errors.password ? "true" : "false"}
+            error={errors.password}
+            label="Password"
+            defaultValue=""
+            helperText={errors.password ? "Please enter valid password!" : null}
+            variant="standard"
+          />
+          <Button
+            variant="contained"
+            className="RegisterForm__button"
+            type="submit"
           >
-            <source src="/videos/videogamer3.mp4" type="video/mp4" />
-            Tu navegador no soporta video HTML5.
-          </video> */}
-          <img className="Register__foto" src={sideImg} />
-        </div>
-        <div className="RegisterForm__Container">
-          <div className="RegisterForm__Title">Login and play!</div>
-          <form className="RegisterForm" onSubmit={handleSubmit(onSubmit)}>
-            <TextField
-              className="RegisterForm__input"
-              type="text"
-              {...register("login", {
-                required: true,
-                maxLength: 35,
-                minLength: 4,
-                // pattern: /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/,
-              })}
-              aria-invalid={errors.email ? "true" : "false"}
-              error={errors.email}
-              // id="standard-error-helper-text"
-              label="Username or Email"
-              defaultValue=""
-              // color=""
-              helperText={
-                errors.email ? "Please enter valid username or email!" : null
-              }
-              variant="standard"
-            />
-            <TextField
-              className="RegisterForm__input"
-              type="password"
-              {...register("password", {
-                required: true,
-                maxLength: 35,
-                minLength: 6,
-                // pattern: /^(?=.*[0-9])(?=.*[A-Z]).{6,}$/,
-              })}
-              aria-invalid={errors.password ? "true" : "false"}
-              error={errors.password}
-              id="standard-error-helper-text"
-              label="Password"
-              defaultValue=""
-              // color=""
-              helperText={
-                errors.password ? "Please enter valid password!" : null
-              }
-              variant="standard"
-            />
-            {errors.exampleRequired && <span>This field is required</span>}
-            <Button
-              variant="contained"
-              className="RegisterForm__button"
-              type="submit"
-              value="Register"
+            Login
+          </Button>
+          <p className="signup__text">
+            Not a member?{" "}
+            <strong
+              className="signup__text__strong"
+              onClick={() => navigate("/register")}
             >
-              Login
-            </Button>
-            <p className="signup__text">
-              Not a member?{" "}
-              <strong
-                className="signup__text__strong"
-                onClick={() => navigate("/register")}
-              >
-                Signup now
-              </strong>
-            </p>
-          </form>
-        </div>
+              Sign up
+            </strong>
+          </p>
+        </form>
       </div>
+      <div className="auth-visual">
+        <img src={sideImg} alt="gamer visual" />
+      </div>
+
       <LoginSuccessModal
         show={isShowModal}
         onClose={() => setIsShowModal(false)}
@@ -151,9 +121,4 @@ export default function Login() {
       />
     </div>
   );
-}
-
-// import sideImg from "/images/register/3.jpg";
-{
-  /* <img className="Register__foto" src={sideImg} /> */
 }
