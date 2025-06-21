@@ -9,16 +9,17 @@
   backdrop-filter: blur(10px);
   box-shadow: 0 0 15px rgba(0, 255, 255, 0.15);
   color: #ffffff;
-  font-family: "Arial", sans-serif;
+  font-family: "Audiowide", sans-serif;
   height: 100%;
   overflow-y: auto;
 }
 
 .friends-online-widget h3 {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
+  align-self: center;
   margin-bottom: 1rem;
-  color: #00ffff;
-  text-shadow: 0 0 4px rgba(0, 255, 255, 0.4);
+  text-shadow: 0 0 5px #00f6ff;
+  letter-spacing: 0.5px;
 }
 
 .friends-online-widget p {

@@ -1,0 +1,129 @@
+.suggested-events-widget {
+  width: 100%;
+  height: 310px;
+  max-height: none;
+  /* min-height: 300px; */
+  padding: 9px 12px;
+  border-radius: 14px;
+  background: inherit;
+  /* box-shadow: 0 0 24px #00ffc822, 0 2px 8px #000a; */
+  color: #fff;
+  font-family: "Audiowide", Arial, sans-serif;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 10px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+.widget-title {
+  font-size: 1.1rem;
+  margin-bottom: 0.6rem;
+  text-shadow: 0 0 5px #00f6ff;
+  letter-spacing: 0.5px;
+  align-self: center;
+}
+
+.event-suggestions-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 1rem;
+}
+.event-suggestion-card {
+  background: linear-gradient(to right, #0b0c10, #1f2833);
+  border: 2px solid rgba(0, 255, 200, 0.13);
+  border-radius: 14px;
+  padding: 1rem 1.2rem 1rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  color: #fff;
+  box-shadow: 0 0 5px #00ffc8aa, 0 0 0 2px #23243a;
+  transition: transform 0.18s, box-shadow 0.18s;
+}
+
+.event-suggestion-card:hover {
+  transform: translateY(-5px) scale(1.03);
+  box-shadow: 0 6px 24px #00ffc8cc, 0 0 0 2px #a259ff;
+}
+
+/* ---------- Encabezado: título del evento ---------- */
+.event-suggestion-card h4 {
+  font-size: 1rem; /* algo menor que 1.35rem */
+  font-weight: 700;
+  color: #00ffc8;
+  text-shadow: 0 0 6px #00ffc8cc;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.4px;
+  display: flex;
+  justify-content: center;
+}
+
+/* ---------- Bloques de info (juego, plataforma, fecha) ---------- */
+.event-suggestion-card p {
+  margin: 0;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #ddd;
+}
+
+.event-suggestion-card p strong {
+  color: #00f6ff;
+  margin-right: 0.25em;
+  font-weight: 600;
+}
+
+/* ---------- Botón “Ver evento” ---------- */
+.btn-unirse {
+  align-self: center;
+  margin-top: 0.4rem;
+  background: linear-gradient(135deg, #00ffc8 60%, #a259ff 100%);
+  color: #363434;
+  border: none;
+  border-radius: 100px;
+  padding: 0.45em 1.4em;
+  font-weight: bold;
+  font-size: 0.7rem;
+  cursor: pointer;
+  font-family: "Audiowide", sans-serif;
+  box-shadow: 0 2px 12px #00ffc822;
+  transition: background 0.18s, color 0.18s, transform 0.12s;
+}
+
+.btn-unirse:hover {
+  background: linear-gradient(135deg, #a259ff 60%, #00ffc8 100%);
+  color: #fff;
+  transform: scale(1.06);
+}
+
+/* ---------- Lista y contenedor ---------- */
+.event-suggestions-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 1rem; /* separación consistente */
+}
+
+/* ---------- Responsive: apilamos en móviles ---------- */
+@media (max-width: 600px) {
+  .event-suggestion-card {
+    padding: 0.8rem 0.9rem;
+  }
+  .event-suggestion-card h4 {
+    font-size: 0.95rem;
+  }
+  .btn-unirse {
+    font-size: 0.8rem;
+  }
+}
