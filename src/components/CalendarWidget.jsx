@@ -3,44 +3,36 @@ import AuthContext from "../context/AuthContext";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import "../style/CalendarWidget.css";
+import { FaCalendarAlt } from "react-icons/fa";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
 function CalendarWidget() {
-  // const [events, setEvents] = useState([]);
-  const [eventDates, setEventDates] = useState([]); // Array para almacenar las fechas marcadas en el calendario
-
+  const [eventDates, setEventDates] = useState([]);
   const { token } = useContext(AuthContext);
 
   useEffect(() => {
     const fetchUserEvents = async () => {
       try {
         const res = await fetch(`${API_URL}/events/my-events`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
+          headers: { Authorization: `Bearer ${token}` },
         });
         const data = await res.json();
-
-        // setEvents(data);
-
         const dates = data.eventos.map((event) =>
           new Date(event.date).toDateString()
-        ); // hacemos un map para obtener un array de fechas en formato string
-        setEventDates(dates); // Actualizamos el estado con las fechas marcadas
+        );
+        setEventDates(dates);
       } catch (error) {
         console.error("Error al cargar eventos del usuario:", error);
       }
     };
 
-    if (token) {
-      fetchUserEvents();
-    }
+    if (token) fetchUserEvents();
   }, [token]);
 
   const tileClassName = ({ date, view }) => {
     if (view === "month") {
-      const dateStr = date.toDateString().split("T")[0]; // Convertimos la fecha a string y nos quedamos solo con la parte de la fecha, le hacemos un split para quitar la hora
+      const dateStr = date.toDateString();
       if (eventDates.includes(dateStr)) {
         return "event-day";
       }
@@ -49,8 +41,14 @@ function CalendarWidget() {
   };
 
   return (
-    <div className="calendar-widget">
-      <Calendar tileClassName={tileClassName} />
+    <div className="modular-card calendar-card">
+      <div className="modular-card-header">
+        <FaCalendarAlt className="modular-card-icon" />
+        <h3>Calendario de eventos</h3>
+      </div>
+      <div className="modular-card-content">
+        <Calendar tileClassName={tileClassName} />
+      </div>
     </div>
   );
 }

@@ -6,9 +6,17 @@ import { useContext, useState, useEffect } from "react";
 // import EventSuggestion from "../components/EventSuggestion";
 import Dashboard from "../components/Dashboard";
 import EventsToday from "../components/EventsToday";
-import WidgetSystem from "../components/WidgetSystem";
+// import WidgetSystem from "../components/WidgetSystem";
 import { PacmanLoader } from "react-spinners";
 import "../style/Lobby.css";
+import Panel from "../components/Panel";
+import Section from "../components/Section";
+import FriendsOnlineWidget from "../components/FriendsOnlineWidget";
+import SuggestedUsersWidget from "../components/SuggestedUsersWidget";
+import CalendarWidget from "../components/CalendarWidget";
+import SuggestedEventsWidget from "../components/SuggestedEventsWidget";
+import SuggestedGamesWidget from "../components/SuggestedGamesWidget";
+import { FaUserFriends, FaCalendarAlt, FaGamepad } from "react-icons/fa";
 
 function Lobby() {
   const [loading, setLoading] = useState(true);
@@ -54,9 +62,24 @@ function Lobby() {
       </section>
       <section className="lobby-section-widgets">
         <div className="lobby-widgets-container">
-          <WidgetSystem />
+          <Panel>
+            <div className="widgets-grid">
+              <FriendsOnlineWidget />
+              <SuggestedUsersWidget />
+              <CalendarWidget />
+              <SuggestedEventsWidget />
+              <SuggestedGamesWidget />
+              {/* Si luego añades más widgets, se acomodan automáticamente */}
+            </div>
+          </Panel>
         </div>
       </section>
+
+      {/* <section className="lobby-section-widgets">
+        <div className="lobby-widgets-container">
+          <WidgetSystem />
+        </div>
+      </section> */}
     </div>
   );
 }

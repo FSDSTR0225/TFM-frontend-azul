@@ -1,55 +1,73 @@
-/* Contenedor principal del widget */
-.game-suggestion-container {
+.suggested-games-card {
+  min-width: 320px;
+  max-width: 420px;
   width: 100%;
-  height: 310px;
-  max-height: none;
-  /* min-height: 300px; */
-  padding: 9px 12px;
-  border-radius: 14px;
-  background: inherit;
-  /* box-shadow: 0 0 24px #00ffc822, 0 2px 8px #000a; */
-  color: #fff;
-  font-family: "Audiowide", Arial, sans-serif;
-  overflow-y: auto;
-  scroll-behavior: smooth;
+}
+
+.modular-card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin-bottom: 1rem;
+}
+
+.modular-card-icon {
+  font-size: 1.5rem;
+  color: #66fcf1;
+}
+
+.modular-card-content {
+  min-height: 48px;
+  /* Si quieres scroll interno para la lista de juegos: */
+  /* max-height: 350px; */
+  /* overflow-y: auto; */
+}
+
+.suggestion-update-timer {
+  color: #ffd700;
+  font-size: 0.95rem;
+  margin-bottom: 0.7rem;
+  text-shadow: 0 0 5px #00f6ff;
+  letter-spacing: 0.5px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  align-items: stretch;
-  gap: 10px;
-  cursor: pointer;
-  transition: background 0.2s ease;
+  align-items: center;
+  gap: 4px;
+}
+
+.suggestion-update-timer span {
+  margin-top: 2px;
+  font-size: 0.85rem;
+  color: #00ffc8cc;
+  text-align: center;
 }
 
 .suggestion-content-game {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 10px;
   padding: 0;
   margin: 0;
   list-style: none;
 }
 
-/* Tarjeta individual con fondo y blur estilo search-result */
 .game-suggested {
   position: relative;
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 8px 10px;
+  padding: 10px 14px;
   border-radius: 10px;
   background: linear-gradient(
     135deg,
     rgba(10, 20, 40, 0.92) 70%,
     rgba(30, 40, 60, 0.96) 100%
   );
-  /* background: rgba(10, 10, 30, 0.7); */
-  /* background: rgba(0, 255, 255, 0.08); */
   backdrop-filter: blur(8px);
   box-shadow: 0 0 12px rgba(0, 255, 255, 0.1);
   border: 1px solid rgba(0, 255, 255, 0.1);
   cursor: pointer;
-  transition: background 0.2s ease, box-shadow 0.2s ease;
+  transition: background 0.18s, box-shadow 0.18s, border-color 0.18s;
   animation: fadeInGame 0.25s ease-in;
 }
 
@@ -66,161 +84,65 @@
 
 .game-suggested:hover {
   background: rgba(0, 255, 255, 0.06);
-  box-shadow: 0 0 14px rgba(0, 255, 255, 0.2);
+  box-shadow: 0 0 16px #00ffc8cc;
+  border-color: #66fcf1;
 }
 
-.game-suggested-link {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  width: 100%;
-  text-decoration: none; /* sin subrayado */
-  color: inherit; /* hereda el cyan del span */
-}
-
-/* Imagen estilo buscador */
 .img-suggest-game {
-  width: 32px;
-  height: 32px;
+  width: 48px;
+  height: 48px;
   object-fit: cover;
-  border-radius: 6px;
-  border: 1px solid #00fff0;
+  border-radius: 10px;
+  border: 2px solid #00ffc8;
+  box-shadow: 0 0 8px #00ffc8cc;
   flex-shrink: 0;
 }
 
-/* Nombre del juego a la derecha */
 .name-suggest-game {
-  font-size: 0.85rem;
+  font-size: 1rem;
   font-family: "Audiowide", sans-serif;
-  color: #00f0ff; /* cyan */
-  text-shadow: 0 0 3px #00fff088;
-  overflow: hidden;
+  color: #00ffc8;
+  text-shadow: 0 0 3px #00ffc8cc;
+  flex: 1;
   white-space: nowrap;
+  overflow: hidden;
   text-overflow: ellipsis;
 }
 
-.game-suggested-link {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  text-decoration: none;
-  color: inherit;
-  width: 100%;
-}
-
-/* Estado sin sugerencias */
 .no-suggestions-game {
   text-align: center;
-  font-size: 13px;
+  font-size: 0.95rem;
   color: #aaa;
   margin-top: 8px;
-}
-
-/* Responsive: tarjetas un poco más pequeñas */
-@media (max-width: 500px) {
-  .suggestion-content-game {
-    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
-  }
-
-  .img-suggest-game {
-    height: 60px;
-  }
-
-  .name-suggest-game {
-    font-size: 0.66rem;
-  }
+  opacity: 0.8;
 }
 
 .dots-loader {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 4px;
-  height: 40px; /* ajustable */
-}
-
-.dots-loader::before,
-.dots-loader::after,
-.dots-loader span {
-  content: "";
-  display: inline-block;
-  width: 6px;
-  height: 6px;
-  background-color: #00ffc8cc;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
-  animation: blinkDots 1.4s infinite ease-in-out both;
+  border: 4px solid #00ffc8;
+  border-top: 4px solid #23243a;
+  animation: spin 0.8s linear infinite;
+  margin: 0 auto;
 }
 
-.dots-loader span {
-  animation-delay: 0.2s;
-}
-
-.dots-loader::after {
-  animation-delay: 0.4s;
-}
-
-/* Scrollbar personalizada */
-.game-suggestion-container::-webkit-scrollbar {
-  /* width: 6px; */
-  width: 0px;
-}
-.game-suggestion-container::-webkit-scrollbar-thumb {
-  background-color: #7074733a;
-  border-radius: 4px;
-  cursor: pointer;
-}
-.game-suggestion-container::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.game-suggestion-container::-webkit-scrollbar-thumb:hover {
-  background-color: #00ffc8aa;
-}
-
-@keyframes blinkDots {
-  0%,
-  80%,
-  100% {
-    transform: scale(0);
-    opacity: 0.3;
-  }
-  40% {
-    transform: scale(1);
-    opacity: 1;
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
   }
 }
 
-.btn-suggestion {
-  position: absolute;
-  right: 8px;
-  top: 6px;
-  font-size: 13px;
-  color: #ff4e4e;
-  cursor: pointer;
-  font-weight: bold;
-  transition: color 0.2s ease;
-}
-
-.btn-suggestion:hover {
-  color: #ffaaaa;
-}
-
-.suggestion-update-timer {
-  font-size: 1rem;
-  margin-bottom: 0.5rem;
-  text-shadow: 0 0 5px #00f6ff;
-  letter-spacing: 0.5px;
-  color: white;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
-}
-
-.suggestion-update-timer span {
-  margin-top: 2px;
-  font-size: 0.85rem;
-  color: #00ffc8cc;
-  text-align: center;
+/* Responsive: tarjetas más pequeñas en móvil */
+@media (max-width: 500px) {
+  .suggestion-content-game {
+    gap: 6px;
+  }
+  .img-suggest-game {
+    width: 36px;
+    height: 36px;
+  }
+  .name-suggest-game {
+    font-size: 0.8rem;
+  }
 }

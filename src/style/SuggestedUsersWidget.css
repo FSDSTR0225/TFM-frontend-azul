@@ -1,32 +1,26 @@
-.suggestions-widget-content {
-  /* width: 260px; */
+.suggested-users-card {
+  min-width: 320px;
+  max-width: 420px;
   width: 100%;
-  max-height: 100%;
-  padding: 12px 12px;
-  border-radius: 14px;
-  background: inherit;
-  /* box-shadow: 0 0 24px #00ffc822, 0 2px 8px #000a; */
-  color: #fff;
-  font-family: "Audiowide", Arial, sans-serif;
-  overflow-y: auto;
-  scroll-behavior: smooth;
 }
 
-/* Scrollbar personalizada */
-.suggestions-widget-content::-webkit-scrollbar {
-  width: 6px;
-}
-.suggestions-widget-content::-webkit-scrollbar-thumb {
-  background-color: #7074733a;
-  border-radius: 4px;
-  cursor: pointer;
-}
-.suggestions-widget-content::-webkit-scrollbar-track {
-  background: transparent;
+.modular-card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin-bottom: 1rem;
 }
 
-.suggestions-widget-content::-webkit-scrollbar-thumb:hover {
-  background-color: #00ffc8aa;
+.modular-card-icon {
+  font-size: 1.5rem;
+  color: #66fcf1;
+}
+
+.modular-card-content {
+  min-height: 48px;
+  /* Si quieres scroll interno para la lista de sugerencias: */
+  /* max-height: 350px; */
+  /* overflow-y: auto; */
 }
 
 .card-suggestion-container {
@@ -38,7 +32,6 @@
   list-style: none;
 }
 
-/* Tarjeta rectangular compacta */
 .suggestion-content {
   display: flex;
   align-items: center;
@@ -60,7 +53,6 @@
 
 .suggestion-content:hover {
   transform: scale(1.02);
-  /* box-shadow: 0 0 20px #00ffc8cc; */
   border-color: #66fcf1;
 }
 
@@ -190,170 +182,3 @@
     padding: 8px 6px;
   }
 }
-
-/* cards verticales*/
-
-/* 
-.suggestions-widget-content {
-  width: 100%;
-  max-height: 100%;
-  padding: 16px 12px;
-  border-radius: 20px;
-  background: linear-gradient(120deg, #181c2b 80%, #23243a 100%);
-  box-shadow: 0 0 24px #00ffc822, 0 2px 8px #000a;
-  color: #fff;
-  font-family: "Audiowide", Arial, sans-serif;
-  overflow-y: auto;
-  scroll-behavior: smooth;
-}
-
-
-.suggestions-widget-content::-webkit-scrollbar {
-  width: 8px;
-}
-.suggestions-widget-content::-webkit-scrollbar-thumb {
-  background-color: #00ffc8aa;
-  border-radius: 6px;
-}
-.suggestions-widget-content::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.card-suggestion-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 16px;
-}
-
-
-.suggestion-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  background: linear-gradient(
-    135deg,
-    rgba(10, 20, 40, 0.92) 70%,
-    rgba(30, 40, 60, 0.96) 100%
-  );
-  border: 2px solid #00ffc8;
-  border-radius: 18px;
-  padding: 16px 10px;
-  box-shadow: 0 0 12px #00ffc822;
-  width: 120px;
-  min-height: 180px;
-  max-height: 200px;
-  flex-shrink: 0;
-  position: relative;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.suggestion-content:hover {
-  transform: scale(1.02);
-  box-shadow: 0 0 20px #00ffc8cc;
-  border-color: #66fcf1;
-}
-
-.img-suggestion-user {
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  border: 2px solid #00ffc8;
-  object-fit: cover;
-  box-shadow: 0 0 10px #00ffc8cc;
-  flex-shrink: 0;
-}
-
-.username-suggestion {
-  flex: 1;
-  margin-top: 12px;
-  font-size: 0.85rem;
-  font-weight: bold;
-  color: #00ffc8;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  max-width: 120px;
-}
-
-.users-suggest-btn {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.btn-connect,
-.btn-profile {
-  font-size: 0.55rem;
-  padding: 6px 8px;
-  border-radius: 8px;
-  font-weight: bold;
-  cursor: pointer;
-  font-family: "Audiowide", Arial, sans-serif;
-  transition: all 0.2s ease;
-  white-space: nowrap;
-  color: #66fcf1;
-  border: 2px solid #66fcf1;
-  background: linear-gradient(90deg, #23243a 70%, #00fff71a 100%);
-}
-
-.btn-connect:hover {
-  background: #66fcf1;
-  color: #0b1a2a;
-  box-shadow: 0 0 12px #00ffc8aa;
-}
-
-.btn-profile:hover {
-  background: #66fcf1;
-  color: #0b1a2a;
-  box-shadow: 0 0 12px #00ffc8aa;
-}
-
-.btn-suggestion {
-  position: absolute;
-  top: 8px;
-  left: 9px;
-  font-size: 0.7rem;
-  color: #ff4d4d8c;
-  font-weight: bold;
-  border: none;
-  background: transparent;
-  cursor: pointer;
-  z-index: 10;
-  transition: transform 0.2s ease;
-}
-.btn-suggestion:hover {
-  transform: scale(1.1);
-  color: #ff2222;
-}
-
-
-@media (max-width: 600px) {
-  .suggestion-content {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 10px 12px;
-    height: auto;
-  }
-
-  .users-suggest-btn {
-    flex-direction: row;
-    margin-top: 8px;
-    gap: 8px;
-    width: 100%;
-    justify-content: flex-start;
-  }
-
-  .username-suggestion {
-    margin-left: 0;
-    margin-top: 4px;
-  }
-
-  .btn-suggestion {
-    top: 6px;
-    right: 8px;
-    left: auto;
-  }
-} */
