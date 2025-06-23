@@ -25,7 +25,7 @@
   overflow: hidden;
 }
 
-.event-info {
+.event-info-show {
   flex: 1;
   min-width: 300px;
   max-width: 500px;
@@ -33,7 +33,7 @@
   text-align: left;
 }
 
-.event-info h2 {
+.event-info-show h2 {
   font-size: 1.8rem;
   text-align: center;
   font-family: "Audiowide", sans-serif;
@@ -41,19 +41,19 @@
   margin-bottom: 1rem;
 }
 
-.event-info p {
+.event-info-show p {
   font-size: 1rem;
   line-height: 1.6;
   color: #ccc;
   margin-bottom: 1.5rem;
 }
 
-.event-info ul {
+.event-info-show ul {
   list-style: none;
   padding-left: 0;
 }
 
-.event-info li {
+.event-info-show li {
   font-size: 0.95rem;
   margin-bottom: 0.8rem;
   display: flex;

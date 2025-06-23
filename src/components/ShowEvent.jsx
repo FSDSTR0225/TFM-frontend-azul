@@ -49,7 +49,7 @@ function ShowEvent() {
           </div>
         </div>
         {/* COLUMNA IZQUIERDA */}
-        <div className="event-info">
+        <div className="event-info-show">
           <h2>¿Quieres organizar una partida o torneo? </h2>
           <p>
             Con Link2Play crea tu propio evento en segundos: partidas casuales,

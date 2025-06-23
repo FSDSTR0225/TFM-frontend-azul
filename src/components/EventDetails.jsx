@@ -3,6 +3,9 @@ import "../style/EventDetails.css";
 import AuthContext from "../context/AuthContext";
 import EditEventForm from "./EditEventForm";
 import ConfirmDeleteModal from "./ConfirmDeleteModal";
+import { BsController } from "react-icons/bs";
+import { GiGameConsole } from "react-icons/gi";
+import { TbCalendarBolt } from "react-icons/tb";
 import { toast } from "sonner";
 
 const API_URL = import.meta.env.VITE_API_URL;
@@ -149,15 +152,23 @@ function EventDetails({ event, onClose, setSelectedEvent, onEventDeleted }) {
           </div>
 
           <div className="event-info">
-            <p>
-              <span>🎮 Juego:</span> {event.game.name}
-            </p>
-            <p>
-              <span>🗓️ Fecha:</span> {new Date(event.date).toLocaleString()}
-            </p>
-            <p>
-              <span>🕹️ Plataforma:</span> {event.platform.name}
-            </p>
+            <div className="info-data">
+              <div className="event-info-game">
+                <BsController className="icons-event-details" />{" "}
+                <span className="event-info-label">Juego:</span>
+                <span className="event-info-name">{event.game.name}</span>
+                <GiGameConsole className="icons-event-details" />
+                <span className="event-info-label">Plataforma:</span>
+                <span className="event-info-name">{event.platform.name}</span>
+              </div>
+              <div className="event-info-date">
+                <TbCalendarBolt className="icons-event-details" />
+                <span className="event-info-label">Fecha:</span>
+                <span className="event-info-name">
+                  {new Date(event.date).toLocaleString()}
+                </span>
+              </div>
+            </div>
           </div>
 
           <div className="modal-description">
