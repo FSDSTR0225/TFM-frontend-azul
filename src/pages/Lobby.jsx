@@ -62,13 +62,13 @@ function Lobby() {
       </section>
       <section className="lobby-section-widgets">
         <div className="lobby-widgets-container">
-          <div className="widgets-grid">
-            <FriendsOnlineWidget />
-            <SuggestedUsersWidget />
-            <CalendarWidget />
-            <SuggestedEventsWidget />
-            <SuggestedGamesWidget />
-          </div>
+          {/* <div className="widgets-grid"> */}
+          <FriendsOnlineWidget />
+          <SuggestedUsersWidget />
+          <CalendarWidget />
+          <SuggestedEventsWidget />
+          <SuggestedGamesWidget />
+          {/* </div> */}
         </div>
       </section>
     </div>
