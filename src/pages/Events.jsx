@@ -6,6 +6,7 @@ import EventCardMini from "../components/EventCardMini";
 import EventDetails from "../components/EventDetails";
 import SearchAndCreateEvents from "../components/SearchAndCreateEvents";
 import { useLocation } from "react-router-dom";
+// import FilterEvents from "../components/FilterEvents";
 import "../style/Events.css";
 
 const API_URL = import.meta.env.VITE_API_URL;
@@ -19,7 +20,7 @@ const Events = () => {
   const [currentPage, setCurrentPage] = useState(1); // Estado para la paginación
 
   const eventRefs = useRef({});
-  const eventsPerPage = 10;
+  const eventsPerPage = 12;
 
   const { isLoggedIn } = useContext(AuthContext);
 
@@ -164,82 +165,98 @@ const Events = () => {
 
   return (
     <div className="event-page">
-      <h1 className="title-event-page">Explora y crea eventos</h1>
-
-      {/* {searchEvents && (
-        <div className="search-chip">
-          <span>{searchEvents}</span>
-          <button onClick={() => setSearchEvents("")}>✕</button>
+      {/* 1. HEADER: Buscador + Botón Crear */}
+      <div className="event-header">
+        <h1 className="title-event-page">Explora y crea eventos</h1>
+        <div className="center-search-create">
+          <SearchAndCreateEvents
+            isLoggedIn={isLoggedIn}
+            searchEvents={searchEvents}
+            setSearchEvents={setSearchEvents}
+            onCreate={handleCreateEvent}
+          />
         </div>
-      )} */}
-      <div className="center-search-create">
-        <SearchAndCreateEvents
-          isLoggedIn={isLoggedIn}
-          searchEvents={searchEvents}
-          setSearchEvents={setSearchEvents}
-          onCreate={handleCreateEvent}
-        />
       </div>
 
-      <section className="mini-events-section">
-        <h2 className="section-title-next-events">Próximos Eventos</h2>
-        {filteredEvents.length === 0 ? (
-          <p></p>
-        ) : (
-          <div className="mini-events-grid">
-            {[...filteredEvents]
-              .sort((a, b) => new Date(a.date) - new Date(b.date)) // ordenar de más próximo a más lejano
-              .slice(0, 5)
-              .map((event) => (
-                <EventCardMini
+      {/* CONTENEDOR PRINCIPAL: Filtros a la izquierda + contenido principal a la derecha */}
+      <div className="event-content">
+        {/* 2. FILTROS */}
+        {/* <aside className="event-filters">
+          <FilterEvents
+            platforms={platforms}
+            selectedPlatform={selectedPlatform}
+            setSelectedPlatform={setSelectedPlatform}
+            selectedDate={selectedDate}
+            setSelectedDate={setSelectedDate}
+          />
+        </aside> */}
+
+        {/* CONTENIDO DERECHA: Mini eventos arriba + Todos los eventos debajo */}
+        <div className="event-main">
+          {/* 3. MINI EVENTOS (próximos) */}
+          <section className="mini-events-section">
+            <h2 className="section-title-next-events">Próximos Eventos</h2>
+            {filteredEvents.length === 0 ? (
+              <p>No hay eventos próximos.</p>
+            ) : (
+              <div className="mini-events-grid">
+                {[...filteredEvents]
+                  .sort((a, b) => new Date(a.date) - new Date(b.date))
+                  .slice(0, 5)
+                  .map((event) => (
+                    <EventCardMini
+                      key={event.id}
+                      event={event}
+                      onClick={() => handleMiniCardEventClick(event.id)}
+                    />
+                  ))}
+              </div>
+            )}
+          </section>
+
+          {/* 4. TODOS LOS EVENTOS */}
+          <p className="section-title-next-events">Eventos disponibles</p>
+          <section className="all-events">
+            {filteredEvents.length === 0 ? (
+              <p className="no-events-title">
+                No hay eventos disponibles en este momento.
+              </p>
+            ) : (
+              currentEvents.map((event) => (
+                <div
                   key={event.id}
-                  event={event}
-                  onClick={() => handleMiniCardEventClick(event.id)}
-                />
-              ))}
-          </div>
-        )}
-      </section>
+                  ref={(el) => (eventRefs.current[event.id] = el)}
+                >
+                  <EventCard
+                    event={event}
+                    onClick={() => handleEventClick(event.id)}
+                  />
+                </div>
+              ))
+            )}
+          </section>
 
-      <section className="all-events">
-        <p className="section-title-next-events">Eventos disponibles</p>
-        {filteredEvents.length === 0 ? (
-          <p className="no-events-title">
-            No hay eventos disponibles en este momento.
-          </p>
-        ) : (
-          currentEvents.map((event) => (
-            <div
-              key={event.id}
-              ref={(el) => (eventRefs.current[event.id] = el)} // <--- Aquí asignas la ref
-            >
-              <EventCard
-                event={event}
-                onClick={() => {
-                  handleEventClick(event.id);
-                }}
-              />
+          {/* Paginación solo si hay más de una página */}
+          {totalPages > 1 && (
+            <div className="pagination-controls">
+              <button onClick={handlePrevPage} disabled={currentPage === 1}>
+                ← Anterior
+              </button>
+              <span>
+                {currentPage} / {totalPages}
+              </span>
+              <button
+                onClick={handleNextPage}
+                disabled={currentPage === totalPages}
+              >
+                Siguiente →
+              </button>
             </div>
-          ))
-        )}
-      </section>
-      {totalPages > 1 && (
-        <div className="pagination-controls">
-          <button onClick={handlePrevPage} disabled={currentPage === 1}>
-            ← Anterior
-          </button>
-          <span>
-            {currentPage} / {totalPages}
-          </span>
-          <button
-            onClick={handleNextPage}
-            disabled={currentPage === totalPages}
-          >
-            Siguiente →
-          </button>
+          )}
         </div>
-      )}
+      </div>
 
+      {/* MODAL DETALLES */}
       {eventDetails && (
         <EventDetails
           event={eventDetails}

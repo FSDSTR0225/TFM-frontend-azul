@@ -21,49 +21,59 @@ function EventCard({ event, onClick }) {
     event.maxParticipants && event.participants.length >= event.maxParticipants;
 
   return (
-    <div className="event-card-pro">
-      <div className="event-header-pro">
-        <img
-          src={event.platform.icon}
-          alt={event.platform}
-          className="platform-icon-event"
-        />
-        <h3 className="event-title-pro">{event.title}</h3>
-        <span className="event-icon">
-          <GiBossKey />
-        </span>
-        <span className="event-info-label">Creador:</span>
-        <span className="event-date-badge">{event.creator.username}</span>
-      </div>
+    <div
+      className="event-card"
+      // style={{ backgroundImage: `url(${event.game.imageUrl})` }}
+      onClick={onClick}
+    >
+      <img
+        src={event.game.imageUrl}
+        alt={event.game.title}
+        className="event-card-img"
+      />
+      {/* Capa oscura para legibilidad */}
+      <div className="event-card__overlay" />
 
-      <div className="event-main-pro">
-        <div className="event-info-block">
-          <span className="event-icon">
-            <BsController />
-          </span>
-          <span className="event-info-label">Juego:</span>
-          <span className="event-info-value">{event.game.name}</span>
+      {/* Plataforma arriba derecha */}
+
+      {/* Contenido inferior */}
+      <div className="event-card__info">
+        <div className="event-card__platform-box">
+          <img
+            src={event.platform.icon}
+            alt={event.platform.name}
+            className="event-card__platform"
+          />
         </div>
-        <div className={`event-info-block ${isFull ? "full" : "participants"}`}>
-          <span className="event-icon">
-            <RiTeamFill />
+        <div className="event-card__right">
+          <span
+            className="event-card__platform-name"
+            title={event.platform.name}
+          >
+            {event.platform.name === "Nintendo Switch"
+              ? "Switch"
+              : event.platform.name}
           </span>
-          <span className="event-info-label">Participantes:</span>
-          <span className="event-info-value">
-            {event.maxParticipants && event.participants.lengt > 0
-              ? `${event.participants}/${event.maxParticipants}`
+        </div>
+        <h3 className="event-card__title">- {event.title} -</h3>
+
+        <div className="event-card__game">
+          <span className="event-card__game-name">
+            <BsController /> {event.game.name}
+          </span>
+        </div>
+        <div className="event-card__row">
+          <span className="event-card__date">{formatDateTime(event.date)}</span>
+          <span
+            className={
+              isFull ? "event-card__row--full" : "event-card__row--slots"
+            }
+          >
+            {event.maxParticipants
+              ? `${event.participants.length}/${event.maxParticipants}`
               : "Sin límite"}
           </span>
         </div>
-        <div className="event-info-block">
-          <span className="event-info-value">{formatDateTime(event.date)}</span>
-        </div>
-      </div>
-
-      <div className="event-btn-block-centered">
-        <button className="btn-card-event-pro" onClick={onClick}>
-          Ver detalles
-        </button>
       </div>
     </div>
   );
