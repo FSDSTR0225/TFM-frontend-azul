@@ -62,24 +62,15 @@ function Lobby() {
       </section>
       <section className="lobby-section-widgets">
         <div className="lobby-widgets-container">
-          <Panel>
-            <div className="widgets-grid">
-              <FriendsOnlineWidget />
-              <SuggestedUsersWidget />
-              <CalendarWidget />
-              <SuggestedEventsWidget />
-              <SuggestedGamesWidget />
-              {/* Si luego añades más widgets, se acomodan automáticamente */}
-            </div>
-          </Panel>
+          <div className="widgets-grid">
+            <FriendsOnlineWidget />
+            <SuggestedUsersWidget />
+            <CalendarWidget />
+            <SuggestedEventsWidget />
+            <SuggestedGamesWidget />
+          </div>
         </div>
       </section>
-
-      {/* <section className="lobby-section-widgets">
-        <div className="lobby-widgets-container">
-          <WidgetSystem />
-        </div>
-      </section> */}
     </div>
   );
 }
