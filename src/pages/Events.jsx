@@ -6,6 +6,7 @@ import EventCardMini from "../components/EventCardMini";
 import EventDetails from "../components/EventDetails";
 import SearchAndCreateEvents from "../components/SearchAndCreateEvents";
 import { useLocation } from "react-router-dom";
+import { useMemo } from "react";
 // import FilterEvents from "../components/FilterEvents";
 import "../style/Events.css";
 
@@ -18,6 +19,9 @@ const Events = () => {
   const [eventDetails, setEventDetails] = useState(null); // Estado para almacenar los detalles del evento seleccionado
   const [searchEvents, setSearchEvents] = useState(""); // Estado para almacenar la búsqueda de eventos
   const [currentPage, setCurrentPage] = useState(1); // Estado para la paginación
+  const [platforms, setPlatforms] = useState([]);
+  const [selectedPlatform, setSelectedPlatform] = useState("Todas");
+  const [selectedDate, setSelectedDate] = useState("Todos");
 
   const eventRefs = useRef({});
   const eventsPerPage = 12;
@@ -86,11 +90,74 @@ const Events = () => {
     setEventDetails(null); // Limpiamos los detalles del evento al cerrar el modal
   };
 
-  const filteredEvents = events.filter(
-    (event) =>
-      event.title?.toLowerCase().includes(searchEvents.toLowerCase()) ||
-      event.game?.name?.toLowerCase().includes(searchEvents.toLowerCase())
-  );
+  const filteredEvents = useMemo(() => {
+    return events.filter((event) => {
+      const platformMatch =
+        selectedPlatform === "Todas" ||
+        event.platform?.name === selectedPlatform;
+
+      const now = new Date();
+      const eventDate = new Date(event.date); // incluye hora real del evento
+
+      let dateMatch = true;
+
+      if (selectedDate === "Hoy") {
+        const isSameDay =
+          eventDate.getFullYear() === now.getFullYear() &&
+          eventDate.getMonth() === now.getMonth() &&
+          eventDate.getDate() === now.getDate();
+
+        dateMatch = isSameDay && eventDate > now;
+      } else if (selectedDate === "Esta semana") {
+        const dayOfWeek = now.getDay(); // 0 (domingo) a 6 (sábado)
+        const diffToMonday = (dayOfWeek + 6) % 7;
+        const startOfWeek = new Date(now);
+        startOfWeek.setDate(now.getDate() - diffToMonday);
+        startOfWeek.setHours(0, 0, 0, 0);
+
+        const endOfWeek = new Date(startOfWeek);
+        endOfWeek.setDate(startOfWeek.getDate() + 6);
+        endOfWeek.setHours(23, 59, 59, 999);
+
+        dateMatch =
+          eventDate >= startOfWeek && eventDate <= endOfWeek && eventDate > now;
+      } else if (selectedDate === "Este mes") {
+        const startOfMonth = new Date(
+          now.getFullYear(),
+          now.getMonth(),
+          1,
+          0,
+          0,
+          0
+        );
+        const endOfMonth = new Date(
+          now.getFullYear(),
+          now.getMonth() + 1,
+          0,
+          23,
+          59,
+          59
+        );
+
+        dateMatch =
+          eventDate >= startOfMonth &&
+          eventDate <= endOfMonth &&
+          eventDate > now;
+      } else if (selectedDate === "Todos") {
+        dateMatch = eventDate > now;
+      }
+
+      const searchMatch =
+        searchEvents === "" ||
+        event.title.toLowerCase().includes(searchEvents.toLowerCase()) ||
+        event.game?.name?.toLowerCase().includes(searchEvents.toLowerCase()) ||
+        event.platform?.name
+          ?.toLowerCase()
+          .includes(searchEvents.toLowerCase());
+
+      return platformMatch && dateMatch && searchMatch;
+    });
+  }, [events, selectedPlatform, selectedDate, searchEvents]);
 
   const indexOfLastEvent = currentPage * eventsPerPage; // Índice del último evento en la página actual = pagina actual * eventos por página,ej: si estamos en la página 1 y hay 10 eventos por página, indexOfLastEvent será 10
   const indexOfFirstEvent = indexOfLastEvent - eventsPerPage; // Índice del primer evento en la página actual = índice del último evento - eventos por página, ej: si estamos en la página 1(10*1) y hay 10 eventos por página, indexOfFirstEvent será 0(10-10)
@@ -147,6 +214,21 @@ const Events = () => {
     setEvents((prevEvents) => prevEvents.filter((event) => event.id !== id));
   };
 
+  useEffect(() => {
+    const fetchPlatforms = async () => {
+      try {
+        const response = await fetch(`${API_URL}/platforms`);
+        if (!response.ok) throw new Error("Error al cargar plataformas");
+        const data = await response.json();
+        setPlatforms(data.platforms); // Ajusta según cómo venga la respuesta
+      } catch (error) {
+        console.error("Error al obtener plataformas:", error);
+      }
+    };
+
+    fetchPlatforms();
+  }, []);
+
   if (loading) {
     // Si está cargando, muestra...
     return (
@@ -174,86 +256,79 @@ const Events = () => {
             searchEvents={searchEvents}
             setSearchEvents={setSearchEvents}
             onCreate={handleCreateEvent}
-          />
-        </div>
-      </div>
-
-      {/* CONTENEDOR PRINCIPAL: Filtros a la izquierda + contenido principal a la derecha */}
-      <div className="event-content">
-        {/* 2. FILTROS */}
-        {/* <aside className="event-filters">
-          <FilterEvents
-            platforms={platforms}
             selectedPlatform={selectedPlatform}
             setSelectedPlatform={setSelectedPlatform}
             selectedDate={selectedDate}
             setSelectedDate={setSelectedDate}
+            platforms={platforms}
           />
-        </aside> */}
+        </div>
+      </div>
 
-        {/* CONTENIDO DERECHA: Mini eventos arriba + Todos los eventos debajo */}
-        <div className="event-main">
-          {/* 3. MINI EVENTOS (próximos) */}
-          <section className="mini-events-section">
-            <h2 className="section-title-next-events">Próximos Eventos</h2>
-            {filteredEvents.length === 0 ? (
-              <p>No hay eventos próximos.</p>
-            ) : (
-              <div className="mini-events-grid">
-                {[...filteredEvents]
-                  .sort((a, b) => new Date(a.date) - new Date(b.date))
-                  .slice(0, 5)
-                  .map((event) => (
-                    <EventCardMini
-                      key={event.id}
-                      event={event}
-                      onClick={() => handleMiniCardEventClick(event.id)}
-                    />
-                  ))}
-              </div>
-            )}
-          </section>
-
-          {/* 4. TODOS LOS EVENTOS */}
-          <p className="section-title-next-events">Eventos disponibles</p>
-          <section className="all-events">
-            {filteredEvents.length === 0 ? (
-              <p className="no-events-title">
-                No hay eventos disponibles en este momento.
-              </p>
-            ) : (
-              currentEvents.map((event) => (
-                <div
-                  key={event.id}
-                  ref={(el) => (eventRefs.current[event.id] = el)}
-                >
-                  <EventCard
+      <div className="event-main">
+        <section className="mini-events-section">
+          <h2 className="section-title-next-events">Próximos Eventos</h2>
+          {filteredEvents.length === 0 ? (
+            <p>No hay eventos próximos.</p>
+          ) : (
+            <div className="mini-events-grid">
+              {[...filteredEvents]
+                .sort((a, b) => new Date(a.date) - new Date(b.date))
+                .slice(0, 5)
+                .map((event) => (
+                  <EventCardMini
+                    key={event.id}
                     event={event}
-                    onClick={() => handleEventClick(event.id)}
+                    onClick={() => handleMiniCardEventClick(event.id)}
                   />
-                </div>
-              ))
-            )}
-          </section>
-
-          {/* Paginación solo si hay más de una página */}
-          {totalPages > 1 && (
-            <div className="pagination-controls">
-              <button onClick={handlePrevPage} disabled={currentPage === 1}>
-                ← Anterior
-              </button>
-              <span>
-                {currentPage} / {totalPages}
-              </span>
-              <button
-                onClick={handleNextPage}
-                disabled={currentPage === totalPages}
-              >
-                Siguiente →
-              </button>
+                ))}
             </div>
           )}
-        </div>
+        </section>
+
+        <p className="section-title-next-events">Eventos disponibles</p>
+        <section className="all-events">
+          {filteredEvents.length === 0 ? (
+            <p className="no-events-title">
+              No hay eventos disponibles en este momento.
+            </p>
+          ) : (
+            currentEvents.map((event) => (
+              <div
+                key={event.id}
+                ref={(el) => (eventRefs.current[event.id] = el)}
+              >
+                <EventCard
+                  event={event}
+                  onClick={() => handleEventClick(event.id)}
+                />
+              </div>
+            ))
+          )}
+        </section>
+
+        {/* Paginación solo si hay más de una página */}
+        {totalPages > 1 && (
+          <div className="pagination-controls">
+            <button
+              className="pagination-btn-events"
+              onClick={handlePrevPage}
+              disabled={currentPage === 1}
+            >
+              ← Anterior
+            </button>
+            <span className="pagination-info-events">
+              {currentPage} / {totalPages}
+            </span>
+            <button
+              className="pagination-btn-events"
+              onClick={handleNextPage}
+              disabled={currentPage === totalPages}
+            >
+              Siguiente →
+            </button>
+          </div>
+        )}
       </div>
 
       {/* MODAL DETALLES */}
@@ -270,227 +345,3 @@ const Events = () => {
 };
 
 export default Events;
-
-//   return (
-//     <div className="event-page">
-//       <h1 className="title-event-page">Explora y crea eventos</h1>
-//       <SearchAndCreateEvents
-//         isLoggedIn={isLoggedIn}
-//         searchEvents={searchEvents}
-//         setSearchEvents={setSearchEvents}
-//         onCreate={handleCreateEvent}
-//       />
-//       <section className="all-events">
-//         {filteredEvents.length === 0 ? (
-//           <p>No hay eventos disponibles en este momento.</p>
-//         ) : (
-//           filteredEvents.map((event) => (
-//             <EventCard
-//               key={event.id}
-//               event={event}
-//               onClick={() => {
-//                 handleEventClick(event.id);
-//               }}
-//             />
-//           ))
-//         )}
-//       </section>
-//       {eventDetails && (
-//         <EventDetails
-//           event={eventDetails}
-//           onClose={handleCloseModal}
-//           setSelectedEvent={setEventDetails}
-//           onEventDeleted={onEventDeleted}
-//         />
-//       )}
-//     </div>
-//   );
-// };
-
-// export default Events;
-
-//   return (
-//     <div className="events-container">
-//       <div className="events-header">
-//         <div className="create-event-container">
-//           <button className="create-event-btn" onClick={openModal}>
-//             + Crear nuevo evento
-//           </button>
-//         </div>
-
-//         <input
-//           className="search-bar"
-//           placeholder="Buscar eventos por juego..."
-//           value={searchTerm}
-//           onChange={(e) => setSearchTerm(e.target.value)}
-//         />
-
-//         <div className="filters">
-//           <button className="filter-btn">Fecha</button>
-//           <button className="filter-btn">Horario</button>
-//           <button className="filter-btn">Plataforma</button>
-//           <button className="filter-btn">Juego</button>
-//         </div>
-//       </div>
-
-//       <section className="event-section">
-//         <h2>Próximos eventos</h2>
-//         <div className="highlighted-events">
-//           {eventosFiltrados.map((event) => (
-//             <div key={event.id} className="highlight-card">
-//               <span className="highlight-day">{event.fecha}</span>
-//               <span className="highlight-hour">{event.hora}</span>
-//               <p>{event.juego}</p>
-//               <button className="details-btn">Detalles</button>
-//             </div>
-//           ))}
-//         </div>
-//       </section>
-
-//       <section className="event-section">
-//         <h2>Todos los eventos</h2>
-//         <div className="event-list">
-//           {eventosFiltrados.map((event) => (
-//             <div
-//               key={event.id}
-//               className="event-card"
-//               onClick={() => toggleExpand(event.id)}
-//             >
-//               <div className="event-summary">
-//                 <span className="event-icon">🎮</span>
-//                 <div className="event-info">
-//                   <h3>{event.juego}</h3>
-//                   <p>
-//                     {event.fecha} • {event.plataforma}
-//                   </p>
-//                 </div>
-//                 <div className="event-meta">
-//                   <span>{event.creador}</span>
-//                   <button className="view-btn">{event.jugadores}</button>
-//                 </div>
-//               </div>
-
-//               {expandedId === event.id && (
-//                 <div className="event-details">
-//                   <p>
-//                     <strong>Título:</strong> {event.titulo}
-//                   </p>
-//                   <p>
-//                     <strong>Horario:</strong> {event.hora}
-//                   </p>
-//                   <p>
-//                     <strong>Plataforma:</strong> {event.plataforma}
-//                   </p>
-//                   <p>
-//                     <strong>Creador:</strong> {event.creador}
-//                   </p>
-//                   <p>
-//                     <strong>jugadores:</strong> {event.jugadores}
-//                   </p>
-
-//                   {event.creador === currentUser && (
-//                     <div className="edit-delete-buttons">
-//                       <button
-//                         className="edit-btn"
-//                         onClick={(e) => {
-//                           e.stopPropagation();
-//                           handleEdit(event);
-//                         }}
-//                       >
-//                         Editar
-//                       </button>
-//                       <button
-//                         className="delete-btn"
-//                         onClick={(e) => {
-//                           e.stopPropagation();
-//                           handleDelete(event.id);
-//                         }}
-//                       >
-//                         Eliminar
-//                       </button>
-//                     </div>
-//                   )}
-//                 </div>
-//               )}
-//             </div>
-//           ))}
-//         </div>
-//         <div className="pagination">
-//           <span>ANTERIOR - 1 - SIGUIENTE</span>
-//         </div>
-//       </section>
-
-//       {/* Modal */}
-//       {modalOpen && (
-//         <div className="modal-backdrop" onClick={closeModal}>
-//           <div className="modal" onClick={(e) => e.stopPropagation()}>
-//             <h2>{isEditing ? "Editar evento" : "Crear nuevo evento"}</h2>
-//             <form onSubmit={handleSubmit} className="modal-form">
-//               {/* Juego */}
-//               <input
-//                 type="text"
-//                 name="juego"
-//                 placeholder="Juego"
-//                 value={nuevoEvento.juego}
-//                 onChange={handleChange}
-//               />
-
-//               {/* Plataforma */}
-//               <input
-//                 type="text"
-//                 name="plataforma"
-//                 placeholder="Plataforma"
-//                 value={nuevoEvento.plataforma}
-//                 onChange={handleChange}
-//               />
-
-//               {/* Fecha */}
-//               <input
-//                 type="date"
-//                 name="fecha"
-//                 value={nuevoEvento.fecha}
-//                 onChange={handleChange}
-//               />
-
-//               {/* Hora */}
-//               <input
-//                 type="time"
-//                 name="hora"
-//                 value={nuevoEvento.hora}
-//                 onChange={handleChange}
-//               />
-
-//               {/* jugadores */}
-//               <select
-//                 name="jugadores"
-//                 value={nuevoEvento.jugadores}
-//                 onChange={handleChange}
-//               >
-//                 {jugadoresOptions.map((num) => (
-//                   <option key={num} value={num}>
-//                     {num} jugador{num > 1 ? "es" : ""}
-//                   </option>
-//                 ))}
-//               </select>
-
-//               <div className="modal-buttons">
-//                 <button type="submit" className="save-btn">
-//                   {isEditing ? "Guardar cambios" : "Guardar"}
-//                 </button>
-//                 <button
-//                   type="button"
-//                   className="cancel-btn"
-//                   onClick={closeModal}
-//                 >
-//                   Cancelar
-//                 </button>
-//               </div>
-//             </form>
-//           </div>
-//         </div>
-//       )}
-//     </div>
-//   );
-// };
-
-// export default Events;

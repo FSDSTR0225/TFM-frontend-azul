@@ -8,6 +8,11 @@ function SearchAndCreateEvents({
   searchEvents,
   setSearchEvents,
   onCreate,
+  platforms = [],
+  selectedPlatform,
+  setSelectedPlatform,
+  selectedDate,
+  setSelectedDate,
 }) {
   const [showModal, setShowModal] = useState(false);
 
@@ -21,10 +26,11 @@ function SearchAndCreateEvents({
 
   return (
     <>
-      <div className="search-all-containier">
+      <div className="search-all-container">
         <div className="search-create-event">
           <div className="search-left">
             <input
+              aria-label="Buscar eventos"
               type="text"
               value={searchEvents}
               onChange={(e) => setSearchEvents(e.target.value)}
@@ -39,6 +45,51 @@ function SearchAndCreateEvents({
                 </div>
               </div>
             )}
+            {/* NUEVA SECCIÓN DE FILTROS */}
+            <div className="event-inline-filters">
+              <div className="chip-group">
+                <p>Por plataforma: </p>
+                <button
+                  key="platform-todas"
+                  type="button"
+                  className={`chip-button ${
+                    selectedPlatform === "Todas" ? "active" : ""
+                  }`}
+                  onClick={() => setSelectedPlatform("Todas")}
+                >
+                  Todas
+                </button>
+
+                {platforms.map((p) => (
+                  <button
+                    key={p._id || p.name}
+                    type="button"
+                    className={`chip-button ${
+                      selectedPlatform === p.name ? "active" : ""
+                    }`}
+                    onClick={() => setSelectedPlatform(p.name)}
+                  >
+                    {p.name}
+                  </button>
+                ))}
+              </div>
+
+              <div className="chip-group">
+                <p>Por fecha: </p>
+                {["Todos", "Hoy", "Esta semana", "Este mes"].map((name) => (
+                  <button
+                    key={name}
+                    type="button"
+                    className={`chip-button ${
+                      selectedDate === name ? "active" : ""
+                    }`}
+                    onClick={() => setSelectedDate(name)}
+                  >
+                    {name}
+                  </button>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
         <div className="search-create-event-right">

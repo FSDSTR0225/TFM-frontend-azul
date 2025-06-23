@@ -1,4 +1,4 @@
-.search-all-containier {
+.search-all-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -21,14 +21,23 @@
 }
 
 .search-left {
-  background: none;
-  border: none;
-  padding: 16px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(0, 255, 255, 0.1);
+  padding: 1rem;
   border-radius: 16px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 12px;
   flex: 1;
+  box-shadow: inset 0 0 6px rgba(0, 255, 255, 0.1);
+}
+.event-inline-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
 }
 
 .search-input-event {
@@ -127,6 +136,12 @@
   }
 }
 
+@media (min-width: 768px) {
+  .event-inline-filters {
+    flex-direction: row;
+  }
+}
+
 /* RESPONSIVE: Pantallas pequeñas (móviles hasta 600px) */
 @media (max-width: 600px) {
   .search-all-containier {
@@ -164,6 +179,40 @@
     gap: 12px;
     align-items: stretch;
   }
+}
+
+.chip-group {
+  display: flex;
+  flex-wrap: wrap; /* evita overflow */
+  gap: 0.4rem;
+  margin-top: 0.6rem;
+}
+
+.chip-group p {
+  align-self: center;
+  margin-right: 0.5rem;
+}
+
+.chip-button {
+  font-family: "Audiowide", sans-serif;
+  padding: 0.35rem 0.8rem;
+  border: 1px solid #00ffc880;
+  background: rgba(0, 255, 200, 0.08);
+  color: #eee;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: 0.15s;
+}
+
+.chip-button:hover {
+  background: rgba(0, 255, 200, 0.18);
+}
+
+.chip-button.active {
+  background: #00ffc8;
+  color: #0b0c10;
+  box-shadow: 0 0 8px #00ffc880;
 }
 
 /* .search-create-event {
