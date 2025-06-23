@@ -110,6 +110,8 @@
 
 .event-organizer {
   display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
   gap: 0.6rem;
   font-size: 1.05rem;
@@ -124,12 +126,14 @@
   box-shadow: 0 0 8px #00ffc855;
 }
 .organizer-name {
+  font-size: 1.3rem;
   font-weight: 600;
   color: #00ffc8;
   font-family: "Audiowide", "Orbitron", "Montserrat", sans-serif;
 }
 
 .event-info {
+  width: 100%;
   margin-bottom: 1.2rem;
   z-index: 2;
   position: relative;
@@ -141,7 +145,7 @@
 .event-info p {
   font-family: "Audiowide", "Orbitron", "Montserrat", sans-serif;
   margin: 0.5rem 0;
-  font-size: 1.05rem;
+  font-size: 1.2rem;
   color: #e0e0e0;
   letter-spacing: 0.2px;
 }
@@ -155,17 +159,20 @@
   z-index: 2;
   position: relative;
   font-family: "Audiowide", "Orbitron", "Montserrat", sans-serif;
+  align-content: center;
+  text-align: center;
 }
 .modal-description h3 {
   color: #00ffc8;
-  font-size: 1.13rem;
-  margin-bottom: 0.4rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 0.8rem;
   letter-spacing: 0.5px;
 }
 .modal-description p {
   color: #ccc;
   line-height: 1.5;
-  font-size: 1.01rem;
+  font-size: 1.2rem;
 }
 
 .modal-participants {
@@ -176,7 +183,8 @@
 }
 .modal-participants h3 {
   color: #a259ff;
-  font-size: 1.13rem;
+  font-weight: 600;
+  font-size: 1.2rem;
   margin-bottom: 0.7rem;
   letter-spacing: 0.5px;
 }
