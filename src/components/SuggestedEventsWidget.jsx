@@ -36,7 +36,7 @@ function SuggestedEventsWidget() {
   }, [token]);
 
   return (
-    <div className="modular-card suggested-events-card">
+    <div className="modular-card-suggested-events-card">
       <div className="modular-card-header">
         <FaCalendarPlus className="modular-card-icon" />
         <h3>Eventos sugeridos</h3>

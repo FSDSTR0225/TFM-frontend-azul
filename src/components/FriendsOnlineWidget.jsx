@@ -49,7 +49,7 @@ function FriendsOnlineWidget() {
   if (!token) return null;
 
   return (
-    <div className="modular-card friends-online-card">
+    <div className="modular-card-friends-online-card">
       <div className="modular-card-header">
         <FaUserFriends className="modular-card-icon" />
         <h3>Amigos en línea</h3>

@@ -9,8 +9,8 @@ import EventsToday from "../components/EventsToday";
 // import WidgetSystem from "../components/WidgetSystem";
 import { PacmanLoader } from "react-spinners";
 import "../style/Lobby.css";
-import Panel from "../components/Panel";
-import Section from "../components/Section";
+// import Panel from "../components/Panel";
+// import Section from "../components/Section";
 import FriendsOnlineWidget from "../components/FriendsOnlineWidget";
 import SuggestedUsersWidget from "../components/SuggestedUsersWidget";
 import CalendarWidget from "../components/CalendarWidget";
@@ -52,25 +52,36 @@ function Lobby() {
         </h1>
         <h2 className="lobby-subtitle">¿Listo para jugar hoy?</h2>
       </div>
-      <section className="lobby-section-main">
-        <div className="lobby-dashboard-left">
-          <Dashboard />
-        </div>
-        <div className="lobby-events-right">
-          <EventsToday />
-        </div>
-      </section>
-      <section className="lobby-section-widgets">
-        <div className="lobby-widgets-container">
+      <div className="lobby-glass-container">
+        <section className="lobby-section-main">
+          <div className="lobby-dashboard-left">
+            <Dashboard />
+          </div>
+          <div className="lobby-events-right">
+            <EventsToday />
+          </div>
+        </section>
+        <section className="lobby-section-widgets">
+          {/* <div className="lobby-widgets-container"> */}
           {/* <div className="widgets-grid"> */}
-          <FriendsOnlineWidget />
-          <SuggestedUsersWidget />
-          <CalendarWidget />
-          <SuggestedEventsWidget />
-          <SuggestedGamesWidget />
-          {/* </div> */}
-        </div>
-      </section>
+          <div className="lobby-left-sidebar">
+            <CalendarWidget />
+            <div className="lobby-left-sidebar-friends">
+              <FriendsOnlineWidget />
+            </div>
+          </div>
+
+          <div className="lobby-right-suggestions">
+            <div className="lobby-event-suggestions">
+              <SuggestedEventsWidget />
+            </div>
+            <SuggestedUsersWidget />
+          </div>
+          <div className="lobby-down-suggestions">
+            <SuggestedGamesWidget />
+          </div>
+        </section>
+      </div>
     </div>
   );
 }
