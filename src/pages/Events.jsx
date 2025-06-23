@@ -7,7 +7,6 @@ import EventDetails from "../components/EventDetails";
 import SearchAndCreateEvents from "../components/SearchAndCreateEvents";
 import { useLocation } from "react-router-dom";
 import { useMemo } from "react";
-// import FilterEvents from "../components/FilterEvents";
 import "../style/Events.css";
 
 const API_URL = import.meta.env.VITE_API_URL;

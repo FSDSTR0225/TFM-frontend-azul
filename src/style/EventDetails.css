@@ -38,7 +38,7 @@
   max-height: calc(100vh - 100px); /* deja espacio arriba y abajo */
   overflow-y: auto;
   position: relative;
-  background: linear-gradient(135deg, #181a2a 80%, #23243a 100%);
+  background: inherit;
   border-radius: 22px;
   padding: 2.2rem 2rem 2rem 2rem;
   width: 95%;
@@ -48,6 +48,18 @@
   box-shadow: 0 0 32px 0 #00ffc8, 0 0 0 2px #23243a;
   border: 2px solid rgba(0, 255, 200, 0.13);
   overflow: hidden;
+}
+
+.try-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 22px;
+  filter: blur(2px);
+  opacity: 0.2;
 }
 
 .event-header-row {

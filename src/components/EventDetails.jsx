@@ -118,6 +118,11 @@ function EventDetails({ event, onClose, setSelectedEvent, onEventDeleted }) {
       }}
     >
       <div className="modal-event-content event-details-card">
+        <img
+          className="try-img"
+          src={event.game.imageUrl}
+          alt={event.game.name}
+        />
         <div className="neon-bg"></div>
         <img
           src={event.platform.icon}
