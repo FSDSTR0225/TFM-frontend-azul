@@ -54,7 +54,7 @@ function SuggestedEventsWidget() {
                     className="event-card-bg-img"
                   />
                   <div className="event-suggestion-content">
-                    <h4>{event.title}</h4>
+                    <h4>- {event.title} -</h4>
                     <div className="event-suggestion-details">
                       <p>
                         <strong>Juego:</strong> {event.game.name}
