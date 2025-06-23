@@ -15,11 +15,11 @@ const ProfileCard = () => {
   const [refreshKey, setRefreshKey] = useState(0);
   const API_URL = import.meta.env.VITE_API_URL;
   const navigate = useNavigate();
-  // const [user, setUser] = useState(null);
+
   const triggerRefresh = () => {
     setRefreshKey((prev) => prev + 1);
   };
-  
+
   useEffect(() => {
     const fetchProfile = async () => {
       try {
@@ -30,7 +30,7 @@ const ProfileCard = () => {
         });
         if (!response.ok) throw new Error("Error al obtener detalles");
         const data = await response.json();
-      setUser(data.user);
+        setUser(data.user);
       } catch (error) {
         console.error("Error al obtener el perfil:", error);
       }
@@ -38,8 +38,6 @@ const ProfileCard = () => {
     fetchProfile();
   }, []);
 
-
-  
   useEffect(() => {
     const fetchProfile = async () => {
       try {
@@ -60,7 +58,6 @@ const ProfileCard = () => {
     }
   }, [refreshKey, isLoggedIn, token, API_URL, setUser]);
 
-
   if (!isLoggedIn) {
     navigate("/login");
   }
@@ -72,7 +69,7 @@ const ProfileCard = () => {
     <div className="profile-card">
       <div className="avatar-container">
         <img className="avatar" src={user.avatar || blankImg} alt="Avatar" />
-        <Link to="/edit/profile"  className="edit-button">
+        <Link to="/edit/profile" className="edit-button">
           ✏️{" "}
         </Link>
       </div>
@@ -82,7 +79,10 @@ const ProfileCard = () => {
         triggerRefresh={triggerRefresh}
         platforms={user.platforms || ["khKH", "hgygsdy", "ygyas"]}
       />
-      <FriendsList triggerRefresh={triggerRefresh} friends={user.friends || ["khKH", "hgygsdy", "ygyas"]}/>
+      <FriendsList
+        triggerRefresh={triggerRefresh}
+        friends={user.friends || ["khKH", "hgygsdy", "ygyas"]}
+      />
       <FavoriteGamesList
         triggerRefresh={triggerRefresh}
         games={user.favoriteGames || ["khKH", "hgygsdy", "ygyas"]}

@@ -1,7 +1,9 @@
 import React from "react";
 import "../style/PlayerCard.css"; 
+import {Link} from "react-router-dom";
 
 const PlayerCard = ({ user }) => {
+
   return (
     <div className="player-card">
       <div className="player-avatar-container">
@@ -20,8 +22,8 @@ const PlayerCard = ({ user }) => {
         ))}
       </div>
       <div className="player-actions">
-        <button className="player-button">Conectar</button>
-        <button className="player-button">Ver perfil</button>
+        <button className="player-button">Añadir a amigos</button>
+        <Link to={`/profile/${user.username}`} state={{user}} className="player-button">Ver perfil</Link>
       </div>
     </div>
   );

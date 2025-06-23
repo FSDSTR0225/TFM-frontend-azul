@@ -25,6 +25,7 @@ import { PacmanLoader } from "react-spinners";
 import { Toaster } from "sonner";
 import ManagementCenter from "./pages/ManagementCenter";
 import MyEvents from "./pages/MyEvents";
+import PlayerProfile from "./pages/PlayerProfile";
 
 
 
@@ -128,6 +129,14 @@ export default function App() {
           element={
             <PrivateRoute>
               <Mensajes/>
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/profile/:username"
+          element={
+            <PrivateRoute>
+              <PlayerProfile />
             </PrivateRoute>
           }
         />

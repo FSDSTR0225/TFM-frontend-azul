@@ -1,23 +1,23 @@
 // components/MainScrollWrapper.jsx
-import { Scrollbar } from "react-scrollbars-custom";
-import "../style/MyScrollBar.css";
+//import { Scrollbar } from "react-scrollbars-custom";
+//import "../style/MyScrollBar.css";
 
-export default function MyScrollBar({ children }) {
-  return (
-    <Scrollbar
-      style={{
-        height: "calc(100vh - 72px)",
-        padding: "0 0.3rem",
-        width: "100%",
-        overflowX: "auto",
-      }}
-      removeTracksWhenNotUsed
-      noScrollX={false} // aseguramos que permita scroll-x si realmente se requiere
-    >
-      {children}
-    </Scrollbar>
-  );
-}
+//export default function MyScrollBar({ children }) {
+  //return (
+   // <Scrollbar
+     // style={{
+       // height: "calc(100vh - 72px)",
+        //padding: "0 0.3rem",
+       // width: "100%",
+        //overflowX: "auto",
+     // }}
+      //removeTracksWhenNotUsed
+     // noScrollX={false} // aseguramos que permita scroll-x si realmente se requiere
+    //>
+      //{children}
+    //</Scrollbar>
+  //);
+//}
 
 // import { useState } from "react";
 // import { Scrollbar } from "react-scrollbars-custom";
