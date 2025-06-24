@@ -22,6 +22,7 @@ const Players = () => {
           throw new Error("Network response was not ok");
         }
         const data = await response.json();
+
         setPlayers(data.users);
         console.log("Players fetched successfully:", data.users);
       } catch (error) {
@@ -38,7 +39,7 @@ const Players = () => {
       <h1 className="players-title">Players</h1>
       <div className="players-list">
         {players.map((player) => (
-          <PlayerCard key={player.id} user={player} />
+          <PlayerCard key={player.id} player={player} />
         ))}
       </div>
      

@@ -4,7 +4,7 @@ import "../style/PlatformList.css";
 import ModalWindow from "./ModalWindow";
 import { useState, useContext } from "react";
 import AuthContext from "../context/AuthContext";
-const FavoritePlatforms = ({ platforms, triggerRefresh }) => {
+const FavoritePlatforms = ({ platforms, triggerRefresh , isOwner }) => {
   const [modalOpen, setModalOpen] = useState(false);
   const url = import.meta.env.VITE_API_URL;
   const { token } = useContext(AuthContext);
@@ -27,6 +27,7 @@ const FavoritePlatforms = ({ platforms, triggerRefresh }) => {
     <div className="section">
       <div className="section-header">
         <h3>Plataformas</h3>
+        {isOwner &&
         <button
           onClick={() => {
             setModalOpen(true);
@@ -34,7 +35,7 @@ const FavoritePlatforms = ({ platforms, triggerRefresh }) => {
           className="add-button-p pink"
         >
           ➕ add
-        </button>
+        </button>}
       </div>
       <div className="platform-list  ">
         {platforms.map((platform, index) => (
@@ -44,12 +45,13 @@ const FavoritePlatforms = ({ platforms, triggerRefresh }) => {
               alt={platform.name}
               className="platform-icon-img"
             />{" "}
+            {isOwner &&
             <button
               onClick={() => handleDelete(platform._id)}
               className="delete-button"
             >
               X
-            </button>
+            </button> }
             <p className="platform-name">{platform.name}</p>
           </div>
         ))}

@@ -13,6 +13,7 @@ body {
   min-height: 100vh;
   max-height: 100vh;
   overflow: auto;
+  scroll-behavior: smooth;
   font-family: "Poppins", sans-serif;
   background: rgba(10, 10, 20, 0.9);
   color: white;
