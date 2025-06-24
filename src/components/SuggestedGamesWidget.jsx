@@ -84,7 +84,14 @@ function SuggestedGamesWidget() {
               >
                 {suggestedGames.map((game) => (
                   <SwiperSlide key={game._id}>
-                    <div className="game-hero-slide">
+                    <div
+                      className="game-hero-slide"
+                      // style={{
+                      //   backgroundImage: `url(${game.imageUrl})`,
+                      //   backgroundSize: "cover",
+                      //   opacity: 0.8,
+                      // }}
+                    >
                       <div className="hero-left">
                         <img
                           src={game.imageUrl}
