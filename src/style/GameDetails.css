@@ -110,7 +110,7 @@
 }
 
 .additional-image,
-.screenshots {
+.screenshots-details {
   margin-top: 2rem;
 }
 
@@ -128,7 +128,9 @@
   flex-wrap: nowrap;
   overflow-x: auto;
   gap: 1rem;
-  padding-bottom: 0.5rem;
+  background-color: #23243abc;
+  padding: 0.5rem;
+  border-radius: 7px;
   scroll-snap-type: x mandatory;
   scrollbar-width: thin;
   scrollbar-color: #00ffc8 #23243a;
@@ -157,7 +159,7 @@
 }
 
 .screenshot-gallery img:hover {
-  transform: scale(1.07);
+  transform: scale(1.01);
   box-shadow: 0 0 18px #00ffc8cc;
   border-color: #66fcf1;
 }
@@ -326,7 +328,7 @@
 }
 
 .additional-image,
-.screenshots {
+.screenshots-details {
   margin-top: 2rem;
 }
 

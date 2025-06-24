@@ -156,7 +156,7 @@ function GameDetails() {
           )}
 
           {game.screenshots?.length > 0 && (
-            <div className="screenshots">
+            <div className="screenshots-details">
               <div className="screenshot-gallery">
                 {game.screenshots.map((img, index) => (
                   <img key={index} src={img} alt={`screenshot-${index}`} />
