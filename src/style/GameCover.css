@@ -1,7 +1,12 @@
 .game-cover {
   width: 100%;
   max-width: 240px;
-  background: rgba(255, 255, 255, 0.02);
+  background: linear-gradient(
+    135deg,
+    rgba(20, 28, 40, 0.673) 0%,
+    rgba(0, 255, 255, 0.063) 100%
+  );
+
   border: 1px solid rgba(0, 255, 255, 0.1);
   border-radius: 16px;
   overflow: hidden;
