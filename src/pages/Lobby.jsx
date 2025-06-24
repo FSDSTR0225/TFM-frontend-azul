@@ -75,10 +75,10 @@ function Lobby() {
             <div className="lobby-event-suggestions">
               <SuggestedEventsWidget />
             </div>
-            <SuggestedUsersWidget />
+            <SuggestedGamesWidget />
           </div>
           <div className="lobby-down-suggestions">
-            <SuggestedGamesWidget />
+            <SuggestedUsersWidget />
           </div>
         </section>
       </div>

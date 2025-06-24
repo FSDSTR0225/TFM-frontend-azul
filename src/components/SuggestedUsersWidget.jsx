@@ -46,7 +46,7 @@ function SuggestedUsersWidget() {
   };
 
   return (
-    <div className="modular-card suggested-users-card">
+    <div className="modular-card-suggested-users-card">
       <div className="modular-card-header">
         <FaUserPlus className="modular-card-icon" />
         <h3>Sugerencias de usuarios</h3>
@@ -62,17 +62,35 @@ function SuggestedUsersWidget() {
             {Array.isArray(suggestedUsers) &&
               suggestedUsers.map((suggest) => (
                 <li className="suggestion-content" key={suggest._id}>
-                  <img
-                    className="img-suggestion-user"
-                    src={suggest.avatar}
-                    alt={suggest.username}
-                  />
+                  <span
+                    className="btn-suggestion"
+                    title="Eliminar sugerencia"
+                    onClick={() => handleOnClick(suggest._id)}
+                  >
+                    ✕
+                  </span>
+                  <div className="avatar-suggestion-container">
+                    <img
+                      className="img-suggestion-user"
+                      src={suggest.avatar}
+                      alt={`Avatar de ${suggest.username}`}
+                    />
+                  </div>
                   <span
                     className="username-suggestion"
                     title={suggest.username}
                   >
                     {suggest.username}
                   </span>
+                  <div className="genre-list">
+                    {suggest.favoriteTags?.genres
+                      ?.slice(0, 3)
+                      .map((genre, i) => (
+                        <span className="genre-chip" key={`${genre}-${i}`}>
+                          {genre}
+                        </span>
+                      ))}
+                  </div>
                   <div className="users-suggest-btn">
                     <button className="btn-connect">Conectar</button>
                     <button
@@ -82,13 +100,6 @@ function SuggestedUsersWidget() {
                       Ver perfil
                     </button>
                   </div>
-                  <span
-                    className="btn-suggestion"
-                    title="Eliminar sugerencia"
-                    onClick={() => handleOnClick(suggest._id)}
-                  >
-                    X
-                  </span>
                 </li>
               ))}
           </ul>
