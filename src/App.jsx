@@ -28,6 +28,7 @@ import { Mensajes } from "./pages/Mensajes";
 import MyScrollBar from "./components/MyScrollBar";
 import ExploreGames from "./components/ExploreGames";
 import ExploreUsers from "./components/ExploreUsers";
+import Footer from "./components/Footer";
 
 export default function App() {
   const [showSearch, setShowSearch] = useState(false);
@@ -129,6 +130,7 @@ export default function App() {
             />
           </Routes>
         </main>
+        <Footer />
       </MyScrollBar>
       <Toaster richColors position="bottom-right" />
     </div>

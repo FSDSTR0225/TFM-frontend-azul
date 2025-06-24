@@ -65,9 +65,14 @@ function Lobby() {
           {/* <div className="lobby-widgets-container"> */}
           {/* <div className="widgets-grid"> */}
           <div className="lobby-left-sidebar">
-            <CalendarWidget />
+            <div className="suggested-users-container">
+              <SuggestedUsersWidget />
+            </div>
             <div className="lobby-left-sidebar-friends">
               <FriendsOnlineWidget />
+            </div>
+            <div>
+              <CalendarWidget />
             </div>
           </div>
 
@@ -77,9 +82,7 @@ function Lobby() {
             </div>
             <SuggestedGamesWidget />
           </div>
-          <div className="lobby-down-suggestions">
-            <SuggestedUsersWidget />
-          </div>
+          <div className="lobby-down-suggestions"></div>
         </section>
       </div>
     </div>

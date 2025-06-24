@@ -96,9 +96,50 @@
 .lobby-left-sidebar {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.5rem;
   width: 30%;
+  max-width: 380px;
   align-items: center;
+}
+
+.suggested-users-container {
+  width: 100%;
+  max-height: 480px;
+  overflow: hidden;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  backdrop-filter: none;
+}
+
+.lobby-left-sidebar-friends {
+  width: 300px;
+  max-height: 500px;
+  overflow-y: auto;
+  border-radius: 18px;
+  background: (135deg, rgba(20, 28, 40, 0.97) 0%, rgba(0, 255, 255, 0.1) 100%);
+  border: 2.5px solid #00f0ff44;
+  backdrop-filter: blur(22px) saturate(120%);
+  box-shadow: 0 6px 40px #00f0ff33, 0 2px 12px #000a;
+  scrollbar-width: thin; /* Para Firefox */
+  scrollbar-color: #00ffc899 #10152000;
+  scroll-behavior: smooth;
+  overflow: overlay;
+}
+
+/* Scrollbar WebKit (Chrome, Edge, Safari) */
+.lobby-left-sidebar-friends::-webkit-scrollbar {
+  width: 8px;
+}
+
+.lobby-left-sidebar-friends::-webkit-scrollbar-thumb {
+  background-color: #00ffc8aa;
+  border-radius: 6px;
+  box-shadow: inset 0 0 6px #00ffc8;
+}
+
+.lobby-left-sidebar-friends::-webkit-scrollbar-track {
+  background: transparent;
 }
 
 .lobby-right-suggestions {

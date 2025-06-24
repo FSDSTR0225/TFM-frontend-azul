@@ -3,6 +3,10 @@ import AuthContext from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import "../style/SuggestedUsersWidget.css";
 import { FaUserPlus } from "react-icons/fa";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { EffectCoverflow, Autoplay } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/effect-coverflow";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -45,67 +49,80 @@ function SuggestedUsersWidget() {
     );
   };
 
+  {
+    loading && <div>Cargando sugerencias...</div>;
+  }
+  {
+    error && <div>{error}</div>;
+  }
+
+  // {!loading && !error && (
+  //   <ul className="card-suggestion-container">
+  //     {Array.isArray(suggestedUsers) && suggestedUsers.length === 0 && (
+  //       <p>No hay sugerencias disponibles por ahora</p>
+  //     )}
+
   return (
-    <div className="modular-card-suggested-users-card">
-      <div className="modular-card-header">
-        <FaUserPlus className="modular-card-icon" />
-        <h3>Sugerencias de usuarios</h3>
-      </div>
-      <div className="modular-card-content">
-        {loading && <div>Cargando sugerencias...</div>}
-        {error && <div>{error}</div>}
-        {!loading && !error && (
-          <ul className="card-suggestion-container">
-            {Array.isArray(suggestedUsers) && suggestedUsers.length === 0 && (
-              <p>No hay sugerencias disponibles por ahora</p>
-            )}
-            {Array.isArray(suggestedUsers) &&
-              suggestedUsers.map((suggest) => (
-                <li className="suggestion-content" key={suggest._id}>
-                  <span
-                    className="btn-suggestion"
-                    title="Eliminar sugerencia"
-                    onClick={() => handleOnClick(suggest._id)}
-                  >
-                    ✕
-                  </span>
-                  <div className="avatar-suggestion-container">
-                    <img
-                      className="img-suggestion-user"
-                      src={suggest.avatar}
-                      alt={`Avatar de ${suggest.username}`}
-                    />
-                  </div>
-                  <span
-                    className="username-suggestion"
-                    title={suggest.username}
-                  >
-                    {suggest.username}
-                  </span>
-                  <div className="genre-list">
-                    {suggest.favoriteTags?.genres
-                      ?.slice(0, 3)
-                      .map((genre, i) => (
-                        <span className="genre-chip" key={`${genre}-${i}`}>
-                          {genre}
-                        </span>
-                      ))}
-                  </div>
-                  <div className="users-suggest-btn">
-                    <button className="btn-connect">Conectar</button>
-                    <button
-                      className="btn-profile"
-                      onClick={() => navigate(`/users/${suggest._id}`)}
-                    >
-                      Ver perfil
-                    </button>
-                  </div>
-                </li>
-              ))}
-          </ul>
-        )}
-      </div>
-    </div>
+    <Swiper
+      effect="coverflow"
+      grabCursor={true}
+      centeredSlides={true}
+      slidesPerView={"auto"}
+      spaceBetween={30}
+      loop={true}
+      autoplay={{
+        delay: 3000,
+        disableOnInteraction: false,
+        pauseOnMouseEnter: true,
+      }}
+      coverflowEffect={{
+        rotate: 20,
+        stretch: 0,
+        depth: 100,
+        modifier: 2.5,
+        slideShadows: false,
+      }}
+      modules={[EffectCoverflow, Autoplay]}
+      className="suggested-users-swiper"
+    >
+      {suggestedUsers.map((suggest) => (
+        <SwiperSlide key={suggest._id} className="suggested-user-slide">
+          <span
+            className="btn-suggestion"
+            title="Eliminar sugerencia"
+            onClick={() => handleOnClick(suggest._id)}
+          >
+            ✕
+          </span>
+          <div className="avatar-suggestion-container">
+            <img
+              className="img-suggestion-user"
+              src={suggest.avatar}
+              alt={`Avatar de ${suggest.username}`}
+            />
+          </div>
+          <span className="username-suggestion" title={suggest.username}>
+            {suggest.username}
+          </span>
+          <div className="genre-list">
+            {suggest.favoriteTags?.genres?.slice(0, 3).map((genre, i) => (
+              <span className="genre-chip" key={`${genre}-${i}`}>
+                {genre}
+              </span>
+            ))}
+          </div>
+          <div className="users-suggest-btn">
+            <button className="btn-connect">Conectar</button>
+            <button
+              className="btn-profile"
+              onClick={() => navigate(`/users/${suggest._id}`)}
+            >
+              Ver perfil
+            </button>
+          </div>
+        </SwiperSlide>
+      ))}
+    </Swiper>
   );
 }
 
