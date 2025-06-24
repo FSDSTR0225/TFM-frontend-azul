@@ -17,6 +17,29 @@
   color: #fff;
 }
 
+/* MODO CRISTAL*/
+/* .game-hero-slide {
+  display: flex;
+  width: 100%;
+  max-width: 1300px;
+  height: 500px;
+  gap: 20px;
+  padding: 2rem 2rem;
+  background: linear-gradient(
+    135deg,
+    rgba(20, 28, 40, 0.97) 0%,
+    rgba(0, 255, 255, 0.1) 100%
+  );
+  border: 2.5px solid #00f0ff44;
+  backdrop-filter: blur(22px) saturate(120%);
+  box-shadow: 0 6px 40px #00f0ff33, 0 2px 12px #000a;
+  border-radius: 14px;
+  color: #fff;
+  animation: pulse-shine 2.5s infinite cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55),
+    box-shadow 0.3s; 
+} */
+
 .hero-left {
   flex: 0 0 55%;
   max-width: 55%;
