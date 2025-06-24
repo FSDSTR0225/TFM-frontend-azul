@@ -218,3 +218,19 @@
     flex: 1 1 100%; /* 1 por fila en móvil */
   }
 }
+
+/* 4. Columna derecha (info) */
+/* .steam-info {
+  flex: 1;
+  min-width: 260px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+/* 5. Mini-screenshots grid 2×2 */
+/* .steam-shots {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-auto-rows: 72px;
+  gap: 6px;
+}   */

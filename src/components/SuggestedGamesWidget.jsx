@@ -3,6 +3,11 @@ import AuthContext from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import "../style/SuggestedGamesWidget.css";
 import { FaGamepad } from "react-icons/fa";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Pagination, Navigation } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -55,6 +60,7 @@ function SuggestedGamesWidget() {
         <FaGamepad className="modular-card-icon" />
         <h3>Juegos sugeridos</h3>
       </div>
+
       <div className="modular-card-content">
         {loading ? (
           <div className="dots-loader" />
@@ -66,22 +72,57 @@ function SuggestedGamesWidget() {
               </p>
             )}
             {suggestedGames.length > 0 ? (
-              <ul className="suggestion-content-game">
+              <Swiper
+                modules={[Autoplay, Pagination, Navigation]}
+                slidesPerView={1}
+                spaceBetween={40}
+                loop={true}
+                autoplay={{ delay: 5000, disableOnInteraction: false }}
+                pagination={{ clickable: true }}
+                navigation
+                className="suggested-games-swiper"
+              >
                 {suggestedGames.map((game) => (
-                  <li
-                    className="game-suggested"
-                    key={game._id}
-                    onClick={() => handleOnClick(game._id || game.rawgId)}
-                  >
-                    <img
-                      className="img-suggest-game"
-                      src={game.imageUrl}
-                      alt={game.name}
-                    />
-                    <span className="name-suggest-game">{game.name}</span>
-                  </li>
+                  <SwiperSlide key={game._id}>
+                    <div className="game-hero-slide">
+                      <div className="hero-left">
+                        <img
+                          src={game.imageUrl}
+                          alt={game.name}
+                          onClick={() => handleOnClick(game._id || game.rawgId)}
+                        />
+                      </div>
+                      <div className="hero-right">
+                        <h2 className="steam-game-title">{game.name}</h2>
+                        {game.screenshots?.length > 0 && (
+                          <div className="screenshots">
+                            {game.screenshots.slice(0, 4).map((s, i) => (
+                              <img key={i} src={s} alt={`Screenshot ${i}`} />
+                            ))}
+                          </div>
+                        )}
+                        <div className="game-tags">
+                          {(game.tags || []).slice(0, 5).map((tag) => (
+                            <span className="tag-chip" key={tag}>
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                        <div className="game-steam-platform">
+                          <p className="game-platforms">
+                            Disponible en:{" "}
+                            {game.platforms.map((p) => (
+                              <span key={p._id} className="platform-chip">
+                                {p.name}
+                              </span>
+                            ))}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </SwiperSlide>
                 ))}
-              </ul>
+              </Swiper>
             ) : (
               <p className="no-suggestions-game">
                 No hay juegos sugeridos, completa tu perfil
