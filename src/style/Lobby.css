@@ -30,6 +30,8 @@
   justify-content: space-evenly;
   gap: 2rem;
   align-items: center;
+  max-width: 100%;
+  flex-wrap: wrap;
 }
 
 .lobby-dashboard-left {
