@@ -27,8 +27,9 @@
 
 .lobby-section-main {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   gap: 2rem;
+  align-items: center;
 }
 
 .lobby-dashboard-left {
