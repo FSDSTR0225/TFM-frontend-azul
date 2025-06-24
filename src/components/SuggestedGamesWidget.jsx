@@ -96,7 +96,7 @@ function SuggestedGamesWidget() {
                         <h2 className="steam-game-title">{game.name}</h2>
                         {game.screenshots?.length > 0 && (
                           <div className="screenshots">
-                            {game.screenshots.slice(0, 4).map((s, i) => (
+                            {game.screenshots.slice(1, 5).map((s, i) => (
                               <img key={i} src={s} alt={`Screenshot ${i}`} />
                             ))}
                           </div>
