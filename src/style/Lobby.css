@@ -14,15 +14,32 @@
   z-index: 0;
 }
 
+.lobby-content::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.25),
+      rgba(0, 0, 0, 0.4)
+    ),
+    url("/images/try.jpg") center/cover no-repeat;
+  filter: blur(4px) brightness(1.2);
+  z-index: -1;
+}
+
 .lobby-glass-container {
   position: relative;
   width: 100%;
   margin: 0 auto;
   padding: 2rem;
   background: transparent;
-  backdrop-filter: blur(6px);
+  /* backdrop-filter: blur(6px);
   border-radius: 16px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); */
 }
 
 .lobby-section-main {
@@ -96,7 +113,7 @@
 
 .lobby-widgets-container {
   width: 100%;
-  max-width: 95vw;
+  max-width: 100vw;
   margin: 0 auto;
   padding: 0 1rem;
   display: flex;
