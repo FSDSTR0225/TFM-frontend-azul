@@ -27,7 +27,7 @@
       rgba(0, 0, 0, 0.4)
     ),
     url("/images/try.jpg") center/cover no-repeat;
-  filter: blur(4px) brightness(1.2);
+  filter: blur(3px) brightness(1.2);
   z-index: -1;
 }
 
