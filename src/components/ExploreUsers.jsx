@@ -94,26 +94,3 @@ function ExploreUsers() {
   );
 }
 export default ExploreUsers;
-// .game-result-card {
-//   display: flex;
-//   gap: 1rem;
-//   background: rgba(20, 20, 30, 0.85);
-//   border: 1px solid rgba(0, 255, 255, 0.1);
-//   border-radius: 12px;
-//   padding: 1rem;
-//   margin-bottom: 1rem;
-//   cursor: pointer;
-//   transition: background 0.3s;
-// }
-// .game-result-card:hover {
-//   background: rgba(0, 255, 255, 0.05);
-// }
-// .game-result-card img {
-//   width: 120px;
-//   height: 70px;
-//   object-fit: cover;
-//   border-radius: 8px;
-// }
-// .game-result-card .info {
-//   flex: 1;
-// }
