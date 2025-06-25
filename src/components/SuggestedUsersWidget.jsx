@@ -49,12 +49,8 @@ function SuggestedUsersWidget() {
     );
   };
 
-  {
-    loading && <div>Cargando sugerencias...</div>;
-  }
-  {
-    error && <div>{error}</div>;
-  }
+  if (loading) return <div className="dots-loader"></div>;
+  if (error) return <div className="error-suggestions">{error}</div>;
 
   // {!loading && !error && (
   //   <ul className="card-suggestion-container">
@@ -94,22 +90,24 @@ function SuggestedUsersWidget() {
           >
             ✕
           </span>
-          <div className="avatar-suggestion-container">
-            <img
-              className="img-suggestion-user"
-              src={suggest.avatar}
-              alt={`Avatar de ${suggest.username}`}
-            />
-          </div>
-          <span className="username-suggestion" title={suggest.username}>
-            {suggest.username}
-          </span>
-          <div className="genre-list">
-            {suggest.favoriteTags?.genres?.slice(0, 3).map((genre, i) => (
-              <span className="genre-chip" key={`${genre}-${i}`}>
-                {genre}
-              </span>
-            ))}
+          <div className="user-content">
+            <div className="avatar-suggestion-container">
+              <img
+                className="img-suggestion-user"
+                src={suggest.avatar}
+                alt={`Avatar de ${suggest.username}`}
+              />
+            </div>
+            <span className="username-suggestion" title={suggest.username}>
+              {suggest.username}
+            </span>
+            <div className="genre-list">
+              {suggest.favoriteTags?.genres?.slice(0, 3).map((genre, i) => (
+                <span className="genre-chip" key={`${genre}-${i}`}>
+                  {genre}
+                </span>
+              ))}
+            </div>
           </div>
           <div className="users-suggest-btn">
             <button className="btn-connect">Conectar</button>

@@ -74,16 +74,25 @@
   box-shadow: 0 0 8px #00ffc8cc;
 }
 
+.user-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
 /* === SWIPER SLIDE: CADA USUARIO SUGERIDO === */
 .suggested-user-slide {
   position: relative;
   display: flex;
   flex-direction: column;
+  justify-content: space-between !important;
   align-items: center;
   text-align: center;
-  min-width: 200px;
-  max-width: 240px;
-  height: 240px !important;
+  min-width: 160px;
+  max-width: 180px;
+  height: 220px !important;
   padding: 10px 8px 9px 8px;
   flex-shrink: 0;
   background: linear-gradient(135deg, #181c2b 80%, #23243a 100%);
@@ -123,12 +132,12 @@
 /* === AVATAR === */
 .avatar-suggestion-container {
   position: relative;
-  margin-bottom: 12px;
+  margin-bottom: 6px;
 }
 
 .img-suggestion-user {
-  width: 56px;
-  height: 56px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
   border: 3px solid #00ffc8;
   object-fit: cover;
@@ -142,8 +151,9 @@
 
 /* === NOMBRE DE USUARIO === */
 .username-suggestion {
-  margin-top: 6px;
-  font-size: 1.08rem;
+  margin-top: auto;
+  margin-bottom: 5px;
+  font-size: 0.95rem;
   font-weight: bold;
   color: #00ffc8;
   text-shadow: 0 0 6px #00ffc8cc;
@@ -158,8 +168,8 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 4px;
-  margin: 10px 0 14px;
+  gap: 6px;
+  margin: 10px 0 7px;
 }
 
 .genre-chip {
@@ -167,8 +177,8 @@
   border: 1px solid #00ffc8;
   border-radius: 12px;
   padding: 2px 10px;
-  font-size: 0.7rem;
-  color: #00ffc8;
+  font-size: 0.55rem;
+  color: white;
   box-shadow: 0 0 6px #00ffc811 inset;
 }
 
@@ -176,14 +186,16 @@
 .users-suggest-btn {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  margin-top: 8px;
+  gap: 7px;
+  margin-top: 7px;
 }
 
 .btn-connect,
 .btn-profile {
-  font-size: 0.65rem;
-  padding: 7px 14px;
+  font-size: 0.5rem;
+  padding: 5px 10px;
+  width: 80px;
+  align-self: center;
   border-radius: 10px;
   font-weight: bold;
   cursor: pointer;
