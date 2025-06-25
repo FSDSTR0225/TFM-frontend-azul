@@ -1,6 +1,6 @@
 .modular-card-friends-online-card {
   background: rgba(24, 28, 43, 0.55);
-  border-radius: 18px;
+  border-radius: 5px;
   box-shadow: 0 0 24px #00ffc822, 0 2px 8px #000a;
   backdrop-filter: blur(10px);
   padding: 1.2rem 1.5rem;
