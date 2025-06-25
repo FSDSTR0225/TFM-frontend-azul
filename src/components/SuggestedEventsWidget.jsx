@@ -42,7 +42,9 @@ function SuggestedEventsWidget() {
         <h3>Eventos sugeridos</h3>
       </div>
       <div className="modular-card-content">
-        {suggestedEvents.length === 0 && <p>No hay sugerencias por ahora.</p>}
+        {suggestedEvents.length === 0 && (
+          <p className="no-suggest-now">No hay sugerencias por ahora.</p>
+        )}
         <div>
           {suggestedEvents.length > 0 && (
             <ul className="event-suggestions-list">
