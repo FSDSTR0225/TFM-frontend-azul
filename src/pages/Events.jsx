@@ -246,7 +246,6 @@ const Events = () => {
 
   return (
     <div className="event-page">
-      {/* 1. HEADER: Buscador + Botón Crear */}
       <div className="event-header">
         <h1 className="title-event-page">Explora y crea eventos</h1>
         <div className="center-search-create">
@@ -263,74 +262,72 @@ const Events = () => {
           />
         </div>
       </div>
+      <div className="event-content">
+        <div className="event-main">
+          <section className="mini-events-section">
+            <h2 className="section-title-next-events">Próximos Eventos</h2>
+            {filteredEvents.length === 0 ? (
+              <p>No hay eventos próximos.</p>
+            ) : (
+              <div className="mini-events-grid">
+                {[...filteredEvents]
+                  .sort((a, b) => new Date(a.date) - new Date(b.date))
+                  .slice(0, 5)
+                  .map((event) => (
+                    <EventCardMini
+                      key={event.id}
+                      event={event}
+                      onClick={() => handleMiniCardEventClick(event.id)}
+                    />
+                  ))}
+              </div>
+            )}
+          </section>
 
-      <div className="event-main">
-        <section className="mini-events-section">
-          <h2 className="section-title-next-events">Próximos Eventos</h2>
-          {filteredEvents.length === 0 ? (
-            <p>No hay eventos próximos.</p>
-          ) : (
-            <div className="mini-events-grid">
-              {[...filteredEvents]
-                .sort((a, b) => new Date(a.date) - new Date(b.date))
-                .slice(0, 5)
-                .map((event) => (
-                  <EventCardMini
-                    key={event.id}
+          <p className="section-title-next-events">Eventos disponibles</p>
+          <section className="all-events">
+            {filteredEvents.length === 0 ? (
+              <p className="no-events-title">
+                No hay eventos disponibles en este momento.
+              </p>
+            ) : (
+              currentEvents.map((event) => (
+                <div
+                  key={event.id}
+                  ref={(el) => (eventRefs.current[event.id] = el)}
+                >
+                  <EventCard
                     event={event}
-                    onClick={() => handleMiniCardEventClick(event.id)}
+                    onClick={() => handleEventClick(event.id)}
                   />
-                ))}
+                </div>
+              ))
+            )}
+          </section>
+          {totalPages > 1 && (
+            <div className="pagination-controls">
+              <button
+                className="pagination-btn-events"
+                onClick={handlePrevPage}
+                disabled={currentPage === 1}
+              >
+                ← Anterior
+              </button>
+              <span className="pagination-info-events">
+                {currentPage} / {totalPages}
+              </span>
+              <button
+                className="pagination-btn-events"
+                onClick={handleNextPage}
+                disabled={currentPage === totalPages}
+              >
+                Siguiente →
+              </button>
             </div>
           )}
-        </section>
-
-        <p className="section-title-next-events">Eventos disponibles</p>
-        <section className="all-events">
-          {filteredEvents.length === 0 ? (
-            <p className="no-events-title">
-              No hay eventos disponibles en este momento.
-            </p>
-          ) : (
-            currentEvents.map((event) => (
-              <div
-                key={event.id}
-                ref={(el) => (eventRefs.current[event.id] = el)}
-              >
-                <EventCard
-                  event={event}
-                  onClick={() => handleEventClick(event.id)}
-                />
-              </div>
-            ))
-          )}
-        </section>
-
-        {/* Paginación solo si hay más de una página */}
-        {totalPages > 1 && (
-          <div className="pagination-controls">
-            <button
-              className="pagination-btn-events"
-              onClick={handlePrevPage}
-              disabled={currentPage === 1}
-            >
-              ← Anterior
-            </button>
-            <span className="pagination-info-events">
-              {currentPage} / {totalPages}
-            </span>
-            <button
-              className="pagination-btn-events"
-              onClick={handleNextPage}
-              disabled={currentPage === totalPages}
-            >
-              Siguiente →
-            </button>
-          </div>
-        )}
+        </div>
       </div>
 
-      {/* MODAL DETALLES */}
       {eventDetails && (
         <EventDetails
           event={eventDetails}

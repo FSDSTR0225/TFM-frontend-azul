@@ -3,7 +3,7 @@ import AuthContext from "../context/AuthContext";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import "../style/CalendarWidget.css";
-import { FaCalendarAlt } from "react-icons/fa";
+import { TbCalendarBolt } from "react-icons/tb";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -43,7 +43,7 @@ function CalendarWidget() {
   return (
     <div className="modular-card calendar-card">
       <div className="modular-card-header">
-        <FaCalendarAlt className="modular-card-icon" />
+        <TbCalendarBolt className="modular-card-icon" />
         <h3>Calendario de eventos</h3>
       </div>
       <div className="modular-card-content">

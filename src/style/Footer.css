@@ -8,6 +8,10 @@
   font-size: 0.9rem;
   border-top: 2px solid rgba(0, 255, 255, 0.2);
   box-shadow: 0 -4px 20px rgba(0, 255, 255, 0.1);
+  position: relative;
+  z-index: 5;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .footer-container {

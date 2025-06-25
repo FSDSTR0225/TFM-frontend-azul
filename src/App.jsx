@@ -1,7 +1,6 @@
-import React from "react";
+import { React, useState, useContext } from "react";
 import "./style/reset.css";
-import { useState } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import "./App.css";
 import GamesByPlatform from "./pages/GamesByPlatform";
 import Games from "./pages/Games";
@@ -18,7 +17,6 @@ import Lobby from "./pages/Lobby";
 import PrivateRoute from "./components/PrivateRoute";
 import FriendsProfile from "./pages/FriendsProfile";
 import Players from "./pages/Players";
-import { useContext } from "react";
 import AuthContext from "./context/AuthContext";
 import { PacmanLoader } from "react-spinners";
 import { Toaster } from "sonner";
@@ -34,6 +32,10 @@ export default function App() {
   const [showSearch, setShowSearch] = useState(false);
 
   const { loading } = useContext(AuthContext);
+
+  const location = useLocation();
+  const hideFooter = ["/login", "/register", "/loading"];
+  const showFooter = !hideFooter.includes(location.pathname);
 
   if (loading) {
     // Si está cargando, muestra...
@@ -130,7 +132,7 @@ export default function App() {
             />
           </Routes>
         </main>
-        <Footer />
+        {showFooter && <Footer />}
       </MyScrollBar>
       <Toaster richColors position="bottom-right" />
     </div>
