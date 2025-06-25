@@ -42,6 +42,14 @@
   text-align: start;
 }
 
+.daily-summary-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-shadow: 0 0 6px #00ffff6c, 0 0 4px #181a2a;
+  color: #66fcf1;
+  align-self: center;
+}
+
 .newfriends-list,
 .approved-summary ul {
   list-style: none;

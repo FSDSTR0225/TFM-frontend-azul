@@ -36,6 +36,7 @@ function DailySummary({ summary }) {
           </div>
         ) : (
           <>
+            <h2 className="daily-summary-title">Resumen diario</h2>
             {newFriends.length > 0 && (
               <div className="newfriends-summary">
                 <h3 className="newfriends-title">Nuevos amigos</h3>
