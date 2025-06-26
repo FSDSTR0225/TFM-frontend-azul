@@ -120,14 +120,12 @@
 }
 
 .events-grid-glass {
-  background: rgba(50, 20, 100, 0.04);
-  border: 1px solid rgba(100, 70, 200, 0.08);
-  backdrop-filter: blur(8px);
-  border-radius: 16px;
-  padding: 1.5rem;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: 1fr;
+  width: 100%;
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 1rem;
 }
 
 /* ======== SECCIÓN 3: SIDEBAR AUXILIAR ======== */
