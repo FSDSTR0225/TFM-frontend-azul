@@ -67,13 +67,13 @@
 }
 
 .unified-glass-block {
-  /* background: rgba(0, 0, 0, 0.107);
-  backdrop-filter: blur(16px) brightness(0.6); */
+  background: rgba(0, 0, 0, 0.107);
+  backdrop-filter: blur(16px) brightness(0.6);
   border-radius: 20px;
   padding: 4rem 2rem;
   max-width: 1600px;
   width: 100%;
-  /* box-shadow: 0 0 40px #00f0ff33; */
+  box-shadow: 0 0 40px #00f0ff33;
   animation: fadeInUpSoft 2.2s cubic-bezier(0.33, 1, 0.68, 1) forwards;
   animation-delay: 0.15s;
   will-change: transform, opacity, filter;
