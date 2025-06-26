@@ -56,11 +56,6 @@ function SuggestedGamesWidget() {
 
   return (
     <div className="modular-card suggested-games-card">
-      <div className="modular-card-header">
-        <FaGamepad className="modular-card-icon" />
-        <h3>Juegos sugeridos</h3>
-      </div>
-
       <div className="modular-card-content">
         {loading ? (
           <div className="dots-loader" />
@@ -101,19 +96,21 @@ function SuggestedGamesWidget() {
                       </div>
                       <div className="hero-right">
                         <h2 className="steam-game-title">{game.name}</h2>
-                        {game.screenshots?.length > 0 && (
-                          <div className="screenshots">
-                            {game.screenshots.slice(1, 5).map((s, i) => (
-                              <img key={i} src={s} alt={`Screenshot ${i}`} />
+                        <div className="game-steam-details">
+                          {game.screenshots?.length > 0 && (
+                            <div className="screenshots">
+                              {game.screenshots.slice(1, 5).map((s, i) => (
+                                <img key={i} src={s} alt={`Screenshot ${i}`} />
+                              ))}
+                            </div>
+                          )}
+                          <div className="game-tags">
+                            {(game.tags || []).slice(0, 5).map((tag) => (
+                              <span className="tag-chip" key={tag}>
+                                {tag}
+                              </span>
                             ))}
                           </div>
-                        )}
-                        <div className="game-tags">
-                          {(game.tags || []).slice(0, 5).map((tag) => (
-                            <span className="tag-chip" key={tag}>
-                              {tag}
-                            </span>
-                          ))}
                         </div>
                         <div className="game-steam-platform">
                           <p className="game-platforms">

@@ -2,7 +2,6 @@
   width: 100%;
   border-radius: 14px;
   overflow: hidden;
-  box-shadow: 0 0 20px #00ffc833;
 }
 
 .game-hero-slide {
@@ -15,8 +14,8 @@
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.07);
   backdrop-filter: blur(14px);
+  box-shadow: 0 0 20px #00ffc833;
   border-radius: 14px;
-  padding: 1.5rem;
   color: #fff;
 }
 
@@ -44,10 +43,11 @@
 } */
 
 .hero-left {
-  flex: 0 0 55%;
-  max-width: 55%;
+  flex: 0 0 50%;
+  max-width: 50%;
   align-self: stretch;
   display: flex;
+  margin-left: 1.5rem;
 }
 .hero-left img {
   width: 100%;
@@ -63,8 +63,8 @@
 }
 
 .hero-right {
-  flex: 0 0 45%;
-  max-width: 45%;
+  flex: 0 0 50%;
+  max-width: 50%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -72,6 +72,14 @@
   align-items: center;
   gap: 0.9rem;
   position: relative;
+}
+
+.game-steam-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 1rem;
 }
 
 .steam-game-title {

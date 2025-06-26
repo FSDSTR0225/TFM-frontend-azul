@@ -1,3 +1,4 @@
+/* ======== ESTRUCTURA GENERAL ======== */
 .lobby-content {
   position: relative;
   background: radial-gradient(circle at 25% 20%, #132347, transparent 40%),
@@ -18,271 +19,200 @@
   z-index: 0;
 }
 
-/* .lobby-content::before {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-      to bottom,
-      rgba(0, 0, 0, 0.25),
-      rgba(0, 0, 0, 0.4)
-    ),
-    url("/images/try.jpg") center/cover no-repeat;
-  filter: blur(3px) brightness(1.2);
-  z-index: -1;
-} */
-
-.lobby-glass-container {
-  position: relative;
-  width: 100%;
-  margin: 0 auto;
+.lobby-wrapper {
   padding: 2rem;
-  background: transparent;
-  /* backdrop-filter: blur(6px);
-  border-radius: 16px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); */
-}
-
-.lobby-section-main {
-  display: flex;
-  justify-content: space-evenly;
-  gap: 2rem;
-  align-items: center;
-  max-width: 100%;
-  flex-wrap: wrap;
-}
-
-.lobby-dashboard-left {
-  flex: 1 1 400px;
-  min-width: 300px;
-  max-width: 500px;
-  text-align: start;
-  padding: 2.5rem;
-}
-
-.lobby-events-right {
-  flex: 1 1 300px;
-  min-width: 280px;
-  max-width: 850px;
-  padding-top: 2rem;
-}
-
-.lobby-event-suggestions {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  justify-items: center;
-  gap: 2.5rem;
-  width: 100%;
-}
-
-/* .lobby-section-widgets {
-  width: 100vw;
-  min-height: 60vh;
-  margin-top: 0;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-} */
-
-.lobby-section-widgets {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 2rem;
-  margin-top: 2rem;
-}
-
-.lobby-left-sidebar {
-  display: flex;
-  flex-direction: column;
-  gap: 3.8rem;
-  width: 30%;
-  max-width: 380px;
-  align-items: center;
-}
-
-.suggested-users-container {
-  width: 100%;
-  max-height: 480px;
-  overflow: hidden;
-  background: transparent;
-  border: none;
-  box-shadow: none;
-  backdrop-filter: none;
-}
-
-.lobby-left-sidebar-friends {
-  width: 300px;
-  max-height: 500px;
-  overflow-y: auto;
-  border-radius: 18px;
-  background: (135deg, rgba(20, 28, 40, 0.97) 0%, rgba(0, 255, 255, 0.1) 100%);
-  border: 2.5px solid #00f0ff44;
-  backdrop-filter: blur(22px) saturate(120%);
-  box-shadow: 0 6px 40px #00f0ff33, 0 2px 12px #000a;
-  scrollbar-width: thin; /* Para Firefox */
-  scrollbar-color: #00ffc899 #10152000;
-  scroll-behavior: smooth;
-  overflow: overlay;
-}
-
-/* Scrollbar WebKit (Chrome, Edge, Safari) */
-.lobby-left-sidebar-friends::-webkit-scrollbar {
-  width: 8px;
-}
-
-.lobby-left-sidebar-friends::-webkit-scrollbar-thumb {
-  background-color: #00ffc8aa;
-  border-radius: 6px;
-  box-shadow: inset 0 0 6px #00ffc8;
-}
-
-.lobby-left-sidebar-friends::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.lobby-right-suggestions {
-  display: flex;
-  flex-direction: column;
-  align-content: center;
-  gap: 6rem;
-  width: 65%;
-  justify-content: center;
-  flex: 1;
-}
-
-.lobby-widgets-container {
-  width: 100%;
-  max-width: 100vw;
+  max-width: 1450px;
   margin: 0 auto;
-  padding: 0 1rem;
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  gap: 2rem;
-  box-sizing: border-box;
+  color: #fff;
 }
 
-.lobby-down-suggestions {
-  width: 100%;
-  margin-top: 2rem;
-}
-.widgets-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 2rem;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.widgets-grid > * {
-  flex: 1 1 calc(33.333% - 2rem); /* 3 por fila en escritorio */
-  min-width: 280px;
-  max-width: 400px;
-}
-
-.lobby-title-container {
-  width: 100%;
-  max-width: 800px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1.2rem;
+.lobby-header {
   text-align: center;
-  position: relative;
+  margin-bottom: 3rem;
 }
 
 .lobby-title {
-  font-family: "Audiowide", cursive;
-  font-size: 2rem;
-  color: #66fcf1;
-  text-shadow: 0 0 10px #00ffff88, 0 0 4px #181a2a;
-  animation: slideInFromRight 1s ease-out forwards;
-  transform-origin: right center;
-  text-align: center;
-  width: 100%;
-  padding: 0.5rem 0;
-  margin-top: 2rem;
+  font-size: 2.2rem;
+  font-weight: bold;
+  color: #00ffe7;
+  text-shadow: 0 0 6px rgba(0, 255, 231, 0.4);
 }
 
 .lobby-subtitle {
-  font-family: "Audiowide", cursive;
-  font-size: 1.6rem;
-  color: #66fcf1;
-  text-align: center;
-  width: 100%;
-  text-shadow: 0 0 10px #00ffff88, 0 0 4px #181a2a;
-  animation: slideInFromLeft 1s ease-out forwards;
-  transform-origin: left center;
-  margin-bottom: 1.5rem;
+  font-size: 1.2rem;
+  color: #c2c2c2;
+  margin-top: 0.5rem;
 }
 
-/* Elimina estilos de secciones anteriores */
-.panel-section-content,
-.section-eventos .panel-section-content {
+/* ======== SECCIÓN 1: INFO RÁPIDA ======== */
+.lobby-info-section {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+.dashboard-glass {
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 0 18px rgba(0, 0, 0, 0.25);
+}
+
+.events-today-glass {
+  background: rgba(0, 255, 200, 0.03);
+  border: 1px solid rgba(0, 255, 200, 0.08);
+  backdrop-filter: blur(12px);
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 0 25px rgba(0, 255, 200, 0.15);
+}
+
+/* ======== SECCIÓN 2: SUGERENCIAS PRINCIPALES ACTUALIZADA ======== */
+.lobby-suggestions-section {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  margin-bottom: 3rem;
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+  color: #ffffff;
+}
+
+.modular-card-icon-lobby {
+  font-size: 1.7rem;
+  color: #00ffe7;
+}
+
+/* 🎮 Juegos sugeridos - estilo Steam */
+.games-slider-section {
+  width: 100%;
+}
+
+.games-slider-glass {
+  background: inherit;
+  border: none;
+  padding: 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.games-slider-glass::-webkit-scrollbar {
   display: none;
 }
 
-/* Animaciones */
-@keyframes slideInFromLeft {
-  0% {
-    transform: translateX(-150%);
-    opacity: 0;
-    filter: blur(6px);
-  }
-  100% {
-    transform: translateX(0);
-    opacity: 1;
-    filter: blur(0);
-  }
+.games-slider-glass > * {
+  flex: 0 0 auto;
+  scroll-snap-align: start;
 }
 
-@keyframes slideInFromRight {
-  0% {
-    transform: translateX(150%);
-    opacity: 0;
-    filter: blur(6px);
-  }
-  100% {
-    transform: translateX(0);
-    opacity: 1;
-    filter: blur(0);
-  }
+/* 📌 Eventos sugeridos - grid 2x2 */
+.events-grid-section {
+  width: 100%;
 }
 
-@media (max-width: 900px) {
-  .lobby-section-main {
+.events-grid-glass {
+  background: rgba(50, 20, 100, 0.04);
+  border: 1px solid rgba(100, 70, 200, 0.08);
+  backdrop-filter: blur(8px);
+  border-radius: 16px;
+  padding: 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+/* ======== SECCIÓN 3: SIDEBAR AUXILIAR ======== */
+.lobby-sidebar-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.sidebar-widget {
+  flex: 1 1 300px;
+  min-width: 280px;
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 0 18px rgba(0, 0, 0, 0.25);
+}
+
+/* ======== SPINNER DE CARGA ======== */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  color: #00ffe7;
+}
+
+.loading-title {
+  font-size: 1.8rem;
+  margin-bottom: 2rem;
+}
+
+/* ======== RESPONSIVE ======== */
+@media (max-width: 1024px) {
+  .lobby-info-section {
     flex-direction: column;
-    gap: 1.2rem;
+    align-items: center;
   }
-  .lobby-dashboard-left,
-  .lobby-events-right {
-    max-width: 100%;
-    padding: 1.2rem;
+
+  .lobby-suggestions-section {
+    gap: 2rem;
   }
-  .widgets-grid > * {
-    flex: 1 1 calc(50% - 1rem); /* 2 por fila en tablets */
+
+  .games-slider-glass {
+    flex-direction: row;
+    overflow-x: auto;
+  }
+
+  .events-grid-glass {
+    grid-template-columns: 1fr;
+  }
+
+  .lobby-sidebar-section {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .sidebar-widget {
+    width: 100%;
   }
 }
 
-@media (max-width: 600px) {
-  .lobby-content {
-    padding: 1rem;
-    gap: 1.2rem;
-  }
-  .lobby-title {
-    font-size: 1.5rem;
-  }
-  .widgets-grid > * {
-    flex: 1 1 100%; /* 1 por fila en móvil */
-  }
-}
+/* .lobby-content {
+  position: relative;
+  background: radial-gradient(circle at 25% 20%, #132347, transparent 40%),
+    radial-gradient(circle at 50% 60%, #2b1a4c, transparent 30%),
+    radial-gradient(circle at 50% 80%, rgba(0, 255, 200, 0.05), transparent 60%),
+    #0a0a1a;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  margin: 0 auto;
+  min-height: 100vh;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  overflow: hidden;
+  z-index: 0;
+} */
 
 /* 4. Columna derecha (info) */
 /* .steam-info {

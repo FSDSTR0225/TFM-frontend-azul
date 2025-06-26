@@ -17,6 +17,7 @@ import CalendarWidget from "../components/CalendarWidget";
 import SuggestedEventsWidget from "../components/SuggestedEventsWidget";
 import SuggestedGamesWidget from "../components/SuggestedGamesWidget";
 import { FaUserFriends, FaCalendarAlt, FaGamepad } from "react-icons/fa";
+import { GiRetroController } from "react-icons/gi";
 
 function Lobby() {
   const [loading, setLoading] = useState(true);
@@ -46,44 +47,58 @@ function Lobby() {
 
   return (
     <div className="lobby-content">
-      <div className="lobby-title-container">
-        <h1 className="lobby-title">
-          ¡Bienvenido a tu lobby {authContext.user.username}!
-        </h1>
-        <h2 className="lobby-subtitle">¿Listo para jugar hoy?</h2>
-      </div>
-      <div className="lobby-glass-container">
-        <section className="lobby-section-main">
-          <div className="lobby-dashboard-left">
-            <Dashboard />
-          </div>
-          <div className="lobby-events-right">
-            <EventsToday />
-          </div>
-        </section>
-        <section className="lobby-section-widgets">
-          {/* <div className="lobby-widgets-container"> */}
-          {/* <div className="widgets-grid"> */}
-          <div className="lobby-left-sidebar">
-            <div className="suggested-users-container">
-              <SuggestedUsersWidget />
+      <div className="lobby-wrapper">
+        <div className="lobby-header">
+          <h1 className="lobby-title">
+            ¡Bienvenido a tu lobby {authContext.user.username}!
+          </h1>
+          <h2 className="lobby-subtitle">¿Listo para jugar hoy?</h2>
+        </div>
+
+        <main className="lobby-main-content">
+          {/* 🧊 Sección 1: Información rápida (Daily Summary + Evento del día) */}
+          <section className="lobby-info-section">
+            <div className="dashboard-glass">
+              <Dashboard />
             </div>
-            <div className="lobby-left-sidebar-friends">
+            <div className="events-today-glass">
+              <EventsToday />
+            </div>
+          </section>
+
+          <section className="lobby-suggestions-section">
+            {/* 🎮 Sugerencia de juegos - tipo carrusel horizontal */}
+            <div className="games-slider-section">
+              <h3 className="section-title">
+                <GiRetroController className="modular-card-icon-lobby" />
+                Juegos sugeridos para ti
+              </h3>
+              <div className="games-slider-glass">
+                <SuggestedGamesWidget />
+              </div>
+            </div>
+
+            {/* 📌 Sugerencia de eventos - grid 2x2 */}
+            <div className="events-grid-section">
+              <h3 className="section-title">Eventos recomendados</h3>
+              <div className="events-grid-glass">
+                <SuggestedEventsWidget />
+              </div>
+            </div>
+          </section>
+
+          <section className="lobby-sidebar-section">
+            <div className="friends-widget-glass">
               <FriendsOnlineWidget />
             </div>
-            <div>
+            <div className="users-widget-glass">
+              <SuggestedUsersWidget />
+            </div>
+            <div className="calendar-widget-glass">
               <CalendarWidget />
             </div>
-          </div>
-
-          <div className="lobby-right-suggestions">
-            <div className="lobby-event-suggestions">
-              <SuggestedEventsWidget />
-            </div>
-            <SuggestedGamesWidget />
-          </div>
-          <div className="lobby-down-suggestions"></div>
-        </section>
+          </section>
+        </main>
       </div>
     </div>
   );
