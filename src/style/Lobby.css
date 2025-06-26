@@ -87,7 +87,7 @@
   color: #ffffff;
 }
 
-.modular-card-icon-lobby {
+.icon-lobby-suggestions {
   font-size: 1.7rem;
   color: #00ffe7;
 }
@@ -119,13 +119,13 @@
   width: 100%;
 }
 
-.events-grid-glass {
+.lobby-events-suggestions {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   width: 100%;
-  max-width: 880px;
+  gap: 1.5rem;
+  padding: 0;
   margin: 0 auto;
-  padding: 1rem;
 }
 
 /* ======== SECCIÓN 3: SIDEBAR AUXILIAR ======== */
@@ -178,7 +178,7 @@
     overflow-x: auto;
   }
 
-  .events-grid-glass {
+  .lobby-events-suggestions {
     grid-template-columns: 1fr;
   }
 

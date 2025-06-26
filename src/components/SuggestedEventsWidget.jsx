@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
-import { TbCalendarBolt } from "react-icons/tb";
 import "../style/SuggestedEventsWidget.css";
 
 const API_URL = import.meta.env.VITE_API_URL;
@@ -37,10 +36,6 @@ function SuggestedEventsWidget() {
 
   return (
     <div className="modular-card-suggested-events-card">
-      <div className="modular-card-header">
-        <TbCalendarBolt className="modular-card-icon" />
-        <h3>Eventos sugeridos</h3>
-      </div>
       <div className="modular-card-content">
         {suggestedEvents.length === 0 && (
           <p className="no-suggest-now">No hay sugerencias por ahora.</p>

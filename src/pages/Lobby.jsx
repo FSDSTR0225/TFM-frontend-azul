@@ -18,6 +18,7 @@ import SuggestedEventsWidget from "../components/SuggestedEventsWidget";
 import SuggestedGamesWidget from "../components/SuggestedGamesWidget";
 import { FaUserFriends, FaCalendarAlt, FaGamepad } from "react-icons/fa";
 import { GiRetroController } from "react-icons/gi";
+import { TbCalendarBolt } from "react-icons/tb";
 
 function Lobby() {
   const [loading, setLoading] = useState(true);
@@ -70,7 +71,7 @@ function Lobby() {
             {/* 🎮 Sugerencia de juegos - tipo carrusel horizontal */}
             <div className="games-slider-section">
               <h3 className="section-title">
-                <GiRetroController className="modular-card-icon-lobby" />
+                <GiRetroController className="icon-lobby-suggestions" />
                 Juegos sugeridos para ti
               </h3>
               <div className="games-slider-glass">
@@ -80,8 +81,11 @@ function Lobby() {
 
             {/* 📌 Sugerencia de eventos - grid 2x2 */}
             <div className="events-grid-section">
-              <h3 className="section-title">Eventos recomendados</h3>
-              <div className="events-grid-glass">
+              <h3 className="section-title">
+                <TbCalendarBolt className="icon-lobby-suggestions" />
+                Eventos recomendados
+              </h3>
+              <div className="lobby-events-suggestions">
                 <SuggestedEventsWidget />
               </div>
             </div>

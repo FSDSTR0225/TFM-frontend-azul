@@ -86,7 +86,8 @@
 .event-suggestion-details {
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
+  gap: 0.6rem;
+  margin-top: 0.5rem;
 }
 .event-suggestion-card p {
   margin: 0;
