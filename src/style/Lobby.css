@@ -1,5 +1,5 @@
 /* ======== ESTRUCTURA GENERAL ======== */
-.lobby-content {
+.lobby-container {
   position: relative;
   background: radial-gradient(circle at 25% 20%, #132347, transparent 40%),
     radial-gradient(circle at 50% 60%, #2b1a4c, transparent 30%),
@@ -19,9 +19,9 @@
   z-index: 0;
 }
 
-.lobby-wrapper {
+.lobby-content {
   padding: 2rem;
-  max-width: 1450px;
+  max-width: 1500px;
   margin: 0 auto;
   color: #fff;
 }
@@ -50,6 +50,7 @@
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 2rem;
+  margin-top: 3rem;
   margin-bottom: 3rem;
 }
 .dashboard-glass {

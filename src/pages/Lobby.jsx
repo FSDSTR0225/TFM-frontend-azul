@@ -47,8 +47,8 @@ function Lobby() {
   }
 
   return (
-    <div className="lobby-content">
-      <div className="lobby-wrapper">
+    <div className="lobby-container">
+      <div className="lobby-content">
         <div className="lobby-header">
           <h1 className="lobby-title">
             ¡Bienvenido a tu lobby {authContext.user.username}!
