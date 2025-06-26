@@ -51,7 +51,7 @@ function Lobby() {
       <div className="lobby-content">
         <div className="lobby-header">
           <h1 className="lobby-title">
-            ¡Bienvenido a tu lobby {authContext.user.username}!
+            ¡Bienvenido a tu lobby <span>{authContext.user.username}</span>!
           </h1>
           <h2 className="lobby-subtitle">¿Listo para jugar hoy?</h2>
         </div>

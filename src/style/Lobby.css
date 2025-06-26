@@ -44,10 +44,16 @@
   margin-top: 1rem;
 }
 
+.lobby-title span {
+  color: #00d1ff;
+  text-shadow: 0 0 10px #00ffe788, 0 0 4px #181a2a;
+  text-decoration: underline;
+}
+
 .lobby-subtitle {
   font-family: "Audiowide", cursive;
   font-size: 1.6rem;
-  color: #c2c2c2;
+  color: #66fcf1;
   text-align: center;
   width: 100%;
   text-shadow: 0 0 10px #00ffff88, 0 0 4px #181a2a;
