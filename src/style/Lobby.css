@@ -32,16 +32,51 @@
 }
 
 .lobby-title {
-  font-size: 2.2rem;
-  font-weight: bold;
-  color: #00ffe7;
-  text-shadow: 0 0 6px rgba(0, 255, 231, 0.4);
+  font-family: "Audiowide", cursive;
+  font-size: 2rem;
+  color: #66fcf1;
+  text-shadow: 0 0 10px #00ffff88, 0 0 4px #181a2a;
+  animation: slideInFromRight 1s ease-out forwards;
+  transform-origin: right center;
+  text-align: center;
+  width: 100%;
+  padding: 0.5rem 0;
+  margin-top: 1rem;
 }
 
 .lobby-subtitle {
-  font-size: 1.2rem;
+  font-family: "Audiowide", cursive;
+  font-size: 1.6rem;
   color: #c2c2c2;
-  margin-top: 0.5rem;
+  text-align: center;
+  width: 100%;
+  text-shadow: 0 0 10px #00ffff88, 0 0 4px #181a2a;
+  animation: slideInFromLeft 1s ease-out forwards;
+  transform-origin: left center;
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+@keyframes slideInFromRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInFromLeft {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
 
 /* ======== SECCIÓN 1: INFO RÁPIDA ======== */
