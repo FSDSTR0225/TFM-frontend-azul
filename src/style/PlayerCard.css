@@ -1,0 +1,83 @@
+/* PlayerCard.css */
+.players-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+  background-color: #1a1c24;
+}
+.player-card {
+  background-color: #11131b;
+  border: 1px solid #00f0ff40;
+  border-radius: 20px;
+  padding: 20px;
+  width: 220px;
+  text-align: center;
+  color: #fff;
+  box-shadow: 0 0 15px #00f0ff10;
+  transition: transform 0.2s ease;
+}
+
+.player-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 25px #00f0ff40;
+}
+
+.player-avatar-container {
+  margin-bottom: 12px;
+}
+
+.player-avatar {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #00f0ff;
+  box-shadow: 0 0 12px #00f0ff60;
+}
+
+.username-mock-list {
+  color: #00f0ff;
+  font-size: 1.3rem;
+  margin: 10px 0;
+  font-weight: 600;
+}
+
+.player-games {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.game-tag {
+  padding: 4px 12px;
+  background-color: #22262f;
+  border-radius: 999px;
+  border: 1px solid #888;
+  font-size: 0.85rem;
+  color: #e0e0e0;
+}
+
+.player-actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.player-button {
+  background-color: #043f4f;
+  color: #00f0ff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.player-button:hover {
+  background-color: #065e6f;
+}
