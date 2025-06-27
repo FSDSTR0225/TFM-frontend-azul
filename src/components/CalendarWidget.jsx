@@ -42,10 +42,10 @@ function CalendarWidget() {
 
   return (
     <div className="modular-card calendar-card">
-      <div className="modular-card-header">
+      {/* <div className="modular-card-header">
         <TbCalendarBolt className="modular-card-icon" />
         <h3>Calendario de eventos</h3>
-      </div>
+      </div> */}
       <div className="modular-card-content">
         <Calendar tileClassName={tileClassName} />
       </div>

@@ -1,8 +1,8 @@
-.modular-card-suggested-events-card {
+.modular-card-suggested-events {
   display: grid;
   grid-template-columns: 1fr;
   width: 100%;
-  max-width: 880px;
+  max-width: 900px;
   margin: 0 auto;
   padding: 1rem;
 }
@@ -243,7 +243,7 @@
 }
 
 @media (max-width: 600px) {
-  .modular-card-suggested-events-card {
+  .modular-card-suggested-events {
     padding: 0.8rem;
   }
   .event-suggestion-card {
@@ -263,7 +263,7 @@
   width: 420px;
 }
 
-.modular-card-suggested-events-card {
+.modular-card-suggested-events{
   display: grid;
   grid-template-columns: 1fr;
   min-width: 280px;

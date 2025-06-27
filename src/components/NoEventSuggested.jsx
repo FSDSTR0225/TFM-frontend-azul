@@ -3,11 +3,10 @@ import { useNavigate } from "react-router-dom";
 import "../style/NoEventSuggested.css";
 // import IABotEventHelper from "./IABotEventHelper";
 
-function NoEventSuggested({
-  showCalendar = false,
-  //   showAI = false,
-  CalendarComponent = null,
-}) {
+function NoEventSuggested() {
+// showCalendar = false,
+//   showAI = false,
+// CalendarComponent = null,
   const navigate = useNavigate();
 
   return (
@@ -43,12 +42,12 @@ function NoEventSuggested({
       </div>
 
       {/* 📅 Calendario si se pasa como prop */}
-      {showCalendar && CalendarComponent && (
+      {/* {showCalendar && CalendarComponent && (
         <div className="calendar-wrapper">
           <h4>Tu calendario de eventos</h4>
           <div className="calendar-slot">{CalendarComponent}</div>
         </div>
-      )}
+      )} */}
 
       {/* 🤖 IA de descubrimiento de eventos (comentado por ahora) */}
       {/*

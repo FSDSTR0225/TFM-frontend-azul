@@ -89,7 +89,7 @@ function SuggestedEventsWidget() {
   };
 
   return (
-    <div className="modular-card-suggested-events-card">
+    <div className="modular-card-suggested-events">
       <div className="modular-card-content">
         {suggestedEvents.length === 0 && (
           <NoEventSuggested

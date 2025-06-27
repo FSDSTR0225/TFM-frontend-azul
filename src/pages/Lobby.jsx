@@ -78,28 +78,35 @@ function Lobby() {
                 <SuggestedGamesWidget />
               </div>
             </div>
-
-            {/* 📌 Sugerencia de eventos - grid 2x2 */}
-            <div className="events-grid-section">
+          </section>
+          <section className="lobby-section-events">
+            <div className="events-left-section">
               <h3 className="section-title">
                 <TbCalendarBolt className="icon-lobby-suggestions" />
-                Eventos recomendados
+                Calendario de eventos
               </h3>
-              <div className="lobby-events-suggestions">
-                <SuggestedEventsWidget />
+              <div className="calendar-section">
+                <CalendarWidget />
+              </div>
+            </div>
+            <div className="events-right-section">
+              <div className="events-grid-section">
+                <h3 className="section-title">
+                  {/* <TbCalendarBolt className="icon-lobby-suggestions" /> */}
+                  Eventos recomendados
+                </h3>
+                <div className="lobby-events-suggestions">
+                  <SuggestedEventsWidget />
+                </div>
               </div>
             </div>
           </section>
-
           <section className="lobby-sidebar-section">
             <div className="friends-widget-glass">
               <FriendsOnlineWidget />
             </div>
             <div className="users-widget-glass">
               <SuggestedUsersWidget />
-            </div>
-            <div className="calendar-widget-glass">
-              <CalendarWidget />
             </div>
           </section>
         </main>
