@@ -3,7 +3,7 @@ import "../style/Profile2.css";
 import ModalWindow from "./ModalWindow";
 import { useState, useContext } from "react";
 import AuthContext from "../context/AuthContext";
-const FavoriteGamesList = ({ games, triggerRefresh }) => {
+const FavoriteGamesList = ({ games, triggerRefresh, isOwner}) => {
   const [modalOpen, setModalOpen] = useState(false);
   const url = import.meta.env.VITE_API_URL;
   const { token } = useContext(AuthContext);
@@ -25,12 +25,12 @@ const FavoriteGamesList = ({ games, triggerRefresh }) => {
     <div className="section">
       <div className="section-header">
         <h3>Juegos Favoritos</h3>
-        <button
+       {isOwner && <button
           className="add-button-p purple"
           onClick={() => setModalOpen(true)}
         >
           ➕ add
-        </button>
+        </button>}
       </div>
       <div className="circle-list">
         {games.map((game, index) => (
@@ -41,6 +41,7 @@ const FavoriteGamesList = ({ games, triggerRefresh }) => {
                 alt={game.name}
                 className="favorite-game-img"
               />
+              {isOwner &&
               <button
                 onClick={() => handleDelete(game._id)}
                 className="delete-button"
@@ -48,7 +49,7 @@ const FavoriteGamesList = ({ games, triggerRefresh }) => {
                 aria-label={`Eliminar ${game.name}`}
               >
                 X
-              </button>
+              </button>}
             </div>
             <p className="circle-text">{game.name}</p>
           </div>
