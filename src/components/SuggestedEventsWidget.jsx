@@ -65,9 +65,7 @@ function SuggestedEventsWidget() {
 
       if (data.currentEvent) {
         setSuggestedEvents((prevEvents) =>
-          prevEvents.map((ev) =>
-            ev._id === event._id ? data.currentEvent : ev
-          )
+          prevEvents.filter((ev) => ev._id !== event._id)
         );
       }
 
@@ -92,14 +90,17 @@ function SuggestedEventsWidget() {
     <div className="modular-card-suggested-events">
       <div className="modular-card-content">
         {suggestedEvents.length === 0 && (
-          <NoEventSuggested
-            showCalendar={true}
-            CalendarComponent={<CalendarWidget />}
-            // showAI={true} // lo activamos mañana
-          />
+          <div className="no-event-container">
+            <NoEventSuggested
+              showCalendar={true}
+              CalendarComponent={<CalendarWidget />}
+              // showAI={true} // lo activamos mañana
+            />
+          </div>
         )}
-        <div>
-          {suggestedEvents.length > 0 && (
+
+        {suggestedEvents.length > 0 && (
+          <div className="event-suggestions-grid">
             <ul className="event-suggestions-list">
               {suggestedEvents.map((event) => (
                 <Motion.li
@@ -148,28 +149,28 @@ function SuggestedEventsWidget() {
                 </Motion.li>
               ))}
             </ul>
+          </div>
+        )}
+        {/* === MODAL === */}
+        <AnimatePresence>
+          {selectedEvent && (
+            <Motion.div
+              layoutId={selectedEvent._id}
+              className="event-suggestion-details-modal"
+              onClick={() => setSelectedEvent(null)}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0, transition: { duration: 0.3 } }}
+            >
+              <EventSuggestionModal
+                event={selectedEvent}
+                user={user}
+                handleOnClose={() => setSelectedEvent(null)}
+                handleJoinEvent={() => handleJoinEvent(selectedEvent)}
+              />
+            </Motion.div>
           )}
-          {/* === MODAL === */}
-          <AnimatePresence>
-            {selectedEvent && (
-              <Motion.div
-                layoutId={selectedEvent._id}
-                className="event-suggestion-details-modal"
-                onClick={() => setSelectedEvent(null)}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0, transition: { duration: 0.3 } }}
-              >
-                <EventSuggestionModal
-                  event={selectedEvent}
-                  user={user}
-                  handleOnClose={() => setSelectedEvent(null)}
-                  handleJoinEvent={() => handleJoinEvent(selectedEvent)}
-                />
-              </Motion.div>
-            )}
-          </AnimatePresence>
-        </div>
+        </AnimatePresence>
       </div>
     </div>
   );

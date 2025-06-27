@@ -1,8 +1,8 @@
-.modular-card-suggested-events-card {
+.modular-card-suggested-events {
   display: grid;
   grid-template-columns: 1fr;
   width: 100%;
-  max-width: 880px;
+  max-width: 900px;
   margin: 0 auto;
   padding: 1rem;
 }
@@ -20,14 +20,26 @@
   color: #66fcf1;
 }
 
+.no-event-container {
+  text-align: center;
+  width: 100%;
+}
+
+.event-suggestions-grid {
+  width: 100%;
+  margin-top: 1.5rem;
+}
+
 .event-suggestions-list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(2, 1fr);
   gap: 2rem;
-  justify-content: center;
+  justify-items: center;
+  align-items: stretch;
+  width: 100%;
+  list-style: none;
   padding: 0;
   margin: 0 auto;
-  list-style: none;
 }
 
 .event-suggestion-card {
@@ -35,7 +47,7 @@
   overflow: hidden;
   word-break: break-word;
   border-radius: 12px;
-  width: 100%;
+  width: 450px;
   height: 220px;
   padding: 0.85rem;
   background-color: rgba(20, 20, 30, 0.7);
@@ -88,6 +100,7 @@
   flex-direction: column;
   gap: 0.4rem;
 }
+
 .event-suggestion-card p {
   margin: 0;
   font-size: 0.85rem;
@@ -150,6 +163,22 @@
     text-shadow: 0 0 12px #00ffc8cc, 0 0 18px #00ffc822, 0 0 24px #00f6ff;
     color: #ffd700;
   }
+}
+
+.event-suggestion-details-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: radial-gradient(ellipse at center, #00ffc822 0%, transparent 70%),
+    rgba(15, 15, 25, 0.85);
+  backdrop-filter: blur(10px) saturate(1.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  cursor: pointer;
 }
 
 @media (max-width: 900px) {
