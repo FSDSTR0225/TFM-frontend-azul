@@ -88,8 +88,10 @@
 /* ======== SECCIÓN 1: INFO RÁPIDA ======== */
 .lobby-info-section {
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  align-items: center;
   gap: 2rem;
   margin-top: 3rem;
   margin-bottom: 3rem;

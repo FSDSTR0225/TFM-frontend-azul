@@ -48,7 +48,7 @@ function EventsToday() {
   }
 
   // Limitar a un máximo de 4 eventos
-  const maxEvents = 4;
+  const maxEvents = 2; //Aqui decido cuántos eventos mostrar
   const eventsToShow = events.slice(0, maxEvents); //slice devuelve un nuevo array con los primeros 4 eventos
 
   // Agruparlos en filas de 2
