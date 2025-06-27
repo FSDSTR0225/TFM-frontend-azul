@@ -65,7 +65,7 @@ function SuggestedUsersWidget() {
       centeredSlides={true}
       slidesPerView={"auto"}
       spaceBetween={30}
-      loop={true}
+      loop={suggestedUsers.length >= 3}
       autoplay={{
         delay: 3000,
         disableOnInteraction: false,
