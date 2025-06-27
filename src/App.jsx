@@ -34,7 +34,7 @@ export default function App() {
   const { loading } = useContext(AuthContext);
 
   const location = useLocation();
-  const hideFooter = ["/login", "/register", "/loading"];
+  const hideFooter = ["/login", "/register", "/loading", "/messages"];
   const showFooter = !hideFooter.includes(location.pathname);
 
   if (loading) {
