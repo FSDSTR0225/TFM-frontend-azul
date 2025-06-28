@@ -10,6 +10,7 @@ import blankImg from "../assets/blankImg.jpg";
 import { ConfirmFriendRequestModal } from "./ConfirmFriendRequestModal";
 import "../style/ModalWindow.css";
 import { useNavigate, useLocation } from "react-router-dom";
+import FavoriteTags from "./FavoriteTags";
 
 const ProfileCard = () => {
   const { setUser, token, user, isLoggedIn } = useContext(AuthContext);
@@ -138,6 +139,7 @@ const ProfileCard = () => {
         events={currentProfile.events || []}
         isOwner={currentProfile === user}
       />
+
       {modalOpen && (
         <ConfirmFriendRequestModal
           player={currentProfile}
@@ -149,6 +151,7 @@ const ProfileCard = () => {
           }}
         />
       )}
+      <FavoriteTags user={user} />
     </div>
   );
 };

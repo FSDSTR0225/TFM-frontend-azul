@@ -113,7 +113,7 @@
   justify-content: center;
   gap: 6px;
 }
-.tag-chip {
+.tag-chip-suggest {
   background: #0b1a2a;
   border: 1px solid #00ffc8;
   border-radius: 10px;
@@ -223,7 +223,7 @@
     font-size: 1.5rem;
     max-height: 3.4rem;
   }
-  .tag-chip {
+  .tag-chip-suggest {
     font-size: 0.55rem;
   }
 }
@@ -264,7 +264,7 @@
   .screenshots {
     grid-auto-rows: 85px;
   }
-  .tag-chip {
+  .tag-chip-suggest {
     font-size: 0.45rem;
     max-width: 120px;
   }

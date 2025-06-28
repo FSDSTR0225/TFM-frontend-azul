@@ -1,3 +1,4 @@
+/* Contenedor principal */
 .favorite-tags-container {
   padding: 32px 24px;
   max-width: 860px;
@@ -11,6 +12,8 @@
   position: relative;
   overflow: hidden;
 }
+
+/* Efecto de luz */
 .favorite-tags-container::before {
   content: "";
   position: absolute;
@@ -20,6 +23,7 @@
   z-index: 0;
 }
 
+/* Título */
 .favorite-tags-title {
   font-size: 2.3rem;
   margin-bottom: 28px;
@@ -32,6 +36,7 @@
   z-index: 1;
 }
 
+/* Sección de tags */
 .tag-section {
   margin-bottom: 36px;
   position: relative;
@@ -48,6 +53,7 @@
   letter-spacing: 1px;
 }
 
+/* Flex container para chips */
 .tag-chip-container {
   display: flex;
   flex-wrap: wrap;
@@ -56,19 +62,21 @@
   margin-bottom: 12px;
 }
 
+/* Cada chip */
 .tag-chip {
   display: inline-flex;
-  align-items: center;
+  align-items: center; /* centra verticalmente texto y botón */
+  line-height: 1; /* altura de línea unificada */
   background: linear-gradient(90deg, #23243a 70%, #00fff71a 100%);
   border: 2px solid #00ffff99;
   border-radius: 20px;
-  padding: 7px 18px;
+  padding: 7px 14px; /* espaciado horizontal ajustado */
   font-size: 1.05rem;
   color: #ffffffcc;
   font-family: "Audiowide", Arial, sans-serif;
   box-shadow: 0 2px 12px #00fff733, 0 1px 4px #2224;
   transition: background 0.2s, color 0.2s, border 0.2s, box-shadow 0.2s;
-  cursor: pointer;
+  cursor: default;
   position: relative;
   z-index: 1;
   text-shadow: 0 0 4px #00fff7cc;
@@ -86,6 +94,7 @@
   }
 }
 
+/* Hover sobre el chip completo (opcional) */
 .tag-chip:hover {
   background: linear-gradient(90deg, #31344a 60%, #00fff7 100%);
   color: #0ff;
@@ -93,22 +102,31 @@
   box-shadow: 0 0 16px #ffd70099, 0 2px 8px #00fff7cc;
 }
 
-.tag-chip button {
+/* Botón de cierre dentro del chip */
+.btn-chip {
+  display: inline-flex;
+  align-items: center; /* centra el icono */
+  justify-content: center;
+  width: 1em; /* ancho igual a la altura de la fuente */
+  height: 1em; /* altura igual a la fuente */
+  margin-left: 0.5em; /* espacio entre texto y X */
   background: none;
   border: none;
   color: #ff6666;
-  margin-left: 10px;
-  font-size: 18px;
+  font-size: 1em; /* igual al tamaño de texto */
+  font-weight: bold;
+  font-family: "Audiowide", Arial, sans-serif;
   cursor: pointer;
   line-height: 1;
   padding: 0;
-  transition: color 0.2s, transform 0.2s;
-}
-.tag-chip button:hover {
-  color: #ff4c4c;
-  transform: scale(1.2) rotate(-10deg);
+  transition: color 0.2s;
 }
 
+.btn-chip:hover {
+  color: #ff4c4c; /* solo cambio de color al hover */
+}
+
+/* Botón de alternar lista */
 .tag-toggle-btn {
   margin-top: 10px;
   background: linear-gradient(90deg, #23243a 70%, #00fff71a 100%);
@@ -124,6 +142,7 @@
   letter-spacing: 1px;
   text-shadow: 0 0 6px #00fff7cc;
 }
+
 .tag-toggle-btn:hover {
   background: #31344a;
   color: #ffd700;
@@ -131,6 +150,7 @@
   box-shadow: 0 0 16px #ffd70099;
 }
 
+/* Lista de opciones */
 .tag-options-list {
   margin-top: 14px;
   padding: 20px 40px;
@@ -158,6 +178,7 @@
   font-family: "Audiowide", Arial, sans-serif;
   text-shadow: 0 0 4px #00fff7cc;
 }
+
 .tag-option:hover {
   background: #31344a;
   color: #ffd700;
@@ -165,6 +186,7 @@
   box-shadow: 0 0 12px #ffd70099;
 }
 
+/* Mensaje de máximo alcanzado */
 .max-tags-option {
   background: rgba(255, 107, 107, 0.18);
   color: #ff6b6b;
@@ -181,6 +203,7 @@
   animation: popInMsg 0.4s cubic-bezier(0.33, 1, 0.68, 1);
   border: 2px solid #ff6b6b;
 }
+
 @keyframes popInMsg {
   0% {
     transform: scale(0.7);

@@ -106,7 +106,7 @@ function SuggestedGamesWidget() {
                           )}
                           <div className="game-tags">
                             {(game.tags || []).slice(0, 5).map((tag) => (
-                              <span className="tag-chip" key={tag}>
+                              <span className="tag-chip-suggest" key={tag}>
                                 {tag}
                               </span>
                             ))}

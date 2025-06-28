@@ -2,9 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import AuthContext from "../context/AuthContext";
 import "../style/FavoriteTags.css";
 
-// Diccionario de traducción
 const tagTranslations = {
-  // Géneros
   Action: "Acción",
   Adventure: "Aventura",
   RPG: "Rol",
@@ -173,7 +171,6 @@ function FavoriteTags({ user }) {
     setters[type]?.((prev) => !prev);
   };
 
-  // NUEVO: Eliminar tag en backend y frontend
   const handleRemoveTag = async (tagsType, value) => {
     try {
       const response = await fetch(
@@ -203,7 +200,7 @@ function FavoriteTags({ user }) {
 
     if (favoriteTags[tagsType].length >= 5) {
       setMaxOption("Máximo 5 tags seleccionados");
-      setTimeout(() => setMaxOption(""), 2000);
+      setTimeout(() => setMaxOption(""), 2500);
       return;
     }
 
@@ -239,14 +236,18 @@ function FavoriteTags({ user }) {
     <div className="favorite-tags-container">
       <h1 className="favorite-tags-title">Perfil Gamer</h1>
 
-      {/* Géneros favoritos */}
       <div className="tag-section">
         <h2 className="tag-title">Géneros favoritos</h2>
         <div className="tag-chip-container">
           {favoriteTags.genres.map((tag) => (
             <span key={tag} className="tag-chip">
               {tagTranslations[tag] || tag}
-              <button onClick={() => handleRemoveTag("genres", tag)}>x</button>
+              <button
+                className="btn-chip"
+                onClick={() => handleRemoveTag("genres", tag)}
+              >
+                x
+              </button>
             </span>
           ))}
         </div>
@@ -296,7 +297,12 @@ function FavoriteTags({ user }) {
           {favoriteTags.themes.map((tag) => (
             <span key={tag} className="tag-chip">
               {tagTranslations[tag] || tag}
-              <button onClick={() => handleRemoveTag("themes", tag)}>x</button>
+              <button
+                className="btn-chip"
+                onClick={() => handleRemoveTag("themes", tag)}
+              >
+                x
+              </button>
             </span>
           ))}
         </div>
@@ -339,14 +345,18 @@ function FavoriteTags({ user }) {
         )}
       </div>
 
-      {/* Modos de juego */}
       <div className="tag-section">
         <h2 className="tag-title">Modos de juego</h2>
         <div className="tag-chip-container">
           {favoriteTags.modes.map((tag) => (
             <span key={tag} className="tag-chip">
               {tagTranslations[tag] || tag}
-              <button onClick={() => handleRemoveTag("modes", tag)}>x</button>
+              <button
+                className="btn-chip"
+                onClick={() => handleRemoveTag("modes", tag)}
+              >
+                x
+              </button>
             </span>
           ))}
         </div>
@@ -389,14 +399,18 @@ function FavoriteTags({ user }) {
         )}
       </div>
 
-      {/* Otras mecánicas */}
       <div className="tag-section">
         <h2 className="tag-title">Otras mecánicas</h2>
         <div className="tag-chip-container">
           {favoriteTags.others.map((tag) => (
             <span key={tag} className="tag-chip">
               {tagTranslations[tag] || tag}
-              <button onClick={() => handleRemoveTag("others", tag)}>x</button>
+              <button
+                className="btn-chip"
+                onClick={() => handleRemoveTag("others", tag)}
+              >
+                x
+              </button>
             </span>
           ))}
         </div>
