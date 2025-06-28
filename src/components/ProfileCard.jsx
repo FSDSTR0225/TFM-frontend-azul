@@ -37,7 +37,7 @@ const ProfileCard = () => {
       }
     };
     fetchProfile();
-  }, []);
+  }, [API_URL, token, setUser]);
 
   useEffect(() => {
     const fetchProfile = async () => {

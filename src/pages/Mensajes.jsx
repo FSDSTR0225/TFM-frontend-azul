@@ -8,52 +8,60 @@ const API_URL = import.meta.env.VITE_API_URL;
 export const Mensajes = () => {
   const { token, user } = useContext(AuthContext);
 
-  const [message, setMessage] = useState("");
-  const [messages, setMessages] = useState([]);
-  const [onlineFriends, setOnlineFriends] = useState([]);
-  const [selectedFriend, setSelectedFriend] = useState(null);
+  const [message, setMessage] = useState(""); // lo que escribes
+  const [messages, setMessages] = useState([]); // historial del chat activo
+  const [allFriends, setAllFriends] = useState([]); // todos los amigos
+  const [selectedFriend, setSelectedFriend] = useState(null); // amigo actual seleccionado
 
   const socketRef = useRef(null);
 
   useEffect(() => {
-    socketRef.current = io(API_URL);
-    socketRef.current.emit("userConnect", user.id);
+    socketRef.current = io(API_URL, {
+      auth: { token },
+      transports: ["websocket"],
+    });
+
+    socketRef.current.once("connect", () => {
+      socketRef.current.emit("userConnect", user.id);
+    });
 
     socketRef.current.on("private message", (msg) => {
-      if (
+      const isForSelected =
         msg.sender === selectedFriend?.id ||
-        msg.recipient === selectedFriend?.id
-      ) {
+        msg.receiverId === selectedFriend?.id;
+
+      if (isForSelected) {
         setMessages((prev) => [...prev, msg]);
       }
     });
 
     return () => {
+      socketRef.current.off("private message");
       socketRef.current.disconnect();
     };
-  }, [selectedFriend, user.id]);
+  }, [selectedFriend, token, user.id]);
 
+  // Obtener todos los amigos (online y offline)
   useEffect(() => {
     const fetchFriends = async () => {
       try {
-        const res = await fetch(`${API_URL}/friends/online`, {
+        const res = await fetch(`${API_URL}/friends`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         if (!res.ok) throw new Error(`Status ${res.status}`);
         const data = await res.json();
-
-        const list = Array.isArray(data.onlineFriends)
-          ? data.onlineFriends
-          : [];
-        setOnlineFriends(list);
+        const list = Array.isArray(data.friends) ? data.friends : [];
+        setAllFriends(list);
       } catch (err) {
         console.error("Error al cargar amigos:", err);
-        setOnlineFriends([]);
+        setAllFriends([]);
       }
     };
+
     fetchFriends();
   }, [token]);
 
+  // Seleccionar amigo y cargar historial
   const selectFriend = async (friend) => {
     setSelectedFriend(friend);
     try {
@@ -62,7 +70,6 @@ export const Mensajes = () => {
       });
       if (!res.ok) throw new Error(`Status ${res.status}`);
       const data = await res.json();
-
       setMessages(data);
     } catch (err) {
       console.error("Error al cargar historial de chat:", err);
@@ -70,7 +77,7 @@ export const Mensajes = () => {
     }
   };
 
-  // 4. Enviar mensaje
+  // Enviar mensaje
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!message.trim() || !selectedFriend) return;
@@ -86,9 +93,15 @@ export const Mensajes = () => {
     socketRef.current.emit("private message", msgPayload);
 
     setMessages((prev) => [...prev, { ...msgPayload, senderId: user.id }]);
+    setMessage("");
   };
 
-  const friendsList = onlineFriends.map((f) => ({
+  // Ordenar amigos: online primero
+  const sortedFriends = [...allFriends].sort((a, b) => {
+    return (b.onlineStatus === true) - (a.onlineStatus === true);
+  });
+
+  const friendsList = sortedFriends.map((f) => ({
     id: f.id ?? f._id,
     username: f.username,
     avatarUrl: f.avatarUrl,
@@ -98,7 +111,7 @@ export const Mensajes = () => {
   return (
     <div className="chat-page">
       <aside className="friends-sidebar">
-        <h2>Amigos Online</h2>
+        <h2>Amigos</h2>
         <ul className="friends-list">
           {friendsList.map((friend) => (
             <li
@@ -118,7 +131,11 @@ export const Mensajes = () => {
                 className="avatar"
               />
               <span>{friend.username}</span>
-              {friend.onlineStatus && <span className="status-dot" />}
+              <span
+                className={`status-friends ${
+                  friend.onlineStatus ? "online" : "offline"
+                }`}
+              />
             </li>
           ))}
         </ul>
@@ -136,24 +153,26 @@ export const Mensajes = () => {
             </header>
 
             <section className="messages-section">
-              {messages.map((msg, index) => (
-                <div
-                  key={index}
-                  className={`message ${
-                    msg.sender === user.id ? "own" : "friend"
-                  }`}
-                >
-                  <span className="message-text">{msg.content}</span>
-                  <span className="message-time">
-                    {new Date(msg.timestamp).toLocaleTimeString([], {
-                      hour: "2-digit",
-                      minute: "2-digit",
-                    })}
-                  </span>
-                </div>
-              ))}
-            </section>
+              {messages.map((msg, index) => {
+                const isMine =
+                  msg.senderId === user.id || msg.sender?._id === user.id;
 
+                return (
+                  <div
+                    key={index}
+                    className={`message ${isMine ? "own" : "friend"}`}
+                  >
+                    <span className="message-text">{msg.content}</span>
+                    <span className="message-time">
+                      {new Date(msg.timestamp).toLocaleTimeString([], {
+                        hour: "2-digit",
+                        minute: "2-digit",
+                      })}
+                    </span>
+                  </div>
+                );
+              })}
+            </section>
             <form className="message-form" onSubmit={handleSubmit}>
               <input
                 type="text"

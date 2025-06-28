@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext, useCallback } from "react";
 import AuthContext from "../context/AuthContext";
 import { PacmanLoader } from "react-spinners";
 import "../style/FriendsOnlineWidget.css";
-import { socket } from "../sockect";
+import { socket } from "../socket";
 import { FaUserFriends } from "react-icons/fa"; // icono de amigos
 
 const API_URL = import.meta.env.VITE_API_URL;

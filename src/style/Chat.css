@@ -71,13 +71,20 @@ body {
   box-shadow: 0 0 8px #3be03b;
 }
 
-.status-dot {
-  width: 8px;
-  height: 8px;
-  background: #3be03b;
+.status-friends {
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
-  margin-left: 6px;
-  flex-shrink: 0;
+  display: inline-block;
+  margin-left: auto;
+}
+
+.status-friends.online {
+  background-color: #00ff00;
+}
+
+.status-friends.offline {
+  background-color: #777;
 }
 
 .friend-item .avatar {

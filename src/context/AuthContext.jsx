@@ -1,6 +1,5 @@
 import { createContext, useState, useEffect, useCallback } from "react";
-import { socket } from "../sockect";
-import { useRef } from "react";
+import { socket } from "../socket";
 import { useNavigate } from "react-router-dom";
 
 const AuthContext = createContext(); // Creamos el contexto
@@ -12,11 +11,11 @@ export const AuthProvider = ({ children }) => {
   const [islogout, setIsLogout] = useState(false); // Estado de logout
   const [loading, setLoading] = useState(true); // Estado de carga
 
-  const hasEmittedConnection = useRef(false);
+  const API_URL = import.meta.env.VITE_API_URL;
 
   const navigate = useNavigate();
 
-  // ✔ Logout total
+  //  Logout total
   const logout = useCallback(() => {
     if (user?._id) {
       //si hay usuario logueado
@@ -37,7 +36,7 @@ export const AuthProvider = ({ children }) => {
   const fetchUserProfile = useCallback(
     async (token) => {
       try {
-        const res = await fetch("http://localhost:3000/users/me", {
+        const res = await fetch(`${API_URL}/users/me`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -50,14 +49,14 @@ export const AuthProvider = ({ children }) => {
         setToken(token);
         setIsLoggedIn(true);
         setIsLogout(false);
+        socket.auth = { token };
         if (!socket.connected) {
-          socket.connect(); // Conectamos el socket manualmente al iniciar sesión
-          console.log("Socket conectado al iniciar sesión");
-        }
-
-        if (!hasEmittedConnection.current) {
-          socket.emit("userConnect", data.user._id); // Emitimos el evento de conexión del usuario que se ha conectado
-          hasEmittedConnection.current = true; // Marcar como emitido
+          socket.connect();
+          socket.once("connect", () => {
+            //socket.once asegura que solo se emite una vez cuando se conecta,se usa para evitar múltiples emisiones
+            socket.emit("userConnect", data.user._id); // Emitimos el evento de conexión del usuario que se ha conectado
+            console.log("userConnect emitido tras la conexión");
+          });
         }
       } catch (err) {
         console.error("Error al cargar perfil:", err.message);
@@ -66,10 +65,10 @@ export const AuthProvider = ({ children }) => {
         setLoading(false);
       }
     },
-    [logout]
+    [logout, API_URL]
   );
 
-  // ✔ Cargar sesión automáticamente al arrancar si hay token en localStorage
+  //  Cargar sesión automáticamente al arrancar si hay token en localStorage
   useEffect(() => {
     const savedSession = localStorage.getItem("user");
     try {
@@ -93,7 +92,7 @@ export const AuthProvider = ({ children }) => {
     }
   }, [fetchUserProfile, logout]);
 
-  // ✔ Login manual (cuando te registras o haces login)
+  // Login manual (cuando te registras o haces login)
   const login = async (token) => {
     localStorage.setItem("user", JSON.stringify({ token }));
     await fetchUserProfile(token);
