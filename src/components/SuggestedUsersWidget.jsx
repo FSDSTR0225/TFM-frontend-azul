@@ -66,6 +66,7 @@ function SuggestedUsersWidget() {
       slidesPerView={"auto"}
       spaceBetween={30}
       loop={suggestedUsers.length >= 3}
+      watchOverflow={true}
       autoplay={{
         delay: 3000,
         disableOnInteraction: false,
