@@ -25,6 +25,7 @@ import { Toaster } from "sonner";
 import ManagementCenter from "./pages/ManagementCenter";
 import MyEvents from "./pages/MyEvents";
 import { Mensajes } from "./pages/Mensajes";
+import ForumThreads from "./components/ForumThreads";
 
 export default function App() {
   const [showSearch, setShowSearch] = useState(false);
@@ -118,6 +119,14 @@ export default function App() {
           element={
             <PrivateRoute>
               <FriendsProfile />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/post"
+          element={
+            <PrivateRoute>
+              <ForumThreads />
             </PrivateRoute>
           }
         />
