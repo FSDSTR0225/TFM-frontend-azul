@@ -15,7 +15,6 @@ body {
   overflow: auto;
   scroll-behavior: smooth;
   font-family: "Poppins", sans-serif;
-  background: rgba(10, 10, 20, 0.9);
   color: white;
 }
 
@@ -43,6 +42,7 @@ main {
 
 /* Variables globales */
 :root {
+  background: rgba(10, 10, 20, 0.9);
   --dark-blue: #003b5c;
   --light-blue: #0095d9;
   --florecent-blue: #66fcf1;
