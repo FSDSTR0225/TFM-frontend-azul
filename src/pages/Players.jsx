@@ -39,10 +39,9 @@ const Players = () => {
       <h1 className="players-title">Players</h1>
       <div className="players-list">
         {players.map((player) => (
-          <PlayerCard key={player.id} player={player} />
+          <PlayerCard key={player._id} player={player} />
         ))}
       </div>
-     
     </div>
   );
 };

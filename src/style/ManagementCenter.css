@@ -149,6 +149,14 @@
 .tab-history-content li[data-status="pending"] {
   border-left-color: #ff9800;
 }
+.avatar-small {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 8px;
+  vertical-align: middle;
+}
 
 .request-item {
   display: flex;

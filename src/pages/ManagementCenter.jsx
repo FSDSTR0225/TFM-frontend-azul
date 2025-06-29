@@ -63,39 +63,39 @@ function ManagementCenter() {
   }, [isLoggedIn, section, eventRequestsTab, token]);
 
   useEffect(() => {
-    const fetchFriendRequests = async () => {
-      if (!isLoggedIn || section !== "friendsRequests") return;
+    if (
+      !isLoggedIn ||
+      section !== "friendsRequests" ||
+      friendRequestsTab !== "sent"
+    )
+      return;
 
-      const urlFriends =
-        friendRequestsTab === "received"
-          ? `${API_URL}/friends/requests/received`
-          : friendRequestsTab === "sent"
-          ? `${API_URL}/friends/requests/sent`
-          : null;
-
-      if (!urlFriends) return;
-
-      try {
-        const response = await fetch(urlFriends, {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-
-        if (!response.ok) throw new Error("Error al obtener solicitudes");
-
-        const data = await response.json();
-
-        if (friendRequestsTab === "received") {
-          setReceivedFriendRequests(data);
-        } else if (friendRequestsTab === "sent") {
-          setSentFriendRequests(data);
-        }
-      } catch (error) {
-        console.error("Error al obtener solicitudes de amistad:", error);
-      }
-    };
-
-    fetchFriendRequests();
+    fetch(`${API_URL}/friends/requests/sent`, {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+      .then((res) => (res.ok ? res.json() : []))
+      .then((data) => setSentFriendRequests(data))
+      .catch((err) =>
+        console.error("Error cargando solicitudes enviadas:", err)
+      );
   }, [isLoggedIn, section, friendRequestsTab, token]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (!isLoggedIn) return;
+
+      fetch(`${API_URL}/friends/requests/sent`, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+        .then((res) => (res.ok ? res.json() : []))
+        .then((data) => setSentFriendRequests(data))
+        .catch((err) =>
+          console.error("Error actualizando solicitudes enviadas:", err)
+        );
+    }, 15000);
+
+    return () => clearInterval(interval);
+  }, [isLoggedIn, token]);
 
   const handleResponse = async (requestId, response) => {
     try {
@@ -136,15 +136,27 @@ function ManagementCenter() {
     }
   };
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (!isLoggedIn) return;
+
+      fetch(`${API_URL}/friends/requests/received`, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+        .then((res) => (res.ok ? res.json() : []))
+        .then((data) => setReceivedFriendRequests(data))
+        .catch((err) => console.error("Error actualizando solicitudes:", err));
+    }, 15000); // cada 15s
+
+    return () => clearInterval(interval);
+  }, [isLoggedIn, token]);
+
   const handleCancelFriendRequest = async (requestId) => {
     try {
-      const response = await fetch(
-        `${API_URL}/friend-requests/requests/${requestId}`,
-        {
-          method: "DELETE",
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      );
+      const response = await fetch(`${API_URL}/friends/requests/${requestId}`, {
+        method: "DELETE",
+        headers: { Authorization: `Bearer ${token}` },
+      });
 
       if (!response.ok) throw new Error("Error al retirar la solicitud");
 
@@ -156,6 +168,36 @@ function ManagementCenter() {
     } catch (error) {
       console.error("Error al cancelar solicitud de amistad:", error);
       toast.error("No se pudo retirar la solicitud");
+    }
+  };
+
+  const handleFriendResponse = async (requestId, response) => {
+    try {
+      const res = await fetch(
+        `${API_URL}/friends/requests/${requestId}/${response}`,
+        {
+          method: "PUT",
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+
+      if (!res.ok) throw new Error("Error al procesar la solicitud de amistad");
+
+      toast.success(
+        response === "accept"
+          ? "Has aceptado la solicitud de amistad"
+          : "Has rechazado la solicitud de amistad",
+        { icon: response === "accept" ? "✅" : "❌" }
+      );
+
+      setReceivedFriendRequests((prev) =>
+        prev.filter((req) => req._id !== requestId)
+      );
+    } catch (error) {
+      console.error("Error gestionando solicitud de amistad:", error);
+      toast.error("No se pudo procesar la solicitud de amistad", {
+        icon: "⚠️",
+      });
     }
   };
 
@@ -222,13 +264,17 @@ function ManagementCenter() {
                         <div className="actions">
                           <button
                             className="accept-request-btn"
-                            onClick={() => handleResponse(req._id, "accept")}
+                            onClick={() =>
+                              handleFriendResponse(req._id, "accept")
+                            }
                           >
                             Aceptar
                           </button>
                           <button
                             className="reject-request-btn"
-                            onClick={() => handleResponse(req._id, "reject")}
+                            onClick={() =>
+                              handleFriendResponse(req._id, "reject")
+                            }
                           >
                             Rechazar
                           </button>
@@ -294,64 +340,75 @@ function ManagementCenter() {
               </button>
             </div>
             <p>Para gestionar quién es tu amigo en la app.</p>
-          </div>
-        )}
 
-        {friendRequestsTab === "received" && (
-          <div className="tab-received-content">
-            <p>Solicitudes de amistad recibidas</p>
-            <ul>
-              {receivedFriendRequests.length > 0 ? (
-                receivedFriendRequests.map((req) => (
-                  <li key={req._id} className="request-item">
-                    <span>
-                      Tienes una petición de amistad de{" "}
-                      {req.userSender.username}
-                    </span>
-                    <div className="actions">
-                      <button
-                        className="accept-request-btn"
-                        onClick={() => handleResponse(req._id, "accept")}
-                      >
-                        Aceptar
-                      </button>
-                      <button
-                        className="reject-request-btn"
-                        onClick={() => handleResponse(req._id, "reject")}
-                      >
-                        Rechazar
-                      </button>
-                    </div>
-                  </li>
-                ))
-              ) : (
-                <li>No tienes solicitudes pendientes</li>
-              )}
-            </ul>
-          </div>
-        )}
+            {friendRequestsTab === "received" && (
+              <div className="tab-received-content">
+                <p>Solicitudes de amistad recibidas</p>
+                <ul>
+                  {receivedFriendRequests.length > 0 ? (
+                    receivedFriendRequests.map((req) => (
+                      <li key={req._id} className="request-item">
+                        <span>
+                          Tienes una petición de amistad de{" "}
+                          {req.userSender.username}
+                        </span>
+                        <div className="actions">
+                          <button
+                            className="accept-request-btn"
+                            onClick={() => handleResponse(req._id, "accept")}
+                          >
+                            Aceptar
+                          </button>
+                          <button
+                            className="reject-request-btn"
+                            onClick={() => handleResponse(req._id, "reject")}
+                          >
+                            Rechazar
+                          </button>
+                        </div>
+                      </li>
+                    ))
+                  ) : (
+                    <li>No tienes solicitudes pendientes</li>
+                  )}
+                </ul>
+              </div>
+            )}
 
-        {friendRequestsTab === "sent" && (
-          <div className="tab-sent-content">
-            <p>Solicitudes de amistad enviadas</p>
-            <ul>
-              {sentFriendRequests.length > 0 ? (
-                sentFriendRequests.map((req) => (
-                  <li key={req._id} className="request-item">
-                    Has solicitado una petición de amistad a: "
-                    {req.user.username}"
-                    <button
-                      className="cancel-request-btn"
-                      onClick={() => handleCancelFriendRequest(req._id)}
-                    >
-                      Cancelar
-                    </button>
-                  </li>
-                ))
-              ) : (
-                <li>No tienes ninguna petición de amistad enviada</li>
-              )}
-            </ul>
+            {friendRequestsTab === "sent" && (
+              <div className="tab-sent-content">
+                <p>Solicitudes de amistad enviadas</p>
+                <ul>
+                  {sentFriendRequests.length > 0 ? (
+                    sentFriendRequests.map((req) => (
+                      <li key={req._id} className="request-item">
+                        <img
+                          src={req.userReceiver.avatar}
+                          alt="avatar"
+                          className="avatar-small"
+                        />
+                        Has solicitado una petición de amistad a: "
+                        {req.userReceiver.username}"
+                        <button
+                          className="cancel-request-btn"
+                          onClick={() => handleCancelFriendRequest(req._id)}
+                        >
+                          Cancelar
+                        </button>
+                      </li>
+                    ))
+                  ) : (
+                    <li>No tienes ninguna petición de amistad enviada</li>
+                  )}
+                </ul>
+              </div>
+            )}
+
+            {friendRequestsTab === "history" && (
+              <div className="tab-history-content">
+                <p>Historial de amistad (a implementar)</p>
+              </div>
+            )}
           </div>
         )}
       </div>
