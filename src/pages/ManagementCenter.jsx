@@ -81,23 +81,24 @@ function ManagementCenter() {
   }, [isLoggedIn, section, friendRequestsTab, token]);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      if (!isLoggedIn) return;
+    if (
+      !isLoggedIn ||
+      section !== "friendsRequests" ||
+      friendRequestsTab !== "received"
+    )
+      return;
 
-      fetch(`${API_URL}/friends/requests/sent`, {
-        headers: { Authorization: `Bearer ${token}` },
-      })
-        .then((res) => (res.ok ? res.json() : []))
-        .then((data) => setSentFriendRequests(data))
-        .catch((err) =>
-          console.error("Error actualizando solicitudes enviadas:", err)
-        );
-    }, 15000);
+    fetch(`${API_URL}/friends/requests/received`, {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+      .then((res) => (res.ok ? res.json() : []))
+      .then((data) => setReceivedFriendRequests(data))
+      .catch((err) =>
+        console.error("Error cargando solicitudes recibidas:", err)
+      );
+  }, [isLoggedIn, section, friendRequestsTab, token]);
 
-    return () => clearInterval(interval);
-  }, [isLoggedIn, token]);
-
-  const handleResponse = async (requestId, response) => {
+  const handleEventResponse = async (requestId, response) => {
     try {
       const resp = await fetch(`${API_URL}/join-request/requests`, {
         method: "POST",
@@ -265,7 +266,7 @@ function ManagementCenter() {
                           <button
                             className="accept-request-btn"
                             onClick={() =>
-                              handleFriendResponse(req._id, "accept")
+                              handleEventResponse(req._id, "accept")
                             }
                           >
                             Aceptar
@@ -273,7 +274,7 @@ function ManagementCenter() {
                           <button
                             className="reject-request-btn"
                             onClick={() =>
-                              handleFriendResponse(req._id, "reject")
+                              handleEventResponse(req._id, "reject")
                             }
                           >
                             Rechazar
@@ -355,13 +356,17 @@ function ManagementCenter() {
                         <div className="actions">
                           <button
                             className="accept-request-btn"
-                            onClick={() => handleResponse(req._id, "accept")}
+                            onClick={() =>
+                              handleFriendResponse(req._id, "accept")
+                            }
                           >
                             Aceptar
                           </button>
                           <button
                             className="reject-request-btn"
-                            onClick={() => handleResponse(req._id, "reject")}
+                            onClick={() =>
+                              handleFriendResponse(req._id, "reject")
+                            }
                           >
                             Rechazar
                           </button>
