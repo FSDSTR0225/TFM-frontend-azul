@@ -26,7 +26,7 @@ import PlayerProfile from "./pages/PlayerProfile";
 
 import { Mensajes } from "./pages/Mensajes";
 import ForumThreads from "./components/ForumThreads";
-// import MyScrollBar from "./components/MyScrollBar";
+import MyScrollBar from "./components/MyScrollBar";
 import ExploreGames from "./components/ExploreGames";
 import ExploreUsers from "./components/ExploreUsers";
 import Footer from "./components/Footer";

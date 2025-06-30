@@ -23,11 +23,7 @@ const Events = () => {
   const [selectedDate, setSelectedDate] = useState("Todos");
 
   const eventRefs = useRef({});
-<<<<<<< HEAD
-=======
   const eventsPerPage = 12;
-
->>>>>>> 788f610ba86f39de6995a7828bcb6e84f6d5c3d2
   const { isLoggedIn } = useContext(AuthContext);
 
   const location = useLocation();
