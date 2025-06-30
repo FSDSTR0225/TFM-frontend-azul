@@ -25,14 +25,11 @@ import MyEvents from "./pages/MyEvents";
 import PlayerProfile from "./pages/PlayerProfile";
 
 import { Mensajes } from "./pages/Mensajes";
-<<<<<<< HEAD
 import ForumThreads from "./components/ForumThreads";
-=======
 // import MyScrollBar from "./components/MyScrollBar";
 import ExploreGames from "./components/ExploreGames";
 import ExploreUsers from "./components/ExploreUsers";
 import Footer from "./components/Footer";
->>>>>>> 788f610ba86f39de6995a7828bcb6e84f6d5c3d2
 
 export default function App() {
   const [showSearch, setShowSearch] = useState(false);
