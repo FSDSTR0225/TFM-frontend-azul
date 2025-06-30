@@ -3,6 +3,7 @@ import AuthContext from "../context/AuthContext";
 import "../style/ManagementCenter.css";
 import { toast } from "sonner";
 import { PacmanLoader } from "react-spinners";
+import { socket } from "../socket";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -151,6 +152,21 @@ function ManagementCenter() {
 
     return () => clearInterval(interval);
   }, [isLoggedIn, token]);
+
+  useEffect(() => {
+    if (!socket) return;
+
+    const handleNewFriendRequest = (newRequest) => {
+      // Solo actualizamos si estamos en la pestaña correcta
+      setReceivedFriendRequests((prev) => [newRequest, ...prev]);
+    };
+
+    socket.on("newFriendRequest", handleNewFriendRequest);
+
+    return () => {
+      socket.off("newFriendRequest", handleNewFriendRequest);
+    };
+  }, [section, friendRequestsTab]);
 
   const handleCancelFriendRequest = async (requestId) => {
     try {
