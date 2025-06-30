@@ -7,6 +7,7 @@ import EventDetails from "../components/EventDetails";
 import SearchAndCreateEvents from "../components/SearchAndCreateEvents";
 import { useLocation } from "react-router-dom";
 import { useMemo } from "react";
+import { socket } from "../socket";
 import "../style/Events.css";
 
 const API_URL = import.meta.env.VITE_API_URL;
@@ -26,6 +27,31 @@ const Events = () => {
   const eventsPerPage = 12;
 
   const { isLoggedIn } = useContext(AuthContext);
+
+  useEffect(() => {
+    if (!isLoggedIn) return;
+
+    // Conectamos el socket solo si el usuario está logueado
+    socket.connect();
+
+    socket.on("newEvent", (newEvent) => {
+      setEvents((prev) => {
+        const exists = prev.some((ev) => ev._id === newEvent._id);
+        if (exists) return prev;
+
+        const updated = [...prev, newEvent];
+
+        // Ordenamos por fecha más cercana
+        updated.sort((a, b) => new Date(a.date) - new Date(b.date));
+        return updated;
+      });
+    });
+
+    return () => {
+      socket.off("newEvent");
+      socket.disconnect(); // buena práctica si este componente se desmonta
+    };
+  }, [isLoggedIn]);
 
   const location = useLocation();
 
@@ -195,13 +221,6 @@ const Events = () => {
         throw new Error("Error al crear el evento");
       }
 
-      const eventWhitId = {
-        ...data.event,
-        id: data.event._id || data.event.id, // usa _id si existe, si no id
-      };
-
-      // Opcional: recargar eventos tras crear uno nuevo
-      setEvents((prev) => [...prev, eventWhitId]);
       console.log(events);
     } catch (error) {
       console.error("Error al crear el evento:", error);
@@ -297,6 +316,7 @@ const Events = () => {
                   ref={(el) => (eventRefs.current[event.id] = el)}
                 >
                   <EventCard
+                    key={event.id}
                     event={event}
                     onClick={() => handleEventClick(event.id)}
                   />
