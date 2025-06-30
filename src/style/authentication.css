@@ -1,0 +1,259 @@
+.auth-container {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  background: linear-gradient(
+    135deg,
+    rgba(10, 15, 30, 0.8),
+    rgba(30, 40, 60, 0.85)
+  );
+  font-family: "Audiowide", sans-serif;
+  position: fixed !important;
+}
+
+.auth-form {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem;
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  overflow: hidden;
+}
+
+.auth-form.glass {
+  background: linear-gradient(
+    135deg,
+    rgba(10, 15, 30, 0.8),
+    rgba(30, 40, 60, 0.85)
+  );
+  border: 2px solid #00fff7;
+  backdrop-filter: blur(14px);
+  border-top: none;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.15);
+  padding: 2.5rem;
+  max-width: 420px;
+  width: 100%;
+  animation: fadeInUp 0.6s ease;
+}
+
+.auth-visual {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    rgba(10, 15, 30, 0.8),
+    rgba(30, 40, 60, 0.85)
+  );
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
+}
+
+.auth-visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  filter: brightness(0.9) contrast(1.1);
+}
+
+.RegisterForm__Title {
+  font-size: 2rem;
+  color: #00fff7;
+  margin-bottom: 2rem;
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+.RegisterForm__input {
+  width: 100%;
+  margin-bottom: 1.5rem !important;
+  color: #fff;
+}
+
+.RegisterForm__button {
+  width: 100%;
+  margin-top: 1rem;
+  font-weight: bold;
+  background: #00fff7 !important;
+  color: #000 !important;
+  box-shadow: 0 0 8px #00fff7;
+  transition: all 0.3s ease;
+}
+
+.RegisterForm__button:hover {
+  background: #00d4c1 !important;
+  box-shadow: 0 0 12px #00fff7;
+  transform: scale(1.02);
+}
+
+.signup__text {
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+  color: #ccc;
+  text-align: center;
+}
+
+.signup__text__strong {
+  color: #00fff7;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.error {
+  color: #ff4d4f;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .auth-form.glass {
+    max-width: 480px;
+    padding: 3rem;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .auth-form.glass {
+    padding: 2.5rem;
+    max-width: 400px;
+  }
+
+  .RegisterForm__Title {
+    font-size: 1.8rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .auth-container {
+    flex-direction: column;
+  }
+
+  .auth-visual {
+    height: 200px;
+    flex: 0 0 auto;
+  }
+
+  .auth-visual img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  .auth-form {
+    padding: 2rem;
+  }
+
+  .auth-form.glass {
+    margin-top: 1rem;
+    border-radius: 16px;
+  }
+}
+
+@media screen and (max-width: 599px) {
+  .auth-container {
+    flex-direction: column;
+  }
+
+  .auth-form {
+    padding: 1.5rem;
+  }
+
+  .auth-form.glass {
+    padding: 1.5rem;
+    max-width: 100%;
+    margin: 0 auto;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.1);
+  }
+
+  .RegisterForm__Title {
+    font-size: 1.6rem;
+  }
+
+  .RegisterForm__button {
+    font-size: 0.95rem;
+  }
+}
+
+@media screen and (max-width: 399px) {
+  .auth-form.glass {
+    padding: 1rem;
+  }
+
+  .RegisterForm__Title {
+    font-size: 1.4rem;
+  }
+
+  .RegisterForm__button {
+    font-size: 0.85rem;
+  }
+
+  .signup__text {
+    font-size: 0.8rem;
+  }
+
+  .error {
+    font-size: 0.8rem;
+  }
+}
+
+.MuiInputBase-root input {
+  background-color: rgba(0, 255, 255, 0.05) !important;
+  color: #ffffff !important;
+  font-family: "Poppins", sans-serif;
+  padding: 8px 10px;
+  border: none;
+}
+
+.MuiInputLabel-root {
+  color: #00fff7 !important;
+  font-family: "Audiowide", sans-serif !important;
+}
+
+.MuiInputLabel-root.Mui-focused {
+  color: #00fff7 !important;
+}
+
+/* Subrayado inferior */
+.MuiInput-underline:before {
+  border-bottom: 2px solid #00fff7 !important;
+}
+.MuiInput-underline:hover:before {
+  border-bottom: 2px solid #00d4c1 !important;
+}
+.MuiInput-underline:after {
+  border-bottom: 2px solid #00fff7 !important;
+}
+
+/* Desactiva autocompletado blanco de Chrome */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0px 1000px rgba(0, 255, 255, 0.05) inset !important;
+  -webkit-text-fill-color: #ffffff !important;
+  caret-color: #ffffff !important;
+  transition: background-color 5000s ease-in-out 0s;
+}

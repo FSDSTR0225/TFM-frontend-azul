@@ -3,7 +3,7 @@
   justify-content: space-between;
   align-items: center;
   height: 100vh;
-  background-image: url('../../1.jpg');
+  background-image: url("../../1.jpg");
 }
 .edit-profile {
   width: 60%;
@@ -12,8 +12,8 @@
   border: 2px solid #1565c0;
   border-radius: 20px;
   background-color: #003764;
-   background: linear-gradient(135deg, #140a3e 80%, #2a2b4a 20%);
-   opacity: 0.97;
+  background: linear-gradient(135deg, #140a3e 80%, #2a2b4a 20%);
+  opacity: 0.97;
   font-family: "Poppins", sans-serif;
   box-shadow: 0 0 20px rgba(21, 101, 192, 0.1);
 }
@@ -33,7 +33,7 @@
 
 .edit-profile label {
   font-weight: bold;
-  color: #030438;
+ color: #00f0ff
 }
 
 .edit-profile input[type="text"],
@@ -75,4 +75,41 @@
 
 .edit-profile button[type="submit"]:hover {
   background-color: #d058e0;
+}
+
+@media (max-width: 768px) {
+  .edit-profile-container {
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-top: 2rem;
+    height: auto;
+  }
+
+  .edit-profile {
+    width: 90%;
+    padding: 1.5rem;
+  }
+
+  .edit-profile h2 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .edit-profile {
+    padding: 1.2rem;
+  }
+
+  .edit-profile input[type="text"],
+  .edit-profile input[type="email"],
+  .edit-profile input[type="password"],
+  .edit-profile input[type="file"] {
+    font-size: 0.95rem;
+    padding: 0.6rem 0.9rem;
+  }
+
+  .edit-profile button[type="submit"] {
+    font-size: 0.95rem;
+    padding: 0.7rem 1rem;
+  }
 }

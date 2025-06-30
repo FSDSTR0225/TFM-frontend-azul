@@ -36,6 +36,7 @@ function DailySummary({ summary }) {
           </div>
         ) : (
           <>
+            <h2 className="daily-summary-title">Resumen diario</h2>
             {newFriends.length > 0 && (
               <div className="newfriends-summary">
                 <h3 className="newfriends-title">Nuevos amigos</h3>
@@ -60,7 +61,7 @@ function DailySummary({ summary }) {
             )}
             {approvedEvent.length > 0 && (
               <div className="approved-summary">
-                <h3 className="approved-summary-title">Eventos aprobados</h3>
+                <h3 className="approved-summary-title">Solicitud a eventos</h3>
                 <ul>
                   {approvedEvent.map((approved) => (
                     <li key={approved.eventId}>{approved.message}</li>

@@ -39,40 +39,69 @@ function EventsToday() {
 
   if (!events || events.length === 0) {
     return (
-      <div className="no-events-today">
-        <h2>No hay eventos programados para hoy</h2>
+      <div className="no-events-today-visual">
+        <div className="no-events-animated-text">
+          <span>¡No tienes eventos para hoy!</span>
+        </div>
       </div>
     );
   }
 
+  // Limitar a un máximo de 4 eventos
+  const maxEvents = 2; //Aqui decido cuántos eventos mostrar
+  const eventsToShow = events.slice(0, maxEvents); //slice devuelve un nuevo array con los primeros 4 eventos
+
+  // Agruparlos en filas de 2
+  const rows = []; // Inicializamos un array para las filas
+  // Recorremos los eventos y los agrupamos en filas de 2
+  for (let i = 0; i < eventsToShow.length; i += 2) {
+    rows.push(eventsToShow.slice(i, i + 2));
+  }
+
   return (
     <div className="events-today-container">
-      {events.map((event) => (
-        <div key={event._id} className="events-today-card">
-          <h2 className="card-title-events">¡Evento del dia!</h2>
+      {rows.map((row, rowIdx) => (
+        <div
+          key={rowIdx}
+          className={`events-today-row ${
+            row.length === 1 ? "center-single-card" : ""
+          }`}
+        >
+          {row.map((event) => (
+            <div key={event._id} className="events-today-card">
+              <h2 className="card-title-events">¡Evento del dia!</h2>
 
-          <h3 className="events-title-card-lobby">{event.title}</h3>
+              <h3 className="events-title-card-lobby">{event.title}</h3>
 
-          <p className="events-date-card-lobby">
-            <strong>Hora:</strong>{" "}
-            {new Date(event.date).toLocaleTimeString([], {
-              hour: "2-digit",
-              minute: "2-digit",
-            })}
-          </p>
+              <p className="events-date-card-lobby">
+                <strong>Hora:</strong>{" "}
+                {new Date(event.date).toLocaleTimeString([], {
+                  hour: "2-digit",
+                  minute: "2-digit",
+                })}
+              </p>
 
-          <p className="events-game-card-lobby">
-            <strong>Juego:</strong> {event.game.name}
-          </p>
+              <p className="events-game-card-lobby">
+                <strong>Juego:</strong> {event.game.name}
+              </p>
 
-          <div className="events-platform-card-lobby">
-            <img
-              src={event.platform.icon}
-              alt={`Icono de ${event.platform.name}`}
-              className="events-icon-platform-card-lobby"
-            />
-            <span className="events-platform-name">{event.platform.name}</span>
-          </div>
+              <div className="events-platform-card-lobby">
+                <img
+                  src={event.platform.icon}
+                  alt={`Icono de ${event.platform.name}`}
+                  className="events-icon-platform-card-lobby"
+                />
+                <span
+                  className="events-platform-name"
+                  title={event.platform.name}
+                >
+                  {event.platform.name === "Nintendo Switch"
+                    ? "Switch"
+                    : event.platform.name}
+                </span>
+              </div>
+            </div>
+          ))}
         </div>
       ))}
     </div>

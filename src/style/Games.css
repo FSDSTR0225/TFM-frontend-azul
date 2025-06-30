@@ -24,6 +24,7 @@
     url("../assets/prueba2.jpg") center/cover no-repeat;
   filter: blur(6px) brightness(0.9);
   z-index: -2;
+  pointer-events: none;
 }
 
 .section-divider {
@@ -61,17 +62,9 @@
   }
 }
 
-/* .games-page::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: url("../assets/prueba2.jpg") center/cover no-repeat;
-  filter: blur(6px) brightness(0.6);
-  z-index: -2;
-} */
+.games-section {
+  margin-top: 4rem;
+}
 
 .unified-glass-block {
   background: rgba(0, 0, 0, 0.107);
@@ -81,20 +74,36 @@
   max-width: 1600px;
   width: 100%;
   box-shadow: 0 0 40px #00f0ff33;
-  animation: fadeInUp 0.8s ease forwards;
+  animation: fadeInUpSoft 2.2s cubic-bezier(0.33, 1, 0.68, 1) forwards;
+  animation-delay: 0.15s;
+  will-change: transform, opacity, filter;
 }
 
-.games-section {
-  margin-top: 4rem;
-}
-
-@keyframes fadeInUp {
+@keyframes fadeInUpSoft {
   0% {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(20px) scale(0.995);
+    filter: blur(3px);
   }
   100% {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@media (max-width: 600px) {
+  .games-page {
+    padding: 4rem 1rem 2rem 1rem;
+  }
+
+  .unified-glass-block {
+    padding: 2.5rem 1rem;
+    border-radius: 14px;
+  }
+
+  .section-divider {
+    width: 90%;
+    margin: 2rem auto 3rem auto;
   }
 }

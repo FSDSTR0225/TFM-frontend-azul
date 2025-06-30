@@ -3,6 +3,9 @@ import "../style/EventDetails.css";
 import AuthContext from "../context/AuthContext";
 import EditEventForm from "./EditEventForm";
 import ConfirmDeleteModal from "./ConfirmDeleteModal";
+import { BsController } from "react-icons/bs";
+import { GiGameConsole } from "react-icons/gi";
+import { TbCalendarBolt } from "react-icons/tb";
 import { toast } from "sonner";
 
 const API_URL = import.meta.env.VITE_API_URL;
@@ -118,6 +121,11 @@ function EventDetails({ event, onClose, setSelectedEvent, onEventDeleted }) {
       }}
     >
       <div className="modal-event-content event-details-card">
+        <img
+          className="try-img"
+          src={event.game.imageUrl}
+          alt={event.game.name}
+        />
         <div className="neon-bg"></div>
         <img
           src={event.platform.icon}
@@ -131,7 +139,7 @@ function EventDetails({ event, onClose, setSelectedEvent, onEventDeleted }) {
         <span className="close-btn" onClick={onClose} aria-label="Cerrar modal">
           ✖
         </span>
-        <div className="details-event-content">
+        <section className="details-event-content">
           <div className="event-organizer">
             {event.creatorAvatar && (
               <img
@@ -144,23 +152,31 @@ function EventDetails({ event, onClose, setSelectedEvent, onEventDeleted }) {
           </div>
 
           <div className="event-info">
-            <p>
-              <span>🎮 Juego:</span> {event.game.name}
-            </p>
-            <p>
-              <span>🗓️ Fecha:</span> {new Date(event.date).toLocaleString()}
-            </p>
-            <p>
-              <span>🕹️ Plataforma:</span> {event.platform.name}
-            </p>
+            <div className="info-data">
+              <div className="event-info-game">
+                <BsController className="icons-event-details" />{" "}
+                <span className="event-info-label">Juego:</span>
+                <span className="event-info-name">{event.game.name}</span>
+                <GiGameConsole className="icons-event-details" />
+                <span className="event-info-label">Plataforma:</span>
+                <span className="event-info-name">{event.platform.name}</span>
+              </div>
+              <div className="event-info-date">
+                <TbCalendarBolt className="icons-event-details" />
+                <span className="event-info-label">Fecha:</span>
+                <span className="event-info-name">
+                  {new Date(event.date).toLocaleString()}
+                </span>
+              </div>
+            </div>
           </div>
 
-          <section className="modal-description">
+          <div className="modal-description">
             <h3>📝 Descripción</h3>
             <p>{event.description}</p>
-          </section>
+          </div>
 
-          <section className="modal-participants">
+          <div className="modal-participants">
             <h3>👥 Participantes</h3>
             {event.participants.length === 0 ? (
               <p>No hay participantes aún.</p>
@@ -180,8 +196,8 @@ function EventDetails({ event, onClose, setSelectedEvent, onEventDeleted }) {
                 ))}
               </ul>
             )}
-          </section>
-        </div>
+          </div>
+        </section>
 
         {!isCreator && !isParticipant && (
           <div className="event-actions">

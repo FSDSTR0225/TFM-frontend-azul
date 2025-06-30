@@ -8,6 +8,10 @@
   font-size: 0.9rem;
   border-top: 2px solid rgba(0, 255, 255, 0.2);
   box-shadow: 0 -4px 20px rgba(0, 255, 255, 0.1);
+  position: relative;
+  z-index: 5;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .footer-container {
@@ -73,4 +77,34 @@
 .footer-rrss svg:hover {
   color: #00ffff;
   transform: scale(1.2);
+}
+
+@media (max-width: 600px) {
+  .footer {
+    padding: 1.5rem 0.7rem;
+    font-size: 0.8rem;
+  }
+
+  .footer-logo {
+    font-size: 1.4rem;
+  }
+
+  .footer-links {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  .footer-rrss {
+    gap: 0.9rem;
+  }
+
+  .footer-rrss svg {
+    font-size: 20px;
+  }
+
+  .footer-copy {
+    font-size: 0.75rem;
+    margin-top: 0.8rem;
+  }
 }

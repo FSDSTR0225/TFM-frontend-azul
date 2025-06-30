@@ -34,6 +34,11 @@ function GameDetails() {
         }
         const data = await response.json();
         setGame(data); // Actualizo el estado con los datos del juego
+        console.log(
+          "🔍 Imagen de fondo adicional:",
+          data.background_image_additional,
+          data
+        );
       } catch (error) {
         console.error("Error al cargar el juego:", error);
       }
@@ -47,7 +52,7 @@ function GameDetails() {
     return (
       <div className="loading-container">
         <PacmanLoader color="#FFD700" size={40} />
-        <h2>Cargando detalles...</h2>
+        <h2>Cargando ficha del juego...</h2>
       </div>
     );
   }
@@ -78,10 +83,15 @@ function GameDetails() {
     <>
       <div
         className="game-background"
+        // style={{
+        //   backgroundImage: game?.background_image_additional
+        //     ? `url(${game.background_image_additional})`
+        //     : `url(${game.background_image})`,
+        // }}
         style={{
           backgroundImage: game?.background_image_additional
             ? `url(${game.background_image_additional})`
-            : "linear-gradient(to bottom right, #0f1c2e, #06131f)",
+            : `url(${game.imageUrl})`,
         }}
       ></div>
       <div className="game-details-container">
@@ -92,7 +102,11 @@ function GameDetails() {
           <h1 className="api-title">{game.name}</h1>
 
           <img
-            src={game.imageUrl || game.background_image}
+            src={
+              game.imageUrl ||
+              game.background_image ||
+              game.background_image_additional
+            }
             alt={game.name}
             className="game-main-image"
           />
@@ -142,7 +156,7 @@ function GameDetails() {
           )}
 
           {game.screenshots?.length > 0 && (
-            <div className="screenshots">
+            <div className="screenshots-details">
               <div className="screenshot-gallery">
                 {game.screenshots.map((img, index) => (
                   <img key={index} src={img} alt={`screenshot-${index}`} />

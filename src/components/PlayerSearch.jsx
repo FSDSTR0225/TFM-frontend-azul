@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "../style/PlayerSearch.css";
-
-const API_URL = "http://localhost:3000";
+import AuthContext from "../context/AuthContext";
+const API_URL = import.meta.env.VITE_API_URL;
 
 const PlayerSearch = () => {
   const [gameQuery, setGameQuery] = useState("");
@@ -14,13 +14,13 @@ const PlayerSearch = () => {
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [showDropdown, setShowDropdown] = useState(false); // Estado para manejar el desplegable de juegos
-
+  const { isLoggedIn , token } = useContext(AuthContext);
   // Fetch de juegos
   useEffect(() => {
     const delayFetch = setTimeout(() => {
       if (gameQuery.length > 2) {
         console.log("Buscando juegos con query:", gameQuery);
-        fetch(`${API_URL}/search/games?query=${gameQuery}`)
+        fetch(`${API_URL}/search/games/?query=${gameQuery}`)
           .then((response) => response.json())
           .then((data) => {
             console.log("Juegos recibidos:", data.games);
@@ -69,8 +69,8 @@ const PlayerSearch = () => {
       return;
     }
 
-    const token = localStorage.getItem("token");
-    if (!token) {
+   
+    if (!isLoggedIn) {
       setErrorMessage("Debes iniciar sesión para buscar jugadores.");
       return;
     }

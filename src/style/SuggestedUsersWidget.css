@@ -1,0 +1,254 @@
+/* === CONTENEDOR DE LA CARD COMPLETA === */
+.modular-card-suggested-users-card {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  border-radius: 28px;
+  background: rgba(24, 28, 43, 0.65);
+  box-shadow: 0 0 32px #00ffc855, 0 2px 12px #000a;
+  color: #fff;
+  font-family: "Audiowide", Arial, sans-serif;
+  backdrop-filter: blur(16px) saturate(120%);
+  position: relative;
+  overflow: hidden;
+}
+
+.modular-card-suggested-users-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 80% 20%, #00ffc822 0%, transparent 70%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* === CABECERA CON ICONO Y TÍTULO === */
+.modular-card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin-bottom: 1.5rem;
+  z-index: 2;
+}
+
+.modular-card-icon {
+  font-size: 1.7rem;
+  color: #66fcf1;
+  filter: drop-shadow(0 0 8px #00ffc8cc);
+}
+
+/* === SWIPER CONTENEDOR === */
+.suggested-users-swiper {
+  width: 100%;
+  padding: 2rem 0 1rem 0;
+  display: flex;
+  gap: 2.2rem;
+  overflow-x: auto;
+  background: linear-gradient(
+    135deg,
+    rgba(20, 28, 40, 0.97) 0%,
+    rgba(0, 255, 255, 0.1) 100%
+  );
+  border: 2.5px solid #00f0ff44;
+  backdrop-filter: blur(22px) saturate(120%);
+  box-shadow: 0 6px 40px #00f0ff33, 0 2px 12px #000a;
+  border-radius: 14px;
+}
+
+.swiper,
+.swiper-wrapper {
+  background: transparent;
+  border: 1px solid #00eeff00;
+  box-shadow: none;
+  backdrop-filter: none;
+}
+
+.suggested-users-swiper::-webkit-scrollbar {
+  height: 8px;
+  background: transparent;
+}
+.suggested-users-swiper::-webkit-scrollbar-thumb {
+  background: linear-gradient(90deg, #00ffc8 10%, #66fcf1 90%);
+  border-radius: 8px;
+  box-shadow: 0 0 8px #00ffc8cc;
+}
+
+.user-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+/* === SWIPER SLIDE: CADA USUARIO SUGERIDO === */
+.suggested-user-slide {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between !important;
+  align-items: center;
+  text-align: center;
+  min-width: 160px;
+  max-width: 180px;
+  height: 220px !important;
+  padding: 10px 8px 9px 8px;
+  flex-shrink: 0;
+  background: linear-gradient(135deg, #181c2b 80%, #23243a 100%);
+  border: 2.5px solid #00ffc8;
+  border-radius: 22px;
+  box-shadow: 0 0 18px #00ffc822, 0 2px 8px #00ffc822;
+  transition: transform 0.18s, box-shadow 0.18s, border-color 0.18s;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.suggested-user-slide:hover {
+  transform: scale(1.02) translateY(-4px);
+  box-shadow: 0 0 7px #00ffc8cc, 0 0 12px #ffd700aa;
+  border-color: #ffd700;
+}
+
+/* === BOTÓN “X” (CERRAR SUGERENCIA) === */
+.btn-suggestion {
+  position: absolute;
+  top: 10px;
+  left: 12px;
+  font-size: 1rem;
+  color: #ff4d4d8c;
+  font-weight: bold;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 10;
+  transition: transform 0.2s, color 0.2s;
+}
+.btn-suggestion:hover {
+  transform: scale(1.18);
+  color: #ff2222;
+}
+
+/* === AVATAR === */
+.avatar-suggestion-container {
+  position: relative;
+  margin-bottom: 6px;
+}
+
+.img-suggestion-user {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 3px solid #00ffc8;
+  object-fit: cover;
+  box-shadow: 0 0 16px #00ffc8cc;
+  transition: border-color 0.18s;
+}
+
+.suggested-user-slide:hover .img-suggestion-user {
+  border-color: #ffd700;
+}
+
+/* === NOMBRE DE USUARIO === */
+.username-suggestion {
+  margin-top: auto;
+  margin-bottom: 5px;
+  font-size: 0.95rem;
+  font-weight: bold;
+  color: #00ffc8;
+  text-shadow: 0 0 6px #00ffc8cc;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 140px;
+}
+
+/* === LISTA DE GÉNEROS === */
+.genre-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+  margin: 10px 0 7px;
+}
+
+.genre-chip {
+  background: #0b1a2a;
+  border: 1px solid #00ffc8;
+  border-radius: 12px;
+  padding: 2px 10px;
+  font-size: 0.55rem;
+  color: white;
+  box-shadow: 0 0 6px #00ffc811 inset;
+}
+
+/* === BOTONES (CONECTAR + VER PERFIL) === */
+.users-suggest-btn {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin-top: 7px;
+}
+
+.btn-connect,
+.btn-profile {
+  font-size: 0.5rem;
+  padding: 5px 10px;
+  width: 80px;
+  align-self: center;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  font-family: "Audiowide", Arial, sans-serif;
+  white-space: nowrap;
+  color: #66fcf1;
+  border: 2px solid #66fcf1;
+  background: linear-gradient(90deg, #23243a 70%, #00fff71a 100%);
+  transition: background 0.18s, color 0.18s, box-shadow 0.18s;
+  box-shadow: 0 0 8px #00ffc822;
+}
+
+.btn-connect:hover,
+.btn-profile:hover {
+  background: #66fcf1;
+  color: #0b1a2a;
+  box-shadow: 0 0 16px #00ffc8aa;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 900px) {
+  .modular-card-suggested-users-card {
+    padding: 1.2rem 0.5rem;
+    border-radius: 16px;
+  }
+  .suggested-users-swiper {
+    gap: 1.2rem;
+    padding: 1.2rem 0 0.7rem 0;
+  }
+  .suggested-user-slide {
+    min-width: 140px;
+    max-width: 160px;
+    height: 180px;
+    padding: 10px 6px 8px 6px;
+    border-radius: 12px;
+  }
+  .img-suggestion-user {
+    width: 36px;
+    height: 36px;
+    border-width: 2px;
+  }
+  .username-suggestion {
+    font-size: 0.92rem;
+    max-width: 90px;
+  }
+  .genre-chip {
+    font-size: 0.6rem;
+    padding: 2px 6px;
+  }
+  .btn-connect,
+  .btn-profile {
+    font-size: 0.55rem;
+    padding: 5px 8px;
+    border-radius: 7px;
+  }
+}

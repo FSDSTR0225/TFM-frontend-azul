@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom"; // hook que permite acceder a los parámetros de búsqueda de la URL.
-import { PacmanLoader } from "react-spinners";
 import "../style/AllGames.css";
 import GameCover from "./GameCover";
 import Pagination from "./Pagination";
@@ -12,7 +11,6 @@ function AllGames() {
   const [currentPage, setCurrentPage] = useState(1); // Estado para almacenar la página actual, empezamos en la 1 o el valor que venga en la URL.
   const [cachedPages, setCachedPages] = useState({}); // Estado para almacenar las páginas que ya hemos cargado, para no volver a cargarlas,esto ayudara a mejorar el rendimiento de la app.Empieza como un objeto vacío porque no hemos cargado nada y es un objeto porque las páginas vienen en formato de objeto.
   const [games, setGames] = useState([]);
-  const [loading, setLoading] = useState(true);
 
   const gamesPerPage = 25;
 
@@ -32,11 +30,9 @@ function AllGames() {
     const fetchGames = async () => {
       if (cachedPages[currentPage]) {
         setGames(cachedPages[currentPage]);
-        setLoading(false);
         return;
       }
 
-      setLoading(true);
       try {
         const response = await fetch(
           `${API_URL}/games?page=${currentPage}&limit=${gamesPerPage}`
@@ -53,8 +49,6 @@ function AllGames() {
         }));
       } catch (error) {
         console.error("Error al obtener los juegos:", error);
-      } finally {
-        setLoading(false);
       }
     };
 
@@ -68,15 +62,6 @@ function AllGames() {
       setCurrentPage((prev) => prev - 1);
     }
   };
-
-  if (loading) {
-    return (
-      <div className="loading-container">
-        <h1 className="loading-title">Cargando juegos...</h1>
-        <PacmanLoader color="#FFD700" size={40} />
-      </div>
-    );
-  }
 
   return (
     <>

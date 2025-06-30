@@ -1,7 +1,12 @@
 .game-cover {
   width: 100%;
   max-width: 240px;
-  background: rgba(255, 255, 255, 0.02);
+  background: linear-gradient(
+    135deg,
+    rgba(20, 28, 40, 0.673) 0%,
+    rgba(0, 255, 255, 0.063) 100%
+  );
+
   border: 1px solid rgba(0, 255, 255, 0.1);
   border-radius: 16px;
   overflow: hidden;
@@ -145,11 +150,35 @@
     transform: scale(1.05);
   }
 }
+@media (max-width: 600px) {
+  .game-cover {
+    max-width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 0 8px rgba(0, 255, 255, 0.1);
+    padding-bottom: 0.5rem;
+  }
 
-/* Móvil: desactivar efectos para rendimiento */
-@media (max-width: 768px) {
-  .game-cover::before,
-  .game-cover::after {
-    display: none;
+  .game-img {
+    height: 130px;
+    border-bottom: none;
+  }
+
+  .game-name {
+    font-size: 0.88rem;
+    min-height: 2.5rem;
+    padding: 0.6rem 0.4rem;
+  }
+
+  .game-cover:hover {
+    transform: none;
+    animation: none;
+    box-shadow: 0 0 12px rgba(0, 255, 255, 0.1);
+  }
+
+  .game-cover:hover .game-img,
+  .game-cover:hover .game-name {
+    transform: none;
+    filter: none;
+    text-shadow: none;
   }
 }

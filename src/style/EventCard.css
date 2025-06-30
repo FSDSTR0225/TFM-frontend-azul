@@ -1,176 +1,220 @@
-.event-card-pro {
-  background: linear-gradient(to right, #0b0c10, #1f2833);
-  border-radius: 22px;
-  padding: 1.7rem 2.2rem 1.5rem 2.2rem;
-  margin: 1.7rem auto;
-  width: 1200px;
-  box-shadow: 0 0 32px #00ffc8cc, 0 0 0 2px #23243a;
-  border: 2px solid rgba(0, 255, 200, 0.13);
-  color: #fff;
-  transition: transform 0.18s, box-shadow 0.18s;
+.event-card {
   position: relative;
+  width: 420px;
+  min-height: 450px;
+  max-width: 100%;
+  border-radius: 22px;
   overflow: hidden;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.25), 0 0 24px #00ffc822;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  transition: transform 0.18s, box-shadow 0.18s;
   display: flex;
   flex-direction: column;
-  gap: 1.2rem;
-  animation: modalPopIn 0.25s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-}
-.event-card-pro:hover {
-  transform: translateY(-6px) scale(1.02);
-  box-shadow: 0 0 36px #00ffc8cc, 0 0 0 2.5px #a259ff;
+  justify-content: flex-end;
 }
 
-.event-header-pro {
+.event-card:hover {
+  transform: scale(1.025) translateY(-2px);
+  box-shadow: 0 12px 40px 0 #00ffc855, 0 0 32px #ffd70055;
+}
+.event-card-img {
+  width: 1300;
+  height: 300px;
+  object-fit: cover;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/*capa oscura encima*/
+.event-card__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(10, 15, 30, 0.545) 60%,
+    rgba(30, 40, 60, 0.171) 100%
+  );
+  z-index: 1;
+  pointer-events: none;
+}
+
+.event-card__platform-box {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  z-index: 2;
+  background: transparent;
+  border-radius: 12px;
+  padding: 6px 10px;
   display: flex;
+  flex-direction: column;
+  gap: 6px;
   align-items: center;
-  gap: 1.1rem;
-  margin-bottom: 1.7rem;
-  position: relative;
+  justify-content: center;
+  min-width: 38px;
+  min-height: 38px;
 }
 
-.platform-icon-event {
-  width: 35px;
-  height: 35px;
-  margin-top: 0.6rem;
-  margin-bottom: 0.6rem;
-  object-fit: contain;
-  filter: drop-shadow(0 0 6px #00ffffcc);
-  transition: transform 0.3s ease;
+.event-card__right {
+  position: absolute;
+  top: 12px;
+  right: 5px;
+  z-index: 2;
+  background: transparent;
+  border-radius: 12px;
+  padding: 6px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: center;
 }
 
-.event-title-pro {
-  flex: 1 1 auto;
-  font-size: 1.35rem;
-  font-weight: 700;
-  color: #00ffc8;
-  text-shadow: 0 0 8px #00ffc8cc;
-  margin: 0 1rem;
-  letter-spacing: 0.5px;
-}
-
-.event-date-badge {
-  background: #c8a2f990;
-  color: #fff;
-  border-radius: 8px;
-  padding: 0.4em 1em;
-  font-size: 1.01rem;
+.event-card__right span {
+  font-size: 1rem;
+  color: whitesmoke;
   font-weight: 600;
-  box-shadow: 0 0 8px #a259ff55;
-  text-align: right;
-  line-height: 1.2;
-  letter-spacing: 0.5px;
+  text-shadow: 0 0 4px #00ffc822;
 }
 
-.event-main-pro {
+.event-card__platform-name {
+  font-size: 1rem;
+  color: whitesmoke;
+  font-weight: 600;
+  text-shadow: 0 0 2px #00ffc8cc;
+}
+
+.event-card__platform {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+  display: block;
+}
+
+.event-card__info {
+  width: 420px;
+  height: 150px;
+  position: relative;
+  z-index: 2;
+  padding: 1.4rem 1.2rem 0.8rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  background: rgba(24, 28, 43, 0.55);
+  border-bottom-left-radius: 22px;
+  border-bottom-right-radius: 22px;
+  box-shadow: 0 0 12px #00ffc822;
+  backdrop-filter: blur(6px);
+}
+
+.event-card__title {
+  font-size: 1.5rem;
+  font-family: "Audiowide", cursive;
+  color: #00ffc8;
+  align-self: center;
+  text-shadow: 0 0 8px #00ffc8cc;
+  margin: 0 0 0.2rem 0;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  line-height: 1.2;
+}
+
+.event-card__game {
+  font-size: 1.05rem;
+  font-family: "Audiowide", "Poppins", sans-serif;
+  color: #66fcf1;
+  font-weight: 600;
+  text-shadow: 0 0 4px #00ffc822;
+  margin-bottom: 5px;
+}
+
+.event-card__row {
   display: flex;
   align-items: center;
   justify-content: space-around;
-  flex-wrap: wrap;
-  gap: 1.2rem 2.2rem;
-  margin-bottom: 1rem;
+  gap: 1.2rem;
+  font-size: 1rem;
+  margin-bottom: 0.2rem;
 }
 
-.event-info-block {
-  display: flex;
-  align-items: center;
-  gap: 0.4em;
-  font-size: 1.05rem;
-  color: #ddd;
-  font-weight: 500;
-  background: rgba(0, 255, 200, 0.07);
-  border-radius: 8px;
-  padding: 0.5em 1.1em;
-  box-shadow: 0 0 8px #00ffc822;
-  min-width: 180px;
-  transition: background 0.2s, color 0.2s;
-}
-
-.event-info-label {
-  color: #00ffc8;
-  font-weight: 600;
-  margin-right: 0.2em;
-}
-
-.event-info-value {
-  color: #fff;
-  font-weight: 600;
-}
-
-.participants {
-  color: #00ffe5;
-  font-weight: bold;
-  background: rgba(0, 255, 200, 0.09);
-}
-.full {
-  color: #ff6b6b;
-  font-weight: bold;
-  background: rgba(255, 107, 107, 0.18);
-  box-shadow: 0 0 12px #ff6b6b55;
-}
-
-.event-icon {
-  font-size: 1.1em;
-  margin-right: 0.1em;
-}
-
-.event-btn-block-centered {
+.event-card__game-name {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 1.2rem;
+  gap: 0.5rem;
+  /* color: #66fcf1; */
+  color: #00e6ff;
+  font-weight: 600;
+  font-size: 1rem;
 }
 
-.btn-card-event-pro {
-  background: linear-gradient(135deg, #00ffc8 60%, #a259ff 100%);
-  color: #23243a;
-  border: none;
-  border-radius: 100px;
-  font-weight: bold;
-  font-size: 1.07rem;
-  padding: 0.7em 2.2em;
-  cursor: pointer;
-  box-shadow: 0 2px 12px #00ffc822;
-  transition: background 0.18s, color 0.18s, transform 0.12s;
-}
-.btn-card-event-pro:hover {
-  background: linear-gradient(135deg, #a259ff 60%, #00ffc8 100%);
-  color: #fff;
-  transform: scale(1.07);
+.event-card__row--slots {
+  color: #ffd700;
+  font-weight: 700;
+  font-size: 1rem;
+  background: rgba(255, 215, 0, 0.08);
+  border-radius: 8px;
+  padding: 2px 10px;
 }
 
-/* Responsive */
-@media (max-width: 700px) {
-  .event-card-pro {
-    max-width: 98vw;
+.event-card__row--full {
+  color: #ff4d4f;
+  font-weight: 700;
+  font-size: 1rem;
+  background: rgba(255, 77, 79, 0.12);
+  border-radius: 8px;
+  padding: 2px 10px;
+}
+
+.event-card__date {
+  color: whitesmoke;
+  font-weight: 600;
+  font-size: 1rem;
+  font-family: "Audiowide", "Poppins", sans-serif;
+  opacity: 0.85;
+  letter-spacing: 0.2px;
+  margin-top: 0.2rem;
+  text-shadow: 0 0 1px #00ffc822;
+}
+
+@media (max-width: 500px) {
+  .event-card {
+    width: 98vw;
     min-width: 0;
-    padding: 1.1rem 0.7rem 1rem 0.7rem;
+    border-radius: 14px;
   }
-  .event-header-pro {
-    flex-direction: column;
-    align-items: flex-start;
+  .event-card__info {
+    padding: 0.8rem 0.6rem 0.7rem 0.6rem;
+    border-bottom-left-radius: 14px;
+    border-bottom-right-radius: 14px;
+  }
+  .event-card__platform-box {
+    top: 8px;
+    right: 8px;
+    min-width: 28px;
+    min-height: 28px;
+    padding: 4px 6px;
+    border-radius: 8px;
+  }
+  .event-card__platform {
+    width: 20px;
+    height: 20px;
+  }
+  .event-card__title {
+    font-size: 1rem;
+  }
+  .event-card__row {
+    font-size: 0.92rem;
     gap: 0.7rem;
   }
-  .event-main-pro {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0.7rem;
+  .event-card__row--game,
+  .event-card__row--slots,
+  .event-card__row--full {
+    font-size: 0.92rem;
+    padding: 2px 7px;
   }
-  .event-btn-block-centered {
-    margin-top: 1.1rem;
-  }
-  .btn-card-event-pro {
-    width: 100%;
+  .event-card__date {
+    font-size: 0.88rem;
   }
 }
-
-/*ideas boton*/
-/* .btn-card-event-pro {
-    background: rgba(0, 255, 255, 0.1);
-    border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 8px;
-    color: #00ffff;
-    font-size: 0.9rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-} */

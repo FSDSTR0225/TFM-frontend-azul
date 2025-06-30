@@ -206,3 +206,56 @@
     padding: 1.5rem;
   }
 }
+
+@media (max-width: 640px) {
+  .profile-info {
+    padding-right: 0;
+    text-align: center;
+  }
+
+  .profile-info h2 {
+    font-size: 1.5rem;
+  }
+
+  .profile-info p,
+  .profile-info li {
+    font-size: 0.9rem;
+  }
+
+  .profile-username {
+    font-size: 1.1rem;
+  }
+
+  .profile-status {
+    font-size: 0.85rem;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .profile-section h3 {
+    font-size: 0.85rem;
+  }
+
+  .tag-list {
+    justify-content: center;
+  }
+
+  .platform-icons-show {
+    justify-content: center;
+    font-size: 1.1rem;
+  }
+
+  .availability-control {
+    font-size: 0.85rem;
+  }
+
+  .profile-preview {
+    height: 220px;
+    max-width: 100%;
+  }
+
+  .profile-card-show.float-card {
+    height: auto;
+    padding: 1.2rem;
+  }
+}

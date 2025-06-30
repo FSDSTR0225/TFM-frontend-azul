@@ -25,7 +25,7 @@
   overflow: hidden;
 }
 
-.event-info {
+.event-info-show {
   flex: 1;
   min-width: 300px;
   max-width: 500px;
@@ -33,7 +33,7 @@
   text-align: left;
 }
 
-.event-info h2 {
+.event-info-show h2 {
   font-size: 1.8rem;
   text-align: center;
   font-family: "Audiowide", sans-serif;
@@ -41,19 +41,19 @@
   margin-bottom: 1rem;
 }
 
-.event-info p {
+.event-info-show p {
   font-size: 1rem;
   line-height: 1.6;
   color: #ccc;
   margin-bottom: 1.5rem;
 }
 
-.event-info ul {
+.event-info-show ul {
   list-style: none;
   padding-left: 0;
 }
 
-.event-info li {
+.event-info-show li {
   font-size: 0.95rem;
   margin-bottom: 0.8rem;
   display: flex;
@@ -147,7 +147,7 @@
   margin: 1.4rem 0;
 }
 
-.event-icon {
+.event-icon-show {
   font-size: 1.2rem;
   color: #ccff00c2;
   margin-right: 0.5rem;
@@ -185,5 +185,44 @@
   .event-card-show.float-card {
     max-width: 90%;
     padding: 1.5rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .event-info {
+    padding-left: 0;
+    text-align: center;
+  }
+
+  .event-info h2 {
+    font-size: 1.5rem;
+  }
+
+  .event-info p,
+  .event-info li {
+    font-size: 0.9rem;
+  }
+
+  .event-title-show {
+    font-size: 1.1rem;
+  }
+
+  .event-description {
+    font-size: 0.8rem;
+  }
+
+  .event-preview {
+    height: 220px;
+    max-width: 100%;
+  }
+
+  .event-card-show.float-card {
+    height: auto;
+    padding: 1.2rem;
+  }
+
+  .event-image img {
+    width: 40%;
+    height: auto;
   }
 }

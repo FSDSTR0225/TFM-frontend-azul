@@ -134,15 +134,46 @@
   }
 }
 
-.platform-card .profile{
+.platform-card .profile {
   width: 150px;
   height: 150px;
-  .platform-icon-img{
+  .platform-icon-img {
     margin: auto;
     width: px;
     height: 80px;
   }
 }
+
+@media (max-width: 600px) {
+  .section-title1 {
+    font-size: 1.8rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .platform-list {
+    gap: 1.4rem;
+    margin-bottom: 3rem;
+  }
+
+  .platform-card {
+    width: 110px;
+    height: 110px;
+    font-size: 0.9rem;
+    padding: 0.6rem;
+  }
+
+  .platform-name-card {
+    font-size: 0.95rem;
+    min-height: auto;
+  }
+
+  .platform-icon-img {
+    width: 42px;
+    height: 42px;
+    margin: 0.4rem 0;
+  }
+}
+
 /* ICONOS FLOTANTEs?*/
 /* .platform-icon {
   width: 54px;
