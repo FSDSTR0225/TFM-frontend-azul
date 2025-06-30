@@ -64,7 +64,7 @@
 }
 
 /* Botón para eliminar hilo */
-.delete-button {
+.threadCard-delete-button {
   margin-top: 8px;
   background-color: #ff4d4f;
   color: white;
@@ -76,6 +76,6 @@
   transition: background-color 0.3s ease;
 }
 
-.delete-button:hover {
+.threadCard-delete-button:hover {
   background-color: #d9363e;
 }
