@@ -349,6 +349,73 @@
   width: 100%;
   z-index: 10;
 }
+.notification-container {
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  color: #66fcf1; /* Color neón */
+  transition: color 0.3s ease;
+}
+
+.notification-container:hover {
+  color: #00d1ff;
+  text-shadow: 0 0 10px #00d1ff;
+}
+
+/* Badge rojo con número de notificaciones */
+.notification-badge {
+  position: absolute;
+  top: -5px;
+  right: -8px;
+  background: red;
+  color: white;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 12px;
+  font-weight: bold;
+  pointer-events: none; /* Para que no interfiera con clics */
+  box-shadow: 0 0 6px red;
+}
+
+/* Dropdown de notificaciones */
+.notification-dropdown {
+  position: absolute;
+  top: 35px; /* Un poco más abajo que la campana */
+  right: 0;
+  background: rgba(10, 10, 30, 0.9);
+  color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 255, 255, 0.4);
+  width: 300px;
+  max-height: 400px;
+  overflow-y: auto;
+  z-index: 1000;
+  font-family: "Audiowide", sans-serif;
+  padding: 10px;
+}
+
+/* Opcional: Scrollbar estilizado */
+.notification-dropdown::-webkit-scrollbar {
+  width: 8px;
+}
+.notification-dropdown::-webkit-scrollbar-thumb {
+  background: #00d1ff;
+  border-radius: 4px;
+}
+
+.notification-item {
+  padding: 8px 10px;
+  border-bottom: 1px solid #00d1ff44;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+.notification-item:last-child {
+  border-bottom: none;
+}
+.notification-item:hover {
+  background: #00d1ff22;
+}
 
 @media (max-width: 1024px) {
   .nav-link,

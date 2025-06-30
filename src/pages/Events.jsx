@@ -35,18 +35,23 @@ const Events = () => {
     socket.connect();
 
     socket.on("newEvent", (newEvent) => {
+      // newEvent es el objeto crudo que llega del socket (contiene _id)
+      // lo transformamos para que tenga la estructura que necesitamos,es decir, id igual que el resto
+      const newEventToId = {
+        ...newEvent,
+        id: newEvent._id, // creamos id a partir de _id
+      };
+
+      // Actualizamos el estado de eventos con el nuevo evento recibido
       setEvents((prev) => {
-        const exists = prev.some((ev) => ev._id === newEvent._id);
+        const exists = prev.some((ev) => ev.id === newEventToId.id);
         if (exists) return prev;
 
-        const updated = [...prev, newEvent];
-
-        // Ordenamos por fecha más cercana
+        const updated = [...prev, newEventToId];
         updated.sort((a, b) => new Date(a.date) - new Date(b.date));
         return updated;
       });
     });
-
     return () => {
       socket.off("newEvent");
       socket.disconnect(); // buena práctica si este componente se desmonta
@@ -229,7 +234,9 @@ const Events = () => {
   };
 
   const onEventDeleted = (id) => {
-    setEvents((prevEvents) => prevEvents.filter((event) => event.id !== id));
+    setEvents((prevEvents) =>
+      prevEvents.filter((event) => (event.id || event._id) !== id)
+    );
   };
 
   useEffect(() => {
@@ -294,9 +301,11 @@ const Events = () => {
                   .slice(0, 5)
                   .map((event) => (
                     <EventCardMini
-                      key={event.id}
+                      key={event.id || event._id}
                       event={event}
-                      onClick={() => handleMiniCardEventClick(event.id)}
+                      onClick={() =>
+                        handleMiniCardEventClick(event.id || event._id)
+                      }
                     />
                   ))}
               </div>
@@ -312,13 +321,12 @@ const Events = () => {
             ) : (
               currentEvents.map((event) => (
                 <div
-                  key={event.id}
-                  ref={(el) => (eventRefs.current[event.id] = el)}
+                  key={event.id || event._id}
+                  ref={(el) => (eventRefs.current[event.id || event._id] = el)}
                 >
                   <EventCard
-                    key={event.id}
                     event={event}
-                    onClick={() => handleEventClick(event.id)}
+                    onClick={() => handleEventClick(event.id || event._id)}
                   />
                 </div>
               ))

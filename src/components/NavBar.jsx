@@ -1,19 +1,23 @@
 import React, { useEffect, useState, useContext } from "react";
 import { NavLink } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
+import NotificationContext from "../context/NotificationContext";
 import "../style/NavBar.css";
 import blankImg from "/images/profile/blankImg.jpg";
 import SearchInputExplore from "./SearchInputExplore";
+import { FaBell } from "react-icons/fa";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
 const NavBar = ({ showSearch }) => {
   const authContext = useContext(AuthContext);
+  const notificationContext = useContext(NotificationContext);
 
   const [platforms, setPlatforms] = useState([]);
   const [isUserOpen, setIsUserOpen] = useState(false); // Estado para el dropdown de usuario
   const [isPlatOpen, setIsPlatOpen] = useState(false); // Estado para el dropdown de plataformas
   const [search, setSearch] = useState("");
+  const [isNotifOpen, setIsNotifOpen] = useState(false);
 
   useEffect(() => {
     setIsUserOpen(false);
@@ -31,6 +35,10 @@ const NavBar = ({ showSearch }) => {
       }
     })();
   }, []);
+
+  const totalNotifications =
+    (notificationContext.receivedFriendRequests?.length || 0) +
+    (notificationContext.receivedEventRequests?.length || 0);
 
   // const toggleExplore = () => {
   //   setShowSearch(!showSearch);
@@ -141,69 +149,139 @@ const NavBar = ({ showSearch }) => {
             </NavLink>
           </li>
         ) : (
-          <li
-            className="navbar-user-dropdown"
-            onMouseEnter={() => setIsUserOpen(true)}
-            onMouseLeave={() => setIsUserOpen(false)}
-          >
-            <img
-              src={authContext.user?.avatar || blankImg}
-              alt="Avatar"
-              className="navbar-avatar"
-            />
-            <NavLink to="/users/me" id="perfil">
-              <span
-                className="navbar-username"
-                // data-fullname={authContext.user.username}
-                title={
-                  authContext.user.username.length > 12
-                    ? authContext.user.username
-                    : ""
-                }
-              >
-                {authContext.user.username}
-              </span>
-            </NavLink>
+          <>
+            {/* Campana de notificaciones en su propio <li> */}
+            <li
+              className="notification-container"
+              style={{
+                position: "relative",
+                cursor: "pointer",
+                marginRight: "15px",
+              }}
+              onClick={(e) => {
+                e.stopPropagation(); // Evita que el clic abra dropdown usuario
+                setIsNotifOpen((prev) => !prev);
+                setIsUserOpen(false); // Opcional: cerrar dropdown usuario si está abierto
+              }}
+              onMouseLeave={() => setIsNotifOpen(false)} // Opcional: cerrar dropdown al salir
+            >
+              <FaBell size={20} />
+              {totalNotifications > 0 && (
+                <span className="notification-badge">{totalNotifications}</span>
+              )}
+              {isNotifOpen && (
+                <div className="notification-dropdown">
+                  {console.log(
+                    "Notificaciones recibidas:",
+                    notificationContext.receivedEventRequests,
+                    notificationContext.receivedFriendRequests
+                  )}
+                  {notificationContext.receivedEventRequests.length === 0 &&
+                  notificationContext.receivedFriendRequests.length === 0 ? (
+                    <p style={{ padding: "10px" }}>No tienes notificaciones</p>
+                  ) : (
+                    <>
+                      {/* Notificaciones de eventos */}
+                      {notificationContext.receivedEventRequests.map(
+                        (notif) => (
+                          <div
+                            key={notif._id || notif.date}
+                            className="notification-item"
+                          >
+                            <p>{notif.message}</p>
+                          </div>
+                        )
+                      )}
+                      {/* Notificaciones de solicitudes de amistad */}
+                      {notificationContext.receivedFriendRequests.map(
+                        (notif) => (
+                          <div
+                            key={notif._id || notif.date}
+                            className="notification-item"
+                          >
+                            <p>{notif.message}</p>
+                          </div>
+                        )
+                      )}
+                    </>
+                  )}
+                </div>
+              )}
+            </li>
 
-            {/* bridge invisible para mantener hover */}
-            <div className="dropdown-bridge" />
-
-            <ul className={`dropdown-user ${isUserOpen ? "show" : ""}`}>
-              <li>
-                <NavLink to="/edit/profile" className="dropdown-options">
-                  Editar perfil
-                </NavLink>
-              </li>
-              <li>
-                <NavLink to="/friends" className="dropdown-options">
-                  Amigos
-                </NavLink>
-              </li>
-              <li>
-                <NavLink to="/my-events" className="dropdown-options">
-                  Mis eventos
-                </NavLink>
-              </li>
-              <li>
-                <NavLink to="/management" className="dropdown-options">
-                  Gestión de solicitudes
-                </NavLink>
-              </li>
-              <li>
-                <NavLink to="/configuracion" className="dropdown-options">
-                  Configuración
-                </NavLink>
-              </li>
-              <li>
-                <button
-                  className="dropdown-options"
-                  onClick={() => authContext.logout()}
+            {/* Avatar y dropdown usuario en su propio <li> */}
+            <li
+              className="navbar-user-dropdown"
+              onMouseEnter={() => {
+                setIsUserOpen(true);
+                setIsNotifOpen(false); // Opcional: cerrar notificaciones si está abierto
+              }}
+              onMouseLeave={() => setIsUserOpen(false)}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "15px",
+                position: "relative",
+              }}
+            >
+              <img
+                src={authContext.user?.avatar || blankImg}
+                alt="Avatar"
+                className="navbar-avatar"
+              />
+              <NavLink to="/users/me" id="perfil">
+                <span
+                  className="navbar-username"
+                  title={
+                    authContext.user.username.length > 12
+                      ? authContext.user.username
+                      : ""
+                  }
                 >
-                  Cerrar sesión
-                </button>
-              </li>
-            </ul>
-          </li>
+                  {authContext.user.username}
+                </span>
+              </NavLink>
+
+              {/* bridge invisible para mantener hover */}
+              <div className="dropdown-bridge" />
+
+              <ul className={`dropdown-user ${isUserOpen ? "show" : ""}`}>
+                <li>
+                  <NavLink to="/edit/profile" className="dropdown-options">
+                    Editar perfil
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to="/friends" className="dropdown-options">
+                    Amigos
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to="/my-events" className="dropdown-options">
+                    Mis eventos
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to="/management" className="dropdown-options">
+                    Gestión de solicitudes
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to="/configuracion" className="dropdown-options">
+                    Configuración
+                  </NavLink>
+                </li>
+                <li>
+                  <button
+                    className="dropdown-options"
+                    onClick={() => authContext.logout()}
+                  >
+                    Cerrar sesión
+                  </button>
+                </li>
+              </ul>
+            </li>
+          </>
         )}
       </ul>
     </nav>
