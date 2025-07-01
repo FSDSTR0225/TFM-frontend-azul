@@ -11,7 +11,7 @@ const API_URL = import.meta.env.VITE_API_URL;
 
 const NavBar = ({ showSearch }) => {
   const authContext = useContext(AuthContext);
-  const notificationContext = useContext(NotificationContext);
+  const { notifications, markAllRead } = useContext(NotificationContext);
 
   const [platforms, setPlatforms] = useState([]);
   const [isUserOpen, setIsUserOpen] = useState(false); // Estado para el dropdown de usuario
@@ -36,9 +36,7 @@ const NavBar = ({ showSearch }) => {
     })();
   }, []);
 
-  const totalNotifications =
-    (notificationContext.receivedFriendRequests?.length || 0) +
-    (notificationContext.receivedEventRequests?.length || 0);
+  const unreadCount = notifications.filter((notif) => !notif.read).length;
 
   // const toggleExplore = () => {
   //   setShowSearch(!showSearch);
@@ -159,56 +157,35 @@ const NavBar = ({ showSearch }) => {
                 marginRight: "15px",
               }}
               onClick={(e) => {
-                e.stopPropagation(); // Evita que el clic abra dropdown usuario
+                e.stopPropagation(); // que no abra el menú de usuario
+                markAllRead(); // marcamos todas las notificaciones como leídas
                 setIsNotifOpen((prev) => !prev);
-                setIsUserOpen(false); // Opcional: cerrar dropdown usuario si está abierto
+                setIsUserOpen(false);
               }}
-              onMouseLeave={() => setIsNotifOpen(false)} // Opcional: cerrar dropdown al salir
+              onMouseLeave={() => setIsNotifOpen(false)}
             >
               <FaBell size={20} />
-              {totalNotifications > 0 && (
-                <span className="notification-badge">{totalNotifications}</span>
+              {unreadCount > 0 && (
+                <span className="notification-badge">{unreadCount}</span>
               )}
+
               {isNotifOpen && (
                 <div className="notification-dropdown">
-                  {console.log(
-                    "Notificaciones recibidas:",
-                    notificationContext.receivedEventRequests,
-                    notificationContext.receivedFriendRequests
-                  )}
-                  {notificationContext.receivedEventRequests.length === 0 &&
-                  notificationContext.receivedFriendRequests.length === 0 ? (
+                  {notifications.length === 0 ? (
                     <p style={{ padding: "10px" }}>No tienes notificaciones</p>
                   ) : (
-                    <>
-                      {/* Notificaciones de eventos */}
-                      {notificationContext.receivedEventRequests.map(
-                        (notif) => (
-                          <div
-                            key={notif._id || notif.date}
-                            className="notification-item"
-                          >
-                            <p>{notif.message}</p>
-                          </div>
-                        )
-                      )}
-                      {/* Notificaciones de solicitudes de amistad */}
-                      {notificationContext.receivedFriendRequests.map(
-                        (notif) => (
-                          <div
-                            key={notif._id || notif.date}
-                            className="notification-item"
-                          >
-                            <p>{notif.message}</p>
-                          </div>
-                        )
-                      )}
-                    </>
+                    notifications.map((n) => (
+                      <div key={n._id} className="notification-item">
+                        <p>
+                          {/* Ya viene formateado desde el back en n.message */}
+                          {n.message}
+                        </p>
+                      </div>
+                    ))
                   )}
                 </div>
               )}
             </li>
-
             {/* Avatar y dropdown usuario en su propio <li> */}
             <li
               className="navbar-user-dropdown"

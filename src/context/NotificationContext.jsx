@@ -4,105 +4,86 @@ import AuthContext from "./AuthContext";
 
 const NotificationContext = createContext();
 
-const API_URL = import.meta.env.VITE_API_URL;
-
 export const NotificationProvider = ({ children }) => {
   const { token, isLoggedIn, user } = useContext(AuthContext);
+  const API_URL = import.meta.env.VITE_API_URL;
 
-  const [receivedFriendRequests, setReceivedFriendRequests] = useState([]); // Solicitudes de amistad recibidas
-  const [sentFriendRequests, setSentFriendRequests] = useState([]); // Solicitudes de amistad enviadas
-  const [receivedEventRequests, setReceivedEventRequests] = useState([]); // Solicitudes de eventos recibidas
-  const [sentEventRequests, setSentEventRequests] = useState([]); // Solicitudes de eventos enviadas
+  // Estado que guarda todas las notificaciones
+  const [notifications, setNotifications] = useState([]);
 
+  //cargar notificaciones al iniciar sesión
   useEffect(() => {
     if (!isLoggedIn) return;
 
-    const fetchAllRequests = async () => {
+    const loadNotifications = async () => {
       try {
-        const friendReceivedResponse = await fetch(
-          `${API_URL}/friends/requests/received`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-        const friendReceived = await friendReceivedResponse.json();
-
-        const friendSentResponse = await fetch(
-          `${API_URL}/friends/requests/sent`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-        const friendSent = await friendSentResponse.json();
-
-        const eventReceivedResponse = await fetch(
-          `${API_URL}/join-request/my-events/requests`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-        const eventReceived = await eventReceivedResponse.json();
-
-        const eventSentResponse = await fetch(
-          `${API_URL}/join-request/my-requests`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-        const eventSent = await eventSentResponse.json();
-
-        setReceivedFriendRequests(friendReceived);
-        setSentFriendRequests(friendSent);
-        setReceivedEventRequests(eventReceived.requests);
-        setSentEventRequests(eventSent.requests);
+        const res = await fetch(`${API_URL}/notifications`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        if (!res.ok) throw new Error("Error cargando notificaciones");
+        const data = await res.json();
+        setNotifications(data);
       } catch (err) {
-        console.error("Error cargando solicitudes:", err);
+        console.error("Load notifications failed:", err);
       }
     };
 
-    fetchAllRequests();
-  }, [isLoggedIn, token]);
+    loadNotifications();
+  }, [isLoggedIn, token, API_URL]);
 
+  // Conectar socket cuando el usuario esté logueado
+  useEffect(() => {
+    if (!isLoggedIn || !user) return;
+
+    if (!socket.connected) {
+      socket.connect();
+      console.log("🔌 Conectando socket manualmente...");
+    }
+
+    socket.emit("userConnect", user._id);
+    console.log("📡 Emitiendo userConnect tras la conexión:", user._id);
+
+    return () => {
+      if (socket.connected) {
+        socket.disconnect();
+        console.log("🔌 Socket desconectado al salir de sesión");
+      }
+    };
+  }, [isLoggedIn, user]);
+
+  //  recibir notificaciones en tiempo real vía socket
   useEffect(() => {
     if (!socket || !user) return;
 
-    const handleFriendNotification = (newRequest) => {
-      setReceivedFriendRequests((prev) => [newRequest, ...prev]);
+    const onNewNotification = (notif) => {
+      console.log("📣 [client] nueva notificación recibida:", notif);
+      setNotifications((prev) => [notif, ...prev]);
     };
 
-    const handleEventNotification = (notification) => {
-      setReceivedEventRequests((prev) => [notification, ...prev]);
-    };
-
-    socket.on("friend-notification", handleFriendNotification);
-    socket.on("event-notification", handleEventNotification);
-
+    socket.on("new_notification", onNewNotification);
     return () => {
-      socket.off("friend-notification", handleFriendNotification);
-      socket.off("event-notification", handleEventNotification);
+      socket.off("new_notification", onNewNotification);
     };
   }, [user]);
 
+  //  marca todas las notificaciones como leídas
+  const markAllRead = async () => {
+    try {
+      const res = await fetch(`${API_URL}/notifications/reads`, {
+        method: "PATCH",
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      if (!res.ok) throw new Error("No se pudieron marcar como leídas");
+      // Actualizamos localmente
+      setNotifications((prev) => prev.map((n) => ({ ...n, read: true })));
+    } catch (err) {
+      console.error("markAllRead failed:", err);
+    }
+  };
+
   return (
     <NotificationContext.Provider
-      value={{
-        receivedFriendRequests,
-        sentFriendRequests,
-        receivedEventRequests,
-        sentEventRequests,
-        setReceivedFriendRequests,
-        setSentFriendRequests,
-        setReceivedEventRequests,
-        setSentEventRequests,
-      }}
+      value={{ notifications, setNotifications, markAllRead }}
     >
       {children}
     </NotificationContext.Provider>

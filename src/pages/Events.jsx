@@ -29,10 +29,7 @@ const Events = () => {
   const { isLoggedIn } = useContext(AuthContext);
 
   useEffect(() => {
-    if (!isLoggedIn) return;
-
-    // Conectamos el socket solo si el usuario está logueado
-    socket.connect();
+    if (!isLoggedIn || !socket.connected) return;
 
     socket.on("newEvent", (newEvent) => {
       // newEvent es el objeto crudo que llega del socket (contiene _id)
@@ -54,7 +51,6 @@ const Events = () => {
     });
     return () => {
       socket.off("newEvent");
-      socket.disconnect(); // buena práctica si este componente se desmonta
     };
   }, [isLoggedIn]);
 

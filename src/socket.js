@@ -9,5 +9,13 @@ export const socket = io(import.meta.env.VITE_API_URL, {
   // transports: ["websocket"], // especifica que queremos usar websockets como transporte
 });
 
+socket.on("connect", () => {
+  console.log("✅ Socket conectado:", socket.id);
+});
+
+socket.on("disconnect", () => {
+  console.log("❌ Socket desconectado");
+});
+
 //con esto podemos conectar el socket desde cualquier parte de la app usando socket.emit("nombre del evento", data) para enviar datos al backend
 // y para escuchar algo socket.on("nombre del evento", (datos)=> { para tratar los datos recibidos})
