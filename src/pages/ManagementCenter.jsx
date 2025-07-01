@@ -168,7 +168,7 @@ function ManagementCenter() {
     };
   }, [section, friendRequestsTab]);
 
-  const handleCancelFriendRequest = async (requestId) => {
+  const handleRemoveFriendRequest = async (requestId) => {
     try {
       const response = await fetch(`${API_URL}/friends/requests/${requestId}`, {
         method: "DELETE",
@@ -188,31 +188,49 @@ function ManagementCenter() {
     }
   };
 
-  const handleFriendResponse = async (requestId, response) => {
+  const acceptFriendRequest = async (requestId) => {
     try {
       const res = await fetch(
-        `${API_URL}/friends/requests/${requestId}/${response}`,
+        `${API_URL}/friends/requests/${requestId}/accept`,
         {
           method: "PUT",
           headers: { Authorization: `Bearer ${token}` },
         }
       );
 
-      if (!res.ok) throw new Error("Error al procesar la solicitud de amistad");
+      if (!res.ok) throw new Error("Error al aceptar la solicitud");
 
-      toast.success(
-        response === "accept"
-          ? "Has aceptado la solicitud de amistad"
-          : "Has rechazado la solicitud de amistad",
-        { icon: response === "accept" ? "✅" : "❌" }
-      );
-
+      toast.success("Has aceptado la solicitud de amistad", { icon: "✅" });
       setReceivedFriendRequests((prev) =>
         prev.filter((req) => req._id !== requestId)
       );
     } catch (error) {
-      console.error("Error gestionando solicitud de amistad:", error);
-      toast.error("No se pudo procesar la solicitud de amistad", {
+      console.error("Error aceptando solicitud:", error);
+      toast.error("No se pudo aceptar la solicitud de amistad", {
+        icon: "⚠️",
+      });
+    }
+  };
+
+  const rejectFriendRequest = async (requestId) => {
+    try {
+      const res = await fetch(
+        `${API_URL}/friends/requests/${requestId}/reject`,
+        {
+          method: "PUT",
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+
+      if (!res.ok) throw new Error("Error al rechazar la solicitud");
+
+      toast.success("Has rechazado la solicitud de amistad", { icon: "❌" });
+      setReceivedFriendRequests((prev) =>
+        prev.filter((req) => req._id !== requestId)
+      );
+    } catch (error) {
+      console.error("Error rechazando solicitud:", error);
+      toast.error("No se pudo rechazar la solicitud de amistad", {
         icon: "⚠️",
       });
     }
@@ -372,17 +390,13 @@ function ManagementCenter() {
                         <div className="actions">
                           <button
                             className="accept-request-btn"
-                            onClick={() =>
-                              handleFriendResponse(req._id, "accept")
-                            }
+                            onClick={() => acceptFriendRequest(req._id)}
                           >
                             Aceptar
                           </button>
                           <button
                             className="reject-request-btn"
-                            onClick={() =>
-                              handleFriendResponse(req._id, "reject")
-                            }
+                            onClick={() => rejectFriendRequest(req._id)}
                           >
                             Rechazar
                           </button>
@@ -412,7 +426,7 @@ function ManagementCenter() {
                         {req.userReceiver.username}"
                         <button
                           className="cancel-request-btn"
-                          onClick={() => handleCancelFriendRequest(req._id)}
+                          onClick={() => handleRemoveFriendRequest(req._id)}
                         >
                           Cancelar
                         </button>
