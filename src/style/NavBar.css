@@ -381,14 +381,14 @@
 /* Dropdown de notificaciones */
 .notification-dropdown {
   position: absolute;
-  top: 35px; /* Un poco más abajo que la campana */
+  top: 45px; /* Un poco más abajo que la campana */
   right: 0;
   background: rgba(10, 10, 30, 0.9);
   color: white;
   border-radius: 8px;
   box-shadow: 0 4px 15px rgba(0, 255, 255, 0.4);
   width: 300px;
-  max-height: 400px;
+  max-height: 330px;
   overflow-y: auto;
   z-index: 1000;
   font-family: "Audiowide", sans-serif;

@@ -162,7 +162,6 @@ const NavBar = ({ showSearch }) => {
                 setIsNotifOpen((prev) => !prev);
                 setIsUserOpen(false);
               }}
-              onMouseLeave={() => setIsNotifOpen(false)}
             >
               <FaBell size={20} />
               {unreadCount > 0 && (
