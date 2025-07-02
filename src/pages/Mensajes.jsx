@@ -1,7 +1,7 @@
 import { useEffect, useState, useContext } from "react";
 import { socket } from "../socket"; // Usamos el socket global correctamente
 import AuthContext from "../context/AuthContext";
-import "../style/Chat.css";
+import "../style/Mensajes.css";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
