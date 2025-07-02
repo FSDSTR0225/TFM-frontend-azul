@@ -35,14 +35,9 @@ export const NotificationProvider = ({ children }) => {
   useEffect(() => {
     if (!isLoggedIn || !user) return;
 
-    // ⚠️ NO volver a hacer socket.connect() aquí
-
     const handleConnect = () => {
       socket.emit("userConnect", user._id);
-      console.log(
-        "📡 Emitido userConnect desde NotificationContext:",
-        user._id
-      );
+      console.log("Emitido userConnect desde NotificationContext:", user._id);
     };
 
     if (socket.connected) {
@@ -61,7 +56,7 @@ export const NotificationProvider = ({ children }) => {
     if (!socket || !user) return;
 
     const onNewNotification = (notif) => {
-      console.log("📣 [client] nueva notificación recibida:", notif);
+      console.log("[client] nueva notificación recibida:", notif);
       setNotifications((prev) => [notif, ...prev]);
     };
 
