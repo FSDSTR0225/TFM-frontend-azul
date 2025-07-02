@@ -51,15 +51,6 @@ function Lobby() {
         </div>
 
         <main className="lobby-main-content">
-          <section className="lobby-info-section">
-            <div className="dashboard-glass">
-              <Dashboard />
-            </div>
-            <div className="events-today-glass">
-              <EventsToday />
-            </div>
-          </section>
-
           <section className="lobby-suggestions-section">
             <div className="games-slider-section">
               <h3 className="section-title">
@@ -71,6 +62,15 @@ function Lobby() {
               </div>
             </div>
           </section>
+          <section className="lobby-info-section">
+            <div className="dashboard-glass">
+              <Dashboard />
+            </div>
+            <div className="events-today-glass">
+              <EventsToday />
+            </div>
+          </section>
+
           <section className="lobby-section-events">
             <div className="events-left-section">
               <h3 className="section-title">
