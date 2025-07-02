@@ -25,21 +25,32 @@ export const Mensajes = () => {
       socketRef.current.emit("userConnect", user.id);
     });
 
-    socketRef.current.on("private message", (msg) => {
-      const isForSelected =
-        msg.sender === selectedFriend?.id ||
-        msg.receiverId === selectedFriend?.id;
-
-      if (isForSelected) {
-        setMessages((prev) => [...prev, msg]);
-      }
-    });
-
     return () => {
-      socketRef.current.off("private message");
       socketRef.current.disconnect();
     };
-  }, [selectedFriend, token, user.id]);
+  }, [token, user.id]);
+
+  // 2. Escuchar mensajes nuevos (cuando cambia el amigo)
+  useEffect(() => {
+    const socket = socketRef.current;
+    if (!socket) return;
+
+    const handleIncomingMessage = (message) => {
+      console.log("Mensaje recibido en tiempo real:", message);
+
+      // Asegurarte de que sea el chat activo
+      const senderId = message.sender?._id || message.sender;
+      if (senderId === selectedFriend?._id || senderId === selectedFriend?.id) {
+        setMessages((prev) => [...prev, message]);
+      }
+    };
+
+    socket.on("private message", handleIncomingMessage);
+
+    return () => {
+      socket.off("private message", handleIncomingMessage);
+    };
+  }, [selectedFriend]);
 
   // Obtener todos los amigos (online y offline)
   useEffect(() => {
@@ -85,14 +96,14 @@ export const Mensajes = () => {
     const timestamp = new Date().toISOString();
     const msgPayload = {
       content: message,
-      senderId: user.id,
+      senderId: user._id,
       receiverId: selectedFriend.id,
       timestamp,
     };
-
+    console.log("Enviando mensaje:", msgPayload);
     socketRef.current.emit("private message", msgPayload);
 
-    setMessages((prev) => [...prev, { ...msgPayload, senderId: user.id }]);
+    setMessages((prev) => [...prev, { ...msgPayload, senderId: user._id }]);
     setMessage("");
   };
 
