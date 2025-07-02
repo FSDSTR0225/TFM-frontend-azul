@@ -5,7 +5,7 @@ export default function MyScrollBar({ children }) {
   return (
     <Scrollbar
       style={{
-        height: "calc(100vh - 72px)",
+        height: "calc(100vh - 67px )",
         padding: "0 0.3rem",
         width: "100%",
         overflowX: "auto",
