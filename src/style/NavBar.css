@@ -292,7 +292,7 @@
 
 .dropdown-user.show {
   display: block;
-  margin-top: 11px; /* Ajusta visualmente la superposición */
+  margin-top: 11px;
   box-shadow: inset 0 2px 6px rgba(0, 255, 255, 0.15),
     0 10px 30px rgba(0, 255, 255, 0.25), 0 0 12px rgba(0, 255, 255, 0.3);
   border-top: none;
@@ -349,6 +349,47 @@
   width: 100%;
   z-index: 10;
 }
+
+.messages-badge {
+  position: relative;
+}
+
+.message-ball-badge {
+  background-color: rgb(223, 2, 2);
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 50%;
+  position: absolute;
+  top: -14px;
+  right: -10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  height: 18px;
+  z-index: 10;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
+  animation: pulseBadge 1.3s infinite;
+}
+
+/* Animación opcional */
+@keyframes pulseBadge {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0px rgba(255, 0, 0, 0.6);
+  }
+  70% {
+    transform: scale(1.1);
+    box-shadow: 0 0 8px rgba(255, 0, 0, 0.8);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0px rgba(255, 0, 0, 0.6);
+  }
+}
+
 .notification-container {
   position: relative;
   cursor: pointer;
@@ -363,7 +404,6 @@
   text-shadow: 0 0 10px #00d1ff;
 }
 
-/* Badge rojo con número de notificaciones */
 .notification-badge {
   position: absolute;
   top: -5px;
@@ -374,14 +414,13 @@
   padding: 2px 6px;
   font-size: 12px;
   font-weight: bold;
-  pointer-events: none; /* Para que no interfiera con clics */
+  pointer-events: none;
   box-shadow: 0 0 6px red;
 }
 
-/* Dropdown de notificaciones */
 .notification-dropdown {
   position: absolute;
-  top: 45px; /* Un poco más abajo que la campana */
+  top: 45px;
   right: 0;
   background: rgba(10, 10, 30, 0.9);
   color: white;
@@ -395,7 +434,6 @@
   padding: 10px;
 }
 
-/* Opcional: Scrollbar estilizado */
 .notification-dropdown::-webkit-scrollbar {
   width: 8px;
 }

@@ -18,6 +18,7 @@ const NavBar = ({ showSearch }) => {
   const [isPlatOpen, setIsPlatOpen] = useState(false); // Estado para el dropdown de plataformas
   const [search, setSearch] = useState("");
   const [isNotifOpen, setIsNotifOpen] = useState(false);
+  const [totalUnreadChat, setTotalUnreadChat] = useState(0);
 
   useEffect(() => {
     setIsUserOpen(false);
@@ -38,10 +39,30 @@ const NavBar = ({ showSearch }) => {
 
   const unreadCount = notifications.filter((notif) => !notif.read).length;
 
-  // const toggleExplore = () => {
-  //   setShowSearch(!showSearch);
-  //   if (showSearch) setSearch("");
-  // };
+  useEffect(() => {
+    const fetchUnreadMessages = async () => {
+      try {
+        const response = await fetch(`${API_URL}/chats/unread-count`, {
+          headers: {
+            Authorization: `Bearer ${authContext.token}`,
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error("No se pudo obtener los mensajes no leidos");
+        }
+
+        const data = await response.json();
+        setTotalUnreadChat(data.totalUnread || 0);
+      } catch (error) {
+        console.error("Error al obtener mensajes no leídos:", error);
+      }
+    };
+
+    if (authContext.isLoggedIn) {
+      fetchUnreadMessages();
+    }
+  }, [authContext.isLoggedIn, authContext.token]);
 
   return (
     <nav className="navbar">
@@ -102,14 +123,20 @@ const NavBar = ({ showSearch }) => {
 
           {authContext.isLoggedIn && (
             <>
-              <li>
+              <li className="messages-badge">
                 <NavLink
                   to="/messages"
+                  onClick={() => setTotalUnreadChat(0)} // cambair logica si queremos que se vayan eliminando 1 a 1
                   className={({ isActive }) =>
                     isActive ? "active-link" : "nav-link"
                   }
                 >
                   Mensajes
+                  {totalUnreadChat > 0 && (
+                    <span className="message-ball-badge">
+                      {totalUnreadChat}
+                    </span>
+                  )}
                 </NavLink>
               </li>
               <li>
@@ -148,7 +175,6 @@ const NavBar = ({ showSearch }) => {
           </li>
         ) : (
           <>
-            {/* Campana de notificaciones en su propio <li> */}
             <li
               className="notification-container"
               style={{
@@ -185,7 +211,6 @@ const NavBar = ({ showSearch }) => {
                 </div>
               )}
             </li>
-            {/* Avatar y dropdown usuario en su propio <li> */}
             <li
               className="navbar-user-dropdown"
               onMouseEnter={() => {
