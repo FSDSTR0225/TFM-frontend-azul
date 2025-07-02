@@ -12,9 +12,9 @@ body {
   height: auto;
   min-height: 100vh;
   max-height: 100vh;
-  overflow: auto;
+  overflow: hidden;
   scroll-behavior: smooth;
-  font-family: "Poppins", sans-serif;
+  font-family: "Audiowide", "Poppins", sans-serif;
   color: white;
 }
 
