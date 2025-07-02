@@ -35,19 +35,24 @@ export const NotificationProvider = ({ children }) => {
   useEffect(() => {
     if (!isLoggedIn || !user) return;
 
-    if (!socket.connected) {
-      socket.connect();
-      console.log("🔌 Conectando socket manualmente...");
+    // ⚠️ NO volver a hacer socket.connect() aquí
+
+    const handleConnect = () => {
+      socket.emit("userConnect", user._id);
+      console.log(
+        "📡 Emitido userConnect desde NotificationContext:",
+        user._id
+      );
+    };
+
+    if (socket.connected) {
+      handleConnect(); // Ya está conectado, emite directamente
+    } else {
+      socket.once("connect", handleConnect); // Espera a que se conecte
     }
 
-    socket.emit("userConnect", user._id);
-    console.log("📡 Emitiendo userConnect tras la conexión:", user._id);
-
     return () => {
-      if (socket.connected) {
-        socket.disconnect();
-        console.log("🔌 Socket desconectado al salir de sesión");
-      }
+      socket.off("connect", handleConnect); // Limpieza
     };
   }, [isLoggedIn, user]);
 
