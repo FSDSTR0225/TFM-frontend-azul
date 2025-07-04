@@ -52,6 +52,7 @@
   animation: pulse-shine 2.5s infinite cubic-bezier(0.68, -0.55, 0.27, 1.55);
   transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55),
     box-shadow 0.3s;
+  margin-top: 2rem;
 }
 
 .events-today-card:hover {

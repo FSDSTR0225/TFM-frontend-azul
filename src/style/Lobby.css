@@ -89,7 +89,7 @@
 .lobby-info-section {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-evenly;
   flex-wrap: nowrap;
   align-items: center;
   gap: 2rem;
@@ -97,21 +97,41 @@
   margin-bottom: 3rem;
 }
 .dashboard-glass {
-  background: rgba(255, 255, 255, 0.035);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: transparent;
+  /* border: 1px solid rgba(255, 255, 255, 0.06); */
   backdrop-filter: blur(10px);
   border-radius: 16px;
   padding: 1.5rem;
-  box-shadow: 0 0 18px rgba(0, 0, 0, 0.25);
+  /* box-shadow: 0 0 18px rgba(0, 0, 0, 0.25); */
 }
 
 .events-today-glass {
-  background: rgba(0, 255, 200, 0.03);
-  border: 1px solid rgba(0, 255, 200, 0.08);
+  /* background: rgba(0, 255, 200, 0.03); */
+  /* border: 1px solid rgba(0, 255, 200, 0.08); */
   backdrop-filter: blur(12px);
   border-radius: 16px;
   padding: 1.5rem;
-  box-shadow: 0 0 25px rgba(0, 255, 200, 0.15);
+
+  /* box-shadow: 0 0 25px rgba(0, 255, 200, 0.15); */
+}
+
+.event-right-today {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 3.5rem;
+}
+
+.event-cover-calendar {
+  margin-top: 1.5rem;
+  width: 100%;
+  height: 100%;
+  border-radius: 16px;
+  background: linear-gradient(
+    to bottom right,
+    rgba(7, 18, 15, 0.1),
+    rgba(0, 255, 200, 0.05)
+  );
 }
 
 /* ======== SECCIÓN 2: SUGERENCIAS PRINCIPALES ACTUALIZADA ======== */
@@ -178,9 +198,10 @@
   box-shadow: 0 0 18px rgba(0, 0, 0, 0.25);
 }
 
-/* 📌 Eventos sugeridos - grid 2x2 */
+/*  Eventos sugeridos - grid 2x2 */
 .events-grid-section {
   width: 100%;
+  margin-left: 4rem;
 }
 
 .event-right-section {

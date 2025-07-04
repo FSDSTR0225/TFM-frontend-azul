@@ -4,6 +4,10 @@
   width: 100%;
 }
 
+.modular-card-calendar-card {
+  border-radius: 16px;
+  padding: 1rem;
+}
 .modular-card-header {
   display: flex;
   align-items: center;
