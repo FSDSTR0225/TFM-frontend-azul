@@ -6,9 +6,13 @@
   position: sticky;
   top: 0;
   z-index: 1000;
-  background: rgba(10, 10, 30, 0.6);
+  /* background: rgba(10, 10, 30, 0.6); */
+  background: radial-gradient(circle at 25% 20%, #132347, transparent 20%),
+    radial-gradient(circle at 50% 60%, #2b1a4c, transparent 10%),
+    radial-gradient(circle at 50% 80%, rgba(0, 255, 200, 0.05), transparent 30%),
+    #0a0a1a;
   backdrop-filter: blur(10px);
-  border-bottom: 2px solid #66fcf1;
+  border-bottom: 2px solid #66fcf2;
   box-shadow: 0 4px 20px rgba(0, 255, 255, 0.1);
   height: 64px;
   min-height: 64px;
