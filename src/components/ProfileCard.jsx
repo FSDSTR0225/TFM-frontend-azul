@@ -18,8 +18,8 @@ const ProfileCard = () => {
   const navigate = useNavigate();
  const [player, setPlayer] = useState(null);
   const location = useLocation();
-  const receivedPlayer = location.state?.player || null;
-  const username = receivedPlayer.username || null;
+  const receivedPlayer = location?.state?.player || null;
+  const username = receivedPlayer?.username || null;
 const [modalOpen, setModalOpen] = useState(false);
 
   const triggerRefresh = () => {
