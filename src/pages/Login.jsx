@@ -19,7 +19,7 @@ export default function Login() {
     fail: "Login fallido. Por favor, inténtalo de nuevo más tarde.",
   };
 
-  const url = "http://localhost:3000/auth/login";
+  const url= `${import.meta.env.VITE_API_URL}/auth/login`;
 
   const {
     register,

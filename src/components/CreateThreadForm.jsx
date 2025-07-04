@@ -26,7 +26,7 @@ export default function CreateThreadForm({ onNewThread }) {
 
       try {
         const res = await fetch(
-          `http://localhost:3000/search/games?query=${encodeURIComponent(
+          `${import.meta.env.VITE_API_URL}/search/games?query=${encodeURIComponent(
             searchTerm
           )}`
         );
@@ -45,7 +45,7 @@ export default function CreateThreadForm({ onNewThread }) {
   const fetchPlatformsForGame = async (gameId) => {
     try {
       const res = await fetch(
-        `http://localhost:3000/games/${gameId}/platforms`
+        `${import.meta.env.VITE_API_URL}/games/${gameId}/platforms`
       );
       const data = await res.json();
       setPlatforms(data.platforms || []);
@@ -72,7 +72,7 @@ export default function CreateThreadForm({ onNewThread }) {
     setError(null);
 
     try {
-      const res = await fetch("http://localhost:3000/post", {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/post`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

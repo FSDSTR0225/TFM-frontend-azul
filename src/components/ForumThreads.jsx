@@ -10,7 +10,7 @@ export default function ForumThreads() {
   const user = JSON.parse(localStorage.getItem("user"));
 
   useEffect(() => {
-    fetch("http://localhost:3000/post")
+    fetch(`${import.meta.env.VITE_API_URL}/posts`)
       .then((res) => res.json())
       .then((data) => {
         setThreads(data.posts);
@@ -30,7 +30,7 @@ export default function ForumThreads() {
     if (!confirmDelete) return; // Cancelado por el usuario
 
     try {
-      await fetch(`http://localhost:3000/post/${threadId}`, {
+      await fetch(`${import.meta.env.VITE_API_URL}/post/${threadId}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,

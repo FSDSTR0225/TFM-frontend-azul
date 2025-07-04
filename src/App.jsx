@@ -26,7 +26,7 @@ import PlayerProfile from "./pages/PlayerProfile";
 
 import { Mensajes } from "./pages/Mensajes";
 import ForumThreads from "./components/ForumThreads";
-import { MyScrollBar } from "./components/MyScrollBar";
+// import { MyScrollBar } from "./components/MyScrollBar";
 import ExploreGames from "./components/ExploreGames";
 import ExploreUsers from "./components/ExploreUsers";
 import Footer from "./components/Footer";
@@ -147,7 +147,7 @@ export default function App() {
           }
         />
       </Routes> */}
-      <MyScrollBar>
+      {/* <MyScrollBar> */}
         <main>
           <Routes>
             <Route path="/" element={<Home />} />
@@ -246,7 +246,7 @@ export default function App() {
           </Routes>
         </main>
         {showFooter && <Footer />}
-      </MyScrollBar>
+      {/* </MyScrollBar> */}
       <Toaster richColors position="bottom-right" />
     </div>
   );
