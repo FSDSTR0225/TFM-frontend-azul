@@ -86,103 +86,106 @@ function Lobby() {
   }
 
   return (
-    <div className="lobby-container">
-      <div className="lobby-content">
-        <div className="lobby-header">
+    <>
+      <div className="lobby-header">
+        <div className="hud-container scan-effect">
           <h1 className="lobby-title">
             ¡Bienvenido a tu lobby <span>{authContext.user.username}</span>!
           </h1>
           <h2 className="lobby-subtitle">¿Listo para jugar hoy?</h2>
         </div>
-
-        <main className="lobby-main-content">
-          <section className="lobby-suggestions-section">
-            <div className="games-slider-section">
-              <h3 className="section-title">
-                <GiRetroController className="icon-lobby-suggestions" />
-                Juegos sugeridos para ti
-              </h3>
-              <div className="games-slider-glass">
-                <SuggestedGamesWidget />
-              </div>
-            </div>
-          </section>
-          <section className="lobby-info-section">
-            <div className="dashboard-glass">
-              <Dashboard />
-            </div>
-            <div className="events-today-glass">
-              <h3 className="section-title">
-                <TbCalendarBolt className="icon-lobby-suggestions" />
-                Calendario de eventos
-              </h3>
-              <div className="event-right-today">
-                <div className="calendar-section">
-                  <CalendarWidget onEventClick={handleDayClick} />
+      </div>
+      <div className="divider-lobby"></div>
+      <div className="lobby-container">
+        <div className="lobby-content">
+          <main className="lobby-main-content">
+            <section className="lobby-suggestions-section">
+              <div className="games-slider-section">
+                <h3 className="section-title">
+                  <GiRetroController className="icon-lobby-suggestions" />
+                  Juegos sugeridos para ti
+                </h3>
+                <div className="games-slider-glass">
+                  <SuggestedGamesWidget />
                 </div>
-                <AnimatePresence>
-                  {selectedDay && eventsOfDay.length > 0 && (
-                    <Motion.div
-                      key="event-cards"
-                      initial={{ opacity: 0, x: -50, scale: 0.95 }}
-                      animate={{ opacity: 1, x: 0, scale: 1 }}
-                      exit={{ opacity: 0, x: -50, scale: 0.95 }}
-                      transition={{ duration: 0.4 }}
-                      className="calendar-events-card-container"
-                    >
-                      <div className="calendar-event-cards">
-                        {eventsOfDay.slice(0, 2).map((event) => (
-                          <div key={event._id} className="events-today-card">
-                            <h2 className="card-title-events">¡Evento!</h2>
-                            <h3 className="events-title-card-lobby">
-                              {event.title}
-                            </h3>
-                            <p className="events-date-card-lobby">
-                              <strong>Hora:</strong>{" "}
-                              {new Date(event.date).toLocaleTimeString([], {
-                                hour: "2-digit",
-                                minute: "2-digit",
-                              })}
-                            </p>
-                            <p className="events-game-card-lobby">
-                              <strong>Juego:</strong> {event.game.name}
-                            </p>
-                            <div className="events-platform-card-lobby">
-                              <img
-                                src={event.platform.icon}
-                                alt={`Icono de ${event.platform.name}`}
-                                className="events-icon-platform-card-lobby"
-                              />
-                              <span
-                                className="events-platform-name"
-                                title={event.platform.name}
-                              >
-                                {event.platform.name === "Nintendo Switch"
-                                  ? "Switch"
-                                  : event.platform.name}
-                              </span>
+              </div>
+            </section>
+            <section className="lobby-info-section">
+              <div className="dashboard-glass">
+                <Dashboard />
+              </div>
+              <div className="events-today-glass">
+                <h3 className="section-title">
+                  <TbCalendarBolt className="icon-lobby-suggestions" />
+                  Calendario de eventos
+                </h3>
+                <div className="event-right-today">
+                  <div className="calendar-section">
+                    <CalendarWidget onEventClick={handleDayClick} />
+                  </div>
+                  <AnimatePresence>
+                    {selectedDay && eventsOfDay.length > 0 && (
+                      <Motion.div
+                        key="event-cards"
+                        initial={{ opacity: 0, x: -50, scale: 0.95 }}
+                        animate={{ opacity: 1, x: 0, scale: 1 }}
+                        exit={{ opacity: 0, x: -50, scale: 0.95 }}
+                        transition={{ duration: 0.4 }}
+                        className="calendar-events-card-container"
+                      >
+                        <div className="calendar-event-cards">
+                          {eventsOfDay.slice(0, 2).map((event) => (
+                            <div key={event._id} className="events-today-card">
+                              <h2 className="card-title-events">¡Evento!</h2>
+                              <h3 className="events-title-card-lobby">
+                                {event.title}
+                              </h3>
+                              <p className="events-date-card-lobby">
+                                <strong>Hora:</strong>{" "}
+                                {new Date(event.date).toLocaleTimeString([], {
+                                  hour: "2-digit",
+                                  minute: "2-digit",
+                                })}
+                              </p>
+                              <p className="events-game-card-lobby">
+                                <strong>Juego:</strong> {event.game.name}
+                              </p>
+                              <div className="events-platform-card-lobby">
+                                <img
+                                  src={event.platform.icon}
+                                  alt={`Icono de ${event.platform.name}`}
+                                  className="events-icon-platform-card-lobby"
+                                />
+                                <span
+                                  className="events-platform-name"
+                                  title={event.platform.name}
+                                >
+                                  {event.platform.name === "Nintendo Switch"
+                                    ? "Switch"
+                                    : event.platform.name}
+                                </span>
+                              </div>
                             </div>
-                          </div>
-                        ))}
-                      </div>
-                    </Motion.div>
-                  )}
-                </AnimatePresence>
+                          ))}
+                        </div>
+                      </Motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
               </div>
-            </div>
-          </section>
+            </section>
 
-          <section className="lobby-section-events">
-            <div className="events-left-section">
-              <div className="friends-widget-glass">
-                <FriendsOnlineWidget />
-              </div>
-              {/* <h3 className="section-title">
+            <section className="lobby-section-events">
+              <div className="events-left-section">
+                <div className="friends-widget-glass">
+                  <FriendsOnlineWidget />
+                </div>
+                {/* <h3 className="section-title">
                 <TbCalendarBolt className="icon-lobby-suggestions" />
                 Calendario de eventos
               </h3> */}
 
-              {/* <div className="calendar-section">
+                {/* <div className="calendar-section">
                 <CalendarWidget onEventClick={handleDayClick} />
               </div>
               <div className="event-cover-calendar">
@@ -235,33 +238,34 @@ function Lobby() {
                   )}
                 </AnimatePresence>
               </div> */}
-            </div>
-            <div className="events-right-section">
-              <div className="events-grid-section">
-                <h3 className="section-title">
-                  <GiWingedSword className="icon-lobby-suggestions" />
-                  Eventos recomendados
-                </h3>
-                <div className="lobby-events-suggestions">
-                  <SuggestedEventsWidget />
+              </div>
+              <div className="events-right-section">
+                <div className="events-grid-section">
+                  <h3 className="section-title">
+                    <GiWingedSword className="icon-lobby-suggestions" />
+                    Eventos recomendados
+                  </h3>
+                  <div className="lobby-events-suggestions">
+                    <SuggestedEventsWidget />
+                  </div>
+                </div>
+                <div className="users-widget-glass">
+                  <SuggestedUsersWidget />
                 </div>
               </div>
-              <div className="users-widget-glass">
-                <SuggestedUsersWidget />
-              </div>
-            </div>
-          </section>
-          <section className="lobby-sidebar-section">
-            {/* <div className="friends-widget-glass">
+            </section>
+            <section className="lobby-sidebar-section">
+              {/* <div className="friends-widget-glass">
               <FriendsOnlineWidget />
             </div> */}
-            {/* <div className="users-widget-glass">
+              {/* <div className="users-widget-glass">
               <SuggestedUsersWidget />
             </div> */}
-          </section>
-        </main>
+            </section>
+          </main>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 
