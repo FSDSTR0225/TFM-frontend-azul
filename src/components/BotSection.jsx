@@ -7,11 +7,7 @@ function BotSection() {
       <div className="bot-card">
         <div className="bot-header">
           <div className="bot-icon">
-            <img
-              src="/src/assets/789.png"
-              alt="Bot Icon"
-              className="bot-image"
-            />
+            <img src="/images/789.png" alt="Bot Icon" className="bot-image" />
           </div>
 
           <h3>Asistente IA Gamer</h3>

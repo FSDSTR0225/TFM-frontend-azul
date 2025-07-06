@@ -7,7 +7,6 @@ import EventsToday from "../components/EventsToday";
 import { AnimatePresence, motion as Motion } from "framer-motion";
 import { PacmanLoader } from "react-spinners";
 import "../style/Lobby.css";
-
 import FriendsOnlineWidget from "../components/FriendsOnlineWidget";
 import SuggestedUsersWidget from "../components/SuggestedUsersWidget";
 import CalendarWidget from "../components/CalendarWidget";
@@ -15,6 +14,7 @@ import SuggestedEventsWidget from "../components/SuggestedEventsWidget";
 import SuggestedGamesWidget from "../components/SuggestedGamesWidget";
 import { GiRetroController, GiWingedSword } from "react-icons/gi";
 import { TbCalendarBolt } from "react-icons/tb";
+import BotAssistant from "../components/BotAssistant";
 
 function Lobby() {
   const [loading, setLoading] = useState(true);
@@ -207,6 +207,7 @@ function Lobby() {
                 {/* <LibrarySteam /> */}
               </div>
             </section>
+            <BotAssistant />
           </main>
         </div>
       </div>
