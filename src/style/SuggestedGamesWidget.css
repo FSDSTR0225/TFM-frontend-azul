@@ -7,11 +7,11 @@
 .game-hero-slide {
   display: flex;
   width: 100%;
-  max-width: 900px;
+  max-width: 850px; /*900px*/
   height: 500px;
   gap: 10px;
   padding: 2.3rem 3rem 2.3rem 0;
-  /* background: rgba(255, 255, 255, 0.04); */
+  background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.07);
   /* backdrop-filter: blur(14px); */
   box-shadow: 0 0 5px #00ffc833;
@@ -181,6 +181,16 @@
   right: -50px;
 }
 
+.swiper-pagination {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  bottom: 10px;
+  left: -10% !important;
+  transform: translateX(-50%);
+  z-index: 10;
+}
+
 .suggested-games-swiper .swiper-pagination-bullet {
   width: 16px;
   height: 4px;
@@ -213,6 +223,15 @@
     font-size: 1.6rem;
     max-height: 3.6rem;
     line-height: 1.15;
+  }
+}
+
+@media (min-width: 1024px) {
+  .swiper-pagination {
+    left: 0% !important;
+  }
+  .game-hero-slide {
+    margin: 0 auto;
   }
 }
 
