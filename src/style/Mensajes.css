@@ -33,7 +33,7 @@
   color: var(--accent);
 }
 
-.friends-list {
+.friends-list-chat {
   list-style: none;
   padding: 0;
   margin: 0;
@@ -215,12 +215,12 @@
   font-size: 1rem;
 }
 
-.friends-list::-webkit-scrollbar,
+.friends-list-chat::-webkit-scrollbar,
 .messages-section::-webkit-scrollbar {
   width: 6px;
 }
 
-.friends-list::-webkit-scrollbar-thumb,
+.friends-list-chat::-webkit-scrollbar-thumb,
 .messages-section::-webkit-scrollbar-thumb {
   background: var(--accent);
   border-radius: 3px;

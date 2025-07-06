@@ -105,7 +105,7 @@ const Mensajes = () => {
     <div className="chat-page">
       <aside className="friends-sidebar">
         <h2>Amigos</h2>
-        <ul className="friends-list">
+        <ul className="friends-list-chat">
           {friendsList.map((friend) => (
             <li
               key={friend.id}

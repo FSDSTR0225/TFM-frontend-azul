@@ -4,7 +4,6 @@
   width: 100%;
   max-width: 900px;
   margin: 0 auto;
-  padding: 1.5rem;
 }
 
 .modular-card-header {
@@ -14,6 +13,7 @@
   gap: 0.7rem;
   margin-bottom: 1.2rem;
   font-size: 1.2em;
+  padding: 0.4rem;
 }
 .modular-card-icon {
   font-size: 1.5rem;
