@@ -87,18 +87,24 @@ function Lobby() {
 
   return (
     <>
-      <div className="lobby-header">
+      {/* <div className="lobby-header">
         <div className="hud-container scan-effect">
           <h1 className="lobby-title">
             ¡Bienvenido a tu lobby <span>{authContext.user.username}</span>!
           </h1>
           <h2 className="lobby-subtitle">¿Listo para jugar hoy?</h2>
         </div>
-      </div>
+      </div> */}
 
       <div className="divider-lobby"></div>
 
       <div className="lobby-container">
+        <div className="hud-container">
+          <h1 className="lobby-title scan-effect">
+            ¡Bienvenido a tu lobby <span>{authContext.user.username}</span>!
+          </h1>
+          <h2 className="lobby-subtitle">¿Listo para jugar hoy?</h2>
+        </div>
         <div className="lobby-content">
           <main className="lobby-main-content">
             {/* NUEVO CONTENEDOR SUPERIOR CON 3 COLUMNAS */}
