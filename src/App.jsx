@@ -28,6 +28,7 @@ import MyScrollBar from "./components/MyScrollBar";
 import ExploreGames from "./components/ExploreGames";
 import ExploreUsers from "./components/ExploreUsers";
 import Footer from "./components/Footer";
+import ForumThreads from "./components/ForumThreads";
 
 export default function App() {
   const [showSearch, setShowSearch] = useState(false);
@@ -52,99 +53,6 @@ export default function App() {
   return (
     <div className="App">
       <NavBar showSearch={showSearch} setShowSearch={setShowSearch} />
-      {/* 
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route
-          path="/lobby"
-          element={
-            <PrivateRoute>
-              <Lobby />
-            </PrivateRoute>
-          }
-        />
-        <Route path="/games" element={<Games />} />
-        <Route
-          path="/platforms/:platformId/games"
-          element={<GamesByPlatform />}
-        />
-        <Route path="/games/:id" element={<GameDetails />} />
-        <Route path="/events" element={<Events />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} />
-        <Route
-          path="/players"
-          element={
-            <PrivateRoute>
-              <Players />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/users/me"
-          element={
-            <PrivateRoute>
-              <ProfilePage />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/edit/profile"
-          element={
-            <PrivateRoute>
-              <EditProfile />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/management"
-          element={
-            <PrivateRoute>
-              <ManagementCenter />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/my-events"
-          element={
-            <PrivateRoute>
-              <MyEvents />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/friends"
-          element={
-            <PrivateRoute>
-              <FriendsProfile />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/post"
-          element={
-            <PrivateRoute>
-              <ForumThreads />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/messages"
-          element={
-            <PrivateRoute>
-              <Mensajes />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/profile/:username"
-          element={
-            <PrivateRoute>
-              <PlayerProfile />
-            </PrivateRoute>
-          }
-        />
-      </Routes> */}
 
       <MyScrollBar>
         <main>
@@ -225,6 +133,7 @@ export default function App() {
                 </PrivateRoute>
               }
             />
+            <Route path="/post" element={<ForumThreads />} />
             <Route
               path="/profile/:username"
               element={

@@ -45,7 +45,7 @@ export default function ThreadCard({ thread, onClick, onDelete }) {
       {/* ✅ Botón de borrar solo si eres el creador */}
       {isCreator && (
         <button
-          className="delete-button"
+          className="delete-button-thread"
           onClick={(e) => {
             e.stopPropagation(); // 👈 evita que se dispare el onClick de la tarjeta
             onDelete && onDelete(thread._id);
