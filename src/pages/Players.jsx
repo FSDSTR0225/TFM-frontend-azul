@@ -6,7 +6,7 @@ import Pagination from "../components/Pagination";
 import "../style/PlayerCard.css";
 const Players = () => {
   const [players, setPlayers] = useState([]);
-  const url = import.meta.env.VITE_API_URL || "http://localhost:3000";
+  const url = import.meta.env.VITE_API_URL;
   const { token } = useContext(AuthContext);
   useEffect(() => {
     const fetchPlayers = async () => {
