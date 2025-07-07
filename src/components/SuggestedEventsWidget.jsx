@@ -101,7 +101,9 @@ function SuggestedEventsWidget() {
 
         {suggestedEvents.length > 0 && (
           <div className="event-suggestions-grid">
-            <ul className="event-suggestions-list">
+            <ul
+              className={`event-suggestions-list suggested-${suggestedEvents.length}`}
+            >
               {suggestedEvents.map((event) => (
                 <Motion.li
                   layoutId={event._id}

@@ -62,7 +62,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 1.5rem;
+  margin-top: 2.5rem;
 }
 
 /* Eventos del día */
@@ -120,6 +120,11 @@
   min-width: 280px;
 }
 
+.icon-lobby-suggestions-users {
+  font-size: 1.7rem;
+  color: #00ffe7;
+}
+
 .lobby-container {
   position: relative;
   background: radial-gradient(circle at 25% 20%, #132347, transparent 40%),
@@ -166,7 +171,8 @@
 } */
 
 .lobby-content {
-  padding: 2rem;
+  /* padding: 2rem; */
+  padding-bottom: 2rem;
   width: 100%;
   margin: 0 auto;
   color: #fff;
@@ -301,6 +307,16 @@
   font-size: 1.3rem;
   color: #ffffff;
   margin-bottom: 0.4rem;
+}
+
+.section-title-users-suggestions {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-size: 1.3rem;
+  color: #ffffff;
+  margin-bottom: 2rem;
+  margin-left: 2.2rem;
 }
 
 .section-title-events {

@@ -14,6 +14,7 @@ import SuggestedEventsWidget from "../components/SuggestedEventsWidget";
 import SuggestedGamesWidget from "../components/SuggestedGamesWidget";
 import { GiRetroController, GiWingedSword } from "react-icons/gi";
 import { TbCalendarBolt } from "react-icons/tb";
+import { FaUsers } from "react-icons/fa";
 import BotAssistant from "../components/BotAssistant";
 
 function Lobby() {
@@ -114,6 +115,10 @@ function Lobby() {
                 <FriendsOnlineWidget />
 
                 <div className="users-widget-glass">
+                  <h3 className="section-title-users-suggestions">
+                    <FaUsers className="icon-lobby-suggestions-users" />
+                    Usuarios afines a ti
+                  </h3>
                   <SuggestedUsersWidget />
                 </div>
               </div>
@@ -196,7 +201,7 @@ function Lobby() {
               <div className="games-slider-section reduced-size">
                 <h3 className="section-title">
                   <GiRetroController className="icon-lobby-suggestions" />
-                  Juegos sugeridos para ti
+                  Juegos que quizás te gusten
                 </h3>
                 <div className="games-slider-glass">
                   <SuggestedGamesWidget />

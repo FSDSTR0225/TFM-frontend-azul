@@ -42,13 +42,36 @@
   margin: 0 auto;
 }
 
+.suggested-1 {
+  grid-template-columns: 1fr;
+  justify-items: center;
+}
+
+.suggested-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.suggested-3 {
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: auto auto;
+}
+
+.suggested-3 > li:nth-child(3) {
+  grid-column: 1 / span 2;
+  justify-self: center;
+}
+
+.suggested-4 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
 .event-suggestion-card {
   position: relative;
   overflow: hidden;
   word-break: break-word;
   border-radius: 12px;
-  width: 450px;
-  height: 220px;
+  width: 400px;
+  height: 200px;
   padding: 0.85rem;
   background-color: rgba(20, 20, 30, 0.7);
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
