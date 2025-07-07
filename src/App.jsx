@@ -23,7 +23,7 @@ import { Toaster } from "sonner";
 import ManagementCenter from "./pages/ManagementCenter";
 import MyEvents from "./pages/MyEvents";
 import PlayerProfile from "./pages/PlayerProfile";
-import { Mensajes } from "./pages/Mensajes";
+import Mensajes from "./pages/Mensajes";
 import MyScrollBar from "./components/MyScrollBar";
 import ExploreGames from "./components/ExploreGames";
 import ExploreUsers from "./components/ExploreUsers";

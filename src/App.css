@@ -12,11 +12,21 @@ body {
   height: auto;
   min-height: 100vh;
   max-height: 100vh;
-  overflow: auto;
+  overflow: hidden;
   scroll-behavior: smooth;
+  /* background-image: linear-gradient(
+    to bottom right,
+    var(--dark-blue),
+    var(--light-blue)
+  ); */
   font-family: "Audiowide", "Poppins", sans-serif;
   color: white;
 }
+
+/* background: radial-gradient(circle at 25% 20%, #132347, transparent 20%),
+    radial-gradient(circle at 50% 60%, #2b1a4c, transparent 10%),
+    radial-gradient(circle at 50% 80%, rgba(0, 255, 200, 0.05), transparent 30%),
+    #0a0a1a; */
 
 main {
   min-height: 100%;

@@ -1,4 +1,130 @@
-/* ======== ESTRUCTURA GENERAL ======== */
+.left-column {
+  flex: 1;
+  min-width: 250px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.top-column {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  min-width: 280px;
+}
+
+.lobby-top-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+/* IZQUIERDA: amigos y sugerencias */
+.left-zone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.5rem;
+  /* box-shadow: 1px 0 10px rgba(0, 0, 0, 0.1); */
+  flex: 1;
+  width: 250px;
+  margin-left: 3.5rem;
+}
+
+/* DERECHA: dashboard + calendario + eventos */
+.right-zone {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  flex: 3;
+  min-width: 600px;
+}
+
+/* dashboard + calendario en horizontal */
+.top-right-widgets {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+}
+
+.top-right-widgets > div {
+  flex: 1;
+}
+
+/* Eventos sugeridos debajo */
+.events-suggestions-glass {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2.5rem;
+}
+
+/* Eventos del día */
+.calendar-events-card-container {
+  margin-top: 1rem;
+  margin-right: 1rem;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+/* Puedes ajustar estos flex según cuánto espacio quieras darles */
+.left-column {
+  flex: 1.2;
+}
+.center-column {
+  flex: 2;
+}
+.right-column {
+  flex: 1.5;
+}
+
+.center-column {
+  flex: 2;
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+  /* align-items: flex-start; */
+  gap: 1rem;
+}
+
+.right-column {
+  flex: 1.2;
+  min-width: 280px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.lobby-bottom-section {
+  margin-top: 2rem;
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.games-slider-section.reduced-size {
+  flex: 1.5;
+  min-width: 300px;
+}
+
+.steam-library-glass {
+  flex: 1;
+  min-width: 280px;
+}
+
+.icon-lobby-suggestions-users {
+  font-size: 1.7rem;
+  color: #00ffe7;
+}
+
 .lobby-container {
   position: relative;
   background: radial-gradient(circle at 25% 20%, #132347, transparent 40%),
@@ -10,25 +136,54 @@
   background-size: cover;
   margin: 0 auto;
   min-height: 100vh;
-  padding: 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2rem;
   overflow: hidden;
   z-index: 0;
 }
 
+.hud-container {
+  /* background: rgba(15, 20, 35, 0.5);
+  border-bottom: 1px solid rgba(0, 255, 255, 0.2);
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.15),
+    inset 0 0 8px rgba(0, 255, 255, 0.08);
+  backdrop-filter: blur(10px); */
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+/* .lobby-container::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 0;
+  width: 100%;
+  height: 15px;
+  background: linear-gradient(
+    to top,
+    #0a0a1aa0 20%,
+    rgba(10, 10, 26, 0.11) 10%,
+    transparent 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+} */
+
 .lobby-content {
-  padding: 2rem;
-  max-width: 1500px;
+  /* padding: 2rem; */
+  padding-bottom: 2rem;
+  width: 100%;
   margin: 0 auto;
   color: #fff;
 }
 
 .lobby-header {
+  background: transparent;
+  width: 100%;
+  height: 120px;
+  /* padding: 1.5rem; */
   text-align: center;
-  margin-bottom: 3rem;
 }
 
 .lobby-title {
@@ -40,8 +195,7 @@
   transform-origin: right center;
   text-align: center;
   width: 100%;
-  padding: 0.5rem 0;
-  margin-top: 1rem;
+  /* margin-top: 1rem; */
 }
 
 .lobby-title span {
@@ -89,7 +243,7 @@
 .lobby-info-section {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-evenly;
   flex-wrap: nowrap;
   align-items: center;
   gap: 2rem;
@@ -97,21 +251,45 @@
   margin-bottom: 3rem;
 }
 .dashboard-glass {
-  background: rgba(255, 255, 255, 0.035);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: transparent;
+  /* border: 1px solid rgba(255, 255, 255, 0.06); */
   backdrop-filter: blur(10px);
   border-radius: 16px;
-  padding: 1.5rem;
-  box-shadow: 0 0 18px rgba(0, 0, 0, 0.25);
+  padding: 1rem;
+  /* box-shadow: 0 0 18px rgba(0, 0, 0, 0.25); */
 }
 
 .events-today-glass {
-  background: rgba(0, 255, 200, 0.03);
-  border: 1px solid rgba(0, 255, 200, 0.08);
+  /* background: rgba(0, 255, 200, 0.03); */
+  /* border: 1px solid rgba(0, 255, 200, 0.08); */
   backdrop-filter: blur(12px);
   border-radius: 16px;
   padding: 1.5rem;
-  box-shadow: 0 0 25px rgba(0, 255, 200, 0.15);
+
+  /* box-shadow: 0 0 25px rgba(0, 255, 200, 0.15); */
+}
+
+.event-right-today {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 3.5rem;
+}
+
+.event-cover-calendar {
+  margin-top: 1.5rem;
+  width: 100%;
+  height: 100%;
+  border-radius: 16px;
+  background: linear-gradient(
+    to bottom right,
+    rgba(7, 18, 15, 0.1),
+    rgba(0, 255, 200, 0.05)
+  );
+}
+
+.users-widget-glass {
+  margin-top: 4rem;
 }
 
 /* ======== SECCIÓN 2: SUGERENCIAS PRINCIPALES ACTUALIZADA ======== */
@@ -126,9 +304,29 @@
   display: flex;
   align-items: center;
   gap: 0.7rem;
-  font-size: 1.4rem;
-  margin-bottom: 1rem;
+  font-size: 1.3rem;
   color: #ffffff;
+  margin-bottom: 0.4rem;
+}
+
+.section-title-users-suggestions {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-size: 1.3rem;
+  color: #ffffff;
+  margin-bottom: 2rem;
+  margin-left: 2.2rem;
+}
+
+.section-title-events {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-size: 1.3rem;
+  color: #ffffff;
+  margin-bottom: 0.4rem;
+  margin-left: 2.2rem;
 }
 
 .icon-lobby-suggestions {
@@ -178,9 +376,10 @@
   box-shadow: 0 0 18px rgba(0, 0, 0, 0.25);
 }
 
-/* 📌 Eventos sugeridos - grid 2x2 */
+/*  Eventos sugeridos - grid 2x2 */
 .events-grid-section {
   width: 100%;
+  margin-left: 4rem;
 }
 
 .event-right-section {
@@ -250,6 +449,7 @@
   align-items: center;
   justify-content: center;
   height: 100vh;
+  width: 100vw;
   color: #00ffe7;
 }
 
@@ -285,6 +485,60 @@
 
   .sidebar-widget {
     width: 100%;
+  }
+}
+
+.scan-effect {
+  position: relative;
+  overflow: hidden;
+}
+
+.scan-effect::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 150%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent 0%,
+    rgba(10, 17, 20, 0.482) 50%,
+    transparent 100%
+  );
+  animation: scan 5s infinite linear;
+  background-size: 50% 50%;
+  pointer-events: none;
+}
+
+@keyframes scan {
+  0% {
+    left: -150%;
+  }
+  100% {
+    left: 150%;
+  }
+}
+
+.divider-lobby {
+  height: 2px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(0, 255, 255, 0.5),
+    transparent
+  );
+  animation: pulseLine 2s infinite;
+  opacity: 0.6;
+}
+
+@keyframes pulseLine {
+  0%,
+  100% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 0.6;
   }
 }
 

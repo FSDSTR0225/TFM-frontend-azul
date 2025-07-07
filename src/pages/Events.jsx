@@ -7,6 +7,7 @@ import EventDetails from "../components/EventDetails";
 import SearchAndCreateEvents from "../components/SearchAndCreateEvents";
 import { useLocation } from "react-router-dom";
 import { useMemo } from "react";
+import { socket } from "../socket";
 import "../style/Events.css";
 
 const API_URL = import.meta.env.VITE_API_URL;
@@ -25,6 +26,32 @@ const Events = () => {
   const eventRefs = useRef({});
   const eventsPerPage = 12;
   const { isLoggedIn } = useContext(AuthContext);
+
+  useEffect(() => {
+    if (!isLoggedIn || !socket.connected) return;
+
+    socket.on("newEvent", (newEvent) => {
+      // newEvent es el objeto crudo que llega del socket (contiene _id)
+      // lo transformamos para que tenga la estructura que necesitamos,es decir, id igual que el resto
+      const newEventToId = {
+        ...newEvent,
+        id: newEvent._id, // creamos id a partir de _id
+      };
+
+      // Actualizamos el estado de eventos con el nuevo evento recibido
+      setEvents((prev) => {
+        const exists = prev.some((ev) => ev.id === newEventToId.id);
+        if (exists) return prev;
+
+        const updated = [...prev, newEventToId];
+        updated.sort((a, b) => new Date(a.date) - new Date(b.date));
+        return updated;
+      });
+    });
+    return () => {
+      socket.off("newEvent");
+    };
+  }, [isLoggedIn]);
 
   const location = useLocation();
 
@@ -194,13 +221,6 @@ const Events = () => {
         throw new Error("Error al crear el evento");
       }
 
-      const eventWhitId = {
-        ...data.event,
-        id: data.event._id || data.event.id, // usa _id si existe, si no id
-      };
-
-      // Opcional: recargar eventos tras crear uno nuevo
-      setEvents((prev) => [...prev, eventWhitId]);
       console.log(events);
     } catch (error) {
       console.error("Error al crear el evento:", error);
@@ -209,7 +229,9 @@ const Events = () => {
   };
 
   const onEventDeleted = (id) => {
-    setEvents((prevEvents) => prevEvents.filter((event) => event.id !== id));
+    setEvents((prevEvents) =>
+      prevEvents.filter((event) => (event.id || event._id) !== id)
+    );
   };
 
   useEffect(() => {
@@ -274,9 +296,11 @@ const Events = () => {
                   .slice(0, 5)
                   .map((event) => (
                     <EventCardMini
-                      key={event.id}
+                      key={event.id || event._id}
                       event={event}
-                      onClick={() => handleMiniCardEventClick(event.id)}
+                      onClick={() =>
+                        handleMiniCardEventClick(event.id || event._id)
+                      }
                     />
                   ))}
               </div>
@@ -292,12 +316,12 @@ const Events = () => {
             ) : (
               currentEvents.map((event) => (
                 <div
-                  key={event.id}
-                  ref={(el) => (eventRefs.current[event.id] = el)}
+                  key={event.id || event._id}
+                  ref={(el) => (eventRefs.current[event.id || event._id] = el)}
                 >
                   <EventCard
                     event={event}
-                    onClick={() => handleEventClick(event.id)}
+                    onClick={() => handleEventClick(event.id || event._id)}
                   />
                 </div>
               ))

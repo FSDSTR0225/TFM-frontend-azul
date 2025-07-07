@@ -7,7 +7,7 @@ import { TbCalendarBolt } from "react-icons/tb";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
-function CalendarWidget() {
+function CalendarWidget({ onEventClick }) {
   const [eventDates, setEventDates] = useState([]);
   const { token } = useContext(AuthContext);
 
@@ -41,13 +41,13 @@ function CalendarWidget() {
   };
 
   return (
-    <div className="modular-card calendar-card">
+    <div className="modular-card-calendar-card">
       {/* <div className="modular-card-header">
         <TbCalendarBolt className="modular-card-icon" />
         <h3>Calendario de eventos</h3>
       </div> */}
       <div className="modular-card-content">
-        <Calendar tileClassName={tileClassName} />
+        <Calendar tileClassName={tileClassName} onClickDay={onEventClick} />
       </div>
     </div>
   );

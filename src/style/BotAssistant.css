@@ -1,0 +1,27 @@
+.bot-assistant {
+  position: fixed;
+  bottom: 40px; /* 40px de abajo*/
+  right: 40px; /* 40px de la dcha*/
+  z-index: 9999;
+  width: 64px;
+  height: 64px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.bot-assistant img {
+  width: 100px;
+  height: auto;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+.bot-assistant:hover {
+  transform: scale(1.1);
+}
+
+@media (max-width: 768px) {
+  .bot-assistant {
+    right: 20px; /* más pegado al borde en móviles */
+  }
+}

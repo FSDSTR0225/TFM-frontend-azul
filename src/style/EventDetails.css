@@ -480,6 +480,58 @@
   transform: scale(0.98);
 }
 
+@media (min-width: 1400px) {
+  .modal-event-content.event-details-card {
+    max-width: 1000px;
+    padding: 2.4rem 2.2rem;
+  }
+
+  .event-title {
+    font-size: 2rem;
+  }
+
+  .event-info {
+    font-size: 1.3rem;
+  }
+
+  .participant-item {
+    font-size: 1.1rem;
+  }
+
+  .edit-event-btn,
+  .delete-event-btn {
+    font-size: 1.1rem;
+    padding: 0.8rem 1.8rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .modal-event-content.event-details-card {
+    padding: 1.4rem 1rem;
+    max-width: 96vw;
+  }
+
+  .event-title {
+    font-size: 1.4rem;
+  }
+
+  .event-info {
+    font-size: 1.05rem;
+    padding: 1rem;
+  }
+
+  .edit-event-btn,
+  .delete-event-btn {
+    font-size: 0.95rem;
+    padding: 0.6rem 1.2rem;
+  }
+
+  .participant-item {
+    font-size: 0.95rem;
+    padding: 0.5rem 0.8rem;
+  }
+}
+
 @media (max-width: 600px) {
   .event-actions {
     bottom: 16px;
@@ -501,31 +553,28 @@
   }
 
   .event-title {
-    font-size: 1.1rem;
+    font-size: 1rem;
   }
 
-  .event-info p,
-  .modal-description p,
-  .participant-item {
+  .event-info {
+    padding: 0.8rem;
     font-size: 0.9rem;
   }
 
-  .event-platform-icon,
-  .event-platform-icon-corner {
-    width: 32px;
-    height: 32px;
+  .modal-description h3,
+  .modal-participants h3 {
+    font-size: 1rem;
   }
 
-  .organizer-avatar,
-  .participant-avatar {
-    width: 28px;
-    height: 28px;
+  .participant-item {
+    gap: 0.4rem;
+    padding: 0.4rem 0.6rem;
   }
 
   .edit-event-btn,
   .delete-event-btn {
-    font-size: 0.9rem;
-    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+    padding: 0.4rem 0.9rem;
   }
 }
 

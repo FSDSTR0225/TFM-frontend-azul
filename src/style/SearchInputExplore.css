@@ -10,9 +10,6 @@
   box-shadow: 0 0 14px rgba(0, 255, 255, 0.2);
   backdrop-filter: blur(10px);
   z-index: 999;
-}
-
-.search-section {
   font-size: 18px;
   color: #f5f7f7;
   margin-top: 1px;
@@ -38,8 +35,9 @@
   width: 100%;
   border: none;
   outline: none;
-  background: transparent;
+  background: rgba(64, 64, 64, 0.23);
   font-family: "Audiowide", sans-serif;
+  border-radius: 8px;
   font-size: 15px;
   color: #ffffff;
   padding: 6px 0;

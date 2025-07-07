@@ -1,11 +1,11 @@
-import { useEffect, useState, useRef, useContext } from "react";
-import { io } from "socket.io-client";
+import { useEffect, useState, useContext } from "react";
+import { socket } from "../socket"; // Usamos el socket global correctamente
 import AuthContext from "../context/AuthContext";
-import "../style/Chat.css";
+import "../style/Mensajes.css";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
-export const Mensajes = () => {
+const Mensajes = () => {
   const { token, user } = useContext(AuthContext);
 
   const [message, setMessage] = useState(""); // lo que escribes
@@ -13,35 +13,27 @@ export const Mensajes = () => {
   const [allFriends, setAllFriends] = useState([]); // todos los amigos
   const [selectedFriend, setSelectedFriend] = useState(null); // amigo actual seleccionado
 
-  const socketRef = useRef(null);
-
+  // 1. Escuchar mensajes nuevos (cuando cambia el amigo)
   useEffect(() => {
-    socketRef.current = io(API_URL, {
-      auth: { token },
-      transports: ["websocket"],
-    });
+    if (!selectedFriend || !socket) return;
 
-    socketRef.current.once("connect", () => {
-      socketRef.current.emit("userConnect", user.id);
-    });
+    const handleIncomingMessage = (message) => {
+      console.log("Mensaje recibido en tiempo real:", message);
 
-    socketRef.current.on("private message", (msg) => {
-      const isForSelected =
-        msg.sender === selectedFriend?.id ||
-        msg.receiverId === selectedFriend?.id;
-
-      if (isForSelected) {
-        setMessages((prev) => [...prev, msg]);
+      const senderId = message.sender?._id || message.sender;
+      if (senderId === selectedFriend?._id || senderId === selectedFriend?.id) {
+        setMessages((prev) => [...prev, message]);
       }
-    });
+    };
+
+    socket.on("private message", handleIncomingMessage);
 
     return () => {
-      socketRef.current.off("private message");
-      socketRef.current.disconnect();
+      socket.off("private message", handleIncomingMessage);
     };
-  }, [selectedFriend, token, user.id]);
+  }, [selectedFriend]);
 
-  // Obtener todos los amigos (online y offline)
+  // 2. Obtener todos los amigos (online y offline)
   useEffect(() => {
     const fetchFriends = async () => {
       try {
@@ -61,7 +53,7 @@ export const Mensajes = () => {
     fetchFriends();
   }, [token]);
 
-  // Seleccionar amigo y cargar historial
+  // 3. Seleccionar amigo y cargar historial
   const selectFriend = async (friend) => {
     setSelectedFriend(friend);
     try {
@@ -77,7 +69,7 @@ export const Mensajes = () => {
     }
   };
 
-  // Enviar mensaje
+  // 4. Enviar mensaje
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!message.trim() || !selectedFriend) return;
@@ -85,14 +77,15 @@ export const Mensajes = () => {
     const timestamp = new Date().toISOString();
     const msgPayload = {
       content: message,
-      senderId: user.id,
+      senderId: user._id,
       receiverId: selectedFriend.id,
       timestamp,
     };
 
-    socketRef.current.emit("private message", msgPayload);
+    console.log("Enviando mensaje:", msgPayload);
+    socket.emit("private message", msgPayload);
 
-    setMessages((prev) => [...prev, { ...msgPayload, senderId: user.id }]);
+    setMessages((prev) => [...prev, { ...msgPayload, senderId: user._id }]);
     setMessage("");
   };
 
@@ -112,7 +105,7 @@ export const Mensajes = () => {
     <div className="chat-page">
       <aside className="friends-sidebar">
         <h2>Amigos</h2>
-        <ul className="friends-list">
+        <ul className="friends-list-chat">
           {friendsList.map((friend) => (
             <li
               key={friend.id}
@@ -192,3 +185,5 @@ export const Mensajes = () => {
     </div>
   );
 };
+
+export default Mensajes;

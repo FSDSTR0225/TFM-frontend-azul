@@ -49,7 +49,7 @@ export const AuthProvider = ({ children }) => {
         setToken(token);
         setIsLoggedIn(true);
         setIsLogout(false);
-        socket.auth = { token };
+        socket.auth = { token }; // propiedad de socket para autenticar al usuario,se usa para enviar el token al servidor
         if (!socket.connected) {
           socket.connect();
           socket.once("connect", () => {

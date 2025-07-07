@@ -65,11 +65,7 @@ function ExplainCards() {
         <div className="card4">
           <h3 className="card-title">
             {" "}
-            <img
-              src="/src/assets/123.png"
-              alt="Bot Icon"
-              className="explain-bot"
-            />
+            <img src="/images/123.png" alt="Bot Icon" className="explain-bot" />
             IA gamer personalizada
           </h3>
           <p className="card-description">

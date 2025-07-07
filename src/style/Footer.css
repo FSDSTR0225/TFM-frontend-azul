@@ -8,10 +8,14 @@
   font-size: 0.9rem;
   border-top: 2px solid rgba(0, 255, 255, 0.2);
   box-shadow: 0 -4px 20px rgba(0, 255, 255, 0.1);
-  position: relative;
-  z-index: 5;
   width: 100%;
   box-sizing: border-box;
+  /* Cambios clave: */
+  position: static; /* Asegura que no sea fixed ni absolute */
+  left: 0;
+  bottom: 0;
+  z-index: 5;
+  margin-top: auto; /* Permite que el footer se empuje hacia abajo si usas flex en el layout principal */
 }
 
 .footer-container {

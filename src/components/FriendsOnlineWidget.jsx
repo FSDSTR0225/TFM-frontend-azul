@@ -54,7 +54,7 @@ function FriendsOnlineWidget() {
         <FaUserFriends className="modular-card-icon" />
         <h3>Amigos en línea</h3>
       </div>
-      <div className="modular-card-content">
+      <div className="modular-card-content-frinds-online">
         {loading ? (
           <div className="loading-container">
             <PacmanLoader color="#FFD700" size={32} />

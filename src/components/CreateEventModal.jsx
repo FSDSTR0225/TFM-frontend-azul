@@ -165,6 +165,16 @@ function CreateEventModal({ onClose, onCreate }) {
 
   const preventCloseRef = useRef(false);
 
+  const now = new Date();
+  //hoy =  si hay fecha seleccionada,la convertimos a string y la comparamos con la fecha actual, si son iguales,es hoy(true)
+
+  const isToday =
+    formData.date &&
+    new Date(formData.date).toDateString() === now.toDateString();
+
+  //minima hora seleccionable,si es hoy = hora actual,sino hasta las 00:00h
+  const minTime = isToday ? now : new Date().setHours(0, 0, 0, 0);
+
   return (
     <div
       className="modal-overlay-events"
@@ -212,6 +222,9 @@ function CreateEventModal({ onClose, onCreate }) {
             placeholderText="Selecciona fecha y hora"
             calendarClassName="custom-datepicker-calendar"
             popperClassName="custom-datepicker-popper"
+            minDate={now}
+            minTime={new Date(minTime)}
+            maxTime={new Date().setHours(23, 59, 59, 999)} // hasta las 23:59:59
             required
           />
 
