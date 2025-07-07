@@ -1,0 +1,82 @@
+.create-thread-form {
+  background: linear-gradient(to right, #1f1f1f, #121212);
+  border-radius: 1rem;
+  padding: 2rem;
+  color: #f1f1f1;
+  box-shadow: 0 0 10px rgba(102, 252, 241, 0.3);
+  max-width: 600px;
+  margin: auto;
+  margin-top: 2rem;
+}
+
+.create-thread-form h3 {
+  color: #66fcf1;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.create-thread-form input,
+.create-thread-form textarea,
+.create-thread-form select {
+  width: 100%;
+  padding: 0.8rem;
+  margin-bottom: 1rem;
+  background-color: #2c2c2c;
+  color: #fff;
+  border: 1px solid #444;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  transition: border 0.3s;
+}
+
+.create-thread-form input:focus,
+.create-thread-form textarea:focus,
+.create-thread-form select:focus {
+  border-color: #00fff7;
+  outline: none;
+}
+
+.create-thread-form button {
+  background-color: #00fff7;
+  color: #000;
+  border: none;
+  padding: 0.8rem 1.2rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.create-thread-form button:hover {
+  background-color: #66fcf1;
+}
+
+.create-thread-form p {
+  margin-bottom: 1rem;
+}
+
+.suggestions-dropdown {
+  position: absolute;
+  background-color: #1f2833;
+  border: 1px solid #66fcf1;
+  width: 100%;
+  max-height: 200px;
+  overflow-y: auto;
+  list-style: none;
+  margin-top: 0;
+  padding: 0;
+  z-index: 10;
+  border-radius: 6px;
+}
+
+.suggestions-dropdown li {
+  padding: 10px;
+  cursor: pointer;
+  color: white;
+  transition: background 0.2s ease;
+}
+
+.suggestions-dropdown li:hover {
+  background-color: #0b0c10;
+}

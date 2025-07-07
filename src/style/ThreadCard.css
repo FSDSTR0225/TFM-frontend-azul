@@ -1,0 +1,81 @@
+/* Tarjeta del hilo */
+.thread-card {
+  width: calc(
+    100% - 2rem
+  ); /* Ocupa el ancho total menos 2rem (1rem a cada lado) */
+  max-width: 1000px; /* Nunca pasa de 1000px en pantallas grandes */
+  margin: 1rem auto; /* Centrado horizontalmente + margen vertical */
+  padding: 20px 24px; /* Espacio interno */
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  border-radius: 10px;
+  color: #66fcf1;
+  cursor: pointer;
+  box-shadow: 0 0 8px rgba(0, 255, 247, 0.4);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-sizing: border-box; /* ✅ CORREGIDO: para incluir padding dentro del ancho */
+}
+
+.thread-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 15px #00fff7;
+}
+
+/* Título del hilo */
+.thread-title {
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+  color: #00fff7;
+}
+
+/* Descripción del hilo */
+.thread-description {
+  font-size: 1rem;
+  line-height: 1.4;
+  color: #c5f5f3;
+}
+
+/* Metadatos: creador, juego, plataforma */
+.thread-meta {
+  display: flex;
+  gap: 1.2rem;
+  align-items: center;
+  flex-wrap: wrap;
+  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
+  color: #a0e7e5;
+}
+
+/* Agrupación de íconos + texto */
+.creator-info,
+.game-info,
+.platform-info {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+/* Avatar del usuario y demás íconos */
+.avatar-icon,
+.inline-icon {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* Botón para eliminar hilo */
+.delete-button {
+  margin-top: 8px;
+  background-color: #ff4d4f;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.3s ease;
+}
+
+.delete-button:hover {
+  background-color: #d9363e;
+}

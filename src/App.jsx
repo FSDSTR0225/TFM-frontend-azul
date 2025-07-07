@@ -121,6 +121,14 @@ export default function App() {
           }
         />
         <Route
+          path="/post"
+          element={
+            <PrivateRoute>
+              <ForumThreads />
+            </PrivateRoute>
+          }
+        />
+        <Route
           path="/messages"
           element={
             <PrivateRoute>
@@ -137,6 +145,7 @@ export default function App() {
           }
         />
       </Routes> */}
+
       <MyScrollBar>
         <main>
           <Routes>
@@ -228,6 +237,7 @@ export default function App() {
         </main>
         {showFooter && <Footer />}
       </MyScrollBar>
+
       <Toaster richColors position="bottom-right" />
     </div>
   );

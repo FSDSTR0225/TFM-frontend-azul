@@ -24,7 +24,6 @@ const Events = () => {
 
   const eventRefs = useRef({});
   const eventsPerPage = 12;
-
   const { isLoggedIn } = useContext(AuthContext);
 
   const location = useLocation();
