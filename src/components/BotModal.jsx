@@ -1,8 +1,44 @@
-import React from "react";
+import React, { useState, useContext } from "react";
+import AuthContext from "../context/AuthContext";
 import { motion as Motion, AnimatePresence } from "framer-motion";
 import "../style/BotModal.css";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 const BotModal = ({ onClose }) => {
+  const [inputValue, setInputValue] = useState("");
+  const [response, setResponse] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const { token } = useContext(AuthContext);
+
+  const askBot = async () => {
+    if (inputValue.trim() === "") return;
+
+    setLoading(true);
+    try {
+      const res = await fetch(`${API_URL}/chatbot`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ message: inputValue }),
+      });
+
+      const data = await res.json();
+      if (data.reply) {
+        setResponse(data.reply);
+      } else {
+        setResponse("Lo siento, no pude entender tu pregunta.");
+      }
+    } catch (error) {
+      console.error("Error al contactar con el asistente IA:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <>
       <AnimatePresence>
@@ -33,10 +69,20 @@ const BotModal = ({ onClose }) => {
             </button>
 
             <div className="bot-chat">
-              <p className="chat-window">¡Hola! ¿En qué puedo ayudarte?</p>
-              <input type="text" placeholder="¿En qué puedo ayudarte?" />
+              {!response && (
+                <p className="chat-window">¡Hola! ¿En qué puedo ayudarte?</p>
+              )}
+              {response && <p className="chat-response">{response}</p>}
+              <input
+                type="text"
+                placeholder="¿En qué puedo ayudarte?"
+                value={inputValue}
+                onChange={(e) => setInputValue(e.target.value)}
+              />
             </div>
-            <button className="bot-btn">¡Preguntame!</button>
+            <button className="bot-btn" onClick={askBot} disabled={loading}>
+              {loading ? "Buscando info..." : "¡Preguntame!"}
+            </button>
           </div>
           {/* </section> */}
           {/* </div> */}
@@ -48,19 +94,3 @@ const BotModal = ({ onClose }) => {
 };
 
 export default BotModal;
-
-{
-  /* <div className="chatbot-modal-overlay">
-       <div className="chatbot-modal">
-         <button className="close-btn" onClick={onClose}>
-           ✖
-         </button>
-         <h2>Asistente IA</h2>
-         <div className="chat-window">
-           <p>¡Hola! ¿En qué puedo ayudarte?</p>
-          
-         </div>
-         <input type="text" placeholder="Escribe tu duda..." />
-       </div>
-     </div> */
-}
