@@ -1,6 +1,6 @@
 .bot-assistant {
   position: fixed;
-  bottom: 40px; /* 40px de abajo*/
+  bottom: 300px; /* 40px de abajo*/
   right: 40px; /* 40px de la dcha*/
   z-index: 9999;
   width: 64px;

@@ -127,9 +127,9 @@ function Lobby() {
               <div className="right-zone">
                 {/* Parte superior: dashboard + calendario */}
                 <div className="top-right-widgets">
-                  <div className="dashboard-glass">
-                    <Dashboard />
-                  </div>
+                  {/* <div className="dashboard-glass"> */}
+                  <Dashboard />
+                  {/* </div> */}
                   <div className="calendar-widget-glass">
                     <h3 className="section-title-events">
                       <TbCalendarBolt className="icon-lobby-suggestions" />
@@ -199,7 +199,7 @@ function Lobby() {
             {/* Segunda sección: Juegos sugeridos + librería */}
             <section className="lobby-bottom-section">
               <div className="games-slider-section reduced-size">
-                <h3 className="section-title">
+                <h3 className="section-title-game-suggestions">
                   <GiRetroController className="icon-lobby-suggestions" />
                   Juegos que quizás te gusten
                 </h3>

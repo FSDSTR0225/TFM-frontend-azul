@@ -43,13 +43,13 @@ const BotModal = ({ onClose }) => {
     <>
       <AnimatePresence>
         <Motion.div
-          className="chatbot-bubble"
+          className="chatbot-container"
           initial={{ opacity: 0, scale: 0.8, y: 20 }} // el estado inicial de la animación sera opacidad 0, escala 0.8 y desplazamiento vertical de 20px
           animate={{ opacity: 1, scale: 1, y: 0 }} // el estado final de la animación sera opacidad 1, escala 1 y desplazamiento vertical de 0px
           exit={{ opacity: 0, scale: 0.8, y: 20 }} // el estado de salida de la animación sera opacidad 0, escala 0.8 y desplazamiento vertical de 20px
           transition={{ duration: 0.7 }} // la duración de la animación sera de 0.3 segundos
         >
-          <div className="bubble-content">
+          <div className="bot-card-content">
             {/* <section className="bot-glass-section"> */}
             {/* <div className="bot-card"> */}
             <div className="bot-header">
@@ -67,11 +67,11 @@ const BotModal = ({ onClose }) => {
             <button className="close-btn-ia" onClick={onClose}>
               ✖
             </button>
+            {!response && (
+              <p className="chat-window">¡Hola! ¿En qué puedo ayudarte?</p>
+            )}
 
-            <div className="bot-chat">
-              {!response && (
-                <p className="chat-window">¡Hola! ¿En qué puedo ayudarte?</p>
-              )}
+            <div className="bot-chat-question">
               {response && <p className="chat-response">{response}</p>}
               <input
                 type="text"

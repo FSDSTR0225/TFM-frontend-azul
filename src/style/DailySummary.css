@@ -9,6 +9,7 @@
   margin: 2rem auto;
   backdrop-filter: blur(8px);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  z-index: 2;
 }
 
 .daily-summary-container:hover {

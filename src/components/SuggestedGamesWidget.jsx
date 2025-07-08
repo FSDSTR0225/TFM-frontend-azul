@@ -61,11 +61,11 @@ function SuggestedGamesWidget() {
           <div className="dots-loader" />
         ) : (
           <>
-            {nextUpdate && (
+            {/* {nextUpdate && (
               <p className="suggestion-update-timer">
                 Nuevas sugerencias en: <span>{formatTimeLeft(nextUpdate)}</span>
               </p>
-            )}
+            )} */}
             {suggestedGames.length > 0 ? (
               <Swiper
                 modules={[Autoplay, Pagination, Navigation]}
@@ -87,40 +87,56 @@ function SuggestedGamesWidget() {
                       //   opacity: 0.8,
                       // }}
                     >
-                      <div className="hero-left">
-                        <img
-                          src={game.imageUrl}
-                          alt={game.name}
-                          onClick={() => handleOnClick(game._id || game.rawgId)}
-                        />
+                      <div className="header-swiper">
+                        {nextUpdate && (
+                          <p className="suggestion-update-timer">
+                            Nuevas sugerencias en:{" "}
+                            <span>{formatTimeLeft(nextUpdate)}</span>
+                          </p>
+                        )}
                       </div>
-                      <div className="hero-right">
-                        <h2 className="steam-game-title">{game.name}</h2>
-                        <div className="game-steam-details">
-                          {game.screenshots?.length > 0 && (
-                            <div className="screenshots">
-                              {game.screenshots.slice(1, 5).map((s, i) => (
-                                <img key={i} src={s} alt={`Screenshot ${i}`} />
+                      <div className="hero-content">
+                        <div className="hero-left">
+                          <img
+                            src={game.imageUrl}
+                            alt={game.name}
+                            onClick={() =>
+                              handleOnClick(game._id || game.rawgId)
+                            }
+                          />
+                        </div>
+                        <div className="hero-right">
+                          <h2 className="steam-game-title">{game.name}</h2>
+                          <div className="game-steam-details">
+                            {game.screenshots?.length > 0 && (
+                              <div className="screenshots">
+                                {game.screenshots.slice(1, 5).map((s, i) => (
+                                  <img
+                                    key={i}
+                                    src={s}
+                                    alt={`Screenshot ${i}`}
+                                  />
+                                ))}
+                              </div>
+                            )}
+                            <div className="game-tags">
+                              {(game.tags || []).slice(3, 7).map((tag) => (
+                                <span className="tag-chip-suggest" key={tag}>
+                                  {tag}
+                                </span>
                               ))}
                             </div>
-                          )}
-                          <div className="game-tags">
-                            {(game.tags || []).slice(0, 5).map((tag) => (
-                              <span className="tag-chip-suggest" key={tag}>
-                                {tag}
-                              </span>
-                            ))}
                           </div>
-                        </div>
-                        <div className="game-steam-platform">
-                          <p className="game-platforms">
-                            Disponible en:{" "}
-                            {game.platforms.map((p) => (
-                              <span key={p._id} className="platform-chip">
-                                {p.name}
-                              </span>
-                            ))}
-                          </p>
+                          <div className="game-steam-platform">
+                            <p className="game-platforms">
+                              Disponible en:{" "}
+                              {game.platforms.map((p) => (
+                                <span key={p._id} className="platform-chip">
+                                  {p.name}
+                                </span>
+                              ))}
+                            </p>
+                          </div>
                         </div>
                       </div>
                     </div>
