@@ -151,7 +151,7 @@ const ProfileCard = () => {
           }}
         />
       )}
-      <FavoriteTags user={user} />
+     
     </div>
   );
 };

@@ -268,7 +268,7 @@ const NavBar = ({ showSearch }) => {
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink to="/configuracion" className="dropdown-options">
+                  <NavLink to="/settings" className="dropdown-options">
                     Configuración
                   </NavLink>
                 </li>

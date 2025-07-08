@@ -29,7 +29,7 @@ import ExploreGames from "./components/ExploreGames";
 import ExploreUsers from "./components/ExploreUsers";
 import Footer from "./components/Footer";
 import ForumThreads from "./components/ForumThreads";
-
+import ConfigProfile from "./pages/ConfigProfile";
 export default function App() {
   const [showSearch, setShowSearch] = useState(false);
 
@@ -106,6 +106,13 @@ export default function App() {
               element={
                 <PrivateRoute>
                   <ManagementCenter />
+                </PrivateRoute>
+              }
+            />
+            <Route path='/settings'
+              element={
+                <PrivateRoute>
+                  <ConfigProfile />
                 </PrivateRoute>
               }
             />
