@@ -33,13 +33,13 @@ if(!isOpen) return null;
   return createPortal(
     <div className="modal-overlay">
         <div className="modal-content">
+        <button className="modal-close friend-modal" onClick={onClose}>X</button>
         <h2 className="modal-title">Añadir amigo</h2>
         <div className="player-avatar-container-modal">
         <img className="player-avatar-modal" src={player.avatar} alt={player.username} />
         <h3 className="player-username-modal">{player.username}</h3>
         </div>
 
-        <button className="modal-close" onClick={onClose}>X</button>
 
           <textarea value={message} onChange={(e) => setMessage(e.target.value)} className="friend-msg" placeholder="Escribe un mensaje para enviar junto con tu solicitud de amistad" rows="3">
           </textarea>

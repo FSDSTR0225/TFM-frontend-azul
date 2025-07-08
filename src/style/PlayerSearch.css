@@ -1,192 +1,78 @@
-.PlayerSearch {
-  width: 100%;
-  min-height: 90vh;
-  background-image: linear-gradient(
-    to bottom right,
-    var(--dark-blue),
-    var(--light-blue)
-  );
+.player-search-wrapper {
+  width: 100vw;
+  max-height: 38vh;
+  padding: 40px 20px;
+  background-color: #0e132d; /* colore di sfondo generale */
   display: flex;
-  flex-direction: column;
   justify-content: center;
-  align-items: center;
-  padding: 2rem;
+  align-items: flex-start;
 }
 
 .player-search-container {
+  background-color: #1b2455;
+  padding: 24px;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0, 255, 255, 0.1);
+  width: 100%;
+  max-width: 900px;
+  color: #fff;
   display: flex;
   flex-direction: column;
-  width: 100%;
-  max-width: 600px;
-  align-items: center;
-  justify-content: center;
-  margin: auto; /* Centrado horizontal */
-  margin-top: 50px; /* Ajusta según lo necesites */
+  gap: 16px;
 }
 
 .player-search-container h2 {
-  font-size: 2.5rem;
-  font-weight: 800;
-  color: var(--white);
-  margin-bottom: 1.5rem;
   text-align: center;
-}
-
-.player-search-container input,
-select {
-  width: 100%;
-  padding: 0.8rem;
-  font-size: 1rem;
-  border: 1px solid var(--dark-blue);
-  border-radius: 5px;
-  margin-bottom: 1rem;
-}
-
-/* Estilo de la lista de jugadores */
-.player-search-list {
-  list-style: none;
-  padding: 0;
-  margin-top: 1rem;
-}
-
-/* Tarjeta de jugador */
-.player-search-card {
-  display: flex;
-  align-items: center;
-  background: #1a1a1a; /* Fondo oscuro */
-  padding: 15px;
   margin-bottom: 10px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  color: #00ffff;
 }
 
-/* Avatar del jugador */
-.player-search-avatar {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  margin-right: 15px;
-  border: 2px solid #007bff;
-}
-
-/* Información del jugador */
-.player-search-info {
-  flex-grow: 1;
-}
-
-.player-search-name {
-  font-size: 18px;
-  font-weight: bold;
-  color: #66fcf1;
-}
-
-/* Botones dentro de la tarjeta */
-.player-search-buttons {
-  display: flex;
-  gap: 10px;
-  margin-top: 5px;
-}
-
-/* Botón de ver perfil */
-.view-profile-button {
-  background: #00ffea;
-  color: black;
-  border: none;
-  padding: 8px 12px;
-  font-size: 14px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-.view-profile-button:hover {
-  background: #00d1c1;
-}
-
-/* Estilos de botones Buscar y Restablecer */
-.search-clear-buttons {
-  display: flex;
-  justify-content: space-between;
+.player-search-container input[type="text"],
+.player-search-container select {
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #3a4a7f;
+  background-color: #141c3a;
+  color: #fff;
   width: 100%;
-  max-width: 600px;
-  margin-top: 15px;
+  box-sizing: border-box;
+}
+
+.player-search-container ul {
+  background-color: #141c3a;
+  border-radius: 8px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  max-height: 200px;
+  overflow-y: auto;
+  border: 1px solid #3a4a7f;
+}
+
+.player-search-container ul li {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.player-search-container ul li:hover {
+  background-color: #00ffff22;
 }
 
 .player-search-button {
-  font-size: 1.2rem;
+  background-color: #00ffff;
+  color: #000;
   border: none;
-  background-color: var(--dark-blue);
-  color: var(--white);
-  padding: 0.8rem 1.5rem;
+  padding: 12px;
+  border-radius: 12px;
   cursor: pointer;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
+  font-weight: bold;
+  transition: background 0.3s;
 }
 
 .player-search-button:hover {
-  background: rgba(255, 255, 255, 0.1);
-  box-shadow: 0 0 10px #00ffea;
-  color: #66fcf1;
+  background-color: #00cccc;
 }
 
-.clear-filters-button {
-  font-size: 1.2rem;
-  border: none;
-  background-color: #5e181f;
-  color: var(--white);
-  padding: 0.8rem 1.5rem;
-  cursor: pointer;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
-}
-
-.clear-filters-button:hover {
-  background-color: #b02a37;
-}
-
-/* Adaptación a dispositivos móviles */
-@media only screen and (max-width: 768px) {
-  .PlayerSearch {
-    padding: 1rem;
-  }
-
-  .player-search-container input,
-  select {
-    width: 90%;
-  }
-
-  .search-clear-buttons {
-    flex-direction: column;
-  }
-}
-
-@media only screen and (max-width: 600px) {
-  .PlayerSearch {
-    padding: 1rem;
-    min-height: auto;
-  }
-
-  .player-search-container {
-    width: 100%;
-    margin-top: 30px;
-    padding: 0 1rem;
-  }
-
-  .player-search-container h2 {
-    font-size: 1.8rem;
-    margin-bottom: 1rem;
-  }
-
-  .player-search-container input,
-  .player-search-container select {
-    width: 100%;
-    font-size: 0.95rem;
-    padding: 0.6rem;
-  }
-
-  .player-search-button {
-    width: 100%;
-    font-size: 1rem;
-    padding: 0.7rem;
-  }
+.player-search-container p {
+  margin: 0;
 }
