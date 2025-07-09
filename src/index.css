@@ -1,0 +1,14 @@
+#bg-layer {
+  position: fixed;
+  inset: 0;
+  z-index: -10; /* bien al fondo */
+  background: radial-gradient(circle at 25% 20%, #132347, transparent 40%),
+    radial-gradient(circle at 50% 60%, #170c2c, transparent 30%),
+    radial-gradient(circle at 50% 80%, rgba(0, 255, 200, 0.05), transparent 60%),
+    #0a0a1a;
+
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  pointer-events: none;
+}

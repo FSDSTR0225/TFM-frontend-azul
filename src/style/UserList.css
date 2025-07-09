@@ -1,7 +1,7 @@
 .user-section {
-  padding: 4.2rem 1rem;
-  background: rgba(10, 10, 20, 0.9);
-  backdrop-filter: blur(6px);
+  padding: 1.2rem 1rem;
+  /* background: rgba(10, 10, 20, 0.9);
+  backdrop-filter: blur(6px); */
   color: #fff;
   text-align: center;
 }

@@ -1,7 +1,7 @@
 .event-section {
   padding: 4.5rem 1rem;
-  background: rgba(10, 10, 20, 0.9);
-  backdrop-filter: blur(6px);
+  /* background: rgba(10, 10, 20, 0.9);
+  backdrop-filter: blur(6px); */
   color: #fff;
   text-align: center;
 }

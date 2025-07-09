@@ -24,7 +24,7 @@ export default function Home() {
   if (token) return null;
 
   return (
-    <div>
+    <div className="home-background">
       <HeroSection scrollRef={contentRef} />
       <div ref={contentRef}>
         <ExplainCards />

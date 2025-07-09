@@ -1,0 +1,18 @@
+.home-background {
+  background: radial-gradient(ellipse at 20% 25%, #0f1740 0%, transparent 50%),
+    radial-gradient(ellipse at 60% 70%, #1a0e33 0%, transparent 45%),
+    radial-gradient(
+      ellipse at 50% 85%,
+      rgba(0, 255, 200, 0.05),
+      transparent 60%
+    ),
+    #0a0a1a;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
