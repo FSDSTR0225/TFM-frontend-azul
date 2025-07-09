@@ -130,22 +130,40 @@ padding: 2px 2px;
   margin-bottom: 0.5rem;
 }
 .diamond {
-  width: 40px;
-  height: 40px;
+  width: 80px;
+  height: 80px;
   transform: rotate(45deg);
   border: 3px solid #00bcd4;
   background: transparent;
+  overflow: hidden;
+  margin: 20px;
+
+}
+.diamond-list{
+  display: flex;
+  gap: 1.3rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.diamond-list-element{
+  max-width: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 .last-event-img {
-  width: 90%;
-  height: 90%;
+  width: 150%;
+  height: 150%;
   object-fit: cover;
   border-radius: 10px;
   padding-right: 3px;
   padding-top: 2px;
   box-shadow: 0 0 15px rgba(0, 255, 255, 0.1);
 
-  transform: rotate(-45deg);
+  transform: rotate(-45deg) translateX(1%) translateY(-20%);
 }
 .circle-text{
   color :#66fcf1

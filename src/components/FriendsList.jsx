@@ -35,17 +35,17 @@ const FriendsList = ({ friends, triggerRefresh , isOwner}) => {
         {friends.map((friend, index) => (
           <div className="circle-wrapper" key={index}>
             <div className="circle blue" key={index}>
-              <img src={friend.user.avatar|| friend.avatar} alt={friend.user.username|| friend.username} className="favorite-game-img"></img>
+              <img src={friend.user?.avatar|| friend.avatar} alt={friend.user?.username|| friend?.username} className="favorite-game-img"></img>
               {isOwner &&<button
                 onClick={() => handleDelete(friend.user._id|| friend._id)}
                 className="delete-button"
-                key={friend.user._id}
-                aria-label={`Eliminar ${friend.user.username|| friend.username}`} 
+                key={friend.user?._id}
+                aria-label={`Eliminar ${friend.user?.username|| friend?.username}`} 
               >
                 X
               </button>}
             </div>
-            <p className="circle-text">{friend.user.username|| friend.username}</p>
+            <p className="circle-text">{friend.user?.username|| friend?.username}</p>
           </div>
         ))}
       </div>

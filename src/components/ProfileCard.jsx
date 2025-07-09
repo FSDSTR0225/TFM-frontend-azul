@@ -22,12 +22,31 @@ const ProfileCard = () => {
   const receivedPlayer = location?.state?.player || null;
   const username = receivedPlayer?.username || null;
   const [modalOpen, setModalOpen] = useState(false);
+  const [lastEvents , setLastEvents] = useState([]);
 
   const triggerRefresh = () => {
     setRefreshKey((prev) => prev + 1);
   };
 
   useEffect(() => {
+    const fetchLastEvents = async (userIdToFetch) => {
+  try {
+    const url = userIdToFetch
+      ? `${API_URL}/events/past?userId=${userIdToFetch}`
+      : `${API_URL}/events/past`;
+
+    const response = await fetch(url, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    if (!response.ok) throw new Error("Error al obtener eventos pasados");
+    const data = await response.json();
+    setLastEvents(data.eventos.slice(0, 5));
+  } catch (error) {
+    console.error("Error al obtener eventos pasados:", error);
+  }
+};
     const fetchProfile = async () => {
       if (username) {
         try {
@@ -39,6 +58,7 @@ const ProfileCard = () => {
           if (!response.ok) throw new Error("Error al obtener detalles");
           const data = await response.json();
           setPlayer(data);
+          await fetchLastEvents(data._id);
         } catch (error) {
           console.error("Error al obtener el perfil:", error);
         }
@@ -52,6 +72,7 @@ const ProfileCard = () => {
           if (!response.ok) throw new Error("Error al obtener detalles");
           const data = await response.json();
           setUser(data.user);
+          await fetchLastEvents();
         } catch (error) {
           console.error("Error al obtener el perfil:", error);
         }
@@ -89,7 +110,7 @@ const ProfileCard = () => {
   const isLoading = isOwnProfile ? !user : !player;
   const currentProfile = isOwnProfile ? user : player;
 
-  if (isLoading) return <div>Loading profile...</div>;
+  if (isLoading|| !currentProfile) return <div>Loading profile...</div>;
 
   return (
     <div className="profile-card">
@@ -136,7 +157,7 @@ const ProfileCard = () => {
       />
       <EventsList
         triggerRefresh={triggerRefresh}
-        events={currentProfile.events || []}
+        events={lastEvents}
         isOwner={currentProfile === user}
       />
 

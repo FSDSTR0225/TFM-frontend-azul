@@ -68,6 +68,8 @@
 }
 
 .player-button {
+  font-family: 'Audiowide', sans-serif;
+  font-size: 0.8rem;
   background-color: #043f4f;
   color: #00f0ff;
   border: none;
