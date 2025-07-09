@@ -91,3 +91,34 @@
   border-radius: 50%;
   box-shadow: 0 0 6px #00ff55;
 }
+
+.friend-item.offline {
+  opacity: 0.4;
+}
+
+.friend-item.online {
+  opacity: 1;
+}
+
+.status-indicator {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  position: absolute;
+  bottom: 4px;
+  right: 4px;
+  border: 2px solid #000;
+}
+
+.status-indicator.green {
+  background-color: #00ff00;
+}
+
+.status-indicator.red {
+  background-color: #ff3c3c;
+}
+
+.friend-online-name.offline-name {
+  color: #aaa;
+  font-style: italic;
+}

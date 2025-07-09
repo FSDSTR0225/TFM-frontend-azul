@@ -1,72 +1,89 @@
 import React, { useState, useEffect, useContext, useCallback } from "react";
 import AuthContext from "../context/AuthContext";
-import { PacmanLoader } from "react-spinners";
 import "../style/FriendsOnlineWidget.css";
 import { socket } from "../socket";
-import { FaUserFriends } from "react-icons/fa"; // icono de amigos
+import { FaUserFriends } from "react-icons/fa";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
 function FriendsOnlineWidget() {
-  const [onlineFriends, setOnlineFriends] = useState([]);
-
+  const [friends, setFriends] = useState([]);
   const { token } = useContext(AuthContext);
 
-  const fetchOnlineFriends = useCallback(async () => {
+  const fetchFriends = useCallback(async () => {
     if (!token) return;
     try {
-      const res = await fetch(`${API_URL}/friends/online`, {
+      const res = await fetch(`${API_URL}/friends`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       const data = await res.json();
-      setOnlineFriends(data.onlineFriends);
+      const allFriends = Array.isArray(data.friends) ? data.friends : [];
+      setFriends(allFriends);
     } catch (error) {
-      console.error("Error al cargar los amigos en línea:", error);
+      console.error("Error al cargar los amigos:", error);
     }
   }, [token]);
 
   useEffect(() => {
-    fetchOnlineFriends();
-  }, [fetchOnlineFriends]);
+    fetchFriends();
+  }, [fetchFriends]);
 
   useEffect(() => {
     if (!token) return;
-    const handleUserConnect = () => fetchOnlineFriends();
-    const handleUserDisconnect = () => fetchOnlineFriends();
 
-    socket.on("userConnected", handleUserConnect);
-    socket.on("userDisconnected", handleUserDisconnect);
+    const refreshFriends = () => fetchFriends();
+    socket.on("userConnected", refreshFriends);
+    socket.on("userDisconnected", refreshFriends);
 
     return () => {
-      socket.off("userConnected", handleUserConnect);
-      socket.off("userDisconnected", handleUserDisconnect);
+      socket.off("userConnected", refreshFriends);
+      socket.off("userDisconnected", refreshFriends);
     };
-  }, [token, fetchOnlineFriends]);
+  }, [token, fetchFriends]);
 
   if (!token) return null;
+
+  const sortedFriends = [...friends].sort(
+    (a, b) => b.onlineStatus - a.onlineStatus
+  );
 
   return (
     <div className="modular-card-friends-online-card">
       <div className="modular-card-header">
         <FaUserFriends className="modular-card-icon" />
-        <h3>Amigos en línea</h3>
+        <h3>Tus amigos</h3>
       </div>
       <div className="modular-card-content-frinds-online">
-        {onlineFriends.length === 0 ? (
-          <p>No hay amigos conectados ahora mismo.</p>
+        {sortedFriends.length === 0 ? (
+          <p>No tienes amigos aún.</p>
         ) : (
           <div className="friends-list">
-            {onlineFriends.map((friend) => (
-              <div key={friend.id} className="friend-item">
+            {sortedFriends.map((friend) => (
+              <div
+                key={friend.id}
+                className={`friend-item ${
+                  friend.onlineStatus ? "online" : "offline"
+                }`}
+              >
                 <div className="avatar-online wrapper">
                   <img
-                    src={friend.avatar}
+                    src={friend.avatarUrl}
                     alt={`${friend.username} avatar`}
                     className="friend-online-avatar"
                   />
-                  <span className="online-indicator" />
+                  <span
+                    className={`status-indicator ${
+                      friend.onlineStatus ? "green" : "red"
+                    }`}
+                  />
                 </div>
-                <span className="friend-online-name">{friend.username}</span>
+                <span
+                  className={`friend-online-name ${
+                    friend.onlineStatus ? "" : "offline-name"
+                  }`}
+                >
+                  {friend.username}
+                </span>
               </div>
             ))}
           </div>

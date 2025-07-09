@@ -28,11 +28,8 @@ export default function LibrarySummaryCard() {
     })();
   }, [user?.steamId]);
 
-  if (!user?.steamId) {
-    return <p className="steam-warning">Conecta tu cuenta de Steam primero.</p>;
-  }
   if (loading || !summary) {
-    return <p className="steam-loading">Cargando resumen de librería…</p>;
+    return <p className="steam-loading"></p>;
   }
 
   // Ordenamos top 3 juegos por horas

@@ -18,6 +18,7 @@ function CalendarWidget({ onEventClick }) {
           headers: { Authorization: `Bearer ${token}` },
         });
         const data = await res.json();
+
         const dates = data.eventos.map((event) =>
           new Date(event.date).toDateString()
         );

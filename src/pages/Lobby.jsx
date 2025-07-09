@@ -133,7 +133,7 @@ function Lobby() {
                   >
                     <div className="calendar-event-cards">
                       {eventsOfDay.slice(0, 2).map((event) => (
-                        <div key={event._id} className="events-today-card">
+                        <div key={event.id} className="events-today-card">
                           <h2 className="card-title-events">¡Evento!</h2>
                           <h3 className="events-title-card-lobby">
                             {event.title}

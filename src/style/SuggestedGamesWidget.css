@@ -158,7 +158,8 @@
 }
 
 .game-platforms {
-  font-size: 0.8rem;
+  font-size: 0.75rem;
+
   color: #66fcf1;
   margin: 0;
 }
@@ -167,7 +168,7 @@
   border: 1px solid #66fcf1;
   border-radius: 8px;
   padding: 2px 8px;
-  font-size: 0.7rem;
+  font-size: 0.55rem;
   color: white;
   margin-right: 4px;
 }
