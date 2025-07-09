@@ -9,7 +9,6 @@ const API_URL = import.meta.env.VITE_API_URL;
 
 function FriendsOnlineWidget() {
   const [onlineFriends, setOnlineFriends] = useState([]);
-  const [loading, setLoading] = useState(true);
 
   const { token } = useContext(AuthContext);
 
@@ -23,8 +22,6 @@ function FriendsOnlineWidget() {
       setOnlineFriends(data.onlineFriends);
     } catch (error) {
       console.error("Error al cargar los amigos en línea:", error);
-    } finally {
-      setLoading(false);
     }
   }, [token]);
 
@@ -55,11 +52,7 @@ function FriendsOnlineWidget() {
         <h3>Amigos en línea</h3>
       </div>
       <div className="modular-card-content-frinds-online">
-        {loading ? (
-          <div className="loading-container">
-            <PacmanLoader color="#FFD700" size={32} />
-          </div>
-        ) : onlineFriends.length === 0 ? (
+        {onlineFriends.length === 0 ? (
           <p>No hay amigos conectados ahora mismo.</p>
         ) : (
           <div className="friends-list">
