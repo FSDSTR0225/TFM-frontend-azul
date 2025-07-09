@@ -7,12 +7,7 @@ const PrivateRoute = ({ children }) => {
   const { isLoggedIn, loading, islogout } = useContext(AuthContext); //Asi obtenemos al usuario(datos recogidos del contexto)
 
   if (loading) {
-    return (
-      <div className="loading-container">
-        <h2 className="loading-title">Cargando contenido privado...</h2>
-        <PacmanLoader color="#FFD700" size={30} />
-      </div>
-    );
+    return null; // Si está cargando, no renderiza nada
   }
   if (!isLoggedIn && !islogout) {
     return <Navigate to="/login" replace />;

@@ -513,22 +513,6 @@
   box-shadow: 0 0 18px rgba(0, 0, 0, 0.25);
 }
 
-/* ======== SPINNER DE CARGA ======== */
-.loading-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  width: 100vw;
-  color: #00ffe7;
-}
-
-.loading-title {
-  font-size: 1.8rem;
-  margin-bottom: 2rem;
-}
-
 /* ======== RESPONSIVE ======== */
 @media (max-width: 1024px) {
   .lobby-info-section {
