@@ -1,18 +1,25 @@
 :root {
   --bg-dark: #1e1e2a;
-  --sidebar-bg: #181824;
+  --sidebar-bg: linear-gradient(
+    135deg,
+    rgba(10, 20, 40, 0.92) 70%,
+    rgba(30, 40, 60, 0.96) 100%
+  );
   --surface-glass: rgba(255, 255, 255, 0.05);
   --accent: #4ba1ff;
   --text-light: #e0e0e0;
   --text-secondary: #a0a0a0;
-  --own-bubble: rgba(75, 161, 255, 0.2);
-  --friend-bubble: rgba(255, 255, 255, 0.1);
+  --own-bubble: linear-gradient(135deg, #4ba1ff88, #003b70aa);
+  --friend-bubble: linear-gradient(135deg, #ffffff22, #3a3a4a33);
+  --own-glow: #4ba1ff;
+  --friend-glow: #aaaaaa;
+  --message-radius: 18px;
+  --chat-height: 70vh;
 }
 
 .chat-page {
   display: flex;
   height: 100vh;
-
   background: var(--bg-dark);
 }
 
@@ -57,13 +64,8 @@
 
 .friend-item.active {
   background: var(--accent);
-
   box-shadow: 0 0 8px var(--accent);
 }
-
-/* .friend-item.online {
-  box-shadow: 0 0 8px #3be03b;
-} */
 
 .status-friends {
   width: 10px;
@@ -90,12 +92,41 @@
   border: 2px solid var(--surface-glass);
 }
 
+/* 💬 ZONA DE CHAT CON DISEÑO GAMER */
 .chat-window {
   flex: 1;
   display: flex;
+  justify-content: center;
+  align-items: center;
+  background: radial-gradient(ellipse at 20% 25%, #0f1740 0%, transparent 50%),
+    radial-gradient(ellipse at 60% 70%, #1a0e33 0%, transparent 45%),
+    radial-gradient(
+      ellipse at 50% 85%,
+      rgba(0, 255, 200, 0.05),
+      transparent 60%
+    ),
+    #0a0a1a;
+}
+
+.chat-box-inner {
+  width: 100%;
+  max-width: 900px;
+  height: var(--chat-height);
+  margin: auto;
+  display: flex;
   flex-direction: column;
-  height: 100%;
-  position: relative;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 0 20px #00000066;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: radial-gradient(ellipse at 20% 25%, #0f1740 0%, transparent 50%),
+    radial-gradient(ellipse at 60% 70%, #1a0e33 0%, transparent 45%),
+    radial-gradient(
+      ellipse at 50% 85%,
+      rgba(0, 255, 200, 0.05),
+      transparent 60%
+    ),
+    #0a0a1a;
 }
 
 .chat-header {
@@ -103,8 +134,20 @@
   align-items: center;
   padding: 16px;
   backdrop-filter: blur(8px);
-  background: var(--surface-glass);
+  background: rgba(25, 25, 35, 0.6);
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+  position: relative;
+}
+
+.chat-header::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 20%;
+  right: 20%;
+  height: 2px;
+  background: var(--accent);
+  box-shadow: 0 0 12px var(--accent);
 }
 
 .chat-header img {
@@ -128,27 +171,35 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
+  background: radial-gradient(circle at top left, #1a1a2a, #12121a 80%);
 }
 
+/* 💬 BURBUJAS DE MENSAJE */
 .message {
-  max-width: 60%;
+  max-width: 70%;
   padding: 10px 14px;
-  border-radius: var(--border-radius);
+  border-radius: var(--message-radius);
   position: relative;
-  backdrop-filter: blur(4px);
+  backdrop-filter: blur(6px);
   background: var(--friend-bubble);
   color: var(--text-light);
-  animation: fadeIn 0.2s ease-in;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  animation: chatPopIn 0.3s ease-out;
 }
 
 .message.own {
   align-self: flex-end;
   background: var(--own-bubble);
-  border-radius: 16px;
+  box-shadow: 0 0 8px var(--own-glow);
+  border-radius: var(--message-radius) var(--message-radius) 0
+    var(--message-radius);
 }
 
 .message.friend {
   align-self: flex-start;
+  box-shadow: 0 0 6px var(--friend-glow);
+  border-radius: var(--message-radius) var(--message-radius)
+    var(--message-radius) 0;
 }
 
 .message-text {
@@ -164,6 +215,7 @@
   right: 8px;
 }
 
+/* FORMULARIO DE ENVÍO */
 .message-form {
   flex-shrink: 0;
   display: flex;
@@ -180,10 +232,17 @@
   padding: 10px 14px;
   border: none;
   border-radius: 16px;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--surface-glass);
   color: var(--text-light);
   font-size: 1rem;
+  transition: 0.2s;
+}
+
+.message-form input:focus {
   outline: none;
+  box-shadow: 0 0 8px var(--accent);
+  background: rgba(255, 255, 255, 0.12);
 }
 
 .message-form input::placeholder {
@@ -195,15 +254,19 @@
   padding: 0 18px;
   border: none;
   border-radius: 16px;
-  background: var(--accent);
+  background: linear-gradient(135deg, var(--accent), #2564a4);
   color: white;
   font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
   cursor: pointer;
-  transition: box-shadow 0.2s;
+  box-shadow: 0 0 8px var(--accent);
+  transition: 0.2s;
 }
 
 .message-form button:hover {
-  box-shadow: 0 0 8px var(--accent);
+  transform: scale(1.05);
+  box-shadow: 0 0 12px var(--accent);
 }
 
 .no-chat-selected {
@@ -215,6 +278,7 @@
   font-size: 1rem;
 }
 
+/* SCROLL PERSONALIZADO */
 .friends-list-chat::-webkit-scrollbar,
 .messages-section::-webkit-scrollbar {
   width: 6px;
@@ -226,13 +290,14 @@
   border-radius: 3px;
 }
 
-@keyframes fadeIn {
+/* ANIMACIÓN */
+@keyframes chatPopIn {
   from {
     opacity: 0;
-    transform: translateY(4px);
+    transform: scale(0.95) translateY(10px);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: scale(1) translateY(0);
   }
 }

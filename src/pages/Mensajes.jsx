@@ -136,7 +136,7 @@ const Mensajes = () => {
 
       <main className="chat-window">
         {selectedFriend ? (
-          <>
+          <div className="chat-box-inner">
             <header className="chat-header">
               <img
                 src={selectedFriend.avatarUrl}
@@ -166,6 +166,7 @@ const Mensajes = () => {
                 );
               })}
             </section>
+
             <form className="message-form" onSubmit={handleSubmit}>
               <input
                 type="text"
@@ -175,7 +176,7 @@ const Mensajes = () => {
               />
               <button type="submit">Enviar</button>
             </form>
-          </>
+          </div>
         ) : (
           <div className="no-chat-selected">
             <p>Selecciona un amigo para empezar a chatear</p>
