@@ -1,5 +1,5 @@
 import React from "react";
-import "../style/ShowProfile.css";
+import "../style/showProfile.css";
 import {
   FaCalendarAlt,
   FaDesktop,
