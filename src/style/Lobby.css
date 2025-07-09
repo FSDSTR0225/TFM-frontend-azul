@@ -587,18 +587,6 @@
   }
 }
 
-.divider-lobby {
-  height: 2px;
-  background: linear-gradient(
-    to right,
-    transparent,
-    rgba(0, 255, 255, 0.5),
-    transparent
-  );
-  animation: pulseLine 2s infinite;
-  opacity: 0.6;
-}
-
 @keyframes pulseLine {
   0%,
   100% {
@@ -608,6 +596,18 @@
     opacity: 0.6;
   }
 }
+
+/* .divider-lobby {
+  height: 2px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(0, 255, 255, 0.5),
+    transparent
+  );
+  animation: pulseLine 2s infinite;
+  opacity: 0.6;
+} */
 
 /* .lobby-content {
   position: relative;
