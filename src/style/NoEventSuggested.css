@@ -5,13 +5,15 @@
   justify-content: center;
   text-align: center;
   padding: 3rem;
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(24, 28, 43, 0.721);
   border-radius: 1rem;
   gap: 1rem;
   border: 1px solid rgba(0, 255, 255, 0.1);
   box-shadow: 0 0 16px rgba(0, 255, 255, 0.05);
   width: 800px;
   height: 350px;
+  position: relative;
+  z-index: 2;
 }
 
 .illustration-zone {

@@ -26,13 +26,15 @@
 
 /* Personaliza el calendario para que encaje con el glassmorphism */
 .react-calendar {
-  background: rgba(24, 28, 43, 0.65);
+  background: rgba(24, 28, 43, 0.721);
   border-radius: 12px;
-  border: none;
+  border: 1px solid rgba(0, 255, 255, 0.1);
   color: #fff;
   font-family: "Audiowide", "Poppins", sans-serif;
   box-shadow: 0 0 8px #00ffc822;
   padding: 16px;
+  position: relative;
+  z-index: 2;
 }
 
 .event-day {
