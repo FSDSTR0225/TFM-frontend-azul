@@ -16,6 +16,7 @@ import { GiRetroController, GiWingedSword } from "react-icons/gi";
 import { TbCalendarBolt } from "react-icons/tb";
 import { FaUsers } from "react-icons/fa";
 import BotAssistant from "../components/BotAssistant";
+import LibrarySteam from "../components/LibrarySteam";
 
 function Lobby() {
   const [loading, setLoading] = useState(true);
@@ -209,7 +210,7 @@ function Lobby() {
               </div>
 
               <div className="steam-library-glass">
-                {/* <LibrarySteam /> */}
+                <LibrarySteam />
               </div>
             </section>
             <BotAssistant />

@@ -505,6 +505,19 @@
   }
 }
 
+@media (max-width: 1200px) {
+  .event-actions {
+    position: static;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 1.5rem;
+  }
+
+  .event-actions p {
+    text-align: center;
+  }
+}
+
 @media (max-width: 768px) {
   .modal-event-content.event-details-card {
     padding: 1.4rem 1rem;

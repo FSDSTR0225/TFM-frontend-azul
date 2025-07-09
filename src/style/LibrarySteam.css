@@ -1,0 +1,94 @@
+.steam-summary-card {
+  position: relative;
+  background: rgba(12, 18, 27, 0.75); /* fondo oscuro semitransparente */
+  backdrop-filter: blur(8px); /* efecto vidrio */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  max-width: 360px;
+  color: #e0e8f8;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+  margin: 1rem auto; /* centrar horizontalmente si va dentro de un flex/column */
+  display: grid;
+  grid-template-rows: auto auto auto;
+  gap: 1rem;
+}
+
+/* ------------------------------------ */
+/* 2) Título con icono y estilo “neón” */
+/* ------------------------------------ */
+.steam-summary-card h3 {
+  display: flex;
+  align-items: center;
+  font-size: 1.25rem;
+  margin: 0;
+  color: #00e0ff;
+  text-shadow: 0 0 6px #00e0ff, 0 0 12px #00e0ff;
+}
+.steam-summary-card h3::before {
+  content: "📦";
+  margin-right: 0.5rem;
+  font-size: 1.5rem;
+}
+
+/* ------------------------------------ */
+/* 3) Estadísticas numéricas grandes    */
+/* ------------------------------------ */
+.steam-summary-stats {
+  display: flex;
+  justify-content: space-between;
+}
+.steam-summary-stats div {
+  text-align: center;
+  flex: 1;
+}
+.steam-summary-stats strong {
+  display: block;
+  font-size: 2rem;
+  line-height: 1;
+  color: #ffffff;
+}
+.steam-summary-stats span {
+  display: block;
+  font-size: 0.85rem;
+  color: #a0b8d8;
+}
+
+/* ------------------------------------ */
+/* 4) Lista de top juegos               */
+/* ------------------------------------ */
+.steam-summary-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.steam-summary-list li {
+  font-size: 0.9rem;
+  margin: 0.35rem 0;
+  padding-left: 1.5rem;
+  position: relative;
+  color: #c0d0e8;
+}
+.steam-summary-list li::before {
+  content: "▶";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #00c0ff;
+  font-size: 0.8rem;
+  line-height: 1.2;
+}
+
+/* ------------------------------------ */
+/* 5) Responsive pequeño ajuste         */
+/* ------------------------------------ */
+@media (max-width: 400px) {
+  .steam-summary-card {
+    max-width: 100%;
+    padding: 1rem;
+    grid-template-rows: auto auto;
+  }
+  .steam-summary-stats strong {
+    font-size: 1.6rem;
+  }
+}

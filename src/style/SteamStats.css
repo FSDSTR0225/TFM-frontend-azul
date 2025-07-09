@@ -1,0 +1,86 @@
+/* src/style/SteamStats.css */
+
+.steam-stats-container {
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  border-radius: 12px;
+  color: #cfdfff;
+}
+
+.steam-stats-title {
+  text-align: center;
+  font-size: 1.6rem;
+  color: #00f0ff;
+  margin-bottom: 1rem;
+  text-shadow: 0 0 6px #00f0ff;
+}
+
+.steam-alert {
+  background: #ff5555;
+  color: white;
+  padding: 0.75rem;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  text-align: center;
+  font-weight: bold;
+}
+
+.steam-stats-grid {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+  align-items: center;
+}
+
+.steam-game-card {
+  flex: 0 0 200px;
+  background: #2a2a3d;
+  border-radius: 8px;
+  padding: 0.75rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+}
+.steam-game-card:hover {
+  transform: translateY(4px);
+  box-shadow: 0 4px 12px rgba(0, 240, 255, 0.4);
+}
+
+.steam-game-image {
+  width: 100%;
+  border-radius: 4px;
+  margin-bottom: 0.5rem;
+}
+
+.steam-game-info h4 {
+  font-size: 1rem;
+  color: #edf;
+  margin: 0.25rem 0;
+}
+
+.steam-game-info p {
+  margin: 0.2rem 0;
+  font-size: 0.85rem;
+}
+
+.steam-achievement-text {
+  color: #ffd700;
+  font-weight: bold;
+}
+
+.steam-progress-bar {
+  background: #33334f;
+  height: 8px;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-top: 0.3rem;
+}
+
+.steam-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #00f0ff, #00d8ff);
+  transition: width 0.6s ease-in-out;
+}
