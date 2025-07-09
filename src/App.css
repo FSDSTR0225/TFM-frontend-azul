@@ -9,10 +9,10 @@
 
 html,
 body {
-  height: auto;
   min-height: 100vh;
-  max-height: 100vh;
-  overflow: hidden;
+  height: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
   scroll-behavior: smooth;
   /* background-image: linear-gradient(
     to bottom right,

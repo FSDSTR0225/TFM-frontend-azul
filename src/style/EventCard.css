@@ -18,7 +18,7 @@
 
 .event-card:hover {
   transform: scale(1.025) translateY(-2px);
-  box-shadow: 0 12px 40px 0 #00ffc855, 0 0 32px #ffd70055;
+  box-shadow: 0 2px 20px 0 #00ffc855, 0 0 12px #ffd70055;
 }
 .event-card-img {
   width: 1300;
