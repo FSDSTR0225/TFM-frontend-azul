@@ -109,19 +109,26 @@ function ManagementCenter() {
         },
         body: JSON.stringify({ requestId, response }),
       });
-
       if (!resp.ok) throw new Error("Error al gestionar la solicitud");
 
       const data = await resp.json();
+      // Recupero el objeto original de la petición:
+      const originalReq = receivedEventRequests.find(
+        (r) => r._id === requestId
+      );
+      const username =
+        response === "accept"
+          ? data.updatedRequest.userRequester.username
+          : originalReq.userRequester.username;
 
       if (response === "accept") {
         toast.success(
-          `Solicitud aceptada: ${data.updatedRequest.userRequester.username} se ha unido al evento "${data.updatedEvent.title}"`,
+          `Solicitud aceptada: ${username} se ha unido al evento "${data.updatedEvent.title}"`,
           { className: "mi-toast", icon: "✅" }
         );
       } else {
         toast.success(
-          `Solicitud rechazada: ${data.updatedRequest.userRequester.username} no puede unirse al evento`,
+          `Solicitud rechazada: ${username} no puede unirse al evento`,
           { className: "mi-toast", icon: "❌" }
         );
       }
