@@ -1,58 +1,338 @@
+.myEvents-container {
+  min-height: 100vh;
+  background: radial-gradient(ellipse at 20% 25%, #0f1740 0%, transparent 50%),
+    radial-gradient(ellipse at 60% 70%, #1a0e33 0%, transparent 45%),
+    radial-gradient(
+      ellipse at 50% 85%,
+      rgba(0, 255, 200, 0.05),
+      transparent 60%
+    ),
+    #0a0a1a;
+  padding: 2.5rem 0 3rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: "Poppins", "Audiowide", "Orbitron", sans-serif;
+}
+
+.management-container {
+  width: 100vw;
+  min-width: 0;
+  margin: 0;
+  border-radius: 0;
+  background: radial-gradient(ellipse at 20% 25%, #0f1740 0%, transparent 50%),
+    radial-gradient(ellipse at 60% 70%, #1a0e33 0%, transparent 45%),
+    radial-gradient(
+      ellipse at 50% 85%,
+      rgba(0, 255, 200, 0.05),
+      transparent 60%
+    ),
+    #0a0a1a;
+  box-shadow: none;
+  padding: 1.2rem 0 1.2rem 0;
+  border-top: 2.5px solid #00e0ff44;
+  border-bottom: 2.5px solid #00e0ff44;
+  border-left: none;
+  border-right: none;
+  position: relative;
+  overflow: visible;
+  backdrop-filter: blur(8px) saturate(110%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header-management-content {
+  width: 100%;
+  height: 6px;
+  background: linear-gradient(90deg, #00e0ff 0%, #00ffc8 100%);
+  border-radius: 0;
+  margin-bottom: 1rem;
+  box-shadow: 0 0 12px #00e0ff33;
+}
+
+.management-container h1 {
+  color: #00e0ff;
+  font-family: "Audiowide", "Orbitron", "Poppins", sans-serif;
+  font-size: 2.1rem;
+  margin-bottom: 0.3rem;
+  text-shadow: 0 0 12px #00e0ff99;
+  letter-spacing: 0.5px;
+}
+
+.management-container p {
+  color: #a0b8d8;
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+  text-shadow: 0 0 6px #00e0ff22;
+}
+
+.section-request-content {
+  background: radial-gradient(ellipse at 20% 25%, #0f1740 0%, transparent 50%),
+    radial-gradient(ellipse at 60% 70%, #1a0e33 0%, transparent 45%),
+    radial-gradient(
+      ellipse at 50% 85%,
+      rgba(0, 255, 200, 0.05),
+      transparent 60%
+    ),
+    #0a0a1a;
+  width: 100%;
+  border-radius: 1rem;
+  padding: 1.2rem 1.2rem 1.5rem 1.2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 0 12px #00e0ff22;
+}
+
+.tab-btns {
+  display: flex;
+  gap: 1.2rem;
+  margin-bottom: 1.2rem;
+  justify-content: flex-start;
+}
+.tab-btns button {
+  background: #101a2a;
+  color: #00e0ff;
+  border: 1.5px solid #00e0ff55;
+  border-radius: 8px;
+  padding: 0.5rem 1.2rem;
+  font-size: 1rem;
+  font-family: "Orbitron", "Poppins", sans-serif;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, border 0.2s, box-shadow 0.2s;
+  box-shadow: 0 0 8px #00e0ff22;
+}
+.tab-btns button.active,
+.tab-btns button:hover {
+  background: #00e0ff;
+  color: #101a2a;
+  border-color: #00e0ff;
+  box-shadow: 0 0 16px #00e0ff99;
+}
+
+.tab-received-content,
+.tab-sent-content,
+.tab-history-content {
+  margin-top: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.tab-received-content ul,
+.tab-sent-content ul,
+.tab-history-content ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.request-item {
+  background: radial-gradient(circle at 25% 20%, #132347, transparent 40%),
+    radial-gradient(circle at 50% 60%, #170c2c, transparent 30%),
+    radial-gradient(circle at 50% 80%, rgba(0, 255, 200, 0.05), transparent 60%),
+    #0a0a1a;
+  border-radius: 10px;
+  max-width: 600px;
+  margin-bottom: 1.1rem;
+  padding: 1rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  box-shadow: 0 2px 8px #00ffc822;
+  border: 1.5px solid #00ffc822;
+  position: relative;
+  transition: background 0.2s, box-shadow 0.2s;
+}
+.request-item:hover {
+  background: rgba(0, 255, 200, 0.16);
+  box-shadow: 0 0 16px #00ffc8cc, 0 2px 12px #0ff2;
+  border-color: #00ffc8;
+}
+
+.request-item span {
+  color: #fff;
+  font-size: 1.08rem;
+  font-family: "Orbitron", "Poppins", sans-serif;
+  text-shadow: 0 0 6px #00ffc888;
+}
+
+.actions {
+  display: flex;
+  gap: 1.2rem;
+  margin-top: 0.2rem;
+}
+.accept-request-btn,
+.reject-request-btn {
+  padding: 0.45rem 1.2rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: "Orbitron", "Poppins", sans-serif;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: background 0.18s, color 0.18s, box-shadow 0.18s;
+  box-shadow: 0 0 8px #00ffc822;
+}
+.accept-request-btn {
+  background: #00ffc8;
+  color: #101a2a;
+}
+.accept-request-btn:hover {
+  background: #00e0ff;
+  color: #fff;
+  box-shadow: 0 0 16px #00ffc8cc;
+}
+.reject-request-btn {
+  background: #23243a;
+  color: #ff4d4f;
+  border: 1.5px solid #ff4d4f55;
+}
+.reject-request-btn:hover {
+  background: #ff4d4f;
+  color: #fff;
+  box-shadow: 0 0 16px #ff4d4fcc;
+}
+
 .myEvents-btns {
   display: flex;
+  gap: 1.5rem;
+  margin-bottom: 2.2rem;
   justify-content: center;
-  gap: 1rem;
-  margin: 2rem 0;
-  flex-wrap: wrap;
 }
-
 .myEvents-btns button {
-  background-color: #1f1f1f;
-  color: #fff;
-  border: 1px solid #444;
-  padding: 0.7rem 1.2rem;
-  border-radius: 8px;
+  background: #181c2b;
+  color: #66fcf1;
+  border: 1.5px solid #66fcf1;
+  border-radius: 10px;
+  padding: 0.7rem 1.7rem;
+  font-size: 1.1rem;
+  font-family: "Audiowide", "Orbitron", "Poppins", sans-serif;
+  letter-spacing: 0.4px;
   cursor: pointer;
-  font-weight: 600;
-  transition: all 0.3s ease;
+  transition: background 0.2s, color 0.2s, border 0.2s, box-shadow 0.2s;
+  box-shadow: 0 0 8px #66fcf122;
   position: relative;
 }
-
+.myEvents-btns button.active-btn,
 .myEvents-btns button:hover {
-  background-color: #333;
+  background: #00ffc8;
+  color: #181c2b;
+  border-color: #00ffc8;
+  box-shadow: 0 0 16px #00ffc8cc;
 }
-
-.myEvents-btns .active-btn {
-  background-color: #3b82f6;
-  color: white;
-  border-color: #3b82f6;
-}
-
 .badge-total {
-  background-color: #ff4747;
-  color: white;
-  font-size: 0.75rem;
-  font-weight: bold;
-  padding: 2px 8px;
-  border-radius: 20px;
-  margin-left: 8px;
+  background: #00ffc8;
+  color: #181c2b;
+  border-radius: 8px;
+  padding: 0.2rem 0.7rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-left: 0.7rem;
+  box-shadow: 0 0 8px #00ffc822;
 }
 
-@media (max-width: 500px) {
+.myEvents-tab {
+  width: 100%;
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.myEvents-row {
+  width: 100%;
+  max-width: 1500px;
+  margin: 0 auto 2.5rem auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.myEvents-tab-row {
+  width: 100%;
+  margin-top: 1.2rem;
+}
+
+.myEvents-cards-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 1rem;
+  overflow-x: auto;
+  padding: 0.5rem;
+  scrollbar-width: thin;
+  background: transparent;
+  scrollbar-color: #00ffc8 #181a2a;
+}
+.myEvents-cards-row::-webkit-scrollbar {
+  height: 10px;
+  background: transparent;
+}
+.myEvents-cards-row::-webkit-scrollbar-thumb {
+  background: linear-gradient(120deg, #00ffc8 10%, #66fcf1 90%);
+  border-radius: 8px;
+  box-shadow: 0 0 8px #00ffc8cc;
+}
+
+.myEvents-cards-row > * {
+  flex: 0 0 420px;
+  max-width: 420px;
+  min-width: 260px;
+}
+
+@media (max-width: 700px) {
+  .myEvents-row,
+  .myEvents-tab-row {
+    max-width: 98vw;
+    padding: 0 0.2rem;
+  }
+  .myEvents-cards-row > * {
+    flex: 0 0 90vw;
+    max-width: 90vw;
+    min-width: 180px;
+  }
+}
+
+.no-events-msg {
+  color: #a0b8d8;
+  font-size: 1.1rem;
+  margin-top: 2.5rem;
+  text-align: center;
+  text-shadow: 0 0 6px #00e0ff22;
+}
+
+/* Responsive */
+@media (max-width: 1100px) {
+  .management-container,
+  .myEvents-tab {
+    max-width: 98vw;
+    padding: 1.2rem 0.5rem 1.2rem 0.5rem;
+  }
+}
+@media (max-width: 700px) {
+  .myEvents-container {
+    padding: 1.2rem 0 2rem 0;
+  }
+  .management-container {
+    padding: 1rem 0.2rem 1rem 0.2rem;
+  }
   .myEvents-btns {
     flex-direction: column;
-    align-items: center;
+    gap: 0.7rem;
   }
-
   .myEvents-btns button {
     width: 100%;
-    max-width: 300px;
-    text-align: center;
+    font-size: 1rem;
+    padding: 0.6rem 0.5rem;
   }
-
-  .badge-total {
-    position: absolute;
-    top: -8px;
-    right: -8px;
+  .myEvents-tab {
+    padding: 0 0.2rem;
+  }
+  .request-item {
+    padding: 0.7rem 0.5rem;
+    font-size: 0.98rem;
   }
 }
