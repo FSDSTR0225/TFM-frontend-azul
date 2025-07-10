@@ -188,12 +188,13 @@ function Lobby() {
               <SuggestedGamesWidget />
             </div>
           </div>
-
-          <div className="steam-library-glass">
-            <LibrarySteam />
-          </div>
-          <BotAssistant />
+          {authContext.user.steamId && (
+            <div className="steam-library-glass">
+              <LibrarySteam />
+            </div>
+          )}
         </section>
+        <BotAssistant />
       </div>
     </div>
   );
