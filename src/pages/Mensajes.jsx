@@ -110,7 +110,7 @@ const Mensajes = () => {
             <li
               key={friend.id}
               className={[
-                "friend-item",
+                "friend-item-messages",
                 selectedFriend?.id === friend.id && "active",
                 friend.onlineStatus && "online",
               ]

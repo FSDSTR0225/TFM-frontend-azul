@@ -8,9 +8,12 @@ function DailySummary({ summary }) {
     newFriends = [],
     notificationSummary,
     joinRequestSummary,
-    // joinEventRequests = [],
     approvedEvent = [],
     upcomingEvents = [],
+    profileViewSummary,
+    tomorrowEventsSummary,
+    eventWithFavoriteGame = [],
+    pendingFriendRequestsSummary,
   } = summary;
 
   const summaryIsEmpty =
@@ -18,7 +21,11 @@ function DailySummary({ summary }) {
     !approvedEvent.length &&
     !upcomingEvents.length &&
     !notificationSummary?.message &&
-    !joinRequestSummary?.message;
+    !joinRequestSummary?.message &&
+    !profileViewSummary &&
+    !tomorrowEventsSummary &&
+    !eventWithFavoriteGame.length &&
+    !pendingFriendRequestsSummary;
 
   return (
     <div className="daily-summary-container">
@@ -47,10 +54,22 @@ function DailySummary({ summary }) {
                 </ul>
               </div>
             )}
+            {profileViewSummary && (
+              <div className="profile-view-summary">
+                <h3 className="profile-view-title">Visitas a tu perfil</h3>
+                <p>{profileViewSummary}</p>
+              </div>
+            )}
             {notificationSummary && (
               <div className="notification-summary">
                 <h3 className="notification-title">Notificaciones</h3>
                 <p>{notificationSummary.message}</p>
+              </div>
+            )}
+            {pendingFriendRequestsSummary && (
+              <div className="pending-friend-requests-summary">
+                <h3 className="friend-request-title">Peticiones de amistad</h3>
+                <p>{pendingFriendRequestsSummary}</p>
               </div>
             )}
             {joinRequestSummary && (
@@ -69,6 +88,25 @@ function DailySummary({ summary }) {
                 </ul>
               </div>
             )}
+            {eventWithFavoriteGame.length > 0 && (
+              <div className="favorite-game-events-summary">
+                <h3 className="favorite-game-title">Eventos relacionados</h3>
+                <ul>
+                  {eventWithFavoriteGame.map((event) => (
+                    <li key={event.eventId}>{event.message}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+            {tomorrowEventsSummary && (
+              <div className="tomorrow-events-summary">
+                <h3 className="tomorrow-events-title">
+                  Recordatorio de mañana
+                </h3>
+                <p>{tomorrowEventsSummary}</p>
+              </div>
+            )}
+
             {upcomingEvents.length > 0 && (
               <div className="upcoming-summary">
                 <h3 className="upcoming-summary-title">Eventos programados</h3>

@@ -1,10 +1,13 @@
 :root {
   --bg-dark: #1e1e2a;
-  --sidebar-bg: linear-gradient(
-    135deg,
-    rgba(10, 20, 40, 0.92) 70%,
-    rgba(30, 40, 60, 0.96) 100%
-  );
+  --sidebar-bg: radial-gradient(ellipse at 20% 25%, #0f1740 0%, transparent 50%),
+    radial-gradient(ellipse at 60% 70%, #1a0e33 0%, transparent 45%),
+    radial-gradient(
+      ellipse at 50% 85%,
+      rgba(0, 255, 200, 0.05),
+      transparent 60%
+    ),
+    #0a0a1a;
   --surface-glass: rgba(255, 255, 255, 0.05);
   --accent: #4ba1ff;
   --text-light: #e0e0e0;
@@ -24,7 +27,7 @@
 }
 
 .friends-sidebar {
-  width: 260px;
+  width: 280px;
   background: var(--sidebar-bg);
   backdrop-filter: blur(8px);
   padding: 16px;
@@ -48,21 +51,21 @@
   flex: 1;
 }
 
-.friend-item {
+.friend-item-messages {
   display: flex;
   align-items: center;
   padding: 8px;
-  margin-bottom: 4px;
+  margin-bottom: 0.5rem;
   border-radius: 16px;
   cursor: pointer;
   transition: background 0.2s, box-shadow 0.2s;
 }
 
-.friend-item:hover {
+.friend-item-messages:hover {
   background: var(--surface-glass);
 }
 
-.friend-item.active {
+.friend-item-messages.active {
   background: var(--accent);
   box-shadow: 0 0 8px var(--accent);
 }
@@ -83,7 +86,7 @@
   background-color: #e10d0d;
 }
 
-.friend-item .avatar {
+.friend-item-messages .avatar {
   width: 36px;
   height: 36px;
   border-radius: 50%;
@@ -98,14 +101,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: radial-gradient(ellipse at 20% 25%, #0f1740 0%, transparent 50%),
+  background: url("/images/3.jpg") center center / cover no-repeat;
+  /* background: radial-gradient(ellipse at 20% 25%, #0f1740 0%, transparent 50%),
     radial-gradient(ellipse at 60% 70%, #1a0e33 0%, transparent 45%),
     radial-gradient(
       ellipse at 50% 85%,
       rgba(0, 255, 200, 0.05),
       transparent 60%
     ),
-    #0a0a1a;
+    #0a0a1a; */
 }
 
 .chat-box-inner {
@@ -127,6 +131,8 @@
       transparent 60%
     ),
     #0a0a1a;
+  backdrop-filter: blur(12px);
+  border: 2px solid rgba(255, 255, 255, 0.08);
 }
 
 .chat-header {

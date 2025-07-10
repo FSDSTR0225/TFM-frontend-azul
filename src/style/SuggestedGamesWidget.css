@@ -9,7 +9,11 @@
   flex-direction: column;
   width: 100%;
   max-width: 850px; /*900px*/
-  /* height: 500px; */
+  height: auto;
+  min-height: 460px;
+  justify-content: space-around;
+  position: relative;
+
   /* gap: 10px; */
   /* padding: 2.3rem 3rem 2.3rem 0; */
   background: rgba(255, 255, 255, 0.04);
@@ -67,29 +71,34 @@
   margin-left: 1.5rem;
 }
 .hero-left img {
-  width: 400px;
-  height: 400px;
+  width: 100%;
+  max-width: 320px;
+  height: auto;
+  aspect-ratio: 1/1;
   object-fit: cover;
   border-radius: 12px;
   cursor: pointer;
   box-shadow: 0 0 24px #00ffc855;
   transition: transform 0.35s;
+  display: block;
 }
 .hero-left img:hover {
   transform: scale(1.03);
 }
 
 .hero-right {
-  flex: 0 0 50%;
-  max-width: 50%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  margin-top: 1rem;
-  padding: 0rem 1rem;
-  align-items: center;
-  gap: 0.7rem;
-  position: relative;
+  .hero-right {
+    flex: 0 0 50%;
+    max-width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* asegura que lo de abajo quede pegado al fondo */
+    padding: 0rem 1rem;
+    align-items: center;
+    gap: 0.7rem;
+    min-height: 400px; /* fuerza altura constante */
+    position: relative;
+  }
 }
 
 .game-steam-details {
@@ -113,7 +122,7 @@
   width: 100%;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-auto-rows: 115px;
+  grid-auto-rows: 100px;
   gap: 10px;
   margin-top: 0;
 }
@@ -146,15 +155,10 @@
 }
 
 .game-steam-platform {
-  position: absolute;
+  margin-top: auto;
+  padding-top: 0.8rem;
+  position: relative;
   bottom: 0;
-  left: 0;
-  right: 0;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 4px;
-  padding-top: 0.4rem;
 }
 
 .game-platforms {
@@ -210,21 +214,23 @@
   position: absolute;
   display: flex;
   justify-content: center;
-  bottom: 10px;
+  bottom: 20px;
   left: -10% !important;
   transform: translateX(-50%);
   z-index: 10;
 }
 
 .suggested-games-swiper .swiper-pagination-bullet {
-  width: 16px;
+  width: 14px;
   height: 4px;
   border-radius: 2px;
   background: #5b6b7c;
+  opacity: 0.6;
 }
 .suggested-games-swiper .swiper-pagination-bullet-active {
-  width: 20px;
+  width: 18px;
   background: #00ffc8;
+  opacity: 1;
 }
 
 .dots-loader {
@@ -274,6 +280,17 @@
   }
 }
 
+@media (max-width: 900px) {
+  .hero-left img {
+    max-width: 200px;
+  }
+}
+@media (max-width: 600px) {
+  .hero-left img {
+    max-width: 120px;
+  }
+}
+
 /* Tablets verticales tipo iPad Mini (768px) */
 @media (max-width: 900px) {
   .game-hero-slide {
@@ -298,6 +315,55 @@
   .steam-game-title {
     font-size: 1.4rem;
     max-height: 3.2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-content {
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+  }
+
+  .hero-left {
+    margin: 0 auto;
+    height: auto;
+    max-width: 100%;
+    justify-content: center;
+  }
+
+  .hero-left img {
+    width: 90%;
+    max-width: 320px;
+    height: auto;
+  }
+
+  .screenshots {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 10px;
+    padding-bottom: 8px;
+  }
+
+  .screenshots img {
+    width: 160px;
+    height: 90px;
+    flex: 0 0 auto;
+  }
+
+  .game-tags {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .hero-right {
+    align-items: center;
+  }
+
+  .game-steam-platform {
+    position: static;
+    padding-top: 0.5rem;
   }
 }
 
@@ -598,3 +664,295 @@
     font-size: 0.8rem;
   }
 } */
+
+/*OPCION 3*/
+/*.suggested-games-swiper {
+  width: 100%;
+  border-radius: 18px;
+  overflow: visible;
+  background: none;
+  padding-bottom: 2.5rem;
+  position: relative;
+}
+
+.game-hero-slide {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  width: 100%;
+  max-width: 950px;
+  min-height: 420px;
+  margin: 0 auto;
+  background: linear-gradient(
+    120deg,
+    rgba(20, 28, 40, 0.97) 60%,
+    rgba(0, 255, 255, 0.08) 100%
+  );
+  border: 2.5px solid #00f0ff44;
+  box-shadow: 0 8px 40px #00f0ff33, 0 2px 12px #000a;
+  border-radius: 18px;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+  transition: box-shadow 0.3s, transform 0.3s;
+  animation: pulse-shine 2.5s infinite cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+@keyframes pulse-shine {
+  0%,
+  100% {
+    box-shadow: 0 8px 40px #00f0ff33, 0 2px 12px #000a;
+  }
+  50% {
+    box-shadow: 0 0 60px #00ffc8cc, 0 2px 24px #00ffc822;
+  }
+}
+
+.hero-left {
+  flex: 0 0 44%;
+  max-width: 44%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2.2rem 0 2.2rem 2.2rem;
+  background: none;
+}
+.game-cover {
+  width: 320px;
+  height: 320px;
+  object-fit: cover;
+  border-radius: 14px;
+  cursor: pointer;
+  box-shadow: 0 0 32px #00ffc899, 0 0 8px #181a2a;
+  border: 2.5px solid #00ffc8;
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+.game-cover:hover {
+  transform: scale(1.04) rotate(-1deg);
+  box-shadow: 0 0 48px #00ffc8cc, 0 0 16px #fff2;
+  border-color: #fff;
+}
+
+.hero-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 2.2rem 2.2rem 2.2rem 1.2rem;
+  gap: 1.1rem;
+  position: relative;
+  background: none;
+}
+
+.game-steam-details {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.7rem;
+}
+
+.steam-game-title {
+  font-family: "Audiowide", "Orbitron", "Poppins", sans-serif;
+  font-size: 2.1rem;
+  color: #66fcf1;
+  text-shadow: 0 0 12px #00ffc888, 0 0 4px #181a2a;
+  margin: 0 0 0.5rem 0;
+  line-height: 1.1;
+  letter-spacing: 0.5px;
+  transition: color 0.2s;
+  cursor: pointer;
+}
+.steam-game-title:hover {
+  color: #00ffc8;
+  text-shadow: 0 0 18px #00ffc8cc;
+}
+
+.screenshots {
+  width: 100%;
+  display: flex;
+  gap: 10px;
+  margin-top: 0.2rem;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+.screenshot-thumb {
+  width: 110px;
+  height: 70px;
+  object-fit: cover;
+  border-radius: 7px;
+  border: 1.5px solid #00ffc855;
+  box-shadow: 0 0 8px #00ffc822;
+  transition: transform 0.18s, box-shadow 0.18s;
+  cursor: pointer;
+}
+.screenshot-thumb:hover {
+  transform: scale(1.07);
+  box-shadow: 0 0 18px #00ffc8cc;
+  border-color: #fff;
+}
+
+.game-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 0.2rem;
+}
+.tag-chip-suggest {
+  background: rgba(0, 255, 200, 0.13);
+  border: 1.2px solid #00ffc8;
+  border-radius: 12px;
+  padding: 4px 10px;
+  font-size: 0.82rem;
+  color: #00ffc8;
+  text-transform: uppercase;
+  font-family: "Orbitron", "Poppins", sans-serif;
+  letter-spacing: 0.7px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  box-shadow: 0 0 8px #00ffc822;
+  transition: background 0.2s, color 0.2s;
+}
+.tag-chip-suggest:hover {
+  background: #00ffc8;
+  color: #181a2a;
+}
+
+.game-steam-platform {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 0.7rem;
+  align-items: center;
+}
+.platform-chip {
+  background: #22313f;
+  border: 1.2px solid #66fcf1;
+  border-radius: 8px;
+  padding: 3px 12px;
+  font-size: 0.85rem;
+  color: #66fcf1;
+  font-family: "Orbitron", "Poppins", sans-serif;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  box-shadow: 0 0 6px #00ffc822;
+  transition: background 0.2s, color 0.2s;
+}
+.platform-chip img.platform-icon {
+  width: 18px;
+  height: 18px;
+  margin-right: 4px;
+  vertical-align: middle;
+  filter: drop-shadow(0 0 4px #00ffc8cc);
+}
+.platform-chip:hover {
+  background: #00ffc8;
+  color: #181a2a;
+}
+
+.suggested-games-swiper .swiper-button-prev,
+.suggested-games-swiper .swiper-button-next {
+  color: #00ffc8;
+  width: 44px;
+  height: 44px;
+  background: rgba(0, 0, 0, 0.45);
+  border-radius: 8px;
+  box-shadow: 0 0 12px #00ffc822;
+  transition: background 0.2s, color 0.2s;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.suggested-games-swiper .swiper-button-prev:hover,
+.suggested-games-swiper .swiper-button-next:hover {
+  background: #00ffc8;
+  color: #181a2a;
+}
+.suggested-games-swiper .swiper-button-prev {
+  left: -60px;
+}
+.suggested-games-swiper .swiper-button-next {
+  right: -60px;
+}
+
+.suggested-games-swiper .swiper-pagination {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  bottom: 12px;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+}
+.suggested-games-swiper .swiper-pagination-bullet {
+  width: 18px;
+  height: 5px;
+  border-radius: 3px;
+  background: #5b6b7c;
+  margin: 0 3px;
+  transition: background 0.2s, width 0.2s;
+}
+.suggested-games-swiper .swiper-pagination-bullet-active {
+  width: 28px;
+  background: #00ffc8;
+}
+
+
+@media (max-width: 1100px) {
+  .game-hero-slide {
+    flex-direction: column;
+    min-height: 0;
+    padding: 1.2rem;
+  }
+  .hero-left,
+  .hero-right {
+    max-width: 100%;
+    padding: 1.2rem 0.7rem;
+    justify-content: center;
+    align-items: center;
+  }
+  .game-cover {
+    width: 90vw;
+    max-width: 320px;
+    height: auto;
+  }
+  .screenshot-thumb {
+    width: 90px;
+    height: 60px;
+  }
+}
+
+@media (max-width: 700px) {
+  .game-hero-slide {
+    flex-direction: column;
+    min-height: 0;
+    padding: 0.7rem;
+  }
+  .hero-left,
+  .hero-right {
+    max-width: 100%;
+    padding: 0.7rem 0.2rem;
+    justify-content: center;
+    align-items: center;
+  }
+  .game-cover {
+    width: 90vw;
+    max-width: 220px;
+    height: auto;
+  }
+  .screenshot-thumb {
+    width: 70px;
+    height: 44px;
+  }
+  .steam-game-title {
+    font-size: 1.2rem;
+  }
+  .tag-chip-suggest,
+  .platform-chip {
+    font-size: 0.7rem;
+    padding: 2px 7px;
+  }
+}
+*/

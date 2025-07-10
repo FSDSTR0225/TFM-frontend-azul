@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import AuthContext from "../context/AuthContext";
+import { FaSteam } from "react-icons/fa6";
 import "../style/LibrarySteam.css";
 
 const API_URL = import.meta.env.VITE_API_URL;
@@ -39,7 +40,9 @@ export default function LibrarySummaryCard() {
 
   return (
     <div className="steam-summary-card">
-      <h3>Mi Librería de Steam</h3>
+      <h3>
+        <FaSteam className="steam-icon" /> Mi Librería de Steam
+      </h3>
       <div className="steam-summary-stats">
         <div>
           <strong>{summary.totalGames}</strong>
@@ -50,6 +53,7 @@ export default function LibrarySummaryCard() {
           <span>Horas jugadas</span>
         </div>
       </div>
+      <p>Top juegos</p>
       <ul className="steam-summary-list">
         {top3.map((g) => (
           <li key={g.appId}>

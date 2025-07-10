@@ -54,6 +54,8 @@ function SuggestedGamesWidget() {
     }`;
   };
 
+  const isMobile = window.innerWidth < 700;
+
   return (
     <div className="modular-card suggested-games-card">
       <div className="modular-card-content">
@@ -110,21 +112,25 @@ function SuggestedGamesWidget() {
                           <div className="game-steam-details">
                             {game.screenshots?.length > 0 && (
                               <div className="screenshots">
-                                {game.screenshots.slice(1, 5).map((s, i) => (
-                                  <img
-                                    key={i}
-                                    src={s}
-                                    alt={`Screenshot ${i}`}
-                                  />
-                                ))}
+                                {game.screenshots
+                                  .slice(1, isMobile ? 3 : 5)
+                                  .map((s, i) => (
+                                    <img
+                                      key={i}
+                                      src={s}
+                                      alt={`Screenshot ${i}`}
+                                    />
+                                  ))}
                               </div>
                             )}
                             <div className="game-tags">
-                              {(game.tags || []).slice(3, 7).map((tag) => (
-                                <span className="tag-chip-suggest" key={tag}>
-                                  {tag}
-                                </span>
-                              ))}
+                              {(game.tags || [])
+                                .slice(3, isMobile ? 5 : 7)
+                                .map((tag) => (
+                                  <span className="tag-chip-suggest" key={tag}>
+                                    {tag}
+                                  </span>
+                                ))}
                             </div>
                           </div>
                           <div className="game-steam-platform">
