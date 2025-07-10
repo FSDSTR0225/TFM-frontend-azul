@@ -555,6 +555,136 @@
   }
 }
 
+@media (max-width: 1440px) {
+  .left-zone {
+    margin-left: 2.5rem;
+    width: 220px;
+  }
+  .right-zone {
+    min-width: 500px;
+  }
+}
+
+@media (max-width: 1280px) {
+  .lobby-top-section {
+    flex-wrap: wrap;
+    gap: 0.8rem;
+  }
+  .left-zone {
+    margin-left: 2rem;
+    width: 200px;
+  }
+  .right-zone {
+    min-width: 450px;
+  }
+  .top-right-widgets {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 1024px) {
+  .lobby-info-section,
+  .lobby-top-section,
+  .lobby-bottom-section {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
+  .lobby-suggestions-section {
+    gap: 2rem;
+  }
+  .games-slider-glass {
+    flex-direction: row;
+    overflow-x: auto;
+  }
+  .lobby-events-suggestions {
+    grid-template-columns: 1fr;
+  }
+  .lobby-sidebar-section {
+    flex-direction: column;
+    align-items: center;
+  }
+  .sidebar-widget {
+    width: 100%;
+  }
+
+  .left-column,
+  .center-column,
+  .right-column {
+    flex: unset;
+    width: 100%;
+    min-width: auto;
+  }
+  .left-zone {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .lobby-top-section,
+  .lobby-bottom-section,
+  .lobby-info-section {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.8rem;
+  }
+
+  .lobby-title {
+    font-size: 1.6rem;
+  }
+  .lobby-subtitle {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+  }
+
+  .left-zone,
+  .right-zone,
+  .sidebar-widget,
+  .games-slider-section,
+  .steam-library-glass {
+    width: 100%;
+    margin-left: 0;
+    min-width: auto;
+  }
+  .hud-container {
+    padding: 1rem;
+  }
+  .section-title,
+  .section-title-events,
+  .section-title-users-suggestions,
+  .section-title-game-suggestions {
+    font-size: 1.2rem;
+    margin-left: 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hud-container {
+    padding: 0.75rem;
+  }
+  .lobby-title {
+    font-size: 1.4rem;
+  }
+  .lobby-subtitle {
+    font-size: 1rem;
+  }
+  .icon-lobby-suggestions,
+  .icon-lobby-suggestions-users {
+    font-size: 1.4rem;
+  }
+  .games-slider-glass {
+    overflow-x: scroll;
+  }
+  .calendar-events-card-container,
+  .events-suggestions-glass {
+    margin: 1rem 0;
+  }
+  .section-title {
+    font-size: 1rem;
+    gap: 0.5rem;
+  }
+}
+
 .scan-effect {
   position: relative;
   overflow: hidden;
