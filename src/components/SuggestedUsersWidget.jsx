@@ -19,13 +19,9 @@ function SuggestedUsersWidget() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log("🔥 Componente SuggestedUsersWidget montado");
-  }, []);
-
-  useEffect(() => {
     const fetchUsersSuggestions = async () => {
       try {
-        console.log("📡 Fetch a /suggestions lanzado");
+        // console.log("📡 Fetch a /suggestions lanzado");
         const response = await fetch(
           `${API_URL}/dashboard/widgets/suggestions/users`,
           {
@@ -33,14 +29,14 @@ function SuggestedUsersWidget() {
           }
         );
         const data = await response.json();
-        console.log("📦 Datos de sugerencias:", data);
+        // console.log("📦 Datos de sugerencias:", data);
         if (!response.ok) {
           setError(data.message || "Error al cargar sugerencias");
           setLoading(false);
           return;
         }
         setSuggestedUsers(data.suggestions);
-        console.trace("👉 setSuggestedUsers desde fetch:", data.suggestions);
+        // console.trace("👉 setSuggestedUsers desde fetch:", data.suggestions);
         setSuggestedUsers(data.suggestions);
         setLoading(false);
       } catch (error) {

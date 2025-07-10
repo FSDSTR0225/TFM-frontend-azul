@@ -41,7 +41,11 @@ function SuggestedGamesWidget() {
     fetchSuggestedGames();
   }, [token]);
 
-  const handleOnClick = (id) => {
+  const handleOnClick = (id, game) => {
+    if (!id) {
+      console.warn("❗ No se puede navegar, juego sin _id:", game);
+      return;
+    }
     navigate(`/games/${id}`);
   };
 
@@ -55,7 +59,7 @@ function SuggestedGamesWidget() {
   };
 
   const isMobile = window.innerWidth < 700;
-
+  console.log("🎮 Juegos sugeridos:", suggestedGames);
   return (
     <div className="modular-card suggested-games-card">
       <div className="modular-card-content">
@@ -102,9 +106,7 @@ function SuggestedGamesWidget() {
                           <img
                             src={game.imageUrl}
                             alt={game.name}
-                            onClick={() =>
-                              handleOnClick(game._id || game.rawgId)
-                            }
+                            onClick={() => handleOnClick(game._id, game)}
                           />
                         </div>
                         <div className="hero-right">
