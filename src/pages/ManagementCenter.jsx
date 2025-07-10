@@ -116,6 +116,9 @@ function ManagementCenter() {
       const originalReq = receivedEventRequests.find(
         (r) => r._id === requestId
       );
+      // segun la respuesta, obtengo el nombre de usuario del solicitante:
+      // Si se acepta, se usa el nombre de usuario del solicitante actualizado,
+      // si se rechaza, se usa el nombre de usuario del solicitante original.
       const username =
         response === "accept"
           ? data.updatedRequest.userRequester.username
