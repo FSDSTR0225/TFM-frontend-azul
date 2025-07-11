@@ -51,7 +51,7 @@ function FriendsOnlineWidget() {
     <div className="modular-card-friends-online-card">
       <div className="modular-card-header">
         <FaUserFriends className="modular-card-icon" />
-        <h3>Tus amigos</h3>
+        <h3>Amigos</h3>
       </div>
       <div className="modular-card-content-frinds-online">
         {sortedFriends.length === 0 ? (

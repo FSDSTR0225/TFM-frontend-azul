@@ -98,6 +98,110 @@
   filter: drop-shadow(0 0 5px #00ffff88);
 }
 
+.profile-view-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  min-height: 60px;
+}
+
+.profile-view-title {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #333;
+  font-size: 1rem;
+  line-height: 1.4;
+  color: #76e2f2;
+  text-align: start;
+}
+
+.profile-view-summary p {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #333;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  font-style: italic;
+  color: #ccc;
+  font-weight: 500;
+}
+
+.pending-friend-requests-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  min-height: 60px;
+}
+
+.friend-request-title {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #333;
+  font-size: 1rem;
+  line-height: 1.4;
+  color: #76e2f2;
+  text-align: start;
+}
+
+.pending-friend-requests-summary p {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #333;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  font-style: italic;
+  color: #ccc;
+  font-weight: 500;
+}
+
+.favorite-game-events-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  min-height: 60px;
+}
+
+.favorite-game-title {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #333;
+  font-size: 1rem;
+  line-height: 1.4;
+  color: #76e2f2;
+  text-align: start;
+}
+
+.favorite-game-events-summary li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #333;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  font-style: italic;
+  color: #ccc;
+  font-weight: 500;
+}
+
+.tomorrow-events-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  min-height: 60px;
+}
+
+.tomorrow-events-title {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #333;
+  font-size: 1rem;
+  line-height: 1.4;
+  color: #76e2f2;
+  text-align: start;
+}
+
+.tomorrow-events-summary p {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #333;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  font-style: italic;
+  color: #ccc;
+  font-weight: 500;
+}
+
 @keyframes floatZzz {
   0%,
   100% {
@@ -105,6 +209,21 @@
   }
   50% {
     transform: translateY(-6px);
+  }
+}
+
+.daily-content > div {
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
@@ -116,5 +235,129 @@
   .modal-buttons {
     flex-direction: column;
     gap: 0.7rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .daily-summary-container {
+    max-width: 90%;
+    min-width: unset;
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .daily-summary-container {
+    padding: 1.2rem;
+    border-radius: 12px;
+  }
+
+  .daily-summary-title {
+    font-size: 1.1rem;
+  }
+
+  .newfriends-title,
+  .join-event-title,
+  .notification-title,
+  .approved-summary-title,
+  .upcoming-summary-title,
+  .profile-view-title,
+  .friend-request-title,
+  .favorite-game-title,
+  .tomorrow-events-title {
+    font-size: 0.95rem;
+  }
+
+  .newfriends-list li,
+  .approved-summary li,
+  .notification-summary p,
+  .join-event-summary p,
+  .upcoming-summary p,
+  .profile-view-summary p,
+  .pending-friend-requests-summary p,
+  .favorite-game-events-summary li,
+  .tomorrow-events-summary p {
+    font-size: 0.8rem;
+  }
+
+  .no-data-message {
+    font-size: 0.95rem;
+    padding: 0.8rem 1.5rem;
+  }
+
+  .no-data-gif {
+    width: 65px;
+  }
+}
+
+@media (max-width: 500px) {
+  .daily-summary-container {
+    padding: 1rem;
+    margin: 1.5rem auto;
+  }
+
+  .daily-summary-title {
+    font-size: 1rem;
+    text-align: center;
+  }
+
+  .daily-content {
+    gap: 1.2rem;
+  }
+
+  .daily-content > div {
+    gap: 0.5rem;
+  }
+
+  .no-data-message {
+    font-size: 0.9rem;
+    padding: 0.7rem 1rem;
+  }
+
+  .no-data-gif {
+    width: 55px;
+  }
+
+  .newfriends-title,
+  .join-event-title,
+  .notification-title,
+  .approved-summary-title,
+  .upcoming-summary-title,
+  .profile-view-title,
+  .friend-request-title,
+  .favorite-game-title,
+  .tomorrow-events-title {
+    font-size: 0.9rem;
+  }
+
+  .newfriends-list li,
+  .approved-summary li,
+  .notification-summary p,
+  .join-event-summary p,
+  .upcoming-summary p,
+  .profile-view-summary p,
+  .pending-friend-requests-summary p,
+  .favorite-game-events-summary li,
+  .tomorrow-events-summary p {
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .daily-summary-container {
+    padding: 0.8rem;
+    border-radius: 10px;
+  }
+
+  .daily-summary-title {
+    font-size: 0.95rem;
+  }
+
+  .no-data-message {
+    font-size: 0.85rem;
+  }
+
+  .no-data-gif {
+    width: 45px;
   }
 }
