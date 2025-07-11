@@ -146,25 +146,24 @@ const Mensajes = () => {
             </header>
 
             <section className="messages-section">
-              {messages.map((msg, index) => {
-                const isMine =
-                  msg.senderId === user.id || msg.sender?._id === user.id;
-
-                return (
-                  <div
-                    key={index}
-                    className={`message ${isMine ? "own" : "friend"}`}
-                  >
-                    <span className="message-text">{msg.content}</span>
-                    <span className="message-time">
-                      {new Date(msg.timestamp).toLocaleTimeString([], {
-                        hour: "2-digit",
-                        minute: "2-digit",
-                      })}
-                    </span>
-                  </div>
-                );
-              })}
+              {messages.map((msg, index) => (
+                <div
+                  key={index}
+                  className={`message ${
+                    msg.senderId === user._id // Verifica si el mensaje es del usuario actual
+                      ? "own"
+                      : "friend"
+                  }`}
+                >
+                  <span className="message-text">{msg.content}</span>
+                  <span className="message-time">
+                    {new Date(msg.timestamp).toLocaleTimeString([], {
+                      hour: "2-digit",
+                      minute: "2-digit",
+                    })}
+                  </span>
+                </div>
+              ))}
             </section>
 
             <form className="message-form" onSubmit={handleSubmit}>

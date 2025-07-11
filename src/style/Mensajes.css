@@ -182,30 +182,41 @@
 
 /* 💬 BURBUJAS DE MENSAJE */
 .message {
-  max-width: 70%;
-  padding: 10px 14px;
-  border-radius: var(--message-radius);
+  max-width: 60%;
+  padding: 10px 15px;
+  border-radius: 15px;
+  margin: 8px;
   position: relative;
-  backdrop-filter: blur(6px);
-  background: var(--friend-bubble);
-  color: var(--text-light);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  animation: chatPopIn 0.3s ease-out;
+  word-break: break-word;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  font-size: 1rem;
+  animation: appear 0.2s ease-in-out;
+}
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .message.own {
   align-self: flex-end;
   background: var(--own-bubble);
-  box-shadow: 0 0 8px var(--own-glow);
-  border-radius: var(--message-radius) var(--message-radius) 0
-    var(--message-radius);
+  box-shadow: 0 0 6px var(--own-glow);
+  border-top-right-radius: 0;
 }
 
 .message.friend {
   align-self: flex-start;
   box-shadow: 0 0 6px var(--friend-glow);
-  border-radius: var(--message-radius) var(--message-radius)
-    var(--message-radius) 0;
+  border-top-left-radius: 0;
+  background: rgb(13, 190, 122);
 }
 
 .message-text {
@@ -214,11 +225,10 @@
 }
 
 .message-time {
-  font-size: 0.7rem;
-  color: var(--text-secondary);
-  position: absolute;
-  bottom: 4px;
-  right: 8px;
+  align-self: flex-end;
+  font-size: 0.75rem;
+  opacity: 0.6;
+  margin-top: 5px;
 }
 
 /* FORMULARIO DE ENVÍO */
