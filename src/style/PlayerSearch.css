@@ -269,7 +269,7 @@ select {
   appearance: none;
   width: 600px;
   padding: 0.6rem 1rem;
-  padding-right: 2.5rem; /* espacio para la flecha */
+  padding-right: 2.5rem;
   font-size: 1rem;
   line-height: 1.2;
   border: 2px solid #00ffe7;
