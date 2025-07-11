@@ -1,0 +1,219 @@
+/* src/style/NotFound.css */
+
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap");
+
+.not-found-container {
+  height: 100vh;
+  width: 100%;
+  background-image: url("/images/try.jpg");
+  /* background-size: cover; */
+  background-position: center;
+  background-repeat: no-repeat !important;
+  /* background: radial-gradient(circle at 50% 30%, #0d0f1a, #0b0e17, #070a14); */
+  background-size: 150% 100%;
+  animation: aurora 205s ease infinite;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  padding-bottom: 100px;
+  overflow: hidden;
+  z-index: 0;
+}
+
+@keyframes aurora {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.not-found-glass {
+  background: rgba(13, 17, 33, 0.5);
+  border: 1px solid rgba(0, 255, 255, 0.1);
+  border-radius: 24px;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 0 40px rgba(0, 255, 255, 0.15);
+  padding: 3.5rem 4rem;
+  /* max-width: 1250px; */
+  width: 95%;
+  text-align: center;
+  position: relative;
+  animation: fadeIn 1s ease forwards;
+  border-top: 1px solid rgba(0, 255, 255, 0.2);
+  border-left: 1px solid rgba(0, 255, 255, 0.05);
+  margin: 0 auto;
+}
+
+@keyframes fadeIn {
+  from {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.not-found-title {
+  font-size: 6.5rem;
+  font-family: "Orbitron", sans-serif;
+  font-weight: 900;
+  color: #00f0ff;
+  text-shadow: 0 0 12px #00f0ff88, 0 0 30px #00ffff33;
+  margin-bottom: 2rem;
+}
+
+.not-found-message {
+  font-size: 1.25rem;
+  font-family: "Orbitron", sans-serif;
+  color: #c6e9ff;
+  margin-bottom: 2rem; /* antes: 1.5rem */
+  line-height: 1.8; /* antes: 1.6 */
+}
+
+.not-found-message strong {
+  color: #00ffff;
+  text-shadow: 0 0 8px #00ffff88;
+}
+
+.alert-icon {
+  color: #ccf20e;
+  font-size: 1.5rem;
+  margin-right: 0.5rem;
+}
+
+.not-found-button {
+  display: inline-block;
+  background: linear-gradient(135deg, #00f0ff, #00bcd4);
+  width: fit-content;
+  align-self: center;
+  color: #0a0a0a;
+  font-family: "Orbitron", sans-serif;
+  padding: 0.9rem 2rem;
+  border-radius: 50px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 0 20px #00f0ff88, inset 0 0 10px #ffffff22;
+  transition: all 0.3s ease;
+  border: none;
+}
+
+.not-found-button:hover {
+  background: linear-gradient(135deg, #0ff, #00e5ff);
+  transform: scale(1.05);
+  box-shadow: 0 0 30px #00ffffcc, inset 0 0 20px #ffffff33;
+  color: #000;
+}
+
+.typewriter {
+  display: inline-block;
+  overflow: hidden;
+  border-right: 1px solid #00eeff81;
+  white-space: nowrap;
+  animation: typing 4s steps(80, end), blink 1s step-end infinite;
+  max-width: 100%;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: #00eeff00;
+  }
+}
+
+@media (max-width: 1024px) {
+  .not-found-glass {
+    padding: 2.5rem 2.5rem;
+    width: 90%;
+  }
+
+  .not-found-title {
+    font-size: 5rem;
+  }
+
+  .not-found-message {
+    font-size: 1.1rem;
+    line-height: 1.6;
+  }
+
+  .not-found-button {
+    font-size: 1rem;
+    padding: 0.8rem 1.6rem;
+  }
+}
+
+/* 📱 Móviles (hasta 768px) */
+@media (max-width: 768px) {
+  .not-found-container {
+    padding: 1.5rem;
+    padding-bottom: 80px;
+    background-size: 200% 100%;
+  }
+
+  .not-found-glass {
+    padding: 2rem;
+    width: 100%;
+    border-radius: 16px;
+  }
+
+  .not-found-title {
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .not-found-message {
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+  }
+
+  .not-found-button {
+    font-size: 0.95rem;
+    padding: 0.7rem 1.4rem;
+  }
+
+  .typewriter {
+    font-size: 1rem;
+  }
+}
+
+/* 🖥️ Super pantallas grandes (más de 1600px) */
+@media (min-width: 1600px) {
+  .not-found-glass {
+    max-width: 1100px;
+    padding: 4rem 5rem;
+  }
+
+  .not-found-title {
+    font-size: 7rem;
+  }
+
+  .not-found-message {
+    font-size: 1.35rem;
+  }
+
+  .not-found-button {
+    font-size: 1.2rem;
+    padding: 1rem 2.5rem;
+  }
+}

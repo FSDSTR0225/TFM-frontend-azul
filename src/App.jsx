@@ -30,6 +30,7 @@ import ExploreUsers from "./components/ExploreUsers";
 import Footer from "./components/Footer";
 import ForumThreads from "./components/ForumThreads";
 import MobileNavbar from "./components/MobileNabvar";
+import NotFound from "./components/NotFound";
 
 export default function App() {
   const [showSearch, setShowSearch] = useState(false);
@@ -144,6 +145,7 @@ export default function App() {
                 </PrivateRoute>
               }
             />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </main>
         {showFooter && <Footer />}
