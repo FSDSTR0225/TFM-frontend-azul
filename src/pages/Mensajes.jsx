@@ -1,6 +1,7 @@
 import { useEffect, useState, useContext } from "react";
-import { socket } from "../socket"; // Usamos el socket global correctamente
+import { socket } from "../socket";
 import AuthContext from "../context/AuthContext";
+import { useRef } from "react";
 import "../style/Mensajes.css";
 
 const API_URL = import.meta.env.VITE_API_URL;
@@ -12,6 +13,14 @@ const Mensajes = () => {
   const [messages, setMessages] = useState([]); // historial del chat activo
   const [allFriends, setAllFriends] = useState([]); // todos los amigos
   const [selectedFriend, setSelectedFriend] = useState(null); // amigo actual seleccionado
+
+  const messagesEndRef = useRef(null);
+
+  useEffect(() => {
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [messages]);
 
   // 1. Escuchar mensajes nuevos (cuando cambia el amigo)
   useEffect(() => {
@@ -164,6 +173,7 @@ const Mensajes = () => {
                   </span>
                 </div>
               ))}
+              <div ref={messagesEndRef} />
             </section>
 
             <form className="message-form" onSubmit={handleSubmit}>
