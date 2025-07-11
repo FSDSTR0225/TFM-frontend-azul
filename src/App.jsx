@@ -31,6 +31,7 @@ import Footer from "./components/Footer";
 import ForumThreads from "./components/ForumThreads";
 import MobileNavbar from "./components/MobileNabvar";
 import NotFound from "./components/NotFound";
+import ConfigProfile from "./pages/ConfigProfile";
 
 export default function App() {
   const [showSearch, setShowSearch] = useState(false);
@@ -109,6 +110,14 @@ export default function App() {
               element={
                 <PrivateRoute>
                   <ManagementCenter />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/settings"
+              element={
+                <PrivateRoute>
+                  <ConfigProfile />
                 </PrivateRoute>
               }
             />

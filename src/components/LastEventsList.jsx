@@ -2,23 +2,33 @@ import React from "react";
 import "../style/Profile2.css";
 
 const LastEventsList = ({ events }) => {
+  
   return (
     <div className="section">
       <div className="section-header">
         <h3>Ultimos eventos</h3>
-        <button className="add-button-p cyan">➕ new</button>
+        <button className="add-button-p cyan">➕ Create New</button>
       </div>
       <div className="diamond-list">
-        {events.map((index) => (
-          <div className="diamond" key={index}>
+        {events.map(( event) => (
+          <div clssName='diamond-list-element'>
+          <div className="diamond" key={event._id}>
             <img
-              src="/src/assets/8674309.png"
+              src={event.game.imageUrl}
               alt="event"
               className="last-event-img"
             />
           </div>
+          <div className="event-profile-info">
+          <p>{event.title}</p>
+          <p>{event.game.name}</p>
+          {/* <p>
+            {event.date} - {event.time}
+          </p> */}
+          </div>
+          </div>
         ))}
-        <p>{events ? events.map((event) => event.title) : ""}</p>
+      
       </div>
     </div>
   );

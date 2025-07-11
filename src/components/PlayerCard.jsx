@@ -33,7 +33,7 @@ const [modalOpen, setModalOpen] = useState(false); // setModalOpen
         ))}
       </div>
       <div className="player-actions">
-        { player.friends?.some((friend) => friend.user=== user._id) ? (
+        { player.friends?.some((friend) => friend.user._id=== user._id) ? (
           <span className="friend-status">Ya son amigos</span>
         ) : (
         <button  onClick={() =>setModalOpen(true)} className="player-button">Añadir a amigos</button>)}

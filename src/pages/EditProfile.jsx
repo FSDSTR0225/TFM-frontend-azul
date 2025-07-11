@@ -2,7 +2,7 @@ import { useForm, Controller } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useContext, useEffect } from "react";
 import AuthContext from "../context/AuthContext";
-import "../style/editProfile.css";
+import "../style/EditProfile.css";
 import Sidebar from "../components/SideBar";
 import Select from "react-select";
 const EditProfile = () => {

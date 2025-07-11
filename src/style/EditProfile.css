@@ -2,8 +2,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 100vh;
-  background-image: url("../../1.jpg");
+  height: 120vh;
+
 }
 .edit-profile {
   width: 60%;

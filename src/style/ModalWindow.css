@@ -31,9 +31,9 @@
 
 /* Chiudi (X) */
 .modal-close {
-  position: absolute;
-  top: 12px;
-  right: 12px;
+  position: relative;
+  top: -10px;
+  right: -45%;
   background: transparent;
   border: none;
   font-size: 1.5rem;
@@ -43,6 +43,11 @@
 }
 .modal-close:hover {
   color: #ff00ff;
+}
+
+.modal-close.friend-modal{
+  top: -10px;
+  right: -95%;
 }
 
 /* Titolo */
@@ -92,7 +97,7 @@
 .player-avatar-container-modal{
     position: relative;
   display: inline-block;
-  margin-right: 10px;
+  margin-right: 20px;
 }
 .player-avatar-modal {
   width: 60px;
@@ -100,5 +105,13 @@
   border-radius: 50%;
   overflow: hidden;
   border: 2px solid #00ffff;
+  
+}
+
+.friend-msg{
+   margin-left: 20%;
+   margin-right: 10%;
+   color: #00ffff;
+   text-align: center;
   
 }
