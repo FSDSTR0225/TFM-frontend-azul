@@ -14,7 +14,7 @@ const PlayerSearch = () => {
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [showDropdown, setShowDropdown] = useState(false); // Estado para manejar el desplegable de juegos
-  const { isLoggedIn , token } = useContext(AuthContext);
+  const { isLoggedIn, token } = useContext(AuthContext);
   // Fetch de juegos
   useEffect(() => {
     const delayFetch = setTimeout(() => {
@@ -69,7 +69,6 @@ const PlayerSearch = () => {
       return;
     }
 
-   
     if (!isLoggedIn) {
       setErrorMessage("Debes iniciar sesión para buscar jugadores.");
       return;
@@ -103,105 +102,116 @@ const PlayerSearch = () => {
   return (
     <div className="player-search-container">
       <h2>Buscar Jugadores</h2>
-
-      {/* Input para buscar juegos */}
-      <input
-        type="text"
-        value={gameQuery}
-        onChange={(e) => {
-          setGameQuery(e.target.value);
-          setShowDropdown(true); // Muestra el desplegable al escribir
-        }}
-        placeholder="Escribe el nombre del juego..."
-      />
-      {showDropdown && (
-        <ul>
-          {games.length > 0 ? (
-            games.map((game) => (
-              <li
-                key={game._id}
-                onClick={() => {
-                  console.log("Juego seleccionado:", game._id);
-                  setSelectedGame(game._id);
-                  setGameQuery(game.name); // Actualiza el input
-                  setShowDropdown(false); // Oculta el desplegable al seleccionar
-                  setErrorMessage(""); // Limpia el mensaje de error
-                }}
-                style={{
-                  cursor: "pointer",
-                  padding: "5px",
-                  borderBottom: "1px solid #ccc",
-                }}
-              >
-                {game.name}
-              </li>
+      <div className="preferences">
+        {/* Input para buscar juegos */}
+        <p>Juego:</p>
+        <input
+          type="text"
+          value={gameQuery}
+          onChange={(e) => {
+            setGameQuery(e.target.value);
+            setShowDropdown(true); // Muestra el desplegable al escribir
+          }}
+          placeholder="Escribe el nombre del juego..."
+        />
+        {showDropdown && (
+          <ul>
+            {games.length > 0 ? (
+              games.map((game) => (
+                <li
+                  key={game._id}
+                  onClick={() => {
+                    console.log("Juego seleccionado:", game._id);
+                    setSelectedGame(game._id);
+                    setGameQuery(game.name); // Actualiza el input
+                    setShowDropdown(false); // Oculta el desplegable al seleccionar
+                    setErrorMessage(""); // Limpia el mensaje de error
+                  }}
+                  style={{
+                    cursor: "pointer",
+                    padding: "5px",
+                    borderBottom: "1px solid #ccc",
+                  }}
+                >
+                  {game.name}
+                </li>
+              ))
+            ) : (
+              <p>No se encontraron juegos.</p>
+            )}
+          </ul>
+        )}
+      </div>
+      <div className="preferences">
+        {/* Dropdown para seleccionar juego */}
+        <p>Plataforma:</p>
+        <select
+          value={selectedPlatform}
+          onChange={(e) => {
+            console.log("Plataforma seleccionada:", e.target.value);
+            setSelectedPlatform(e.target.value);
+            setErrorMessage(""); // Limpia el mensaje de error
+          }}
+        >
+          <option value="default" disabled>
+            Selecciona una plataforma
+          </option>
+          {platforms.length > 0 ? (
+            platforms.map((platform) => (
+              <option key={platform._id} value={platform._id}>
+                {platform.name}
+              </option>
             ))
           ) : (
-            <p>No se encontraron juegos.</p>
+            <option disabled>No hay plataformas disponibles</option>
           )}
-        </ul>
-      )}
-      {/* Dropdown para seleccionar juego */}
-      <select
-        value={selectedPlatform}
-        onChange={(e) => {
-          console.log("Plataforma seleccionada:", e.target.value);
-          setSelectedPlatform(e.target.value);
-          setErrorMessage(""); // Limpia el mensaje de error
-        }}
-      >
-        <option value="default" disabled>
-          Selecciona una plataforma
-        </option>
-        {platforms.length > 0 ? (
-          platforms.map((platform) => (
-            <option key={platform._id} value={platform._id}>
-              {platform.name}
-            </option>
-          ))
-        ) : (
-          <option disabled>No hay plataformas disponibles</option>
-        )}
-      </select>
+        </select>
+      </div>
       {/* Dropdown para seleccionar horario*/}
-      <select
-        value={timeSlot}
-        onChange={(e) => {
-          console.log("Horario seleccionado:", e.target.value);
-          setTimeSlot(e.target.value);
-          setErrorMessage(""); // Limpia el mensaje de error
-        }}
-      >
-        <option value="default" disabled>
-          Selecciona un horario
-        </option>
-        <option value="morning">Mañana</option>
-        <option value="afternoon">Tarde</option>
-        <option value="evening">Noche</option>
-      </select>
-      <button className="player-search-button" onClick={handleSearch}>
-        Buscar
-      </button>
-      {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
-      {loading && <p>Cargando jugadores...</p>}
-      {players.length === 0 &&
-        !loading &&
-        errorMessage === "" &&
-        selectedGame !== "default" &&
-        selectedPlatform !== "default" &&
-        timeSlot !== "default" &&
-        localStorage.getItem("token") && (
-          <p>No se encontraron jugadores. Prueba ajustando los filtros.</p>
+      <div className="preferences">
+        <p>Horario:</p>
+        <select
+          value={timeSlot}
+          onChange={(e) => {
+            console.log("Horario seleccionado:", e.target.value);
+            setTimeSlot(e.target.value);
+            setErrorMessage(""); // Limpia el mensaje de error
+          }}
+        >
+          <option value="default" disabled>
+            Selecciona un horario
+          </option>
+          <option value="morning">Mañana</option>
+          <option value="afternoon">Tarde</option>
+          <option value="evening">Noche</option>
+        </select>
+      </div>
+      <div className="preferences">
+        <button className="player-search-button" onClick={handleSearch}>
+          Buscar
+        </button>
+
+        {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
+        {loading && <p>Cargando jugadores...</p>}
+        {players.length === 0 &&
+          !loading &&
+          errorMessage === "" &&
+          selectedGame !== "default" &&
+          selectedPlatform !== "default" &&
+          timeSlot !== "default" &&
+          localStorage.getItem("token") && (
+            <p>No se encontraron jugadores. Prueba ajustando los filtros.</p>
+          )}
+        {players.length > 0 && (
+          <ul>
+            {players.map((player) => (
+              <li key={player.id}>
+                {player.name} - {player.platform}
+              </li>
+            ))}
+          </ul>
         )}
-      {players.length > 0 && (
-        <ul>
-          {players.map((player) => (
-            <li key={player.id}>
-              {player.name} - {player.platform}
-            </li>
-          ))}
-        </ul>
-      )}
+      </div>
     </div>
   );
 };
