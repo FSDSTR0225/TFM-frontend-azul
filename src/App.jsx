@@ -29,6 +29,7 @@ import ExploreGames from "./components/ExploreGames";
 import ExploreUsers from "./components/ExploreUsers";
 import Footer from "./components/Footer";
 import ForumThreads from "./components/ForumThreads";
+import MobileNavbar from "./components/MobileNabvar";
 
 export default function App() {
   const [showSearch, setShowSearch] = useState(false);
@@ -53,6 +54,7 @@ export default function App() {
   return (
     <div className="App">
       <NavBar showSearch={showSearch} setShowSearch={setShowSearch} />
+      <MobileNavbar />
 
       <MyScrollBar>
         <main>
