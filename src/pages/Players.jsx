@@ -1,4 +1,4 @@
-import  { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 import PlayerSearch from "../components/PlayerSearch";
 import PlayerCard from "../components/PlayerCard";
 import AuthContext from "../context/AuthContext";
@@ -37,11 +37,11 @@ const Players = () => {
   return (
     <div>
       <PlayerSearch setQuery={setSearchQuery} />
-    
+
       <div className="players-list">
-        {players.map((player) => (
+        {/* {players.map((player) => (
           <PlayerCard key={player._id} player={player} />
-        ))}
+        ))} */}
       </div>
     </div>
   );
