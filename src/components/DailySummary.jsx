@@ -72,7 +72,7 @@ function DailySummary({ summary }) {
                 <p>{pendingFriendRequestsSummary}</p>
               </div>
             )}
-            {joinRequestSummary && (
+            {joinRequestSummary?.message && (
               <div className="join-event-summary">
                 <h3 className="join-event-title">Solicitudes a eventos</h3>
                 <p>{joinRequestSummary.message}</p>
