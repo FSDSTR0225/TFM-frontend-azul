@@ -20,7 +20,7 @@
   position: relative;
 }
 
-.chat-window {
+.chatbot-window {
   max-height: 150px;
   overflow-y: auto;
   background: #111;

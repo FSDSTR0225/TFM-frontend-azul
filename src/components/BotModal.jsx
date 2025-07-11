@@ -68,7 +68,7 @@ const BotModal = ({ onClose }) => {
               ✖
             </button>
             {!response && (
-              <p className="chat-window">¡Hola! ¿En qué puedo ayudarte?</p>
+              <p className="chatbot-window">¡Hola! ¿En qué puedo ayudarte?</p>
             )}
 
             <div className="bot-chat-question">
