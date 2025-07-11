@@ -159,7 +159,7 @@ const Mensajes = () => {
                 <div
                   key={index}
                   className={`message ${
-                    msg.senderId === user._id // Verifica si el mensaje es del usuario actual
+                    msg.senderId === user._id || msg.sender?._id === user._id // Verifica si el mensaje es del usuario actual
                       ? "own"
                       : "friend"
                   }`}

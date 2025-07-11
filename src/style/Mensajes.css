@@ -101,15 +101,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: url("/images/3.jpg") center center / cover no-repeat;
-  /* background: radial-gradient(ellipse at 20% 25%, #0f1740 0%, transparent 50%),
+  /* background: url("/images/3.jpg") center center / cover no-repeat; */
+  background: radial-gradient(ellipse at 20% 25%, #0f1740 0%, transparent 50%),
     radial-gradient(ellipse at 60% 70%, #1a0e33 0%, transparent 45%),
     radial-gradient(
       ellipse at 50% 85%,
       rgba(0, 255, 200, 0.05),
       transparent 60%
     ),
-    #0a0a1a; */
+    #0a0a1a;
 }
 
 .chat-box-inner {
@@ -207,16 +207,15 @@
 
 .message.own {
   align-self: flex-end;
-  background: var(--own-bubble);
-  box-shadow: 0 0 6px var(--own-glow);
-  border-top-right-radius: 0;
+  background: linear-gradient(to bottom right, #0f6bff, #032044);
+  color: #fff;
+  box-shadow: 0 0 10px rgba(0, 136, 255, 0.4);
 }
 
 .message.friend {
   align-self: flex-start;
   box-shadow: 0 0 6px var(--friend-glow);
-  border-top-left-radius: 0;
-  background: rgb(13, 190, 122);
+  background: linear-gradient(to bottom right, #0de16a, #024527);
 }
 
 .message-text {
