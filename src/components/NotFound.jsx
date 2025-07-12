@@ -14,8 +14,8 @@ function NotFound() {
           </p>
           <p className="not-found-message">
             ¿Ibas rumbo a <strong>Azeroth</strong>, a la{" "}
-            <strong>Gruta del Invocador</strong>, o Tal vez buscabas acción en{" "}
-            <strong>Los Santos</strong>…?
+            <strong>Gruta del Invocador</strong>, o tal vez buscabas acción en
+            <strong> Los Santos</strong>…?
             <br />
             Sea cual sea tu destino, te has desviado del camino jugador.
           </p>

@@ -117,7 +117,7 @@
   display: inline-block;
   overflow: hidden;
   border-right: 1px solid #00eeff81;
-  white-space: nowrap;
+  /* white-space: nowrap; */
   animation: typing 4s steps(80, end), blink 1s step-end infinite;
   max-width: 100%;
 }

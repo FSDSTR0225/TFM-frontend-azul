@@ -32,24 +32,24 @@ export const NotificationProvider = ({ children }) => {
   }, [isLoggedIn, token, API_URL]);
 
   // Conectar socket cuando el usuario esté logueado
-  useEffect(() => {
-    if (!isLoggedIn || !user) return;
+  // useEffect(() => {
+  //   if (!isLoggedIn || !user) return;
 
-    const handleConnect = () => {
-      socket.emit("userConnect", user._id);
-      console.log("Emitido userConnect desde NotificationContext:", user._id);
-    };
+  //   const handleConnect = () => {
+  //     socket.emit("userConnect", user._id);
+  //     console.log("Emitido userConnect desde NotificationContext:", user._id);
+  //   };
 
-    if (socket.connected) {
-      handleConnect(); // Ya está conectado, emite directamente
-    } else {
-      socket.once("connect", handleConnect); // Espera a que se conecte
-    }
+  //   if (socket.connected) {
+  //     handleConnect(); // Ya está conectado, emite directamente
+  //   } else {
+  //     socket.once("connect", handleConnect); // Espera a que se conecte
+  //   }
 
-    return () => {
-      socket.off("connect", handleConnect); // Limpieza
-    };
-  }, [isLoggedIn, user]);
+  //   return () => {
+  //     socket.off("connect", handleConnect); // Limpieza
+  //   };
+  // }, [isLoggedIn, user]);
 
   //  recibir notificaciones en tiempo real vía socket
   useEffect(() => {
