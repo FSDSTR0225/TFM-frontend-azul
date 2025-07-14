@@ -8,6 +8,7 @@ import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
+import { AnimatePresence, motion as Motion } from "framer-motion";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -16,6 +17,7 @@ function SuggestedGamesWidget() {
   const [suggestedGames, setSuggestedGames] = useState([]);
   const [loading, setLoading] = useState(true);
   const [nextUpdate, setNextUpdate] = useState(null);
+  const [selectedGame, setSelectedGame] = useState(null);
 
   const navigate = useNavigate();
 
@@ -41,14 +43,6 @@ function SuggestedGamesWidget() {
     fetchSuggestedGames();
   }, [token]);
 
-  const handleOnClick = (id, game) => {
-    if (!id) {
-      console.warn("❗ No se puede navegar, juego sin _id:", game);
-      return;
-    }
-    navigate(`/games/${id}`);
-  };
-
   const formatTimeLeft = (ms) => {
     const totalHours = Math.floor(ms / (1000 * 60 * 60));
     const days = Math.floor(totalHours / 24);
@@ -59,7 +53,7 @@ function SuggestedGamesWidget() {
   };
 
   const isMobile = window.innerWidth < 700;
-  console.log("🎮 Juegos sugeridos:", suggestedGames);
+
   return (
     <div className="modular-card suggested-games-card">
       <div className="modular-card-content">
@@ -67,11 +61,6 @@ function SuggestedGamesWidget() {
           <div className="dots-loader" />
         ) : (
           <>
-            {/* {nextUpdate && (
-              <p className="suggestion-update-timer">
-                Nuevas sugerencias en: <span>{formatTimeLeft(nextUpdate)}</span>
-              </p>
-            )} */}
             {suggestedGames.length > 0 ? (
               <Swiper
                 modules={[Autoplay, Pagination, Navigation]}
@@ -85,14 +74,7 @@ function SuggestedGamesWidget() {
               >
                 {suggestedGames.map((game) => (
                   <SwiperSlide key={game._id}>
-                    <div
-                      className="game-hero-slide"
-                      // style={{
-                      //   backgroundImage: `url(${game.imageUrl})`,
-                      //   backgroundSize: "cover",
-                      //   opacity: 0.8,
-                      // }}
-                    >
+                    <div className="game-hero-slide">
                       <div className="header-swiper">
                         {nextUpdate && (
                           <p className="suggestion-update-timer">
@@ -106,7 +88,7 @@ function SuggestedGamesWidget() {
                           <img
                             src={game.imageUrl}
                             alt={game.name}
-                            onClick={() => handleOnClick(game._id, game)}
+                            onClick={() => setSelectedGame(game)}
                           />
                         </div>
                         <div className="hero-right">
@@ -135,16 +117,6 @@ function SuggestedGamesWidget() {
                                 ))}
                             </div>
                           </div>
-                          <div className="game-steam-platform">
-                            <p className="game-platforms">
-                              Disponible en:{" "}
-                              {game.platforms.map((p) => (
-                                <span key={p._id} className="platform-chip">
-                                  {p.name}
-                                </span>
-                              ))}
-                            </p>
-                          </div>
                         </div>
                       </div>
                     </div>
@@ -158,6 +130,71 @@ function SuggestedGamesWidget() {
             )}
           </>
         )}
+
+        {/* === MODAL ANIMADO === */}
+        <AnimatePresence>
+          {selectedGame && (
+            <Motion.div
+              className="suggested-game-modal"
+              layoutId={selectedGame._id}
+              onClick={() => setSelectedGame(null)}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
+              <div
+                className="modal-inner-game"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <Swiper
+                  modules={[Autoplay, Pagination, Navigation]}
+                  autoplay={{ delay: 3000, disableOnInteraction: false }}
+                  // pagination={{ clickable: true }} // puntitos de paginación
+                  navigation
+                  loop
+                  className="modal-swiper"
+                >
+                  {[...(selectedGame.screenshots || [])].map((img, i) => (
+                    <SwiperSlide key={i}>
+                      <img
+                        src={img}
+                        alt={`Imagen ${i}`}
+                        className="modal-game-image"
+                      />
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
+                <h2>{selectedGame.name}</h2>
+                <div className="game-steam-platform">
+                  <span className="label-platforms">Disponible en:</span>
+                  <div className="platforms-wrapper">
+                    {selectedGame.platforms.map((p) => (
+                      <span key={p._id} className="platform-chip">
+                        {p.name}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+                <div className="modal-tags">
+                  {(selectedGame.tags || []).slice(0, 8).map((tag, i) => (
+                    <span key={i} className="tag-chip-suggest">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+                <button
+                  className="btn-ver-juego"
+                  onClick={() => {
+                    navigate(`/games/${selectedGame._id}`);
+                    setSelectedGame(null);
+                  }}
+                >
+                  Ver más del juego
+                </button>
+              </div>
+            </Motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </div>
   );
