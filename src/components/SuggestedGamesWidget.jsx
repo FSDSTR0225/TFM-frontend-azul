@@ -149,8 +149,8 @@ function SuggestedGamesWidget() {
                 <Swiper
                   modules={[Autoplay, Pagination, Navigation]}
                   autoplay={{ delay: 3000, disableOnInteraction: false }}
-                  // pagination={{ clickable: true }} // puntitos de paginación
-                  navigation
+                  pagination={{ clickable: true }} // puntitos de paginación
+                  // navigation
                   loop
                   className="modal-swiper"
                 >
