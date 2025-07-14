@@ -59,7 +59,7 @@ function ExplainCards() {
           </p>
 
           <div className="card-btn">
-            <button onClick={() => navigate("/post")}>Explorar</button>
+            <button onClick={() => navigate("/login")}>Explorar</button>
           </div>
         </div>
         <div className="card4">
