@@ -57,7 +57,7 @@ function DailySummary({ summary }) {
             {profileViewSummary && (
               <div className="profile-view-summary">
                 <h3 className="profile-view-title">Visitas a tu perfil</h3>
-                <p>{profileViewSummary}</p>
+                <p>{profileViewSummary.message}</p>
               </div>
             )}
             {notificationSummary && (
@@ -69,7 +69,7 @@ function DailySummary({ summary }) {
             {pendingFriendRequestsSummary && (
               <div className="pending-friend-requests-summary">
                 <h3 className="friend-request-title">Peticiones de amistad</h3>
-                <p>{pendingFriendRequestsSummary}</p>
+                <p>{pendingFriendRequestsSummary?.message}</p>
               </div>
             )}
             {joinRequestSummary?.message && (
@@ -98,12 +98,16 @@ function DailySummary({ summary }) {
                 </ul>
               </div>
             )}
-            {tomorrowEventsSummary && (
+            {tomorrowEventsSummary && tomorrowEventsSummary.length > 0 && (
               <div className="tomorrow-events-summary">
                 <h3 className="tomorrow-events-title">
                   Recordatorio de mañana
                 </h3>
-                <p>{tomorrowEventsSummary}</p>
+                <ul className="tomorrow-events-list">
+                  {tomorrowEventsSummary.map((event) => (
+                    <li key={event.eventId}>{event.message}</li>
+                  ))}
+                </ul>
               </div>
             )}
 
