@@ -156,6 +156,9 @@
 }
 
 .game-steam-platform {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   margin-top: auto;
   padding-top: 0.8rem;
   position: relative;
