@@ -532,6 +532,27 @@
   border-radius: 10px;
 }
 
+.no-suggestions-game {
+  text-align: center;
+  margin: 1rem auto;
+  color: #66fcf1;
+  font-size: 1.2rem;
+  animation: pulse 2.5s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 1;
+    color: rgb(0, 110, 255);
+  }
+  100% {
+    opacity: 0.8;
+  }
+}
+
 /* OPCION 2*/
 
 /* 

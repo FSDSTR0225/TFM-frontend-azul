@@ -94,13 +94,13 @@
 }
 
 .no-data-message {
-  background-color: #2222222a;
+  /* background-color: #2222222a; */
   color: #fff;
   padding: 1rem 2rem;
   border-radius: 8px;
   margin-bottom: 1rem;
   font-size: 1rem;
-  box-shadow: 0 0 10px #00000088;
+  /* box-shadow: 0 0 10px #00000088; */
 }
 
 .no-data-gif {
