@@ -35,7 +35,7 @@
 
 .navbar-links {
   display: flex;
-  gap: clamp(10px, 4vw, 30px) !important; /* rESPONSIVE GAP*/
+  gap: 30px !important;
   list-style: none;
   align-items: center;
   margin: 0;
