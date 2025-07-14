@@ -82,7 +82,7 @@ function ExplainCards() {
       <div className="explain-games">
         <IoLogoGameControllerB className="explain-icon" />
         <h2 className="explain-games-title">
-          Explora más de 10.000 juegos con ficha detallada
+          Explora más de 30.000 juegos con ficha detallada
         </h2>
         <p className="explain-games-description">
           Busca y filtra por plataformas, explora nuevos títulos y descubre a
