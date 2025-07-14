@@ -208,7 +208,7 @@
   position: absolute;
   display: flex;
   justify-content: center;
-  bottom: 20px;
+  bottom: 20px !important;
   left: -10% !important;
   transform: translateX(-50%);
   z-index: 10;
