@@ -53,33 +53,6 @@ function SuggestedUsersWidget() {
     );
   };
 
-  const handleConnect = async (userId) => {
-    console.log("🔗 Enviando solicitud a:", userId);
-    try {
-      const response = await fetch(`${API_URL}/friends/requests`, {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ userReceiver: userId }),
-      });
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.message || "Error al enviar la solicitud");
-      }
-
-      // quitar al usuario de las sugerencias tras conectarlo
-      setSuggestedUsers((prevUsers) =>
-        prevUsers.filter((user) => user._id !== userId)
-      );
-    } catch (error) {
-      console.error("❌ Error al enviar solicitud de amistad:", error.message);
-    }
-  };
-
   if (loading) return <div className="dots-loader"></div>;
   if (error) return <div className="error-suggestions">{error}</div>;
 
@@ -143,12 +116,7 @@ function SuggestedUsersWidget() {
             </div>
           </div>
           <div className="users-suggest-btn">
-            <button
-              className="btn-connect"
-              onClick={() => handleConnect(suggest._id)}
-            >
-              Conectar
-            </button>
+            <button className="btn-connect">Conectar</button>
             <button
               className="btn-profile"
               onClick={() => navigate(`/users/${suggest._id}`)}
