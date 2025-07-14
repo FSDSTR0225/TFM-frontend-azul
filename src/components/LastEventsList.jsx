@@ -2,7 +2,6 @@ import React from "react";
 import "../style/Profile2.css";
 
 const LastEventsList = ({ events }) => {
-  
   return (
     <div className="section">
       <div className="section-header">
@@ -10,25 +9,24 @@ const LastEventsList = ({ events }) => {
         <button className="add-button-p cyan">➕ Create New</button>
       </div>
       <div className="diamond-list">
-        {events.map(( event) => (
-          <div clssName='diamond-list-element'>
-          <div className="diamond" key={event._id}>
-            <img
-              src={event.game.imageUrl}
-              alt="event"
-              className="last-event-img"
-            />
-          </div>
-          <div className="event-profile-info">
-          <p>{event.title}</p>
-          <p>{event.game.name}</p>
-          {/* <p>
+        {events.map((event) => (
+          <div className="diamond-list-element">
+            <div className="diamond" key={event._id}>
+              <img
+                src={event.game.imageUrl}
+                alt="event"
+                className="last-event-img"
+              />
+            </div>
+            <div className="event-profile-info">
+              <p>- {event.title} -</p>
+              <p className="info-game-name">{event.game.name}</p>
+              {/* <p>
             {event.date} - {event.time}
           </p> */}
-          </div>
+            </div>
           </div>
         ))}
-      
       </div>
     </div>
   );

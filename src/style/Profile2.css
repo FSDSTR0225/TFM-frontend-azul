@@ -141,8 +141,8 @@
 .diamond-list {
   display: flex;
   gap: 1.3rem;
-  justify-content: center;
-  flex-wrap: wrap;
+  justify-content: space-evenly;
+  flex-wrap: nowrap;
   align-items: center;
 }
 
@@ -164,6 +164,21 @@
 
   transform: rotate(-45deg) translateX(1%) translateY(-20%);
 }
+
+.event-profile-info p {
+  color: #66fcf1;
+  font-weight: bold;
+  font-size: 1rem;
+  margin: 0.2rem 0;
+}
+
+.info-game-name {
+  color: #f6f9f8 !important;
+  font-size: 0.9rem !important;
+  font-weight: normal !important;
+  margin: 0.5rem !important;
+}
+
 .circle-text {
   color: #66fcf1;
 }
