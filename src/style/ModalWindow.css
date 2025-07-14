@@ -1,6 +1,5 @@
 /* Modal overlay: sfondo scuro semi-trasparente con blur */
 .modal-overlay {
-  
   will-change: opacity;
   position: fixed;
   top: 0;
@@ -45,7 +44,7 @@
   color: #ff00ff;
 }
 
-.modal-close.friend-modal{
+.modal-close.friend-modal {
   top: -10px;
   right: -95%;
 }
@@ -94,8 +93,8 @@
   background-color: #0ff;
   box-shadow: 0 0 8px #0ff, 0 0 15px #00ffff;
 }
-.player-avatar-container-modal{
-    position: relative;
+.player-avatar-container-modal {
+  position: relative;
   display: inline-block;
   margin-right: 20px;
 }
@@ -105,13 +104,12 @@
   border-radius: 50%;
   overflow: hidden;
   border: 2px solid #00ffff;
-  
 }
 
-.friend-msg{
-   margin-left: 20%;
-   margin-right: 10%;
-   color: #00ffff;
-   text-align: center;
-  
+.friend-msg {
+  margin-left: 20%;
+  margin-right: 10%;
+  color: black;
+  font-weight: bold;
+  text-align: center;
 }
