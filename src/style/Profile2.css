@@ -2,22 +2,22 @@
   display: flex;
   font-family: "Poppins", sans-serif;
   justify-content: space-around;
- background-image: url("../../1.jpg");
+  background-image: url("/images/1.jpg");
   flex-direction: column;
-
 }
 
 .profile-card {
   width: 70vw;
   margin: 0 250px;
-  padding: 2rem;
-    box-shadow: 0 0 32px #00ffc8cc, 0 0 0 2px #23243a;
-    border: 2px solid rgba(0, 255, 200, 0.13);
+  box-shadow: 0 0 32px #00ffc8cc, 0 0 0 2px #23243a;
+  border: 2px solid rgba(0, 255, 200, 0.13);
   border-radius: 22px;
   text-align: center;
   background: linear-gradient(135deg, #23243a 80%, #2a2b4a 20%);
-   opacity: 0.97;
-   padding: 1.7rem 2.2rem 1.5rem 2.2rem;
+  opacity: 0.97;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  padding: 1.7rem 2.2rem 1.5rem 2.2rem;
 }
 /* background: linear-gradient(135deg, #23243a 80%, #2a2b4a 100%);
     border-radius: 22px;
@@ -99,9 +99,9 @@
 .add-button-p {
   font-size: 0.9rem;
   background-color: transparent;
-padding: 2px 2px;
+  padding: 2px 2px;
   border-radius: 22px;
-  border: 2px double  #66fcf1;
+  border: 2px double #66fcf1;
   cursor: pointer;
   color: #66fcf1;
 }
@@ -137,9 +137,8 @@ padding: 2px 2px;
   background: transparent;
   overflow: hidden;
   margin: 20px;
-
 }
-.diamond-list{
+.diamond-list {
   display: flex;
   gap: 1.3rem;
   justify-content: center;
@@ -147,7 +146,7 @@ padding: 2px 2px;
   align-items: center;
 }
 
-.diamond-list-element{
+.diamond-list-element {
   max-width: 100px;
   display: flex;
   flex-direction: column;
@@ -165,8 +164,8 @@ padding: 2px 2px;
 
   transform: rotate(-45deg) translateX(1%) translateY(-20%);
 }
-.circle-text{
-  color :#66fcf1
+.circle-text {
+  color: #66fcf1;
 }
 .circle-wrapper {
   display: flex;
@@ -176,7 +175,7 @@ padding: 2px 2px;
 }
 
 .circle {
-  position: relative; 
+  position: relative;
   width: 80px;
   height: 80px;
   border-radius: 50%;
