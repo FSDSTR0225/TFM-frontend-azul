@@ -46,7 +46,7 @@ const Mensajes = () => {
   useEffect(() => {
     const fetchFriends = async () => {
       try {
-        const res = await fetch(`${API_URL}/friends`, {
+        const res = await fetch(`${API_URL}/friends`, { // este endpoint no existe!! se puede usar user.friends desde el contexto sin hacer fetch
           headers: { Authorization: `Bearer ${token}` },
         });
         if (!res.ok) throw new Error(`Status ${res.status}`);

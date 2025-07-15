@@ -39,9 +39,9 @@ const Players = () => {
       <PlayerSearch setQuery={setSearchQuery} />
 
       <div className="players-list">
-        {/* {players.map((player) => (
+        {players.map((player) => (
           <PlayerCard key={player._id} player={player} />
-        ))} */}
+        ))}
       </div>
     </div>
   );

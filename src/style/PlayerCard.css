@@ -13,6 +13,7 @@
   border-radius: 20px;
   padding: 20px;
   width: 220px;
+  overflow: hidden;
   text-align: center;
   color: #fff;
   box-shadow: 0 0 15px #00f0ff10;

@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect} from "react";
 import Select from "react-select";
 import "../style/PlayerSearch.css";
-import AuthContext from "../context/AuthContext";
+
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -55,14 +55,6 @@ const PlayerSearch = ({ setQuery }) => {
   const [games, setGames] = useState([]);
   const [selectedGame, setSelectedGame] = useState(null);
   const [platforms, setPlatforms] = useState([]);
-  // const [selectedPlatform, setSelectedPlatform] = useState("default");
-  // const [timeSlot, setTimeSlot] = useState("default");
-  // const [players, setPlayers] = useState([]);
-  // const [loading, setLoading] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
-  const [showDropdown, setShowDropdown] = useState(false); // Estado para manejar el desplegable de juegos
-  const { isLoggedIn } = useContext(AuthContext);
-  // Fetch de juegos
   const [selectedPlatform, setSelectedPlatform] = useState(null);
   const [timeSlot, setTimeSlot] = useState(null);
 
@@ -100,7 +92,7 @@ const PlayerSearch = ({ setQuery }) => {
     }
   }, [selectedGame]);
 
-  // Cerca giocatori
+
   const handleSearch = () => {
     const filters = {};
 
@@ -108,10 +100,6 @@ const PlayerSearch = ({ setQuery }) => {
       filters.game = selectedGame.value;
     }
 
-    if (!isLoggedIn) {
-      setErrorMessage("Debes iniciar sesión para buscar jugadores.");
-      return;
-    }
 
     if (selectedPlatform && selectedPlatform.value !== "default") {
       filters.platform = selectedPlatform.value;
@@ -121,126 +109,13 @@ const PlayerSearch = ({ setQuery }) => {
       filters.time = timeSlot.value;
     }
 
-    // Passa i filtri selezionati al padre
+  
     setQuery(filters);
   };
 
   return (
     <div className="player-search-wrapper">
       <div className="player-search-container">
-        <h2>Buscar Jugadores</h2>
-
-        <div className="preferences">
-          {/* Input para buscar juegos */}
-          <p>Juego:</p>
-          <input
-            type="text"
-            value={gameQuery}
-            onChange={(e) => {
-              setGameQuery(e.target.value);
-              setShowDropdown(true); // Muestra el desplegable al escribir
-            }}
-            placeholder="Escribe el nombre del juego..."
-          />
-          {showDropdown && (
-            <ul>
-              {games.length > 0 ? (
-                games.map((game) => (
-                  <li
-                    key={game._id}
-                    onClick={() => {
-                      console.log("Juego seleccionado:", game._id);
-                      setSelectedGame(game._id);
-                      setGameQuery(game.name); // Actualiza el input
-                      setShowDropdown(false); // Oculta el desplegable al seleccionar
-                      setErrorMessage(""); // Limpia el mensaje de error
-                    }}
-                    style={{
-                      cursor: "pointer",
-                      padding: "5px",
-                      borderBottom: "1px solid #ccc",
-                    }}
-                  >
-                    {game.name}
-                  </li>
-                ))
-              ) : (
-                <p>No se encontraron juegos.</p>
-              )}
-            </ul>
-          )}
-        </div>
-        <div className="preferences">
-          {/* Dropdown para seleccionar juego */}
-          <p>Plataforma:</p>
-          <select
-            value={selectedPlatform}
-            onChange={(e) => {
-              console.log("Plataforma seleccionada:", e.target.value);
-              setSelectedPlatform(e.target.value);
-              setErrorMessage(""); // Limpia el mensaje de error
-            }}
-          >
-            <option value="default" disabled>
-              Selecciona una plataforma
-            </option>
-            {platforms.length > 0 ? (
-              platforms.map((platform) => (
-                <option key={platform._id} value={platform._id}>
-                  {platform.name}
-                </option>
-              ))
-            ) : (
-              <option disabled>No hay plataformas disponibles</option>
-            )}
-          </select>
-        </div>
-        {/* Dropdown para seleccionar horario*/}
-        <div className="preferences">
-          <p>Horario:</p>
-          <select
-            value={timeSlot}
-            onChange={(e) => {
-              console.log("Horario seleccionado:", e.target.value);
-              setTimeSlot(e.target.value);
-              setErrorMessage(""); // Limpia el mensaje de error
-            }}
-          >
-            <option value="default" disabled>
-              Selecciona un horario
-            </option>
-            <option value="morning">Mañana</option>
-            <option value="afternoon">Tarde</option>
-            <option value="evening">Noche</option>
-          </select>
-        </div>
-        <div className="preferences">
-          <button className="player-search-button" onClick={handleSearch}>
-            Buscar
-          </button>
-
-          {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
-          {/* {loading && <p>Cargando jugadores...</p>}
-          {players.length === 0 &&
-            !loading &&
-            errorMessage === "" &&
-            selectedGame !== "default" &&
-            selectedPlatform !== "default" &&
-            timeSlot !== "default" &&
-            localStorage.getItem("token") && (
-              <p>No se encontraron jugadores. Prueba ajustando los filtros.</p>
-            )}
-          {players.length > 0 && (
-            <ul>
-              {players.map((player) => (
-                <li key={player.id}>
-                  {player.name} - {player.platform}
-                </li>
-              ))}
-            </ul>
-          )} */}
-        </div>
-
         <Select
           styles={customStyles}
           placeholder="Escribe el nombre del juego..."
@@ -294,7 +169,7 @@ const PlayerSearch = ({ setQuery }) => {
           Buscar
         </button>
       </div>
-    </div>
+  </div>
   );
 };
 
