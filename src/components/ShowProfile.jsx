@@ -38,7 +38,7 @@ function ShowProfile() {
         <div className="profile-preview">
           <div className="profile-card-show float-card reveal">
             <div className="profile-avatar">
-              <img src="/src/assets/gamer2.png" alt="avatar" />
+              <img src="/images/gamer2.png" alt="avatar" />
             </div>
 
             <h2 className="profile-username">Username</h2>

@@ -12,7 +12,7 @@ function ShowEvent() {
         <div className="event-preview">
           <div className="event-card-show float-card reveal">
             <div className="event-image">
-              <img src="/src/assets/valorant2.jpg" alt="Imagen del evento" />
+              <img src="/images/valorant2.jpg" alt="Imagen del evento" />
             </div>
             <h2 className="event-title-show">Partida Ranked Valorant</h2>
 

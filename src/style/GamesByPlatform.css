@@ -22,7 +22,7 @@
       rgba(0, 0, 0, 0.25),
       rgba(0, 0, 0, 0.4)
     ),
-    url("../assets/prueba7.jpg") center/cover no-repeat;
+    url("/images/prueba7.jpg") center/cover no-repeat;
   filter: blur(6px) brightness(0.9);
   z-index: -2;
 }

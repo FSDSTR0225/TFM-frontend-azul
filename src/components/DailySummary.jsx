@@ -36,7 +36,7 @@ function DailySummary({ summary }) {
               Todo en orden por aquí. No tienes novedades recientes.
             </p>
             <img
-              src="../images/zzz.gif"
+              src="/images/zzz.gif"
               alt="Sin actividad"
               className="no-data-gif"
             />
