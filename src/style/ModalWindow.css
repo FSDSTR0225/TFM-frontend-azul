@@ -95,23 +95,37 @@
 }
 .player-avatar-container-modal {
   position: relative;
-  display: inline-block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  gap: 10px;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
   margin-right: 20px;
 }
 .player-avatar-modal {
-  width: 60px;
-  height: 60px;
+  width: 45px;
+  height: 45px;
   border-radius: 50%;
   overflow: hidden;
   border: 2px solid #00ffff;
 }
 
 .friend-msg {
-  margin-left: 20%;
-  margin-right: 10%;
-  color: black;
-  font-weight: bold;
-  text-align: center;
+  display: block;
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background-color: #f0f8ff;
+  color: #0e1a3a;
+  font-weight: 500;
+  font-size: 0.95rem;
+  text-align: left;
+  resize: none;
+  margin: 0 auto 1rem auto;
+  border: 1px solid #00ffff;
+  box-shadow: 0 0 4px rgba(0, 255, 255, 0.2);
 }
 
 @media (max-width: 1024px) {
@@ -196,4 +210,12 @@
     font-size: 1.2rem;
     right: -30%;
   }
+}
+
+.friend-info-container {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 1.2rem 0 1rem 0;
+  justify-content: center;
 }

@@ -1,6 +1,8 @@
 import { React, useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { PacmanLoader } from "react-spinners";
+import { ConfirmFriendRequestModal } from "../components/ConfirmFriendRequestModal";
+import { toast } from "sonner";
 import "../style/ExploreUsers.css";
 
 const API_URL = import.meta.env.VITE_API_URL;
@@ -9,6 +11,8 @@ function ExploreUsers() {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedUser, setSelectedUser] = useState(null);
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -78,10 +82,34 @@ function ExploreUsers() {
               />
               <h4 data-fullname={user.username}>{user.username}</h4>
               <div className="users-explore-btn">
-                <button className="btn-connect-explore">Conectar</button>
+                <button
+                  className="btn-connect-explore"
+                  onClick={() => {
+                    setSelectedUser(user);
+                    setModalOpen(true);
+                  }}
+                >
+                  Conectar
+                </button>
+                {modalOpen && selectedUser && (
+                  <ConfirmFriendRequestModal
+                    player={selectedUser}
+                    isOpen={modalOpen}
+                    onClose={() => setModalOpen(false)}
+                    onSuccess={() => {
+                      setModalOpen(false);
+                      setUsers((prev) =>
+                        prev.filter((user) => user._id !== selectedUser._id)
+                      );
+                      toast.success(
+                        `Solicitud enviada a ${selectedUser.username}`
+                      );
+                    }}
+                  />
+                )}
                 <button
                   className="btn-explore-profile"
-                  onClick={() => navigate(`/users/${user._id || user.id}`)}
+                  onClick={() => navigate(`/users/${user.username}`)}
                 >
                   Ver perfil
                 </button>
