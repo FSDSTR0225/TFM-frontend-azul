@@ -553,3 +553,9 @@
     max-width: 100px;
   }
 }
+
+@media (max-width: 900px) {
+  .navbar {
+    display: none;
+  }
+}
