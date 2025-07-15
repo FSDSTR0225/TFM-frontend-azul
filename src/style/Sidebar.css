@@ -43,3 +43,10 @@
 .sidebar-link:hover {
   color: #0095d9;
 }
+
+@media screen and (max-width: 1024px) {
+  .sidebar {
+   display: none;
+  }
+  
+}

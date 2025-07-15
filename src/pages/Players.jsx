@@ -32,7 +32,7 @@ const Players = () => {
     };
 
     fetchPlayers();
-  }, [searchQuery]);
+  }, [searchQuery, token,url]);
 
   return (
     <div>
