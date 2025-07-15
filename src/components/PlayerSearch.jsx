@@ -148,10 +148,11 @@ const PlayerSearch = ({ setQuery }) => {
           placeholder="Selecciona un horario"
           onChange={(selected) => setTimeSlot(selected)}
           options={[
+            { value: "notAvailable", label: "No Disponible" },
             { value: "morning", label: "Mañana" },
             { value: "afternoon", label: "Tarde" },
-            { value: "evening", label: "Noche" },
-            { value: "all day", label: "Todo el dia" },
+            { value: "night", label: "Noche" },
+            { value: "allDay", label: "Todo el dia" },
           ]}
           value={timeSlot}
         />

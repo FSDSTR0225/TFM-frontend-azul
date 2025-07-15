@@ -131,7 +131,7 @@ const ProfileCard = () => {
   //   }
   // };
 
-  // if (isLoading) return <div>Loading profile...</div>;
+ 
 
   if (isLoading || !currentProfile) return <div>Loading profile...</div>;
 
@@ -151,13 +151,15 @@ const ProfileCard = () => {
       </div>
       {currentProfile !== user &&
         !player.friends?.some((friend) => friend.user._id === user._id) && (
-          <div className="loading-spinner">
-            <button
+          <div className="add-friend">
+            <Button
               onClick={() => setModalOpen(true)}
-              className="view-profile-button"
+              className="steamBtn"
+               variant="outlined"
+            size="small"
             >
-              Añadir a amigos
-            </button>
+              + Añadir a amigos
+            </Button>
           </div>
         )}
 
