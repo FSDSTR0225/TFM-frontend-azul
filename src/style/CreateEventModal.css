@@ -379,6 +379,7 @@
     border-radius: 18px;
     max-height: 90vh;
     overflow-y: auto;
+    overscroll-behavior: contain;
   }
 
   .modal-event-content h2 {
@@ -431,4 +432,20 @@
 .autocomplete-list {
   scrollbar-width: thin;
   scrollbar-color: #00ffc855 transparent;
+}
+
+@media (max-width: 360px) {
+  .modal-event-content.create-event-modal {
+    padding: 1rem 0.8rem;
+    border-radius: 16px;
+  }
+
+  .modal-event-content h2 {
+    font-size: 1.1rem;
+  }
+
+  .submit-button {
+    font-size: 0.95rem;
+    padding: 0.7rem 0.9rem;
+  }
 }

@@ -224,6 +224,7 @@
   color: #66fcf1;
   font-size: 1.2rem;
   animation: pulse 2.5s infinite;
+  cursor: pointer;
 }
 
 @keyframes pulse {

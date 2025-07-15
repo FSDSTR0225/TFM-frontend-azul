@@ -64,7 +64,12 @@ function SuggestedUsersWidget() {
   };
 
   if (loading) return <div className="dots-loader"></div>;
-  if (error) return <div className="error-suggestions">{error}</div>;
+  if (error)
+    return (
+      <div className="error-suggestions" onClick={() => navigate("/users/me")}>
+        {error}
+      </div>
+    );
 
   // {!loading && !error && (
   //   <ul className="card-suggestion-container">

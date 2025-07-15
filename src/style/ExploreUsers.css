@@ -219,3 +219,92 @@
     border-radius: 6px;
   }
 }
+
+@media (max-width: 600px) {
+  .explore-users-page-container {
+    padding: 1.5rem 0.8rem;
+  }
+
+  .explore-users-page h2 {
+    font-size: 1.4rem;
+    letter-spacing: 1px;
+    margin-bottom: 1.5rem;
+  }
+
+  .query-explore-users {
+    font-size: 1rem;
+  }
+
+  .users-explore-grid {
+    gap: 0.8rem;
+  }
+
+  .users-card-explore {
+    padding: 0.9rem 0.6rem;
+    max-width: 90vw;
+    border-radius: 12px;
+  }
+
+  .users-card-explore img {
+    width: 65px;
+    height: 65px;
+  }
+
+  .users-card-explore h4 {
+    font-size: 0.95rem;
+  }
+
+  .users-explore-btn button {
+    font-size: 0.8rem;
+    padding: 0.35rem 0.7rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .explore-users-page h2 {
+    font-size: 1.2rem;
+    text-shadow: 0 0 4px #00fff033;
+  }
+
+  .users-card-explore h4 {
+    font-size: 0.9rem;
+    letter-spacing: 0.3px;
+  }
+
+  .users-card-explore img {
+    width: 60px;
+    height: 60px;
+  }
+
+  .users-explore-btn {
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .users-explore-btn button {
+    width: 100%;
+    text-align: center;
+    font-size: 0.78rem;
+    padding: 0.35rem 0.6rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .explore-users-page h2 {
+    font-size: 1.05rem;
+  }
+
+  .users-card-explore h4 {
+    font-size: 0.85rem;
+  }
+
+  .users-card-explore img {
+    width: 54px;
+    height: 54px;
+  }
+
+  .users-explore-btn button {
+    font-size: 0.75rem;
+    padding: 0.3rem 0.6rem;
+  }
+}

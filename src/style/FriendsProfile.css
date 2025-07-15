@@ -156,3 +156,19 @@
     padding: 0.4rem 0.8rem;
   }
 }
+
+@media (max-width: 360px) {
+  .friend-request p {
+    font-size: 0.9rem;
+  }
+
+  .friend-request button {
+    font-size: 0.85rem;
+    padding: 0.35rem 0.7rem;
+  }
+
+  .friend-request img {
+    width: 36px;
+    height: 36px;
+  }
+}

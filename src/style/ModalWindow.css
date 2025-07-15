@@ -113,3 +113,87 @@
   font-weight: bold;
   text-align: center;
 }
+
+@media (max-width: 1024px) {
+  .modal-content {
+    padding: 1.5rem;
+    width: 90%;
+    max-width: 440px;
+  }
+
+  .modal-content h2 {
+    font-size: 1.6rem;
+  }
+
+  .add-button {
+    font-size: 0.95rem;
+    padding: 10px;
+  }
+
+  .modal-close {
+    right: -40%;
+  }
+}
+
+/* 📱 Móviles */
+@media (max-width: 600px) {
+  .modal-content {
+    padding: 1.2rem;
+    max-width: 100%;
+    border-radius: 12px;
+  }
+
+  .modal-content h2 {
+    font-size: 1.4rem;
+  }
+
+  .modal-content input[type="text"] {
+    font-size: 0.95rem;
+  }
+
+  .add-button {
+    font-size: 0.9rem;
+    padding: 10px;
+  }
+
+  .player-avatar-modal {
+    width: 50px;
+    height: 50px;
+  }
+
+  .modal-close {
+    font-size: 1.3rem;
+    right: -35%;
+  }
+
+  .modal-close.friend-modal {
+    right: -85%;
+  }
+
+  .friend-msg {
+    margin-left: 10%;
+    margin-right: 10%;
+    font-size: 0.95rem;
+  }
+}
+
+/* 📱 Móviles muy pequeños */
+@media (max-width: 400px) {
+  .modal-content {
+    padding: 1rem;
+  }
+
+  .modal-content h2 {
+    font-size: 1.2rem;
+  }
+
+  .add-button {
+    font-size: 0.85rem;
+    padding: 0.8rem;
+  }
+
+  .modal-close {
+    font-size: 1.2rem;
+    right: -30%;
+  }
+}

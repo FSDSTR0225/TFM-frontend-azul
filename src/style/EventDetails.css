@@ -131,6 +131,7 @@
   color: #00ffc8;
   font-family: "Audiowide", "Orbitron", "Montserrat", sans-serif;
   text-decoration: underline;
+  cursor: pointer;
 }
 
 .event-info {
@@ -622,5 +623,20 @@
   .delete-event-btn {
     padding: 0.35rem 0.7rem;
     font-size: 0.8rem;
+  }
+}
+@media (max-width: 320px) {
+  .event-info {
+    font-size: 0.75rem;
+    padding: 0.4rem;
+  }
+  .participant-item {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
+  }
+  .edit-event-btn,
+  .delete-event-btn {
+    font-size: 0.75rem;
+    padding: 0.3rem 0.6rem;
   }
 }

@@ -124,7 +124,10 @@ function SuggestedGamesWidget() {
                 ))}
               </Swiper>
             ) : (
-              <p className="no-suggestions-game">
+              <p
+                className="no-suggestions-game"
+                onClick={() => navigate("/settings")}
+              >
                 No hay juegos sugeridos, completa tu perfil
               </p>
             )}
