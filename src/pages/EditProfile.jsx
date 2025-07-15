@@ -5,6 +5,7 @@ import AuthContext from "../context/AuthContext";
 import "../style/EditProfile.css";
 import Sidebar from "../components/SideBar";
 import Select from "react-select";
+import {toast} from 'sonner';
 const EditProfile = () => {
   const { user, setUser,token, isLoggedIn } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -83,10 +84,11 @@ const uploadImageToCloudinary = async (file) => {
     body: formData,
   });
   console.log("Cloudinary response:", res);
-
+  toast.success("Imagen subida con éxito.", { className: "mi-toast", icon: "📸" });
   const data = await res.json();
   if (!res.ok) {
-    throw new Error(data.error?.message|| "Error uploading image");
+    toast.error("Hubo un error al subir la imagen.Por favor, inténtalo de nuevo.", { className: "mi-toast", icon: "⚠️" });
+    throw new Error(data.error?.message|| "Error uploading image")
   }
   return data.secure_url; 
 };
@@ -117,10 +119,11 @@ const onSubmit = async (formDatas) => {
 
     })
    const data = await response.json();
-
+ toast.success("Tu Perfil se ha actualizado con éxito.", { className: "mi-toast", icon: "🎉" });
     if (!response.ok) {
    
-      console.error("Errore backend:", data.message);
+      console.error("Error backend:", data.message);
+      toast.error("Ha habido un Error al actualizar tu perfil.", { className: "mi-toast", icon: "❌" });
       return;
     }
 
@@ -134,7 +137,7 @@ const onSubmit = async (formDatas) => {
     }));
 
     
-    navigate("/users/me");
+   
     
 
   } catch (error) {
