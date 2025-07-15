@@ -209,3 +209,95 @@
     font-size: 1.01rem;
   }
 }
+
+/* Tablet (≤ 900px): 1 sola columna centrada */
+@media (max-width: 900px) {
+  .events-today-row {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+}
+
+/* Móvil grande (≤ 600px): optimiza márgenes, paddings y fuentes */
+@media (max-width: 600px) {
+  .events-today-card {
+    max-width: 96vw;
+    min-width: unset;
+    padding: 1rem;
+    font-size: 0.95rem;
+    border-radius: 14px;
+  }
+
+  .events-platform-card-lobby {
+    top: 0.5rem;
+    right: 0.5rem;
+    padding: 0.2rem 0.5rem;
+    gap: 0.3rem;
+  }
+
+  .events-icon-platform-card-lobby {
+    width: 22px;
+    height: 22px;
+  }
+
+  .events-platform-name {
+    font-size: 0.85rem;
+  }
+
+  .card-title-events {
+    font-size: 1.2rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .events-title-card-lobby {
+    font-size: 1rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .events-date-card-lobby,
+  .events-game-card-lobby {
+    font-size: 0.95rem;
+    gap: 0.4em;
+  }
+
+  .no-events-today-visual {
+    padding: 1.5rem 1rem;
+    min-height: 140px;
+    font-size: 1rem;
+  }
+
+  .no-events-animated-text {
+    font-size: 1.05rem;
+  }
+}
+
+/* Extra small (≤ 400px): reduce todo aún más */
+@media (max-width: 400px) {
+  .events-today-card {
+    padding: 0.9rem;
+    font-size: 0.88rem;
+  }
+
+  .card-title-events {
+    font-size: 1.05rem;
+  }
+
+  .events-title-card-lobby,
+  .events-date-card-lobby,
+  .events-game-card-lobby {
+    font-size: 0.9rem;
+  }
+
+  .events-platform-card-lobby {
+    padding: 0.1rem 0.4rem;
+  }
+
+  .events-platform-name {
+    font-size: 0.8rem;
+  }
+
+  .events-icon-platform-card-lobby {
+    width: 20px;
+    height: 20px;
+  }
+}
