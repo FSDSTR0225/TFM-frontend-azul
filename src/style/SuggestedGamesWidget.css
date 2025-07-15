@@ -553,6 +553,85 @@
   }
 }
 
+/* 🟢 Tablet vertical y móvil horizontal */
+@media (max-width: 900px) {
+  .game-hero-slide {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem 1rem;
+    min-height: auto;
+    max-width: 95%;
+  }
+
+  .hero-content {
+    flex-direction: column;
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .hero-left,
+  .hero-right {
+    flex: none;
+    max-width: 100%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  .hero-left img {
+    max-width: 220px;
+    width: 90%;
+    height: auto;
+  }
+
+  .steam-game-title {
+    font-size: 1.4rem;
+  }
+
+  .screenshots {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 0.5rem;
+  }
+
+  .screenshots img {
+    width: 140px;
+    height: 80px;
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+  }
+}
+
+/* 🟡 Móviles pequeños (tipo iPhone SE, Android chicos) */
+@media (max-width: 480px) {
+  .hero-left img {
+    max-width: 160px;
+  }
+
+  .steam-game-title {
+    font-size: 1.2rem;
+  }
+
+  .tag-chip-suggest {
+    font-size: 0.5rem;
+    max-width: 110px;
+  }
+
+  .screenshots img {
+    width: 120px;
+    height: 70px;
+  }
+
+  .btn-ver-juego {
+    font-size: 0.8rem;
+    padding: 0.4rem 1rem;
+  }
+}
+
 /* OPCION 2*/
 
 /* 

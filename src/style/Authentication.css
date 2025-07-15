@@ -128,98 +128,6 @@
   }
 }
 
-@media screen and (min-width: 1440px) {
-  .auth-form.glass {
-    max-width: 480px;
-    padding: 3rem;
-  }
-}
-
-@media screen and (max-width: 1024px) {
-  .auth-form.glass {
-    padding: 2.5rem;
-    max-width: 400px;
-  }
-
-  .RegisterForm__Title {
-    font-size: 1.8rem;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .auth-container {
-    flex-direction: column;
-  }
-
-  .auth-visual {
-    height: 200px;
-    flex: 0 0 auto;
-  }
-
-  .auth-visual img {
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
-  }
-
-  .auth-form {
-    padding: 2rem;
-  }
-
-  .auth-form.glass {
-    margin-top: 1rem;
-    border-radius: 16px;
-  }
-}
-
-@media screen and (max-width: 599px) {
-  .auth-container {
-    flex-direction: column;
-  }
-
-  .auth-form {
-    padding: 1.5rem;
-  }
-
-  .auth-form.glass {
-    padding: 1.5rem;
-    max-width: 100%;
-    margin: 0 auto;
-    border-radius: 12px;
-    box-shadow: 0 0 10px rgba(0, 255, 255, 0.1);
-  }
-
-  .RegisterForm__Title {
-    font-size: 1.6rem;
-  }
-
-  .RegisterForm__button {
-    font-size: 0.95rem;
-  }
-}
-
-@media screen and (max-width: 399px) {
-  .auth-form.glass {
-    padding: 1rem;
-  }
-
-  .RegisterForm__Title {
-    font-size: 1.4rem;
-  }
-
-  .RegisterForm__button {
-    font-size: 0.85rem;
-  }
-
-  .signup__text {
-    font-size: 0.8rem;
-  }
-
-  .error {
-    font-size: 0.8rem;
-  }
-}
-
 .MuiInputBase-root input {
   background-color: rgba(0, 255, 255, 0.05) !important;
   color: #ffffff !important;
@@ -256,4 +164,108 @@ input:-webkit-autofill:focus {
   -webkit-text-fill-color: #ffffff !important;
   caret-color: #ffffff !important;
   transition: background-color 5000s ease-in-out 0s;
+}
+
+@media screen and (min-width: 1440px) {
+  .auth-form.glass {
+    max-width: 480px;
+    padding: 3rem;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .auth-form.glass {
+    max-width: 400px;
+    padding: 2.5rem;
+  }
+
+  .RegisterForm__Title {
+    font-size: 1.8rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .auth-container {
+    flex-direction: column;
+  }
+
+  .auth-visual {
+    height: 220px;
+    flex: 0 0 auto;
+  }
+
+  .auth-visual img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  .auth-form {
+    padding: 2rem;
+  }
+
+  .auth-form.glass {
+    margin: 1rem auto 0 auto;
+    border-radius: 16px;
+    max-width: 90%;
+  }
+
+  .RegisterForm__Title {
+    font-size: 1.6rem;
+  }
+
+  .RegisterForm__button {
+    font-size: 0.95rem;
+  }
+
+  .signup__text {
+    font-size: 0.85rem;
+  }
+}
+
+@media screen and (max-width: 599px) {
+  .auth-form {
+    padding: 1.5rem;
+  }
+
+  .auth-form.glass {
+    padding: 1.5rem;
+    max-width: 94%;
+    border-radius: 14px;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.1);
+  }
+
+  .RegisterForm__Title {
+    font-size: 1.45rem;
+  }
+
+  .RegisterForm__button {
+    font-size: 0.9rem;
+  }
+
+  .error {
+    font-size: 0.85rem;
+  }
+}
+
+@media screen and (max-width: 399px) {
+  .auth-form.glass {
+    padding: 1rem;
+  }
+
+  .RegisterForm__Title {
+    font-size: 1.3rem;
+  }
+
+  .RegisterForm__button {
+    font-size: 0.85rem;
+  }
+
+  .signup__text {
+    font-size: 0.8rem;
+  }
+
+  .error {
+    font-size: 0.8rem;
+  }
 }

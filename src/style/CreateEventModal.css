@@ -348,3 +348,87 @@
     right: 1rem;
   }
 }
+
+/* Responsive para tablets y móviles grandes */
+@media (max-width: 768px) {
+  .modal-event-content.create-event-modal {
+    padding: 2rem 1.2rem;
+    border-radius: 20px;
+  }
+
+  .modal-event-content h2 {
+    font-size: 1.45rem;
+  }
+
+  .event-form input,
+  .event-form textarea {
+    font-size: 0.95rem;
+    padding: 0.9rem 1rem;
+  }
+
+  .submit-button {
+    font-size: 1.05rem;
+    padding: 0.9rem 1.1rem;
+  }
+}
+
+/* Mejoras específicas para móviles muy pequeños */
+@media (max-width: 480px) {
+  .modal-event-content.create-event-modal {
+    padding: 1.5rem 1rem;
+    border-radius: 18px;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+
+  .modal-event-content h2 {
+    font-size: 1.3rem;
+  }
+
+  .submit-button {
+    font-size: 1rem;
+    padding: 0.8rem 1rem;
+  }
+
+  .autocomplete-item {
+    font-size: 0.95rem;
+    padding: 10px 14px;
+  }
+
+  .close-btn {
+    font-size: 1.5rem;
+    top: 0.8rem;
+    right: 1rem;
+  }
+}
+
+/* Scroll personalizado dentro del modal (estilo neón discreto) */
+.modal-event-content.create-event-modal::-webkit-scrollbar,
+.autocomplete-list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.modal-event-content.create-event-modal::-webkit-scrollbar-track,
+.autocomplete-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.modal-event-content.create-event-modal::-webkit-scrollbar-thumb,
+.autocomplete-list::-webkit-scrollbar-thumb {
+  background: #00ffc855;
+  border-radius: 8px;
+  box-shadow: 0 0 6px #00ffc822;
+  transition: background 0.2s ease;
+}
+
+.modal-event-content.create-event-modal::-webkit-scrollbar-thumb:hover,
+.autocomplete-list::-webkit-scrollbar-thumb:hover {
+  background: #00ffc8;
+}
+
+/* Firefox */
+.modal-event-content.create-event-modal,
+.autocomplete-list {
+  scrollbar-width: thin;
+  scrollbar-color: #00ffc855 transparent;
+}

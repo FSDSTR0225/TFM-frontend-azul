@@ -70,7 +70,8 @@
   overflow: hidden;
   word-break: break-word;
   border-radius: 12px;
-  width: 420px;
+  width: 100%;
+  max-width: 420px;
   height: 200px;
   padding: 0.85rem;
   background-color: rgba(20, 20, 30, 0.7);
@@ -226,6 +227,12 @@
   }
   .btn-unirse {
     font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .event-suggestions-list {
+    grid-template-columns: 1fr;
   }
 }
 

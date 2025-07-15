@@ -40,7 +40,9 @@
 
 /* === SWIPER CONTENEDOR === */
 .suggested-users-swiper {
-  width: 450px; /* 100% ?*/
+  /* width: 450px; 100% ? */
+  width: 100%;
+  max-width: 450px;
   padding: 2rem 0 1rem 0;
   display: flex;
   gap: 2.2rem;
