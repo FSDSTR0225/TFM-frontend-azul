@@ -568,6 +568,7 @@
 
 .suggestion-content-game::-webkit-scrollbar {
   display: none; 
+  width: 0;
 }
 
 
