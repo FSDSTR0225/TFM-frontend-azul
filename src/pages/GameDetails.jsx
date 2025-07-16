@@ -26,6 +26,7 @@ function GameDetails() {
   const [loading, setLoading] = useState(true); // Almacenar el estado de carga,esta cargando?asi poder mostrar un loading
   const [friendsWhoLike, setFriendsWhoLike] = useState([]);
   const [eventCount, setEventCount] = useState(0); // Almacenar el numero de eventos activos del juego
+  const [similarGames, setSimilarGames] = useState([]);
 
   const authContext = useContext(AuthContext);
   const { token } = authContext;
@@ -105,6 +106,23 @@ function GameDetails() {
 
     fetchFriendsWhoLike();
   }, [id, token]);
+
+  useEffect(() => {
+    const fetchSimilarGames = async () => {
+      try {
+        const res = await fetch(`${API_URL}/games/${id}/similar`);
+        if (!res.ok) throw new Error("Error al obtener juegos similares");
+        const result = await res.json();
+        setSimilarGames(result);
+      } catch (err) {
+        console.error("Error al cargar juegos similares:", err);
+      }
+    };
+
+    if (id) {
+      fetchSimilarGames();
+    }
+  }, [id]);
 
   if (loading) {
     return (
@@ -258,6 +276,25 @@ function GameDetails() {
             </div>
             // </div>
           )}
+          <div className="similar-container">
+            {similarGames.length > 0 && (
+              <div className="similar-games-section">
+                <h3>Juegos similares</h3>
+                <div className="similar-games-grid">
+                  {similarGames.map((sim) => (
+                    <div
+                      key={sim.rawgId}
+                      className="similar-game-card"
+                      onClick={() => navigate(`/games/${sim.rawgId}`)}
+                    >
+                      <img src={sim.imageUrl} alt={sim.name} loading="lazy" />
+                      <p>{sim.name}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </>
