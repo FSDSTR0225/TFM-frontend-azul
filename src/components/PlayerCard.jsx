@@ -19,35 +19,35 @@ const PlayerCard = ({ player }) => {
       document.body.style.overflow = "";
     };
   }, [modalOpen]);
-      const fetchRequests = useCallback( async () => {
-      try {
-        const [sentRes, receivedRes] = await Promise.all([
-          fetch(`${API_URL}/friends/requests/sent`, {
-            headers: { Authorization: `Bearer ${token}` },
-          }),
-          fetch(`${API_URL}/friends/requests/received`, {
-            headers: { Authorization: `Bearer ${token}` },
-          }),
-        ]);
+  const fetchRequests = useCallback(async () => {
+    try {
+      const [sentRes, receivedRes] = await Promise.all([
+        fetch(`${API_URL}/friends/requests/sent`, {
+          headers: { Authorization: `Bearer ${token}` },
+        }),
+        fetch(`${API_URL}/friends/requests/received`, {
+          headers: { Authorization: `Bearer ${token}` },
+        }),
+      ]);
 
-        const sentData = await sentRes.json();
-        const receivedData = await receivedRes.json();
+      const sentData = await sentRes.json();
+      const receivedData = await receivedRes.json();
 
-        setSentRequests(sentData || []);
-        setReceivedRequests(receivedData || []);
-      } catch (error) {
-        console.error("Error fetching friend requests:", error);
-      }
-    }, [token, API_URL]);
+      setSentRequests(sentData || []);
+      setReceivedRequests(receivedData || []);
+    } catch (error) {
+      console.error("Error fetching friend requests:", error);
+    }
+  }, [token, API_URL]);
 
-useEffect(() => {
-  if (token) {
-    fetchRequests();
-  }
-}, [token, fetchRequests]); // ora NON causa loop infinito
+  useEffect(() => {
+    if (token) {
+      fetchRequests();
+    }
+  }, [token, fetchRequests]); // ora NON causa loop infinito
 
   const isFriend = player.friends?.some(
-    (friend) => friend.user._id === user._id
+    (friend) => friend.user?._id === user._id
   );
 
   // Verifica se c'è una richiesta inviata o ricevuta
@@ -96,9 +96,12 @@ useEffect(() => {
           player={player}
           isOpen={modalOpen}
           onClose={() => setModalOpen(false)}
-          onSuccess={async() => {
+          onSuccess={async () => {
             setModalOpen(false);
-            toast.success("Solicitud de amistad enviada",{className: 'mi-toast', icon: '📩'});
+            toast.success("Solicitud de amistad enviada", {
+              className: "mi-toast",
+              icon: "📩",
+            });
             await fetchRequests();
           }}
         />

@@ -1,4 +1,4 @@
-/* PlayerCard.css */
+/* Container de las tarjetas */
 .players-list {
   display: flex;
   flex-wrap: wrap;
@@ -7,17 +7,29 @@
   padding: 20px;
   background-color: #0e132d;
 }
+
+.friend-status {
+  color: rgb(237, 232, 110);
+  align-items: center;
+}
+
+/* Tarjeta individual */
 .player-card {
   background-color: #11131b;
   border: 1px solid #00f0ff40;
   border-radius: 20px;
   padding: 20px;
-  width: 220px;
-  overflow: hidden;
+  width: 280px;
+  height: 360px; /* 📏 Altura fija para uniformidad */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   text-align: center;
   color: #fff;
   box-shadow: 0 0 15px #00f0ff10;
   transition: transform 0.2s ease;
+  position: relative;
+  overflow: hidden;
 }
 
 .player-card:hover {
@@ -25,56 +37,66 @@
   box-shadow: 0 0 25px #00f0ff40;
 }
 
-.player-avatar-container {
-  margin-bottom: 12px;
-}
-
 .player-avatar {
-  width: 90px;
-  height: 90px;
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
   object-fit: cover;
   border: 3px solid #00f0ff;
   box-shadow: 0 0 12px #00f0ff60;
 }
 
+/* Nombre */
 .username-mock-list {
   color: #00f0ff;
+  text-overflow: ellipsis; /* Añade los puntos supensivos*/
+  white-space: nowrap; /* Evista qeu salte de linea si es largo*/
+  overflow: hidden; /* Oculta lo que sobrepasa el ancho*/
   font-size: 1.3rem;
-  margin: 10px 0;
+  margin: 5px 0;
   font-weight: 600;
 }
 
+/* Tags (juegos) */
 .player-games {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 8px;
+  gap: 6px;
+  min-height: 48px; /* 📏 Espacio reservado aunque esté vacío */
+  max-height: 80px;
+  overflow: hidden;
   margin-bottom: 16px;
 }
 
 .game-tag {
-  padding: 4px 12px;
+  padding: 4px 10px;
   background-color: #22262f;
   border-radius: 999px;
   border: 1px solid #888;
-  font-size: 0.85rem;
+  font-size: 0.75rem;
   color: #e0e0e0;
+  white-space: wrap;
+  text-overflow: ellipsis; /* Añade los puntos supensivos*/
+  white-space: nowrap; /* Evista qeu salte de linea si es largo*/
+  overflow: hidden; /* Oculta lo que sobrepasa el ancho*/
 }
 
+/* Botones */
 .player-actions {
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 12px;
 }
 
 .player-button {
-  font-family: 'Audiowide', sans-serif;
+  font-family: "Audiowide", sans-serif;
   font-size: 0.8rem;
   background-color: #043f4f;
   color: #00f0ff;
   border: none;
-  padding: 8px 16px;
+  padding: 8px 14px;
   border-radius: 10px;
   font-weight: 600;
   cursor: pointer;
