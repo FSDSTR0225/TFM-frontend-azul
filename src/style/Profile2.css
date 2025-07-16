@@ -3,12 +3,24 @@
   font-family: "Poppins", sans-serif;
   justify-content: space-around;
   background-image: url("/images/1.jpg");
+  background-size: cover;
+  background-position: center;
   flex-direction: column;
 }
 
+.no-friend-requests {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: #66fcf1;
+  font-size: 1.2rem;
+}
+
 .profile-card {
-  width: 70vw;
-  margin: 0 250px;
+  width: 65vw;
+  margin: 2rem auto;
   box-shadow: 0 0 32px #00ffc8cc, 0 0 0 2px #23243a;
   border: 2px solid rgba(0, 255, 200, 0.13);
   border-radius: 22px;
@@ -111,7 +123,7 @@
 .add-button-p {
   font-size: 0.9rem;
   background-color: transparent;
-  padding: 2px 2px;
+  padding: 0.5rem 0.5rem;
   border-radius: 22px;
   border: 2px double #66fcf1;
   cursor: pointer;
@@ -193,6 +205,9 @@
 
 .circle-text {
   color: #66fcf1;
+  margin-top: 0.5rem;
+  cursor: pointer;
+  text-decoration: none;
 }
 .circle-wrapper {
   display: flex;

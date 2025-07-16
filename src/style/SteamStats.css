@@ -4,6 +4,7 @@
   background: transparent;
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
   align-items: center;
   padding: 1rem;
   border-radius: 12px;

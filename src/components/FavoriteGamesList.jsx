@@ -3,8 +3,12 @@ import "../style/Profile2.css";
 import ModalWindow from "./ModalWindow";
 import { useState, useContext } from "react";
 import AuthContext from "../context/AuthContext";
-const FavoriteGamesList = ({ games, triggerRefresh, isOwner}) => {
+import { useNavigate } from "react-router-dom";
+const FavoriteGamesList = ({ games, triggerRefresh, isOwner }) => {
   const [modalOpen, setModalOpen] = useState(false);
+
+  const navigate = useNavigate();
+
   const url = import.meta.env.VITE_API_URL;
   const { token } = useContext(AuthContext);
   const handleDelete = (id) => {
@@ -25,12 +29,14 @@ const FavoriteGamesList = ({ games, triggerRefresh, isOwner}) => {
     <div className="section">
       <div className="section-header">
         <h3>Juegos Favoritos</h3>
-       {isOwner && <button
-          className="add-button-p purple"
-          onClick={() => setModalOpen(true)}
-        >
-          ➕ add
-        </button>}
+        {isOwner && (
+          <button
+            className="add-button-p purple"
+            onClick={() => setModalOpen(true)}
+          >
+            ➕ add
+          </button>
+        )}
       </div>
       <div className="circle-list">
         {games.map((game, index) => (
@@ -41,17 +47,23 @@ const FavoriteGamesList = ({ games, triggerRefresh, isOwner}) => {
                 alt={game.name}
                 className="favorite-game-img"
               />
-              {isOwner &&
-              <button
-                onClick={() => handleDelete(game._id)}
-                className="delete-button"
-                key={game._id}
-                aria-label={`Eliminar ${game.name}`}
-              >
-                X
-              </button>}
+              {isOwner && (
+                <button
+                  onClick={() => handleDelete(game._id)}
+                  className="delete-button"
+                  key={game._id}
+                  aria-label={`Eliminar ${game.name}`}
+                >
+                  X
+                </button>
+              )}
             </div>
-            <p className="circle-text">{game.name}</p>
+            <p
+              className="circle-text"
+              onClick={() => navigate(`/games/${game._id}`)}
+            >
+              {game.name}
+            </p>
           </div>
         ))}
       </div>
