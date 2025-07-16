@@ -63,7 +63,6 @@ const customStyles = {
     color: "#fff",
   }),
 };
-
 function CreateEventModal({ onClose, onCreate }) {
   const [formData, setFormData] = useState({
     title: "",
