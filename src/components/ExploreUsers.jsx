@@ -50,8 +50,8 @@ function ExploreUsers() {
   }
 
   {
-    users.map((user) => {
-      console.log("AVATAR:", user.username, user.avatar);
+    users.map((users) => {
+      console.log("USERS COMPLETOS:", users);
     });
   }
 
@@ -66,21 +66,34 @@ function ExploreUsers() {
         </div>
         <div className="users-explore-grid">
           {users.map((user) => (
-            <div key={user._id} className="users-card-explore">
-              <img
-                loading="lazy" // Añadido para mejorar la carga de imágenes
-                src={
-                  user.avatar && user.avatar.trim() !== ""
-                    ? user.avatar
-                    : `https://api.dicebear.com/7.x/adventurer/svg?seed=${user.username}`
-                }
-                alt={user.username}
-              />
-              <h4 data-fullname={user.username}>{user.username}</h4>
-              <div className="users-explore-btn">
-                <button className="btn-connect-explore">Conectar</button>
+            <div key={user._id} className="player-card">
+              <div className="player-avatar-container">
+                <img
+                  loading="lazy"
+                  src={
+                    user.avatar && user.avatar.trim() !== ""
+                      ? user.avatar
+                      : `https://api.dicebear.com/7.x/adventurer/svg?seed=${user.username}`
+                  }
+                  alt={user.username}
+                  className="player-avatar"
+                />
+              </div>
+
+              <h3 className="username-mock-list">{user.username}</h3>
+
+              <div className="player-games">
+                {user.favoriteGames?.map((game, index) => (
+                  <span key={index} className="game-tag">
+                    {game.name}
+                  </span>
+                ))}
+              </div>
+
+              <div className="player-actions">
+                <button className="player-button-connect">Conectar</button>
                 <button
-                  className="btn-explore-profile"
+                  className="player-button"
                   onClick={() => navigate(`/users/${user._id || user.id}`)}
                 >
                   Ver perfil
