@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { PacmanLoader } from "react-spinners";
-import { useNavigate } from "react-router-dom"; // hook para navegar entre rutas
+import { useNavigate, Link } from "react-router-dom"; // hook para navegar entre rutas
 import AuthContext from "../context/AuthContext";
 
 import "../style/GameDetails.css";
@@ -252,7 +252,13 @@ function GameDetails() {
                   {friendsWhoLike.map((friend) => (
                     <div className="friend-card" key={friend._id}>
                       <img src={friend.avatar} alt={friend.username} />
-                      <p>{friend.username}</p>
+                      <Link
+                        className="link-friend-like"
+                        to={`/profile/${friend.username}`}
+                        state={{ player: { username: friend.username } }}
+                      >
+                        {friend.username}
+                      </Link>
                     </div>
                   ))}
                 </div>

@@ -6,7 +6,7 @@ import ConfirmDeleteModal from "./ConfirmDeleteModal";
 import { BsController } from "react-icons/bs";
 import { GiGameConsole } from "react-icons/gi";
 import { TbCalendarBolt } from "react-icons/tb";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { toast } from "sonner";
 
 const API_URL = import.meta.env.VITE_API_URL;
@@ -17,7 +17,7 @@ function EventDetails({ event, onClose, setSelectedEvent, onEventDeleted }) {
   const [isEditing, setIsEditing] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   if (!event) return null;
 
@@ -152,12 +152,13 @@ function EventDetails({ event, onClose, setSelectedEvent, onEventDeleted }) {
               />
             )}
             {console.log("event.creator:", event.creator)}
-            <span
+            <Link
               className="organizer-name"
-              onClick={() => navigate(`/profile/${event.creator}`)}
+              to={`/profile/${event.creator}`}
+              state={{ player: { username: event.creator } }}
             >
               {event.creator}
-            </span>
+            </Link>
           </div>
 
           <div className="event-info">
@@ -200,7 +201,13 @@ function EventDetails({ event, onClose, setSelectedEvent, onEventDeleted }) {
                         className="participant-avatar"
                       />
                     )}
-                    <span>{user.username}</span>
+                    <Link
+                      to={`/profile/${user.username}`}
+                      state={{ player: { username: user.username } }}
+                      className="participant-name"
+                    >
+                      {user.username}
+                    </Link>
                   </li>
                 ))}
               </ul>

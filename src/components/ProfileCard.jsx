@@ -23,6 +23,7 @@ const ProfileCard = () => {
   const location = useLocation();
   const receivedPlayer = location?.state?.player || null;
   const username = receivedPlayer?.username || null;
+  // const { username } = useParams();
   const [modalOpen, setModalOpen] = useState(false);
   const [lastEvents, setLastEvents] = useState([]);
 
@@ -131,8 +132,6 @@ const ProfileCard = () => {
   //   }
   // };
 
- 
-
   if (isLoading || !currentProfile) return <div>Loading profile...</div>;
 
   return (
@@ -149,21 +148,21 @@ const ProfileCard = () => {
           </Link>
         )}
       </div>
+
+      <h2 className="username">{currentProfile.username}</h2>
       {currentProfile !== user &&
         !player.friends?.some((friend) => friend.user._id === user._id) && (
           <div className="add-friend">
             <Button
               onClick={() => setModalOpen(true)}
               className="steamBtn"
-               variant="outlined"
-            size="small"
+              variant="outlined"
+              size="small"
             >
               + Añadir a amigos
             </Button>
           </div>
         )}
-
-      <h2 className="username">{currentProfile.username}</h2>
       <div className="profile-steam">
         {!user.steamId ? (
           <Button

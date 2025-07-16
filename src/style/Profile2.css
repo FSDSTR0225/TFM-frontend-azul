@@ -19,6 +19,18 @@
   margin-bottom: 2rem;
   padding: 1.7rem 2.2rem 1.5rem 2.2rem;
 }
+
+.add-friend {
+  color: #23243a;
+  border: none;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 22px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
 /* background: linear-gradient(135deg, #23243a 80%, #2a2b4a 100%);
     border-radius: 22px;
     padding: 1.7rem 2.2rem 1.5rem 2.2rem;
@@ -62,7 +74,7 @@
 .username {
   color: #66fcf1;
   font-size: 1.8rem;
-  margin: 0.5rem 0 1.5rem;
+  margin: 0.5rem 0.5rem;
 }
 
 .section {

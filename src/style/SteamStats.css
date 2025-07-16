@@ -147,21 +147,67 @@
   }
 }
 
-/* 📱 Móviles muy pequeños */
 @media (max-width: 400px) {
   .steam-stats-title {
     font-size: 1.1rem;
   }
-
   .steam-game-card {
     flex: 0 0 140px;
   }
-
   .steam-game-info h4 {
     font-size: 0.85rem;
   }
-
   .steam-game-info p {
     font-size: 0.7rem;
+  }
+}
+
+@media (max-height: 500px) and (orientation: landscape) {
+  .steam-stats-title {
+    font-size: 1rem;
+  }
+  .steam-game-card {
+    flex: 0 0 130px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .steam-stats-title {
+    font-size: 1.4rem;
+  }
+  .steam-game-card {
+    flex: 0 0 180px;
+  }
+  .steam-game-info h4 {
+    font-size: 0.95rem;
+  }
+  .steam-game-info p {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .steam-stats-container {
+    padding: 0.8rem;
+  }
+  .steam-stats-title {
+    font-size: 1.2rem;
+  }
+  .steam-alert {
+    font-size: 0.85rem;
+    padding: 0.6rem;
+  }
+  .steam-game-card {
+    flex: 0 0 160px;
+    padding: 0.6rem;
+  }
+  .steam-game-info h4 {
+    font-size: 0.9rem;
+  }
+  .steam-game-info p {
+    font-size: 0.75rem;
+  }
+  .steam-progress-bar {
+    height: 6px;
   }
 }

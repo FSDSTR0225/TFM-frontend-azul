@@ -480,6 +480,15 @@
   }
 }
 
+.link-friend-like {
+  color: #00f0ff;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.2s ease;
+  display: flex;
+  flex-direction: column;
+}
+
 /* .game-background {
   position: fixed;
   top: 0;
