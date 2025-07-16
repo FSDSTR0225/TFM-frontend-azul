@@ -9,8 +9,39 @@
 }
 
 .friend-status {
-  color: rgb(237, 232, 110);
+  color: rgb(250, 242, 10);
   align-items: center;
+}
+
+/* Botones */
+.player-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-top: auto;
+}
+
+.player-button {
+  flex: 1; /* Cada botón ocupa el mismo espacio */
+  text-align: center;
+  font-family: "Audiowide", sans-serif;
+  font-size: 0.8rem;
+  background-color: #043f4f;
+  color: #00f0ff;
+  border: none;
+  padding: 10px 0;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  min-width: 100px; /* Puedes quitar esto si prefieres que se adapten al contenedor */
+  text-decoration: none;
+}
+
+.player-button:hover {
+  background-color: #065e6f;
+  transform: scale(1.03);
 }
 
 /* Tarjeta individual */
@@ -67,6 +98,7 @@
   max-height: 80px;
   overflow: hidden;
   margin-bottom: 16px;
+  margin-top: 1.5rem; /* Espacio entre el nombre y los juegos */
 }
 
 .game-tag {
@@ -86,8 +118,7 @@
 .player-actions {
   display: flex;
   justify-content: center;
-  align-items: center;
-  gap: 12px;
+  gap: 10px;
 }
 
 .player-button {
@@ -96,11 +127,26 @@
   background-color: #043f4f;
   color: #00f0ff;
   border: none;
-  padding: 8px 14px;
+  padding: 9px 6px;
   border-radius: 10px;
   font-weight: 600;
   cursor: pointer;
   transition: background-color 0.2s ease;
+}
+
+.player-button-connect {
+  flex: 1; /* Cada botón ocupa el mismo espacio */
+  text-align: center;
+  font-family: "Audiowide", sans-serif;
+  font-size: 0.8rem;
+  background-color: #043f4f;
+  color: #00f0ff;
+  border: none;
+  padding: 7px 0;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
 .player-button:hover {

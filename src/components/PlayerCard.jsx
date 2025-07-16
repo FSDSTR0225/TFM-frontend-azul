@@ -13,6 +13,7 @@ const PlayerCard = ({ player }) => {
   const [receivedRequests, setReceivedRequests] = useState([]);
 
   const API_URL = import.meta.env.VITE_API_URL;
+
   useEffect(() => {
     document.body.style.overflow = modalOpen ? "hidden" : "";
     return () => {
@@ -77,8 +78,11 @@ const PlayerCard = ({ player }) => {
         ) : hasPendingRequest ? (
           <span className="friend-status">Solicitud pendiente</span>
         ) : (
-          <button onClick={() => setModalOpen(true)} className="player-button">
-            Añadir a amigos
+          <button
+            onClick={() => setModalOpen(true)}
+            className="player-button-connect"
+          >
+            Conectar
           </button>
         )}
 
