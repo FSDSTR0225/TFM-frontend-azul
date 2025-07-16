@@ -57,14 +57,33 @@ function GamesByPlatform() {
     fetchGames();
   }, [platformId, currentPage]); // UsseEffect se ejecuta cuando cambia el platformId, si el usuario cambia el platformId cambiando de platadorma,se ejecuta el fetch de nuevo.
 
-  if (loading || !platform) {
-    // Si está cargando o no hay plataforma, muestra loading...
-    // Si está cargando, muestra loading...(luego libreria Ruben)
+  // if (loading || !platform) {
+  //   // Si está cargando o no hay plataforma, muestra loading...
+  //   // Si está cargando, muestra loading...(luego libreria Ruben)
+  //   return (
+  //     <div className="loading-container">
+  //       <h1 className="loading-title">Cargando juegos...</h1>
+  //       <PacmanLoader color="#FFD700" size={40} />{" "}
+  //       {/* Los componentes de React spinner reciben css en el propio componente */}
+  //     </div>
+  //   );
+  // }
+
+  if (loading) {
     return (
       <div className="loading-container">
         <h1 className="loading-title">Cargando juegos...</h1>
-        <PacmanLoader color="#FFD700" size={40} />{" "}
-        {/* Los componentes de React spinner reciben css en el propio componente */}
+        <PacmanLoader color="#FFD700" size={40} />
+      </div>
+    );
+  }
+
+  if (!platform) {
+    return (
+      <div className="loading-container">
+        <h1 className="loading-title">Plataforma no encontrada</h1>
+        <p>Intenta volver atrás o recargar con otra plataforma válida.</p>
+        <button onClick={() => navigate(-1)}>← Volver</button>
       </div>
     );
   }

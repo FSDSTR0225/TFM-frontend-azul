@@ -25,6 +25,32 @@
   overflow: hidden;
 }
 
+.MuiOutlinedInput-root {
+  background-color: rgba(0, 255, 255, 0.05);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  height: 48px;
+}
+
+.MuiInputAdornment-root {
+  background-color: transparent; /* O el mismo color si lo prefieres */
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+  display: flex;
+  align-items: center;
+}
+
+.MuiInputBase-root input {
+  padding: 10px 12px !important; /* un poco más de padding para igualar */
+  font-size: 1rem;
+}
+
+.MuiIconButton-root {
+  padding: 8px;
+  color: #00fff7;
+}
+
 .auth-form.glass {
   /* background: linear-gradient(
     135deg,
