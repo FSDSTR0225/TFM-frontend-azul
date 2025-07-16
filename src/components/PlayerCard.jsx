@@ -74,7 +74,7 @@ const PlayerCard = ({ player }) => {
       </div>
       <div className="player-actions">
         {isFriend ? (
-          <span className="friend-status">Ya son amigos</span>
+          <span className="friend-status">Ya sois amigos</span>
         ) : hasPendingRequest ? (
           <span className="friend-status">Solicitud pendiente</span>
         ) : (
