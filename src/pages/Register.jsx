@@ -136,7 +136,7 @@ export default function Register() {
           <TextField
             className="RegisterForm__input"
             type={showConfirmPassword ? "text" : "password"}
-            label="Confirmar contraseña"
+            label="Confirmar password"
             variant="outlined"
             defaultValue=""
             autoComplete="new-password"
