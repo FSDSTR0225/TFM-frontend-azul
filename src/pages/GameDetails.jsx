@@ -248,7 +248,7 @@ function GameDetails() {
             <div className="friends-events-row">
               <div className="friends-who-like">
                 <h3>Amigos con juego en favoritos:</h3>
-                <div className="friends-list">
+                <div className="friends-list-game-details">
                   {friendsWhoLike.map((friend) => (
                     <div className="friend-card" key={friend._id}>
                       <img src={friend.avatar} alt={friend.username} />

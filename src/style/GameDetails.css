@@ -265,7 +265,7 @@
   color: white;
 }
 
-.friends-list {
+.friends-list-game-details {
   display: flex;
   flex-direction: row !important;
   gap: 1rem;
