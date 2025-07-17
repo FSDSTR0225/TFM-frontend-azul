@@ -1,5 +1,5 @@
 .left-column {
-  flex: 1;
+  flex: 1.2;
   min-width: 250px;
   display: flex;
   flex-direction: column;
@@ -16,8 +16,8 @@
 .lobby-top-section {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
-  gap: 1rem;
+  align-items: center;
+  gap: 2.5rem;
   width: 100%;
   flex-wrap: wrap;
 }
@@ -40,7 +40,7 @@
   flex-direction: column;
   gap: 1.5rem;
   flex: 3;
-  min-width: 600px;
+  min-width: 300px; /* antes 600px*/
 }
 
 /* dashboard + calendario en horizontal */
@@ -73,17 +73,6 @@
   justify-content: center;
   flex-wrap: wrap;
   gap: 1rem;
-}
-
-/* Puedes ajustar estos flex según cuánto espacio quieras darles */
-.left-column {
-  flex: 1.2;
-}
-.center-column {
-  flex: 2;
-}
-.right-column {
-  flex: 1.5;
 }
 
 .center-column {
@@ -363,6 +352,7 @@
 
 .users-widget-glass {
   margin-top: 4rem;
+  margin-left: 4rem;
 }
 
 /* ======== SECCIÓN 2: SUGERENCIAS PRINCIPALES ACTUALIZADA ======== */
@@ -421,6 +411,7 @@
 /* 🎮 Juegos sugeridos - estilo Steam */
 .games-slider-section {
   width: 100%;
+  margin-left: 4rem;
 }
 
 .games-slider-glass {
@@ -526,8 +517,16 @@
   box-shadow: 0 0 18px rgba(0, 0, 0, 0.25);
 }
 
+.right-middle {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1.5rem;
+  width: 100%;
+}
+
 /* ======== RESPONSIVE ======== */
-@media (max-width: 1024px) {
+/* @media (max-width: 1024px) {
   .lobby-info-section {
     flex-direction: column;
     align-items: center;
@@ -554,7 +553,7 @@
   .sidebar-widget {
     width: 100%;
   }
-}
+} */
 
 @media (max-width: 1440px) {
   .left-zone {
@@ -725,6 +724,25 @@
   }
   50% {
     opacity: 0.6;
+  }
+}
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.fade-in-delayed {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 

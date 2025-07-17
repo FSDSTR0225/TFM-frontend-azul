@@ -25,29 +25,35 @@
   box-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
   color: #ffffff;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  /* position: relative; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  position: relative;
 }
 
 /* Chiudi (X) */
 .modal-close {
-  position: relative;
-  top: -10px;
-  right: -45%;
+  position: absolute;
+  top: 12px;
+  right: 16px;
   background: transparent;
   border: none;
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   color: #00ffff;
   cursor: pointer;
   transition: color 0.3s;
+  z-index: 10;
 }
+
 .modal-close:hover {
   color: #ff00ff;
 }
 
-.modal-close.friend-modal {
+/* .modal-close.friend-modal {
   top: -10px;
   right: -95%;
-}
+} */
 
 /* Titolo */
 .modal-content h2 {
@@ -95,8 +101,10 @@
 }
 .player-avatar-container-modal {
   position: relative;
-  display: inline-block;
-  margin-right: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 2.5rem;
 }
 .player-avatar-modal {
   width: 60px;
@@ -107,9 +115,98 @@
 }
 
 .friend-msg {
-  margin-left: 20%;
-  margin-right: 10%;
-  color: black;
-  font-weight: bold;
+  width: 80%;
+  margin: 1rem auto;
+  padding: 0.6rem 1rem;
+  font-size: 1rem;
+  font-weight: 600;
   text-align: center;
+  border-radius: 12px;
+  background-color: #f0f0f0;
+  color: #11131b;
+  box-shadow: 0 0 8px #00f0ff70;
+}
+
+@media (max-width: 1024px) {
+  .modal-content {
+    padding: 1.5rem;
+    width: 90%;
+    max-width: 440px;
+  }
+
+  .modal-content h2 {
+    font-size: 1.6rem;
+  }
+
+  .add-button {
+    font-size: 0.95rem;
+    padding: 10px;
+  }
+
+  .modal-close {
+    right: -40%;
+  }
+}
+
+/* 📱 Móviles */
+@media (max-width: 600px) {
+  .modal-content {
+    padding: 1.2rem;
+    max-width: 100%;
+    border-radius: 12px;
+  }
+
+  .modal-content h2 {
+    font-size: 1.4rem;
+  }
+
+  .modal-content input[type="text"] {
+    font-size: 0.95rem;
+  }
+
+  .add-button {
+    font-size: 0.9rem;
+    padding: 10px;
+  }
+
+  .player-avatar-modal {
+    width: 50px;
+    height: 50px;
+  }
+
+  .modal-close {
+    font-size: 1.3rem;
+    right: -35%;
+  }
+
+  .modal-close.friend-modal {
+    right: -85%;
+  }
+
+  .friend-msg {
+    margin-left: 10%;
+    margin-right: 10%;
+    font-size: 0.95rem;
+  }
+}
+
+/* 📱 Móviles muy pequeños */
+@media (max-width: 400px) {
+  .modal-content {
+    padding: 1rem;
+  }
+
+  .modal-content h2 {
+    font-size: 1.2rem;
+  }
+
+  .add-button {
+    font-size: 0.85rem;
+    padding: 0.8rem;
+  }
+
+  .modal-close {
+    font-size: 1.2rem;
+    right: -30%;
+  }
 }

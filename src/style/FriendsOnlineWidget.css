@@ -5,7 +5,8 @@
   backdrop-filter: blur(10px);
   padding: 1rem 0.5rem;
   height: 500px;
-  width: 250px;
+  max-width: 250px;
+  overflow: hidden;
   transition: box-shadow 0.2s;
   z-index: 2;
 }
@@ -39,7 +40,19 @@
   flex-direction: column;
   align-items: center;
   gap: 0.7rem;
+  overflow-y: auto;
+  padding-right: 0.3rem;
+  padding-left: 0.3rem;
   /* width: 220px; */
+}
+
+.friends-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.friends-list::-webkit-scrollbar-thumb {
+  background: rgba(0, 255, 200, 0.3);
+  border-radius: 4px;
 }
 
 .friend-item {
@@ -122,4 +135,19 @@
 .friend-online-name.offline-name {
   color: #aaa;
   font-style: italic;
+}
+
+@media (max-width: 480px) {
+  .modular-card-friends-online-card {
+    padding: 0.75rem;
+  }
+
+  .modular-card-content-friends-online p {
+    font-size: 0.8rem;
+  }
+
+  .friend-item {
+    width: 100%;
+    max-width: 220px;
+  }
 }

@@ -8,7 +8,7 @@ const mocksEvent = [
     time: "18:00",
     game: "Valorant",
     players: "1/5",
-    image: "/src/assets/valorant2.jpg",
+    image: "/images/valorant2.jpg",
   },
   {
     id: 2,
@@ -17,7 +17,7 @@ const mocksEvent = [
     time: "12:00",
     game: "EA sports FC 25",
     players: "1/2",
-    image: "/src/assets/fifa.png",
+    image: "/images/fifa.png",
   },
   {
     id: 3,
@@ -26,7 +26,7 @@ const mocksEvent = [
     time: "21:00",
     game: "World Of Warcraft",
     players: "N/D",
-    image: "/src/assets/wow2.png",
+    image: "/images/wow2.png",
   },
 ];
 

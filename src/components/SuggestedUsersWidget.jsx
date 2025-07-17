@@ -64,7 +64,12 @@ function SuggestedUsersWidget() {
   };
 
   if (loading) return <div className="dots-loader"></div>;
-  if (error) return <div className="error-suggestions">{error}</div>;
+  if (error)
+    return (
+      <div className="error-suggestions" onClick={() => navigate("/users/me")}>
+        {error}
+      </div>
+    );
 
   // {!loading && !error && (
   //   <ul className="card-suggestion-container">
@@ -84,7 +89,7 @@ function SuggestedUsersWidget() {
         loop={suggestedUsers.length >= 3}
         // watchOverflow={true}
         autoplay={{
-          delay: 3000,
+          delay: 1500,
           disableOnInteraction: false,
           pauseOnMouseEnter: true,
         }}
@@ -138,7 +143,11 @@ function SuggestedUsersWidget() {
               </button>
               <button
                 className="btn-profile"
-                onClick={() => navigate(`/profile/${suggest.username}`)}
+                onClick={() =>
+                  navigate(`/profile/${suggest.username}`, {
+                    state: { player: suggest },
+                  })
+                }
               >
                 Ver perfil
               </button>

@@ -156,8 +156,10 @@ function EditEventForm({ event, onClose, onUpdate }) {
     const finalData = {
       ...formData,
       date: formData.date,
-      game: formData.game._id || formData.game,
-      platform: formData.platform.value || formData.platform,
+      game:
+        typeof formData.game === "object" ? formData.game._id : formData.game,
+      platform:
+        typeof formData.game === "object" ? formData.game._id : formData.game,
       maxParticipants:
         formData.maxParticipants === ""
           ? null

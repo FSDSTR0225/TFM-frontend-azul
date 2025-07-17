@@ -4,7 +4,6 @@
   gap: 1.5rem;
   padding: 1.5rem;
   background: rgba(24, 28, 43, 0.8);
-  border: 2px solid red;
   border-radius: 12px;
   box-shadow: 0 0 12px #00ffc822;
 }
@@ -51,4 +50,71 @@
   accent-color: #00ffc8;
   transform: scale(1.2);
   cursor: pointer;
+}
+
+@media (min-width: 768px) {
+  .filter-events-container {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2rem;
+  }
+
+  .filters-panel {
+    flex-shrink: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .filter-events-container {
+    padding: 1.2rem;
+    gap: 1.2rem;
+  }
+
+  .filters-panel {
+    padding: 1.2rem;
+    max-width: 100%;
+  }
+
+  .filters-title {
+    font-size: 1.15rem;
+  }
+
+  .filter-label {
+    font-size: 0.95rem;
+  }
+
+  .filter-option {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .filter-events-container {
+    padding: 1rem;
+  }
+
+  .filters-panel {
+    padding: 1rem;
+    border-radius: 10px;
+  }
+
+  .filters-title {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .filter-label {
+    font-size: 0.9rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .filter-option {
+    font-size: 0.85rem;
+    gap: 0.5rem;
+  }
+
+  .filter-option input[type="radio"] {
+    transform: scale(1.1);
+  }
 }

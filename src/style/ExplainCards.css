@@ -209,3 +209,114 @@
   max-width: 650px;
   margin: 0 auto;
 }
+
+@media (max-width: 768px) {
+  .explain-section {
+    padding: 4rem 1rem;
+  }
+
+  .explain-title {
+    font-size: 1.7rem;
+    margin-bottom: 3rem;
+  }
+
+  .card-title {
+    font-size: 1.1rem;
+  }
+
+  .card-description {
+    font-size: 0.9rem;
+  }
+
+  .card-btn button {
+    font-size: 0.8rem;
+    padding: 0.45rem 1rem;
+  }
+
+  .explain-icon {
+    font-size: 2rem;
+  }
+
+  .explain-games {
+    padding: 1.8rem 1rem;
+  }
+
+  .explain-games-title {
+    font-size: 1.3rem;
+  }
+
+  .explain-games-description {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .explain-section {
+    padding: 3rem 0.8rem;
+  }
+
+  .explain-title {
+    font-size: 1.5rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .card-title {
+    font-size: 1rem;
+    flex-direction: column;
+    gap: 0.2rem;
+    text-align: center;
+  }
+
+  .card-icon {
+    font-size: 1.6rem;
+  }
+
+  .card-description {
+    font-size: 0.88rem;
+  }
+
+  .card-btn button {
+    font-size: 0.75rem;
+    padding: 0.4rem 0.9rem;
+  }
+
+  .explain-games-title {
+    font-size: 1.2rem;
+  }
+
+  .explain-games-description {
+    font-size: 0.88rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .explain-title {
+    font-size: 1.35rem;
+  }
+
+  .card-title {
+    font-size: 0.95rem;
+  }
+
+  .card-description {
+    font-size: 0.85rem;
+  }
+
+  .card-btn button {
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 0.75rem;
+  }
+
+  .explain-games {
+    padding: 1.5rem 0.8rem;
+  }
+
+  .explain-games-title {
+    font-size: 1.1rem;
+  }
+
+  .explain-games-description {
+    font-size: 0.85rem;
+  }
+}

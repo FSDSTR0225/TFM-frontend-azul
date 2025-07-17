@@ -5,6 +5,7 @@ import AuthContext from "../context/AuthContext";
 import "../style/EditProfile.css";
 import Sidebar from "../components/SideBar";
 import Select from "react-select";
+import {toast} from 'sonner';
 const EditProfile = () => {
   const { user, setUser,token, isLoggedIn } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -66,8 +67,8 @@ const EditProfile = () => {
     register,
     handleSubmit,
     control,
-    formState: { errors },
-  } = useForm();
+    formState: { errors }, getValues
+  } = useForm({mode: "onChange"});
   useEffect(() => {
     if (!isLoggedIn) {
       navigate("/login");
@@ -83,10 +84,11 @@ const uploadImageToCloudinary = async (file) => {
     body: formData,
   });
   console.log("Cloudinary response:", res);
-
+  toast.success("Imagen subida con éxito.", { className: "mi-toast", icon: "📸" });
   const data = await res.json();
   if (!res.ok) {
-    throw new Error(data.error?.message|| "Error uploading image");
+    toast.error("Hubo un error al subir la imagen.Por favor, inténtalo de nuevo.", { className: "mi-toast", icon: "⚠️" });
+    throw new Error(data.error?.message|| "Error uploading image")
   }
   return data.secure_url; 
 };
@@ -117,10 +119,11 @@ const onSubmit = async (formDatas) => {
 
     })
    const data = await response.json();
-
+ toast.success("Tu Perfil se ha actualizado con éxito.", { className: "mi-toast", icon: "🎉" });
     if (!response.ok) {
    
-      console.error("Errore backend:", data.message);
+      console.error("Error backend:", data.message);
+      toast.error("Ha habido un Error al actualizar tu perfil.", { className: "mi-toast", icon: "❌" });
       return;
     }
 
@@ -134,7 +137,7 @@ const onSubmit = async (formDatas) => {
     }));
 
     
-    navigate("/users/me");
+   
     
 
   } catch (error) {
@@ -147,70 +150,90 @@ const onSubmit = async (formDatas) => {
     <Sidebar />
     <div className="edit-profile">
       <h2>Modifica tus datos</h2>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <label htmlFor="username">Username:</label>
-        <input
-          type="text"
-          id="username"
-          {...register("username")}
-          defaultValue={user.username}
-        />
-        {errors.username && <span>This field is required</span>}
+     <form onSubmit={handleSubmit(onSubmit)}>
+  <label htmlFor="username">Nombre de usuario:</label>
+  <input
+    type="text"
+    id="username"
+    {...register("username", {
+      validate: (value) =>
+        value === "" || value.length >= 3 || "Mínimo 3 caracteres",
+    })}
+    defaultValue={user.username}
+  />
+  {errors.username && <span>{errors.username.message}</span>}
 
-        <label htmlFor="email">Email:</label>
-        <input
-          type="email"
-          id="email"
-          {...register("email")}
-          defaultValue={user.email}
-        />
-        {errors.email && <span>This field is required</span>}
+  <label htmlFor="email">Correo electrónico:</label>
+  <input
+    type="email"
+    id="email"
+    {...register("email", {
+      validate: (value) =>
+        value === "" ||
+        /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(value) ||
+        "Correo electrónico no válido",
+    })}
+    defaultValue={user.email}
+  />
+  {errors.email && <span>{errors.email.message}</span>}
 
-        <label htmlFor="avatar">Avatar:</label>
-        <input type="file" id="avatar" {...register("avatar")} />
-        {errors.avatar && <span>This field is required</span>}
-<label htmlFor="availability">Disponibilidad horaria:</label>
-<Controller
-  name="availability"
-  control={control}
-  defaultValue={user.availability || ""}
-  render={({ field }) => (
-    <Select
-      {...field}
-      options={[
-        { value: "No disponible", label: "No disponible" },
-        { value: "Mañana", label: "Mañana" },
-        { value: "Tarde", label: "Tarde" },
-        { value: "Noche", label: "Noche" },
-        { value: "Todo el día", label: "Todo el día" }
-      ]}
-      styles={customStyles}
-      placeholder="Selecciona tu disponibilidad"
-    />
-  )}
+  <label htmlFor="avatar">Avatar:</label>
+  <input type="file" id="avatar" {...register("avatar")} />
+
+  <label htmlFor="availability">Disponibilidad horaria:</label>
+  <Controller
+    name="availability"
+    control={control}
+    defaultValue={user.availability || ""}
+    render={({ field }) => (
+      <Select
+        {...field}
+        options={[
+          { value: "notAvailable", label: "No disponible" },
+          { value: "morning", label: "Mañana" },
+          { value: "afternoon", label: "Tarde" },
+          { value: "night", label: "Noche" },
+          { value: "allDay", label: "Todo el día" },
+        ]}
+        styles={customStyles}
+        placeholder="Selecciona tu disponibilidad"
+      />
+    )}
+  />
+
+<label htmlFor="oldPassword">Contraseña antigua:</label>
+<input
+  type="password"
+  id="oldPassword"
+  {...register("oldPassword", {
+    validate: (value) => {
+      const newPassword = getValues("newPassword");
+      if (newPassword && !value) {
+        return "Debes ingresar la contraseña antigua";
+      }
+      return true;
+    },
+  })}
 />
-{errors.availability && <span>This field is required</span>}
+{errors.oldPassword && <span>{errors.oldPassword.message}</span>}
 
 
-        <label htmlFor="text"> Antigua password:</label>
-        <input
-          type="password"
-          id="oldPassword"
-          {...register("oldPassword")}
+<label htmlFor="newPassword">Nueva contraseña:</label>
+<input
+  type="password"
+  id="newPassword"
+  {...register("newPassword", {
+    validate: (value) =>
+      value === "" || value.length >= 6 || "Mínimo 6 caracteres",
+  })}
+/>
+{errors.newPassword && <span>{errors.newPassword.message}</span>}
 
-        />
-        {errors.oldPassword && <span>This field is required</span>}
-        <label htmlFor="password">Nueva password:</label>
-        <input
-          type="password"
-          id="newPassword"
-         
-          {...register("newPassword")}
-        />
-        {errors.newPassword && <span>This field is required</span>}
 
-        <button type="submit">Save</button>
-      </form>
+  <button type="submit">Guardar</button>
+</form>
+
+
     </div>
   </div>
   );

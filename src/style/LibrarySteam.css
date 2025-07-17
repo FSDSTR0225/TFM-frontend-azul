@@ -94,3 +94,61 @@
     font-size: 1.6rem;
   }
 }
+
+/* Tablets (768px) y móviles grandes */
+@media (max-width: 768px) {
+  .steam-summary-card {
+    max-width: 90%;
+    height: auto;
+    padding: 1.2rem;
+    grid-template-rows: auto auto auto;
+    gap: 1rem;
+  }
+
+  .steam-summary-card h3 {
+    font-size: 1.3rem;
+    text-align: center;
+  }
+
+  .steam-summary-stats {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .steam-summary-stats div {
+    width: 100%;
+  }
+
+  .steam-summary-stats strong {
+    font-size: 1.8rem;
+  }
+
+  .steam-summary-list li {
+    font-size: 0.85rem;
+    padding-left: 1.2rem;
+  }
+
+  .steam-icon {
+    font-size: 1.4rem;
+  }
+}
+
+/* Móviles medianos (~480px) */
+@media (max-width: 500px) {
+  .steam-summary-card {
+    padding: 1rem;
+  }
+
+  .steam-summary-card h3 {
+    font-size: 1.2rem;
+  }
+
+  .steam-summary-stats strong {
+    font-size: 1.5rem;
+  }
+
+  .steam-summary-list li {
+    font-size: 0.8rem;
+  }
+}

@@ -70,7 +70,7 @@ function EventCard({ event, onClick }) {
             }
           >
             {event.maxParticipants
-              ? `${event.participants.length}/${event.maxParticipants}`
+              ? `${event.participants?.length || 0}/${event.maxParticipants}`
               : "Sin límite"}
           </span>
         </div>

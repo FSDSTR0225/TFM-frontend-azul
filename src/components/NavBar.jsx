@@ -262,11 +262,11 @@ const NavBar = ({ showSearch }) => {
                     Mis eventos
                   </NavLink>
                 </li>
-                <li>
+                {/* <li>
                   <NavLink to="/management" className="dropdown-options">
                     Gestión de solicitudes
                   </NavLink>
-                </li>
+                </li> */}
                 <li>
                   <NavLink to="/settings" className="dropdown-options">
                     Configuración

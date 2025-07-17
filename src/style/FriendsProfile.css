@@ -7,7 +7,14 @@
   justify-content: center;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, #001f3f 0%, #001f3f 100%);
+  background: radial-gradient(ellipse at 20% 25%, #0f1740 0%, transparent 50%),
+    radial-gradient(ellipse at 60% 70%, #1a0e33 0%, transparent 45%),
+    radial-gradient(
+      ellipse at 50% 85%,
+      rgba(0, 255, 200, 0.05),
+      transparent 60%
+    ),
+    #0a0a1a;
   min-height: 100vh;
   font-family: "Orbitron", sans-serif;
 }
@@ -90,4 +97,85 @@
 
 .friend-request button:nth-child(3):hover {
   background-color: #e04040;
+}
+
+@media (max-width: 768px) {
+  .friends-profile-content {
+    padding: 1.5rem;
+    gap: 2rem;
+  }
+
+  .friend-requests {
+    padding: 1.2rem;
+  }
+
+  .friend-request {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.7rem;
+  }
+
+  .friend-request p {
+    font-size: 1rem;
+  }
+
+  .friend-request button {
+    padding: 0.4rem 0.9rem;
+    font-size: 0.95rem;
+  }
+
+  .friend-request img {
+    width: 44px;
+    height: 44px;
+  }
+}
+
+@media (max-width: 480px) {
+  .friends-profile-content {
+    padding: 1rem;
+    gap: 1.5rem;
+  }
+
+  .friend-requests {
+    padding: 1rem;
+  }
+
+  .friend-requests h3 {
+    font-size: 1.2rem;
+  }
+
+  .friend-request {
+    padding: 0.6rem;
+    gap: 0.5rem;
+  }
+
+  .friend-request img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .friend-request p {
+    font-size: 0.95rem;
+  }
+
+  .friend-request button {
+    font-size: 0.9rem;
+    padding: 0.4rem 0.8rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .friend-request p {
+    font-size: 0.9rem;
+  }
+
+  .friend-request button {
+    font-size: 0.85rem;
+    padding: 0.35rem 0.7rem;
+  }
+
+  .friend-request img {
+    width: 36px;
+    height: 36px;
+  }
 }

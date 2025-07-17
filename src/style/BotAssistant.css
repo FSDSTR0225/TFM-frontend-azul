@@ -25,3 +25,42 @@
     right: 20px; /* más pegado al borde en móviles */
   }
 }
+
+@media (max-width: 1024px) {
+  .bot-assistant {
+    bottom: 200px; /* un poco más arriba en tablets */
+    right: 30px;
+    width: 56px;
+    height: 56px;
+  }
+
+  .bot-assistant img {
+    width: 80px;
+  }
+}
+
+@media (max-width: 768px) {
+  .bot-assistant {
+    bottom: 120px;
+    right: 20px;
+    width: 52px;
+    height: 52px;
+  }
+
+  .bot-assistant img {
+    width: 72px;
+  }
+}
+
+@media (max-width: 480px) {
+  .bot-assistant {
+    bottom: 90px;
+    right: 16px;
+    width: 48px;
+    height: 48px;
+  }
+
+  .bot-assistant img {
+    width: 64px;
+  }
+}

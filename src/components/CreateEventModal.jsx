@@ -63,7 +63,6 @@ const customStyles = {
     color: "#fff",
   }),
 };
-
 function CreateEventModal({ onClose, onCreate }) {
   const [formData, setFormData] = useState({
     title: "",
@@ -176,14 +175,7 @@ function CreateEventModal({ onClose, onCreate }) {
   const minTime = isToday ? now : new Date().setHours(0, 0, 0, 0);
 
   return (
-    <div
-      className="modal-overlay-events"
-      onClick={(e) => {
-        if (e.target.classList.contains("modal-overlay-events")) {
-          onClose();
-        }
-      }}
-    >
+    <div className="modal-overlay-events">
       <div className="modal-event-content create-event-modal">
         <span className="close-edit-btn" onClick={onClose} title="Cerrar">
           ✖

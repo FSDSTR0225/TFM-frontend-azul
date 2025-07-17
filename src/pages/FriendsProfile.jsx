@@ -30,11 +30,11 @@ const FriendsProfile = () => {
       })
         .then((res) => res.json())
         .then((data) => {
-          setFriends(data.user.friends || []);
+          setFriends(data.user?.friends || []);
         })
         .catch((err) => console.error("Errore nel recupero amici:", err));
     }
-  }, [isLoggedIn, token, navigate, refreshKey]);
+  }, [isLoggedIn, token, navigate, refreshKey, url]);
 
   // Solicitudes de amistad recibidas
   useEffect(() => {
@@ -162,10 +162,10 @@ const FriendsProfile = () => {
             friendRequestsSent.map((request) => (
               <div key={request._id} className="friend-request">
                 <img
-                  src={request.userReceiver.avatar}
-                  alt={request.userReceiver.username}
+                  src={request.userReceiver?.avatar}
+                  alt={request.userReceiver?.username}
                 />
-                <p>{request.userReceiver.username}</p>
+                <p>{request.userReceiver?.username}</p>
                 <p>{request.message}</p>
                 <button
                   onClick={() => {

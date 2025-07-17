@@ -3,12 +3,24 @@
   font-family: "Poppins", sans-serif;
   justify-content: space-around;
   background-image: url("/images/1.jpg");
+  background-size: cover;
+  background-position: center;
   flex-direction: column;
 }
 
+.no-friend-requests {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: #66fcf1;
+  font-size: 1.2rem;
+}
+
 .profile-card {
-  width: 70vw;
-  margin: 0 250px;
+  width: 65vw;
+  margin: 2rem auto;
   box-shadow: 0 0 32px #00ffc8cc, 0 0 0 2px #23243a;
   border: 2px solid rgba(0, 255, 200, 0.13);
   border-radius: 22px;
@@ -18,6 +30,18 @@
   margin-top: 2rem;
   margin-bottom: 2rem;
   padding: 1.7rem 2.2rem 1.5rem 2.2rem;
+}
+
+.add-friend {
+  color: #23243a;
+  border: none;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 22px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 /* background: linear-gradient(135deg, #23243a 80%, #2a2b4a 100%);
     border-radius: 22px;
@@ -62,7 +86,7 @@
 .username {
   color: #66fcf1;
   font-size: 1.8rem;
-  margin: 0.5rem 0 1.5rem;
+  margin: 0.5rem 0.5rem;
 }
 
 .section {
@@ -99,7 +123,7 @@
 .add-button-p {
   font-size: 0.9rem;
   background-color: transparent;
-  padding: 2px 2px;
+  padding: 0.5rem 0.5rem;
   border-radius: 22px;
   border: 2px double #66fcf1;
   cursor: pointer;
@@ -181,6 +205,9 @@
 
 .circle-text {
   color: #66fcf1;
+  margin-top: 0.5rem;
+  cursor: pointer;
+  text-decoration: none;
 }
 .circle-wrapper {
   display: flex;
@@ -231,4 +258,162 @@
 .delete-button:hover {
   background-color: #9c27b0;
   color: white;
+}
+
+/* ----------- BREAKPOINTS ----------- */
+
+/* Tablets y pantallas medianas */
+@media (max-width: 1024px) {
+  .profile-card {
+    margin: 2rem auto;
+    width: 90vw;
+    padding: 1.5rem;
+  }
+
+  .diamond-list {
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+  }
+
+  .diamond {
+    width: 70px;
+    height: 70px;
+  }
+
+  .last-event-img {
+    width: 130%;
+    height: 130%;
+  }
+
+  .username {
+    font-size: 1.6rem;
+  }
+
+  .platform-name {
+    font-size: 1rem;
+  }
+}
+
+/* Móviles grandes */
+@media (max-width: 768px) {
+  .profile-card {
+    width: 95vw;
+    padding: 1.2rem;
+  }
+
+  .diamond {
+    width: 60px;
+    height: 60px;
+  }
+
+  .last-event-img {
+    width: 120%;
+    height: 120%;
+  }
+
+  .circle {
+    width: 65px;
+    height: 65px;
+  }
+
+  .circle-text,
+  .event-profile-info p {
+    font-size: 0.9rem;
+  }
+
+  .info-game-name {
+    font-size: 0.85rem !important;
+  }
+
+  .username {
+    font-size: 1.4rem;
+  }
+}
+
+/* Móviles pequeños */
+@media (max-width: 480px) {
+  .profile-card {
+    width: 95vw;
+    margin: 1.2rem auto;
+    padding: 1rem;
+  }
+
+  .diamond {
+    width: 52px;
+    height: 52px;
+  }
+
+  .last-event-img {
+    width: 110%;
+    height: 110%;
+  }
+
+  .circle {
+    width: 58px;
+    height: 58px;
+  }
+
+  .avatar {
+    width: 90px;
+    height: 90px;
+  }
+
+  .username {
+    font-size: 1.2rem;
+  }
+
+  .section-header {
+    flex-direction: column;
+    gap: 0.6rem;
+    text-align: center;
+  }
+
+  .add-button-p {
+    font-size: 0.8rem;
+  }
+
+  .event-profile-info p {
+    font-size: 0.85rem;
+  }
+
+  .info-game-name {
+    font-size: 0.8rem !important;
+  }
+}
+
+/* Móviles ultra pequeños (iPhone SE y similares) */
+@media (max-width: 360px) {
+  .username {
+    font-size: 1.05rem;
+  }
+
+  .circle-text,
+  .event-profile-info p {
+    font-size: 0.75rem;
+  }
+
+  .add-button-p {
+    font-size: 0.75rem;
+  }
+
+  .diamond {
+    width: 45px;
+    height: 45px;
+  }
+
+  .circle {
+    width: 50px;
+    height: 50px;
+  }
+
+  .avatar {
+    width: 75px;
+    height: 75px;
+  }
+
+  .last-event-img {
+    width: 100%;
+    height: 100%;
+  }
 }

@@ -7,6 +7,10 @@ import { Button } from "@mui/material";
 import AuthContext from "../context/AuthContext";
 import sideImg from "/images/register/prueba10.jpg";
 import RegisterSuccessModal from "../components/ModalMUI/RegisterSuccessModal.jsx";
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import IconButton from "@mui/material/IconButton";
+import InputAdornment from "@mui/material/InputAdornment";
 
 export default function Register() {
   const navigate = useNavigate();
@@ -16,6 +20,8 @@ export default function Register() {
   const [isShowModal, setIsShowModal] = useState(false);
   const [isModalSuccess, setIsModalSuccess] = useState(true);
   const [error, setError] = useState(null);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const modalText = {
     success: "Bienvenido a Link2PLay",
@@ -25,6 +31,7 @@ export default function Register() {
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
   } = useForm();
 
@@ -70,7 +77,7 @@ export default function Register() {
             className="RegisterForm__input"
             type="text"
             label="Username"
-            variant="standard"
+            variant="outlined"
             defaultValue=""
             autoComplete="new-username"
             {...register("username", {
@@ -85,7 +92,7 @@ export default function Register() {
             className="RegisterForm__input"
             type="text"
             label="Email"
-            variant="standard"
+            variant="outlined"
             defaultValue=""
             autoComplete="new-email"
             {...register("email", {
@@ -99,9 +106,9 @@ export default function Register() {
           />
           <TextField
             className="RegisterForm__input"
-            type="password"
+            type={showPassword ? "text" : "password"}
             label="Password"
-            variant="standard"
+            variant="outlined"
             defaultValue=""
             autoComplete="new-password"
             {...register("password", {
@@ -116,6 +123,41 @@ export default function Register() {
                 ? "Mínimo 6 caracteres, una mayúscula y un número."
                 : null
             }
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton onClick={() => setShowPassword(!showPassword)}>
+                    {showPassword ? <VisibilityOff /> : <Visibility />}
+                  </IconButton>
+                </InputAdornment>
+              ),
+            }}
+          />
+          <TextField
+            className="RegisterForm__input"
+            type={showConfirmPassword ? "text" : "password"}
+            label="Confirmar password"
+            variant="outlined"
+            defaultValue=""
+            autoComplete="new-password"
+            {...register("confirmPassword", {
+              required: true,
+              validate: (value) =>
+                value === watch("password") || "Las contraseñas no coinciden",
+            })}
+            error={!!errors.confirmPassword}
+            helperText={errors.confirmPassword?.message}
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton
+                    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                  >
+                    {showConfirmPassword ? <VisibilityOff /> : <Visibility />}
+                  </IconButton>
+                </InputAdornment>
+              ),
+            }}
           />
           <Button
             variant="contained"

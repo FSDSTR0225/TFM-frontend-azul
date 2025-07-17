@@ -20,9 +20,9 @@ function GamesByPlatform() {
 
   const gamesOnPage = 25; // Número de juegos por página
 
-  const indexLastGame = currentPage * gamesOnPage; // Índice del último juego a mostrar en la página actual, ej: pagina 1 * 25 juegos por pagina = 25
-  const indexFirstGame = indexLastGame - gamesOnPage; // Índice del primer juego a mostrar en la página actual, ej: indice del último juego(25) - 25 juegos por pagina = 0
-  const gamesToShow = games.slice(indexFirstGame, indexLastGame); // Juegos a mostrar en la página actual, slice devuelve una copia del array desde el punto a hasta el b,sin incluir b(0 a 24-no incluye )
+  // const indexLastGame = currentPage * gamesOnPage; // Índice del último juego a mostrar en la página actual, ej: pagina 1 * 25 juegos por pagina = 25
+  // const indexFirstGame = indexLastGame - gamesOnPage; // Índice del primer juego a mostrar en la página actual, ej: indice del último juego(25) - 25 juegos por pagina = 0
+  // const gamesToShow = games.slice(indexFirstGame, indexLastGame); // Juegos a mostrar en la página actual, slice devuelve una copia del array desde el punto a hasta el b,sin incluir b(0 a 24-no incluye )
 
   const handleOnClick = (direction) => {
     if (direction === "siguiente") {
@@ -33,40 +33,57 @@ function GamesByPlatform() {
   };
 
   useEffect(() => {
-    setLoading(true); // Cambiar el estado de carga a true antes de hacer la petición,cada vez que se renderice
-    const fetchGames = async () => {
-      const response = await fetch(`${API_URL}/platforms/${platformId}/games`);
+    setLoading(true);
 
-      const data = await response.json();
-      console.log("Fetched data:", data);
+    const fetchGames = async () => {
       try {
         const response = await fetch(
-          `${API_URL}/platforms/${platformId}/games`
+          `${API_URL}/platforms/${platformId}/games?page=${currentPage}&limit=${gamesOnPage}`
         );
         if (!response.ok) {
           throw new Error("Error fetching games");
         }
         const data = await response.json();
-        setGames(data.games);
-        setPlatform(data.platform); // Guardar la plataforma en el estado
+        console.log("Fetched data:", data);
         setGames(data.games);
         setPlatform(data.platform);
       } catch (error) {
         console.error("Error fetching games:", error);
+      } finally {
+        setLoading(false);
       }
-      setLoading(false);
     };
-    fetchGames();
-  }, [platformId]); // UsseEffect se ejecuta cuando cambia el platformId, si el usuario cambia el platformId cambiando de platadorma,se ejecuta el fetch de nuevo.
 
-  if (loading || !platform) {
-    // Si está cargando o no hay plataforma, muestra loading...
-    // Si está cargando, muestra loading...(luego libreria Ruben)
+    fetchGames();
+  }, [platformId, currentPage]); // UsseEffect se ejecuta cuando cambia el platformId, si el usuario cambia el platformId cambiando de platadorma,se ejecuta el fetch de nuevo.
+
+  // if (loading || !platform) {
+  //   // Si está cargando o no hay plataforma, muestra loading...
+  //   // Si está cargando, muestra loading...(luego libreria Ruben)
+  //   return (
+  //     <div className="loading-container">
+  //       <h1 className="loading-title">Cargando juegos...</h1>
+  //       <PacmanLoader color="#FFD700" size={40} />{" "}
+  //       {/* Los componentes de React spinner reciben css en el propio componente */}
+  //     </div>
+  //   );
+  // }
+
+  if (loading) {
     return (
       <div className="loading-container">
         <h1 className="loading-title">Cargando juegos...</h1>
-        <PacmanLoader color="#FFD700" size={40} />{" "}
-        {/* Los componentes de React spinner reciben css en el propio componente */}
+        <PacmanLoader color="#FFD700" size={40} />
+      </div>
+    );
+  }
+
+  if (!platform) {
+    return (
+      <div className="loading-container">
+        <h1 className="loading-title">Plataforma no encontrada</h1>
+        <p>Intenta volver atrás o recargar con otra plataforma válida.</p>
+        <button onClick={() => navigate(-1)}>← Volver</button>
       </div>
     );
   }
@@ -93,7 +110,7 @@ function GamesByPlatform() {
 
         <div className={`title-under-${platform.slug}`}></div>
         <div className="platform-game-list">
-          {gamesToShow.map((game) => (
+          {games.map((game) => (
             <GameCover game={game} key={game._id} />
           ))}
         </div>

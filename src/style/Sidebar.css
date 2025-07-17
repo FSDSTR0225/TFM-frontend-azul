@@ -6,6 +6,7 @@
   border-right: 2px solid #66fcf1;
   padding: 1rem;
   box-sizing: border-box;
+  font-family: "Audiowide", sans-serif;
   position: fixed;
   left: 0;
   top: 0;
@@ -42,4 +43,10 @@
 
 .sidebar-link:hover {
   color: #0095d9;
+}
+
+@media screen and (max-width: 1024px) {
+  .sidebar {
+    display: none;
+  }
 }

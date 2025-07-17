@@ -88,7 +88,7 @@ function SuggestedGamesWidget() {
                           <img
                             src={game.imageUrl}
                             alt={game.name}
-                            onClick={() => setSelectedGame(game)}
+                            onClick={() => navigate(`/games/${game._id}`)}
                           />
                         </div>
                         <div className="hero-right">
@@ -124,7 +124,10 @@ function SuggestedGamesWidget() {
                 ))}
               </Swiper>
             ) : (
-              <p className="no-suggestions-game">
+              <p
+                className="no-suggestions-game"
+                onClick={() => navigate("/settings")}
+              >
                 No hay juegos sugeridos, completa tu perfil
               </p>
             )}

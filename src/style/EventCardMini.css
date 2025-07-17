@@ -90,3 +90,39 @@
     font-size: 12px;
   }
 }
+@media (max-width: 768px) {
+  .mini-event-card {
+    width: 220px;
+    height: auto;
+    font-size: 12.5px;
+    padding: 11px;
+    gap: 12px;
+  }
+
+  .mini-event-title {
+    font-size: 12.5px;
+  }
+
+  .mini-platform-icon {
+    width: 22px;
+    height: 36px;
+  }
+
+  .mini-event-info {
+    gap: 9px;
+    font-size: 12.5px;
+  }
+}
+
+@media (max-width: 400px) {
+  .event-card-mini {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .mini-event-card {
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+}

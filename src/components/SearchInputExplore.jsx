@@ -60,7 +60,17 @@ const SearchInputExplore = ({ search, setSearch }) => {
   };
 
   const handleClick = (type, item) => {
-    if (type === "user") handleNavigation(`/users/${item.username}`);
+    if (type === "user") {
+      navigate(`/profile/${item.username}`, {
+        state: {
+          player: {
+            username: item.username,
+            avatar: item.avatar,
+            _id: item._id,
+          },
+        },
+      });
+    }
     if (type === "game") handleNavigation(`/games/${item.rawgId || item.id}`);
     if (type === "event")
       handleNavigation(`/events?query=${encodeURIComponent(item.title)}`);

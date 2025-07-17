@@ -163,3 +163,89 @@
     font-size: 1.3rem;
   }
 }
+
+@media (max-width: 768px) {
+  .explore-games-page {
+    padding: 1.8rem 1rem;
+  }
+
+  .explore-games-page h2 {
+    font-size: 1.7rem;
+    margin-bottom: 2rem;
+  }
+
+  .game-card {
+    padding: 0.9rem 0.8rem;
+  }
+
+  .game-card img {
+    height: 120px;
+  }
+
+  .game-card h4 {
+    font-size: 1rem;
+  }
+
+  .game-card .game-meta {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .explore-games-page {
+    padding: 1.2rem 0.6rem;
+  }
+
+  .explore-games-page h2 {
+    font-size: 1.4rem;
+    margin-bottom: 1.6rem;
+  }
+
+  .query-explore {
+    font-size: 1rem;
+  }
+
+  .game-grid {
+    gap: 0.6rem;
+  }
+
+  .game-card {
+    padding: 0.7rem;
+    border-radius: 12px;
+  }
+
+  .game-card img {
+    height: 90px;
+    border-radius: 8px;
+  }
+
+  .game-card h4 {
+    font-size: 0.95rem;
+  }
+
+  .game-card .game-meta {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .explore-games-page h2 {
+    font-size: 1.2rem;
+  }
+
+  .game-grid {
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  }
+
+  .game-card img {
+    height: 80px;
+  }
+
+  .game-card h4 {
+    font-size: 0.9rem;
+  }
+
+  .game-card .game-meta {
+    font-size: 0.78rem;
+  }
+}

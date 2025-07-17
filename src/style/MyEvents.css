@@ -336,3 +336,69 @@
     font-size: 0.98rem;
   }
 }
+
+/*  ◾  Móviles normales y pequeños  (max-width: 500px)  */
+@media (max-width: 500px) {
+  .myEvents-container {
+    padding: 1rem 0 1.5rem;
+  }
+
+  /* Encabezados */
+  .management-container h1 {
+    font-size: 1.6rem;
+  }
+  .management-container p {
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+  }
+
+  /* Botones de pestañas */
+  .tab-btns {
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    justify-content: center;
+  }
+  .tab-btns button {
+    font-size: 0.9rem;
+    padding: 0.45rem 1rem;
+  }
+
+  /* Carrusel de tarjetas */
+  .myEvents-cards-row {
+    gap: 0.6rem;
+    padding: 0.3rem;
+  }
+  .myEvents-cards-row > * {
+    flex: 0 0 95vw; /* ocupa la mayor parte del viewport */
+    max-width: 95vw;
+  }
+
+  /* Ítems de peticiones */
+  .request-item {
+    padding: 0.6rem 0.5rem;
+    font-size: 0.9rem;
+  }
+
+  /* Botones aceptar / rechazar */
+  .accept-request-btn,
+  .reject-request-btn {
+    font-size: 0.9rem;
+    padding: 0.4rem 0.9rem;
+  }
+
+  /* Mensaje “sin eventos” */
+  .no-events-msg {
+    font-size: 1rem;
+  }
+}
+
+/*  ◾  Tablets medianas  (max-width: 900px)  */
+@media (max-width: 900px) {
+  .myEvents-cards-row {
+    gap: 0.8rem;
+  }
+  .myEvents-cards-row > * {
+    flex: 0 0 80vw;
+    max-width: 80vw;
+  }
+}

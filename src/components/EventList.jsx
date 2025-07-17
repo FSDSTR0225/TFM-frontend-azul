@@ -8,7 +8,7 @@ function EventList() {
   return (
     <section className="event-section">
       <h2 className="section-title-event-list">
-        <img src="/src/assets/joystick.png" alt="controller" /> Próximos eventos
+        <img src="/images/joystick.png" alt="controller" /> Próximos eventos
       </h2>
       <div className="card-event">
         {mocksEvent.map((event) => (
