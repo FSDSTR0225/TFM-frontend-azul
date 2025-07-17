@@ -88,7 +88,7 @@ function SuggestedGamesWidget() {
                           <img
                             src={game.imageUrl}
                             alt={game.name}
-                            onClick={() => setSelectedGame(game)}
+                            onClick={() => navigate(`/games/${game._id}`)}
                           />
                         </div>
                         <div className="hero-right">
