@@ -84,7 +84,7 @@ function GameDetails() {
     if (game?._id) {
       fetchEventCount();
     }
-  }, [game]);
+  }, [game, token]);
 
   useEffect(() => {
     const fetchFriendsWhoLike = async () => {

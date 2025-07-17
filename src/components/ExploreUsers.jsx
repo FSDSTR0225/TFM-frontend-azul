@@ -67,7 +67,7 @@ function ExploreUsers() {
     } catch (error) {
       console.error("Error fetching friend requests:", error);
     }
-  }, [token, API_URL]);
+  }, [token]);
 
   useEffect(() => {
     if (token) {
@@ -97,6 +97,7 @@ function ExploreUsers() {
 
   return (
     <>
+      <div className="explore-back-users"></div>
       <section className="explore-users-page-container">
         <div className="explore-users-page">
           <h2>
