@@ -1,14 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import CreateThreadForm from "./CreateThreadForm";
 import ThreadsList from "./ThreadsList";
+import AuthContext from "../context/AuthContext";
+import "../style/ForumThreads.css"; // CSS personalizado para pestañas, etc.
+
+const categories = ["General", "Bugs", "Juegos", "Eventos"];
 
 export default function ForumThreads() {
+  const { user, token } = useContext(AuthContext);
   const [threads, setThreads] = useState([]);
+  const [filteredThreads, setFilteredThreads] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [activeCategory, setActiveCategory] = useState("general");
 
-  // ⚠️ Obtener el usuario autenticado desde localStorage
-  const user = JSON.parse(localStorage.getItem("user"));
-
+  // 🧠 Cargar hilos del backend
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_URL}/post`)
       .then((res) => res.json())
@@ -22,18 +27,26 @@ export default function ForumThreads() {
       });
   }, []);
 
+  // 🎯 Filtrar por categoría cuando threads o categoría activa cambian
+  useEffect(() => {
+    const filtered = threads.filter(
+      (t) => t.category?.toLowerCase() === activeCategory.toLowerCase()
+    );
+
+    setFilteredThreads(filtered);
+  }, [threads, activeCategory]);
+
   const handleDeleteThread = async (threadId) => {
     const confirmDelete = window.confirm(
       "¿Estás seguro de que quieres eliminar este hilo?"
     );
-
-    if (!confirmDelete) return; // Cancelado por el usuario
+    if (!confirmDelete) return;
 
     try {
       await fetch(`${import.meta.env.VITE_API_URL}/post/${threadId}`, {
         method: "DELETE",
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
+          Authorization: `Bearer ${token}`,
         },
       });
 
@@ -43,26 +56,53 @@ export default function ForumThreads() {
     }
   };
 
-  const handleClick = (thread) => {
-    console.log("Hiciste clic en el hilo:", thread);
-  };
-
   const handleNewThread = (newThread) => {
     setThreads((prev) => [newThread, ...prev]);
+    if (newThread.category?.toLowerCase() === activeCategory.toLowerCase()) {
+      setFilteredThreads((prev) => [newThread, ...prev]);
+    }
+  };
+
+  const handleThreadClick = (thread) => {
+    console.log("Hilo seleccionado:", thread);
+    // Más adelante: abrir detalle, mostrar comentarios, etc.
   };
 
   if (loading) return <p>Cargando hilos...</p>;
 
   return (
-    <div>
-      <CreateThreadForm onNewThread={handleNewThread} />
-      <h2>Hilos del foro</h2>
-      <ThreadsList
-        threads={threads}
-        onThreadClick={handleClick} // ✅ nombre correcto
-        onDelete={handleDeleteThread}
-        currentUserId={user?._id} // ✅ ahora user está definido
-      />
+    <div className="forum-container">
+      {/* 🧭 Navegación por categorías */}
+      <div className="forum-tabs">
+        {categories.map((cat) => (
+          <button
+            key={cat}
+            className={`tab-button ${activeCategory === cat ? "active" : ""}`}
+            onClick={() => setActiveCategory(cat)}
+          >
+            {cat}
+          </button>
+        ))}
+      </div>
+
+      {/* 📝 Formulario para crear hilo */}
+      <div className="create-thread-section">
+        <CreateThreadForm
+          onNewThread={handleNewThread}
+          defaultCategory={activeCategory}
+        />
+      </div>
+
+      {/* 🧵 Lista de hilos */}
+      <div className="threads-section">
+        <h2>{activeCategory}</h2>
+        <ThreadsList
+          threads={threads} // sin filtro
+          onThreadClick={handleThreadClick}
+          onDelete={handleDeleteThread}
+          currentUserId={user?._id}
+        />
+      </div>
     </div>
   );
 }
