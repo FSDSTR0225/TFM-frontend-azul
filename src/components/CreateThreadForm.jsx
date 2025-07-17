@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import AuthContext from "../context/AuthContext";
 import "../style/CreateThreadForm.css";
 
-export default function CreateThreadForm({ onNewThread }) {
+export default function CreateThreadForm({ onNewThread, defaultCategory }) {
   const { token } = useContext(AuthContext);
 
   const [title, setTitle] = useState("");
@@ -12,14 +12,15 @@ export default function CreateThreadForm({ onNewThread }) {
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredGames, setFilteredGames] = useState([]);
   const [platforms, setPlatforms] = useState([]);
+  const [category, setCategory] = useState(defaultCategory || "General");
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [showSuggestions, setShowSuggestions] = useState(false);
 
-  // 🔍 Buscar juegos dinámicamente
+  // Buscar juegos al escribir
   useEffect(() => {
     const fetchGames = async () => {
-      if (searchTerm.trim() === "") {
+      if (!searchTerm.trim()) {
         setFilteredGames([]);
         return;
       }
@@ -37,11 +38,11 @@ export default function CreateThreadForm({ onNewThread }) {
       }
     };
 
-    const delayDebounce = setTimeout(fetchGames, 300); // debounce de 300ms
+    const delayDebounce = setTimeout(fetchGames, 300);
     return () => clearTimeout(delayDebounce);
   }, [searchTerm]);
 
-  // 🔧 Cargar plataformas al montar
+  // Cargar plataformas del juego seleccionado
   const fetchPlatformsForGame = async (gameId) => {
     try {
       const res = await fetch(
@@ -50,15 +51,15 @@ export default function CreateThreadForm({ onNewThread }) {
       const data = await res.json();
       setPlatforms(data.platforms || []);
     } catch (err) {
-      console.error("Error al cargar plataformas del juego:", err.message);
-      setPlatforms([]); // Vacía si falla
+      console.error("Error al cargar plataformas:", err.message);
+      setPlatforms([]);
     }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!title || !description || !game || !platform) {
+    if (!title || !description || !game || !platform || !category) {
       setError("Completa todos los campos.");
       return;
     }
@@ -78,7 +79,14 @@ export default function CreateThreadForm({ onNewThread }) {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify({ title, description, game, platform }),
+        body: JSON.stringify({
+          title,
+          description,
+          game,
+          platform,
+          // FALTA AQUÍ:
+          category, // 👈 asegúrate de incluirlo
+        }),
       });
 
       if (!res.ok) {
@@ -89,11 +97,12 @@ export default function CreateThreadForm({ onNewThread }) {
       const data = await res.json();
       onNewThread(data.post);
 
-      // 🔁 Limpiar formulario tras crear
+      // Limpiar formulario
       setTitle("");
       setDescription("");
       setGame("");
       setPlatform("");
+      setCategory(defaultCategory);
       setSearchTerm("");
       setFilteredGames([]);
     } catch (err) {
@@ -103,22 +112,25 @@ export default function CreateThreadForm({ onNewThread }) {
     }
   };
 
+  console.log("Token en CreateThreadForm:", token);
+
   return (
     <form onSubmit={handleSubmit} className="create-thread-form">
       <h3>Crear nuevo hilo</h3>
-      {error && <p style={{ color: "red" }}>{error}</p>}
+      {error && <p className="error">{error}</p>}
+
       <input
         type="text"
         placeholder="Título"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
       />
+
       <textarea
         placeholder="Descripción"
         value={description}
         onChange={(e) => setDescription(e.target.value)}
-      ></textarea>
-      {/* 🔍 Buscador de juegos */}
+      />
 
       <input
         type="text"
@@ -128,7 +140,7 @@ export default function CreateThreadForm({ onNewThread }) {
           setSearchTerm(e.target.value);
           setShowSuggestions(true);
         }}
-        onBlur={() => setTimeout(() => setShowSuggestions(false), 200)} // para permitir clics
+        onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}
         onFocus={() => {
           if (filteredGames.length > 0) setShowSuggestions(true);
         }}
@@ -141,7 +153,7 @@ export default function CreateThreadForm({ onNewThread }) {
               key={g._id}
               onClick={() => {
                 setGame(g._id);
-                setSearchTerm(g.name); // Para que se muestre el nombre seleccionado
+                setSearchTerm(g.name);
                 setShowSuggestions(false);
                 fetchPlatformsForGame(g._id);
               }}
@@ -152,7 +164,6 @@ export default function CreateThreadForm({ onNewThread }) {
         </ul>
       )}
 
-      {/* ✅ Dropdown de plataformas */}
       <select value={platform} onChange={(e) => setPlatform(e.target.value)}>
         <option value="">Selecciona una plataforma</option>
         {platforms.map((p) => (
@@ -160,6 +171,14 @@ export default function CreateThreadForm({ onNewThread }) {
             {p.name}
           </option>
         ))}
+      </select>
+
+      <select value={category} onChange={(e) => setCategory(e.target.value)}>
+        <option value="">Selecciona una categoría</option>
+        <option value="General">General</option>
+        <option value="Bugs">Bugs</option>
+        <option value="Juegos">Juegos</option>
+        <option value="Eventos">Eventos</option>
       </select>
 
       <button type="submit" disabled={loading}>

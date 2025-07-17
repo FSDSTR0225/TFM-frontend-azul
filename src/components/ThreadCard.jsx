@@ -1,12 +1,20 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import "../style/ThreadCard.css";
 import consoleIcon from "../assets/game-controller.png";
-import AuthContext from "../context/AuthContext"; // 👈 importa el contexto
+import AuthContext from "../context/AuthContext";
+import Comments from "./Comments"; // 👈 Importamos Comments
 
 export default function ThreadCard({ thread, onClick, onDelete }) {
-  const { user } = useContext(AuthContext); // 👈 obtenemos el usuario actual
+  const { user } = useContext(AuthContext);
+  const isCreator = user && thread.creator?._id === user._id;
 
-  const isCreator = user && thread.creator?._id === user._id; // ✅ comprobamos si tú eres el creador
+  // Para controlar si mostramos u ocultamos comentarios en la tarjeta
+  const [showComments, setShowComments] = useState(false);
+
+  const toggleComments = (e) => {
+    e.stopPropagation(); // para no disparar onClick padre
+    setShowComments((prev) => !prev);
+  };
 
   return (
     <div className="thread-card" onClick={() => onClick && onClick(thread)}>
@@ -42,17 +50,30 @@ export default function ThreadCard({ thread, onClick, onDelete }) {
         </span>
       </p>
 
-      {/* ✅ Botón de borrar solo si eres el creador */}
+      <button className="toggle-comments-btn" onClick={toggleComments}>
+        {showComments ? "Ocultar comentarios" : "Mostrar comentarios"}
+      </button>
+
       {isCreator && (
         <button
           className="delete-button-thread"
           onClick={(e) => {
-            e.stopPropagation(); // 👈 evita que se dispare el onClick de la tarjeta
+            e.stopPropagation();
             onDelete && onDelete(thread._id);
           }}
         >
           X
         </button>
+      )}
+
+      {/* Mostrar comentarios si showComments está activo */}
+      {showComments && (
+        <Comments
+          thread={thread}
+          onNewComment={(newComment) => {
+            // Aquí puedes actualizar estado padre si quieres
+          }}
+        />
       )}
     </div>
   );

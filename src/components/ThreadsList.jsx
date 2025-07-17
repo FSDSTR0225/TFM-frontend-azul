@@ -1,6 +1,7 @@
 // ThreadsList.jsx
 import React from "react";
 import ThreadCard from "./ThreadCard";
+import "../style/ThreadsList.css";
 
 export default function ThreadsList({
   threads,
@@ -9,18 +10,18 @@ export default function ThreadsList({
   currentUserId,
 }) {
   if (!threads.length) {
-    return <p>No hay hilos aún.</p>;
+    return <p className="no-threads">No hay hilos aún.</p>;
   }
 
   return (
-    <div>
+    <div className="threads-list">
       {threads.map((thread) => (
         <ThreadCard
           key={thread._id}
           thread={thread}
-          onClick={onThreadClick}
+          onClick={() => onThreadClick(thread)}
           onDelete={onDelete}
-          currentUserId={currentUserId} // ✅ Pasamos el ID del usuario autenticado
+          currentUserId={currentUserId}
         />
       ))}
     </div>
