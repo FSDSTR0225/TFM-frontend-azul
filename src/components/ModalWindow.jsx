@@ -10,7 +10,7 @@ const ModalWindow = ({ isOpen, type, onClose, onSuccess, existingItems }) => {
   const [message, setMessage] = useState("");
   const url = import.meta.env.VITE_API_URL;
   const { token } = useContext(AuthContext);
- // estilos select
+  // estilos select
   const customStyles = {
     control: (base, state) => ({
       ...base,
@@ -62,7 +62,7 @@ const ModalWindow = ({ isOpen, type, onClose, onSuccess, existingItems }) => {
       color: "#fff",
     }),
   };
-// Fetch de las plataformas
+  // Fetch de las plataformas
   useEffect(() => {
     if (type !== "platform") return;
     const fetchPlatforms = async () => {
@@ -83,7 +83,7 @@ const ModalWindow = ({ isOpen, type, onClose, onSuccess, existingItems }) => {
     };
     fetchPlatforms();
   }, [isOpen, type, url]);
-// Buscador de juegos y amigos
+  // Buscador de juegos y amigos
   useEffect(() => {
     if (!isOpen || (type !== "game" && type !== "friend")) return;
     const delayDebounce = setTimeout(() => {
@@ -115,68 +115,70 @@ const ModalWindow = ({ isOpen, type, onClose, onSuccess, existingItems }) => {
     }, 300); // debounce
     return () => clearTimeout(delayDebounce);
   }, [query, type, url]);
-//Añadir juegos , amigos oplataformas
+  //Añadir juegos , amigos oplataformas
   const handleAdd = () => {
-  if (!selectedOptions || selectedOptions.length === 0) return;
+    if (!selectedOptions || selectedOptions.length === 0) return;
 
-  const headers = {
-    "Content-Type": "application/json",
-    Authorization: `Bearer ${token}`,
+    const headers = {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    };
+
+    if (type === "friend") {
+      const userReceiverId = selectedOptions.value; // Solo uno
+      return fetch(`${url}/friends/requests`, {
+        method: "POST",
+        headers,
+        body: JSON.stringify({ userReceiverId, message }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log("Petición de amistad enviada:", data);
+          onSuccess();
+          onClose();
+        })
+        .catch((err) =>
+          console.error("Error enviando petición de amistad:", err)
+        );
+    }
+
+    const selectedIds = selectedOptions.map((option) => option.value);
+
+    if (type === "game") {
+      return fetch(`${url}/profile/favoriteGames`, {
+        method: "POST",
+        headers,
+        body: JSON.stringify({ gameIds: selectedIds }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log("Juego añadido:", data);
+          onSuccess();
+          onClose();
+        })
+        .catch((err) => console.error("Error añadiendo juego:", err));
+    }
+
+    if (type === "platform") {
+      return fetch(`${url}/profile/platforms`, {
+        method: "POST",
+        headers,
+        body: JSON.stringify({ platformsIds: selectedIds }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log("Plataforma añadida:", data);
+          onSuccess();
+          onClose();
+        })
+        .catch((err) => console.error("Error añadiendo plataforma:", err));
+    }
+
+    setSelectedOptions([]);
+    console.warn("Tipo de elemento no soportado:", type);
   };
 
-  if (type === "friend") {
-    const userReceiverId = selectedOptions.value; // Solo uno
-    return fetch(`${url}/friends/requests`, {
-      method: "POST",
-      headers,
-      body: JSON.stringify({ userReceiverId, message }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log("Petición de amistad enviada:", data);
-        onSuccess();
-        onClose();
-      })
-      .catch((err) => console.error("Error enviando petición de amistad:", err));
-  }
-
-  const selectedIds = selectedOptions.map((option) => option.value);
-
-  if (type === "game") {
-    return fetch(`${url}/profile/favoriteGames`, {
-      method: "POST",
-      headers,
-      body: JSON.stringify({ gameIds: selectedIds }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log("Juego añadido:", data);
-        onSuccess();
-        onClose();
-      })
-      .catch((err) => console.error("Error añadiendo juego:", err));
-  }
-
-  if (type === "platform") {
-    return fetch(`${url}/profile/platforms`, {
-      method: "POST",
-      headers,
-      body: JSON.stringify({ platformsIds: selectedIds }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log("Plataforma añadida:", data);
-        onSuccess();
-        onClose();
-      })
-      .catch((err) => console.error("Error añadiendo plataforma:", err));
-  }
-
-  setSelectedOptions([]);
-  console.warn("Tipo de elemento no soportado:", type);
-};
-
-//Todos los juegos/amigos sin query
+  //Todos los juegos/amigos sin query
   // useEffect(() => {
   //   if (!isOpen || type === "platform") return;
 
@@ -200,6 +202,14 @@ const ModalWindow = ({ isOpen, type, onClose, onSuccess, existingItems }) => {
   //     .finally(() => setLoading(false));
   // }, [isOpen, type, url]);
 
+  useEffect(() => {
+    if (isOpen) {
+      setQuery("");
+      setMessage("");
+      setSelectedOptions([]);
+    }
+  }, [isOpen]);
+
   if (!isOpen) return null;
   return (
     <div className="modal-overlay">
@@ -212,7 +222,7 @@ const ModalWindow = ({ isOpen, type, onClose, onSuccess, existingItems }) => {
         {type === "friend" && <h2>Añade amigos</h2>}
 
         <Select
-         {...type === "friend" ? { isMulti: false } : { isMulti: true }}
+          {...(type === "friend" ? { isMulti: false } : { isMulti: true })}
           options={options.map((option) => ({
             value: option._id,
             label: option.name || option.username,
@@ -224,10 +234,14 @@ const ModalWindow = ({ isOpen, type, onClose, onSuccess, existingItems }) => {
           isLoading={loading}
           styles={customStyles}
         ></Select>
-        {type ==="friend" && (
-          <textarea value={message} onChange={(e) => setMessage(e.target.value)} className="friend-msg" placeholder="Escribe un mensaje para enviar junto con tu solicitud de amistad" rows="3">
-           
-          </textarea>
+        {type === "friend" && (
+          <textarea
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            className="friend-msg"
+            placeholder="Escribe un mensaje para enviar junto con tu solicitud de amistad"
+            rows="3"
+          ></textarea>
         )}
         <button className="add-button" onClick={handleAdd}>
           Añadir
