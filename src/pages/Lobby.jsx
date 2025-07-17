@@ -99,14 +99,6 @@ function Lobby() {
         <section className="lobby-top-section fade in">
           <div className="left-zone fade-in-delayed">
             <FriendsOnlineWidget />
-
-            <div className="users-widget-glass">
-              <h3 className="section-title-users-suggestions">
-                <FaUsers className="icon-lobby-suggestions-users" />
-                Usuarios afines a ti
-              </h3>
-              <SuggestedUsersWidget />
-            </div>
           </div>
 
           <div className="right-zone fade-in-delayed">
@@ -167,16 +159,24 @@ function Lobby() {
                 )}
               </AnimatePresence>
             </div>
-
-            <div className="events-suggestions-glass">
-              <h3 className="section-title">
-                <GiWingedSword className="icon-lobby-suggestions" />
-                Eventos recomendados{" "}
-              </h3>
-              <SuggestedEventsWidget />
-            </div>
           </div>
         </section>
+        <div className="right-middle">
+          <div className="users-widget-glass">
+            <h3 className="section-title-users-suggestions">
+              <FaUsers className="icon-lobby-suggestions-users" />
+              Usuarios afines a ti
+            </h3>
+            <SuggestedUsersWidget />
+          </div>
+          <div className="events-suggestions-glass">
+            <h3 className="section-title">
+              <GiWingedSword className="icon-lobby-suggestions" />
+              Eventos recomendados{" "}
+            </h3>
+            <SuggestedEventsWidget />
+          </div>
+        </div>
 
         <section className="lobby-bottom-section fade-in-delayed">
           <div className="games-slider-section reduced-size">

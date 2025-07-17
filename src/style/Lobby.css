@@ -16,7 +16,7 @@
 .lobby-top-section {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
   gap: 1rem;
   width: 100%;
   flex-wrap: wrap;
@@ -352,6 +352,7 @@
 
 .users-widget-glass {
   margin-top: 4rem;
+  margin-left: 4rem;
 }
 
 /* ======== SECCIÓN 2: SUGERENCIAS PRINCIPALES ACTUALIZADA ======== */
@@ -410,6 +411,7 @@
 /* 🎮 Juegos sugeridos - estilo Steam */
 .games-slider-section {
   width: 100%;
+  margin-left: 4rem;
 }
 
 .games-slider-glass {
@@ -513,6 +515,14 @@
   border-radius: 16px;
   padding: 1.5rem;
   box-shadow: 0 0 18px rgba(0, 0, 0, 0.25);
+}
+
+.right-middle {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1.5rem;
+  width: 100%;
 }
 
 /* ======== RESPONSIVE ======== */

@@ -89,7 +89,7 @@ function SuggestedUsersWidget() {
         loop={suggestedUsers.length >= 3}
         // watchOverflow={true}
         autoplay={{
-          delay: 3000,
+          delay: 1500,
           disableOnInteraction: false,
           pauseOnMouseEnter: true,
         }}
@@ -143,7 +143,11 @@ function SuggestedUsersWidget() {
               </button>
               <button
                 className="btn-profile"
-                onClick={() => navigate(`/profile/${suggest.username}`)}
+                onClick={() =>
+                  navigate(`/profile/${suggest.username}`, {
+                    state: { player: suggest },
+                  })
+                }
               >
                 Ver perfil
               </button>
