@@ -103,8 +103,23 @@
   z-index: 1500;
 }
 
-@media (min-width: 901px) {
-  .mobile-navbar {
-    display: none;
+.hamburger,
+.sidebar-navbar,
+.overlay {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .hamburger {
+    display: block;
+  }
+
+  .overlay {
+    display: block;
+  }
+
+  .sidebar-navbar {
+    display: flex; /* o block si lo necesitas */
+    flex-direction: column; /* solo si hace falta */
   }
 }
