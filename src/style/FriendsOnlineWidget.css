@@ -41,6 +41,7 @@
   scrollbar-color: rgba(0, 255, 200, 0.3) transparent; /* Firefox */
 }
 
+/* Scroll personalizado para Webkit (Chrome, Safari) */
 .modular-card-content-friends-online::-webkit-scrollbar {
   width: 6px;
 }
