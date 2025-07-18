@@ -22,7 +22,7 @@ function ShowProfile() {
             gracias a su algoritmo inteligente.
           </p>
 
-          <ul>
+          <ul className="intro-list">
             <li>🕹️ Personaliza tu avatar.</li>
             <li>🎮 Define tu estilo de juego.</li>
             <li>🎯 Añade tus juegos, categorías y plataformas favoritas.</li>
