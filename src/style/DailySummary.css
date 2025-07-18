@@ -1,7 +1,7 @@
 .daily-summary-container {
   background: rgba(20, 20, 20, 0.85);
   border-radius: 16px;
-  padding: 2rem;
+  padding: 1rem;
   color: #f0f0f0;
   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.4);
   max-width: 550px;
@@ -72,7 +72,7 @@
   padding: 0.5rem 0;
   border-bottom: 1px solid #333;
   font-size: 1rem;
-  line-height: 1.4;
+  line-height: 1.2;
   color: #76e2f2;
   text-align: start;
 }
@@ -144,6 +144,7 @@
   line-height: 1.4;
   color: #76e2f2;
   text-align: start;
+  margin-top: 0.5rem;
 }
 
 .profile-view-summary p {
