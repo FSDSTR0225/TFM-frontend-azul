@@ -82,6 +82,8 @@
   overflow: hidden;
   padding: 0;
   margin: 0;
+  position: relative;
+  z-index: 1;
 }
 
 .auth-visual img {
@@ -91,6 +93,8 @@
   object-position: center;
   display: block;
   filter: brightness(0.9) contrast(1.1);
+  position: relative;
+  z-index: 2;
 }
 
 .RegisterForm__Title {
