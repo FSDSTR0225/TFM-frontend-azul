@@ -114,9 +114,31 @@ function MyEvents() {
     }
   };
 
-  const handleEventClick = (event) => {
-    setSelectedEvent(event);
-    setShowModal(true);
+  const handleEventClick = async (event) => {
+    console.log("Evento recibido al hacer clic:", event);
+
+    const eventId = event._id || event.id;
+    if (!eventId) {
+      console.warn("El evento no tiene _id ni id válido");
+      return;
+    }
+
+    try {
+      const response = await fetch(`${API_URL}/events/${eventId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (!response.ok) throw new Error("Error al obtener detalles del evento");
+
+      const data = await response.json();
+      console.log("Evento detallado desde backend:", data.currentEvent);
+      setSelectedEvent(data.currentEvent);
+      setShowModal(true);
+    } catch (error) {
+      console.error("Error al obtener detalles del evento:", error);
+    }
   };
 
   useEffect(() => {
@@ -301,7 +323,7 @@ function MyEvents() {
               (myEventsCreated.length > 0 ? (
                 myEventsCreated.map((event) => (
                   <EventCard
-                    key={event._id}
+                    key={event._id || event.id}
                     event={event}
                     onClick={() => handleEventClick(event)}
                   />
