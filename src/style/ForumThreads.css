@@ -1,8 +1,19 @@
 .forum-container {
   padding: 2rem;
-  max-width: 1000px;
+  width: 100%;
   margin: 0 auto;
-  background-color: #111;
+  background-color: radial-gradient(
+      ellipse at 20% 25%,
+      #0f1740 0%,
+      transparent 50%
+    ),
+    radial-gradient(ellipse at 60% 70%, #1a0e33 0%, transparent 45%),
+    radial-gradient(
+      ellipse at 50% 85%,
+      rgba(0, 255, 200, 0.05),
+      transparent 60%
+    ),
+    #0a0a1a;
   color: #fff;
   border-radius: 8px;
 }

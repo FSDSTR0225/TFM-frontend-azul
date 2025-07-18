@@ -15,7 +15,7 @@ export default function ForumThreads() {
 
   // 🧠 Cargar hilos del backend
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/post`)
+    fetch(`${import.meta.env.VITE_API_URL}/posts`)
       .then((res) => res.json())
       .then((data) => {
         setThreads(data.posts);
@@ -43,7 +43,7 @@ export default function ForumThreads() {
     if (!confirmDelete) return;
 
     try {
-      await fetch(`${import.meta.env.VITE_API_URL}/post/${threadId}`, {
+      await fetch(`${import.meta.env.VITE_API_URL}/posts/${threadId}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,

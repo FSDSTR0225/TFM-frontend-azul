@@ -73,7 +73,7 @@ export default function CreateThreadForm({ onNewThread, defaultCategory }) {
     setError(null);
 
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/post`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/posts`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

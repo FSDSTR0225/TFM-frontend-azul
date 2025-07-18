@@ -30,8 +30,9 @@
 /* Descripción del hilo */
 .thread-description {
   font-size: 1rem;
-  line-height: 1.4;
+  line-height: 1.8;
   color: #c5f5f3;
+  margin-bottom: 0.8rem;
 }
 
 /* Metadatos: creador, juego, plataforma */
