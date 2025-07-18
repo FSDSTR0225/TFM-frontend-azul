@@ -16,13 +16,14 @@ export default function ThreadsList({
   return (
     <div className="threads-list">
       {threads.map((thread) => (
-        <ThreadCard
-          key={thread._id}
-          thread={thread}
-          onClick={() => onThreadClick(thread)}
-          onDelete={onDelete}
-          currentUserId={currentUserId}
-        />
+        <div key={thread._id} className="thread-with-comments">
+          <ThreadCard
+            thread={thread}
+            onClick={() => onThreadClick(thread)}
+            onDelete={onDelete}
+            currentUserId={currentUserId}
+          />
+        </div>
       ))}
     </div>
   );
