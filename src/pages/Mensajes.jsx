@@ -13,6 +13,7 @@ const Mensajes = () => {
   const [messages, setMessages] = useState([]); // historial del chat activo
   const [allFriends, setAllFriends] = useState([]); // todos los amigos
   const [selectedFriend, setSelectedFriend] = useState(null); // amigo actual seleccionado
+  const [unreadMessages, setUnreadMessages] = useState({});
 
   const messagesEndRef = useRef(null);
 
@@ -21,6 +22,31 @@ const Mensajes = () => {
       messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
     }
   }, [messages]);
+
+  // Obtener mensajes no leídos por amigo
+  useEffect(() => {
+    const fetchUnread = async () => {
+      try {
+        const res = await fetch(`${API_URL}/chats/unread-by-sender`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        if (!res.ok) throw new Error(`Status ${res.status}`);
+        const data = await res.json();
+
+        // Estructura tipo { friendId: count }
+        const countMap = {};
+        data.forEach((item) => {
+          countMap[item.senderId] = item.count;
+        });
+
+        setUnreadMessages(countMap);
+      } catch (err) {
+        console.error("Error al cargar mensajes no leídos:", err);
+      }
+    };
+
+    fetchUnread();
+  }, [token]);
 
   // 1. Escuchar mensajes nuevos (cuando cambia el amigo)
   useEffect(() => {
@@ -46,7 +72,8 @@ const Mensajes = () => {
   useEffect(() => {
     const fetchFriends = async () => {
       try {
-        const res = await fetch(`${API_URL}/friends`, { // este endpoint no existe!! se puede usar user.friends desde el contexto sin hacer fetch
+        const res = await fetch(`${API_URL}/friends`, {
+          // este endpoint no existe!! se puede usar user.friends desde el contexto sin hacer fetch
           headers: { Authorization: `Bearer ${token}` },
         });
         if (!res.ok) throw new Error(`Status ${res.status}`);
@@ -62,7 +89,6 @@ const Mensajes = () => {
     fetchFriends();
   }, [token]);
 
-  // 3. Seleccionar amigo y cargar historial
   const selectFriend = async (friend) => {
     setSelectedFriend(friend);
     try {
@@ -72,6 +98,25 @@ const Mensajes = () => {
       if (!res.ok) throw new Error(`Status ${res.status}`);
       const data = await res.json();
       setMessages(data);
+
+      // 🔥 Llamar a mark-as-read usando el _id del chat
+      if (data.length > 0) {
+        const chatId = data[0].chatId || data[0].chat?._id;
+        if (chatId) {
+          await fetch(`${API_URL}/chats/${chatId}/mark-as-read`, {
+            method: "PATCH",
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+
+          // Vaciar badge visual al leer
+          setUnreadMessages((prev) => ({
+            ...prev,
+            [friend.id]: 0,
+          }));
+        }
+      }
     } catch (err) {
       console.error("Error al cargar historial de chat:", err);
       setMessages([]);
@@ -132,7 +177,11 @@ const Mensajes = () => {
                 alt={friend.username}
                 className="avatar"
               />
-              <span>{friend.username}</span>
+              {unreadMessages[friend.id] > 0 && (
+                <span className="unread-badge">
+                  {unreadMessages[friend.id]}
+                </span>
+              )}
               <span
                 className={`status-friends ${
                   friend.onlineStatus ? "online" : "offline"
