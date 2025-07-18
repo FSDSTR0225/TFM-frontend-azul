@@ -4,7 +4,7 @@ import "../style/Comments.css";
 const Comments = ({
   postId,
   token,
-  userId, // ← se recibe desde el padre
+  userId,
   onNewComment,
   comments: initialComments = [],
 }) => {

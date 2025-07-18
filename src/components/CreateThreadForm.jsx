@@ -112,8 +112,6 @@ export default function CreateThreadForm({ onNewThread, defaultCategory }) {
     }
   };
 
-  console.log("Token en CreateThreadForm:", token);
-
   return (
     <form onSubmit={handleSubmit} className="create-thread-form">
       <h3>Crear nuevo hilo</h3>

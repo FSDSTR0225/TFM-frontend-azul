@@ -3,7 +3,6 @@ import "../style/ThreadCard.css";
 import consoleIcon from "../assets/game-controller.png";
 import AuthContext from "../context/AuthContext";
 import Comments from "./Comments";
-import { jwtDecode } from "jwt-decode"; // ✅ Correcto
 
 export default function ThreadCard({ thread, onClick, onDelete }) {
   const { user, token } = useContext(AuthContext);
@@ -12,16 +11,7 @@ export default function ThreadCard({ thread, onClick, onDelete }) {
   const [showComments, setShowComments] = useState(false);
   const [comments, setComments] = useState(thread.comments || []);
 
-  // Decodificar el token para obtener userId
-  let userId = null;
-  if (token) {
-    try {
-      const decoded = jwtDecode(token);
-      userId = decoded.userId || decoded.id || decoded._id;
-    } catch (err) {
-      console.error("Error al decodificar el token", err);
-    }
-  }
+  const userId = user?._id;
 
   const toggleComments = (e) => {
     e.stopPropagation();
