@@ -74,8 +74,8 @@ export const NotificationProvider = ({ children }) => {
         headers: { Authorization: `Bearer ${token}` },
       });
       if (!res.ok) throw new Error("No se pudieron marcar como leídas");
-      // Actualizamos localmente
-      setNotifications((prev) => prev.map((n) => ({ ...n, read: true })));
+      const updatedNotifs = await res.json();
+      setNotifications(updatedNotifs);
     } catch (err) {
       console.error("markAllRead failed:", err);
     }
