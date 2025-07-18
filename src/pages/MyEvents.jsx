@@ -184,6 +184,42 @@ function MyEvents() {
     setShowModal(false);
   };
 
+  const handleLeaveEvent = async (eventId) => {
+    if (!window.confirm("¿Estás seguro de que quieres salir del evento?"))
+      return;
+
+    console.log("📤 Saliendo del evento:", eventId);
+    console.log("🔗 URL final:", `${API_URL}/events/${eventId}/leave-event`);
+
+    try {
+      const response = await fetch(`${API_URL}/events/${eventId}/leave-event`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      const data = await response.json();
+
+      if (!response.ok)
+        throw new Error(data.message || "Error al salir del evento");
+
+      // Elimino el evento del estado local
+      setMyEventsJoined((prev) => prev.filter((e) => e._id !== eventId));
+      setJoinedTotal((prev) => prev - 1);
+
+      toast.success(data.message, { className: "mi-toast", icon: "👋" });
+      setShowModal(false);
+      setSelectedEvent(null);
+    } catch (error) {
+      console.error("Error al salir del evento:", error);
+      toast.error("No se pudo salir del evento", {
+        className: "mi-toast",
+        icon: "⚠️",
+      });
+    }
+  };
+
   if (loading) {
     return (
       <div className="loading-container">
@@ -315,6 +351,9 @@ function MyEvents() {
               onClose={() => setShowModal(false)}
               setSelectedEvent={setSelectedEvent}
               onEventDeleted={handleEventDeleted}
+              onLeaveEvent={() =>
+                handleLeaveEvent(selectedEvent.id || selectedEvent._id)
+              }
             />
           )}
 

@@ -11,7 +11,13 @@ import { toast } from "sonner";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
-function EventDetails({ event, onClose, setSelectedEvent, onEventDeleted }) {
+function EventDetails({
+  event,
+  onClose,
+  setSelectedEvent,
+  onEventDeleted,
+  onLeaveEvent,
+}) {
   const authContext = useContext(AuthContext);
   const { user, token, isLoggedIn } = authContext;
   const [isEditing, setIsEditing] = useState(false);
@@ -240,6 +246,14 @@ function EventDetails({ event, onClose, setSelectedEvent, onEventDeleted }) {
                 {isPrivate ? "Solicitar unirse" : "Unirse al evento"}
               </button>
             )}
+          </div>
+        )}
+
+        {isParticipant && !isCreator && (
+          <div className="event-actions">
+            <button className="leave-event-btn" onClick={onLeaveEvent}>
+              Abandonar evento
+            </button>
           </div>
         )}
 
