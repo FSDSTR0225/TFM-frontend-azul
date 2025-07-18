@@ -2,25 +2,40 @@ import React, { useContext, useState } from "react";
 import "../style/ThreadCard.css";
 import consoleIcon from "../assets/game-controller.png";
 import AuthContext from "../context/AuthContext";
-import Comments from "./Comments"; // 👈 Importamos Comments
+import Comments from "./Comments";
+import { jwtDecode } from "jwt-decode"; // ✅ Correcto
 
 export default function ThreadCard({ thread, onClick, onDelete }) {
-  const { user } = useContext(AuthContext);
+  const { user, token } = useContext(AuthContext);
   const isCreator = user && thread.creator?._id === user._id;
 
-  // Para controlar si mostramos u ocultamos comentarios en la tarjeta
   const [showComments, setShowComments] = useState(false);
+  const [comments, setComments] = useState(thread.comments || []);
+
+  // Decodificar el token para obtener userId
+  let userId = null;
+  if (token) {
+    try {
+      const decoded = jwtDecode(token);
+      userId = decoded.userId || decoded.id || decoded._id;
+    } catch (err) {
+      console.error("Error al decodificar el token", err);
+    }
+  }
 
   const toggleComments = (e) => {
-    e.stopPropagation(); // para no disparar onClick padre
+    e.stopPropagation();
     setShowComments((prev) => !prev);
+  };
+
+  const handleNewComment = (newComment) => {
+    setComments((prev) => [...prev, newComment]);
   };
 
   return (
     <div className="thread-card" onClick={() => onClick && onClick(thread)}>
       <h3 className="thread-title">{thread.title}</h3>
       <p className="thread-description">{thread.description}</p>
-
       <p className="thread-meta">
         <span className="creator-info">
           {thread.creator?.avatar && (
@@ -51,7 +66,9 @@ export default function ThreadCard({ thread, onClick, onDelete }) {
       </p>
 
       <button className="toggle-comments-btn" onClick={toggleComments}>
-        {showComments ? "Ocultar comentarios" : "Mostrar comentarios"}
+        {showComments
+          ? "Ocultar comentarios"
+          : `Mostrar comentarios (${comments.length})`}
       </button>
 
       {isCreator && (
@@ -66,13 +83,13 @@ export default function ThreadCard({ thread, onClick, onDelete }) {
         </button>
       )}
 
-      {/* Mostrar comentarios si showComments está activo */}
-      {showComments && (
+      {showComments && thread && thread._id && (
         <Comments
-          thread={thread}
-          onNewComment={(newComment) => {
-            // Aquí puedes actualizar estado padre si quieres
-          }}
+          postId={thread._id}
+          token={token}
+          userId={userId} // ← PASA userId al componente Comments
+          onNewComment={handleNewComment}
+          comments={comments}
         />
       )}
     </div>
