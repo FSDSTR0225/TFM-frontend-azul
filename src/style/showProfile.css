@@ -47,17 +47,16 @@
   margin-bottom: 1.5rem;
 }
 
-.profile-info ul {
-  list-style: none;
+.profile-info .intro-list {
+  text-align: left;
   padding-left: 0;
+  margin: 0;
 }
 
-.profile-info li {
+.profile-info .intro-list li {
+  display: block;
   font-size: 0.95rem;
   margin-bottom: 0.8rem;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
 }
 
 .profile-preview {

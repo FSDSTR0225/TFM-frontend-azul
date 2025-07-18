@@ -29,7 +29,7 @@ import ExploreGames from "./components/ExploreGames";
 import ExploreUsers from "./components/ExploreUsers";
 import Footer from "./components/Footer";
 import ForumThreads from "./components/ForumThreads";
-import MobileNavbar from "./components/MobileNabvar";
+// import MobileNavbar from "./components/MobileNabvar";
 import NotFound from "./components/NotFound";
 import ConfigProfile from "./pages/ConfigProfile";
 
@@ -62,7 +62,7 @@ export default function App() {
   return (
     <div className="App">
       <NavBar showSearch={showSearch} setShowSearch={setShowSearch} />
-      <MobileNavbar />
+      {/* <MobileNavbar /> */}
 
       <MyScrollBar>
         <main>

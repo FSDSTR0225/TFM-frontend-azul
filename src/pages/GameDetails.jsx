@@ -264,19 +264,23 @@ function GameDetails() {
                 </div>
               </div>
 
-              {eventCount > 0 && (
+              {eventCount > 0 ? (
                 <div className="event-count-block">
-                  {eventCount === 1 ? (
-                    <p>Hay {eventCount} evento activo de este juego</p>
-                  ) : (
-                    <p>Hay {eventCount} eventos activos de este juego</p>
-                  )}
+                  <p>
+                    Hay {eventCount}{" "}
+                    {eventCount === 1 ? "evento activo" : "eventos activos"} de
+                    este juego
+                  </p>
                   <button
                     className="view-events-button"
                     onClick={handleViewEvents}
                   >
                     Ver eventos
                   </button>
+                </div>
+              ) : (
+                <div className="event-count-block no-events">
+                  <p>No hay eventos activos de este juego</p>
                 </div>
               )}
             </div>

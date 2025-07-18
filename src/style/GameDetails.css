@@ -466,6 +466,12 @@
   font-weight: 500;
 }
 
+.event-count-block.no-events {
+  opacity: 0.6;
+  font-style: italic;
+  color: #ccc;
+}
+
 @media (max-width: 500px) {
   .similar-game-card {
     width: 100px;

@@ -9,6 +9,7 @@ import ShowEvent from "../components/ShowEvent";
 import BotSection from "../components/BotSection";
 import { useNavigate } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
+import "../style/Home.css";
 
 export default function Home() {
   const contentRef = useRef();

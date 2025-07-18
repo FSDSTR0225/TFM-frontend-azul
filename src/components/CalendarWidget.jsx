@@ -8,7 +8,7 @@ import { TbCalendarBolt } from "react-icons/tb";
 const API_URL = import.meta.env.VITE_API_URL;
 
 function CalendarWidget({ onEventClick }) {
-  const [eventDates, setEventDates] = useState([]);
+  const [eventDates, setEventDates] = useState([]); // Guardamos las fechas de los eventos del usuario
   const { token } = useContext(AuthContext);
 
   useEffect(() => {
@@ -31,6 +31,7 @@ function CalendarWidget({ onEventClick }) {
     if (token) fetchUserEvents();
   }, [token]);
 
+  // tileClassName es una función que se usa para añadir clases a las fechas del calendario
   const tileClassName = ({ date, view }) => {
     if (view === "month") {
       const dateStr = date.toDateString();
@@ -48,7 +49,8 @@ function CalendarWidget({ onEventClick }) {
         <h3>Calendario de eventos</h3>
       </div> */}
       <div className="modular-card-content">
-        <Calendar tileClassName={tileClassName} onClickDay={onEventClick} />
+        <Calendar tileClassName={tileClassName} onClickDay={onEventClick} />{" "}
+        {/* Añadimos onClickDay para manejar el clic en un día,llamando a la función onEventClick que recibe el componente padre */}
       </div>
     </div>
   );
