@@ -6,7 +6,7 @@
   padding: 1rem 0.5rem;
   height: 500px;
   max-width: 250px;
-  overflow: hidden;
+  /* overflow: hidden; */
   transition: box-shadow 0.2s;
   z-index: 2;
 }
@@ -24,7 +24,7 @@
   color: #66fcf1;
 }
 
-.modular-card-content-frinds-online p {
+.modular-card-content-friends-online p {
   color: #ffffff;
   font-size: 0.9rem;
   text-align: center;
@@ -33,6 +33,39 @@
 
 .modular-card-content-friends-online {
   min-height: 48px;
+  flex: 1;
+  overflow-y: auto;
+  max-height: 400px; /* o ajusta según necesidad */
+  padding-right: 6px;
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: rgba(0, 255, 200, 0.3) transparent; /* Firefox */
+}
+
+.modular-card-content-friends-online::-webkit-scrollbar {
+  width: 6px;
+}
+
+.modular-card-content-friends-online::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.modular-card-content-friends-online::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    180deg,
+    rgba(0, 255, 200, 0.4),
+    rgba(0, 212, 255, 0.3)
+  );
+  border-radius: 10px;
+  border: 1px solid rgba(0, 255, 200, 0.1);
+  transition: background 0.3s ease;
+}
+
+.modular-card-content-friends-online::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(
+    180deg,
+    rgba(0, 255, 200, 0.6),
+    rgba(0, 212, 255, 0.5)
+  );
 }
 
 .friends-list {
