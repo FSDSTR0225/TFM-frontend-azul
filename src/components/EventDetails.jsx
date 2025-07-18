@@ -213,6 +213,9 @@ function EventDetails({ event, onClose, setSelectedEvent, onEventDeleted }) {
               </ul>
             )}
           </div>
+          {isParticipant && (
+            <p className="joined">- Ya estas apuntado en este evento. -</p>
+          )}
         </section>
 
         {!isCreator && !isParticipant && (
@@ -238,10 +241,6 @@ function EventDetails({ event, onClose, setSelectedEvent, onEventDeleted }) {
               </button>
             )}
           </div>
-        )}
-
-        {isParticipant && (
-          <p className="joined">- Ya estas apuntado en este evento. -</p>
         )}
 
         {isCreator && (
