@@ -180,7 +180,7 @@ function FavoriteTags({ user }) {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        }
+        },
       );
       if (!response.ok) {
         throw new Error("Error al eliminar tag");
