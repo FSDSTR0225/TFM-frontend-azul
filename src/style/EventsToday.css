@@ -31,7 +31,8 @@
   position: relative;
   z-index: 2;
   max-width: 650px;
-  min-width: 400px;
+  min-width: min(400px, 100%);
+  width: 100%;
   margin: 0;
   padding: 1.7rem 1.7rem 2.1rem 1.7rem;
   border-radius: 22px;
@@ -42,7 +43,9 @@
   );
   border: 2.5px solid #00f0ff44;
   backdrop-filter: blur(22px) saturate(120%);
-  box-shadow: 0 6px 40px #00f0ff33, 0 2px 12px #000a;
+  box-shadow:
+    0 6px 40px #00f0ff33,
+    0 2px 12px #000a;
   color: #fff;
   text-align: left;
   font-family: "Audiowide", "Orbitron", "Montserrat", sans-serif;
@@ -50,14 +53,17 @@
   letter-spacing: 0.3px;
   overflow: hidden;
   animation: pulse-shine 2.5s infinite cubic-bezier(0.68, -0.55, 0.27, 1.55);
-  transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55),
+  transition:
+    transform 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55),
     box-shadow 0.3s;
   margin-top: 2rem;
 }
 
 .events-today-card:hover {
   transform: scale(1.045) translateY(-2px);
-  box-shadow: 0 0 60px #00f0ff77, 0 2px 24px #000c;
+  box-shadow:
+    0 0 60px #00f0ff77,
+    0 2px 24px #000c;
 }
 
 /* Plataforma arriba a la derecha */
@@ -99,7 +105,9 @@
   font-weight: bold;
   text-align: left;
   letter-spacing: 1.2px;
-  text-shadow: 0 0 12px #00f0ff99, 0 0 2px #fff;
+  text-shadow:
+    0 0 12px #00f0ff99,
+    0 0 2px #fff;
 }
 
 .events-title-card-lobby {
@@ -171,7 +179,9 @@
   color: #66fcf1;
   font-size: 1.3rem;
   font-family: "Audiowide", cursive;
-  text-shadow: 0 0 10px #00ffff88, 0 0 4px #181a2a;
+  text-shadow:
+    0 0 10px #00ffff88,
+    0 0 4px #181a2a;
   animation: pulseGlow 1.5s infinite alternate;
   letter-spacing: 1px;
   text-align: center;
@@ -179,19 +189,33 @@
 
 @keyframes pulseGlow {
   0% {
-    text-shadow: 0 0 10px #00ffff88, 0 0 4px #181a2a;
+    text-shadow:
+      0 0 10px #00ffff88,
+      0 0 4px #181a2a;
     opacity: 0.7;
   }
   100% {
-    text-shadow: 0 0 24px #00ffffcc, 0 0 8px #181a2a;
+    text-shadow:
+      0 0 24px #00ffffcc,
+      0 0 8px #181a2a;
     opacity: 1;
   }
 }
 
 /* Responsive */
+
+@media (max-width: 900px) {
+  .events-today-row {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+
 @media (max-width: 600px) {
   .events-today-card {
     max-width: 98vw;
+    width: 100%;
+    min-width: 0;
     padding: 1.1rem 0.7rem 1.1rem 0.7rem;
     font-size: 1rem;
     border-radius: 14px;

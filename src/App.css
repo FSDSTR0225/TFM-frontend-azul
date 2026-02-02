@@ -28,6 +28,20 @@ body {
     radial-gradient(circle at 50% 80%, rgba(0, 255, 200, 0.05), transparent 30%),
     #0a0a1a; */
 
+img,
+video,
+canvas,
+svg {
+  max-width: 100%;
+  height: auto;
+}
+
+input,
+select,
+textarea {
+  max-width: 100%;
+}
+
 main {
   min-height: 100%;
   height: auto;
@@ -79,21 +93,29 @@ h3,
 
 @keyframes neon-glow {
   0% {
-    box-shadow: 0 0 8px #00ffc8cc, 0 0 2px #66fcf1cc inset;
+    box-shadow:
+      0 0 8px #00ffc8cc,
+      0 0 2px #66fcf1cc inset;
     filter: brightness(1) saturate(1);
   }
   100% {
-    box-shadow: 0 0 18px #00ffc8cc, 0 0 6px #66fcf1cc inset;
+    box-shadow:
+      0 0 18px #00ffc8cc,
+      0 0 6px #66fcf1cc inset;
     filter: brightness(1.08) saturate(1.12);
   }
 }
 @keyframes neon-glow-fast {
   0% {
-    box-shadow: 0 0 18px #00ffc8cc, 0 0 6px #66fcf1cc inset;
+    box-shadow:
+      0 0 18px #00ffc8cc,
+      0 0 6px #66fcf1cc inset;
     filter: brightness(1.1) saturate(1.2);
   }
   100% {
-    box-shadow: 0 0 32px #00ffc8cc, 0 0 12px #66fcf1cc inset;
+    box-shadow:
+      0 0 32px #00ffc8cc,
+      0 0 12px #66fcf1cc inset;
     filter: brightness(1.18) saturate(1.25);
   }
 }
@@ -103,7 +125,8 @@ h3,
   inset: 0;
   z-index: 9999;
   /* background: url("/images/prueba12.jpg"); */
-  background-image: url("/images/prueba12.jpg"),
+  background-image:
+    url("/images/prueba12.jpg"),
     linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8));
   background-blend-mode: overlay;
   background-size: cover;
@@ -142,8 +165,12 @@ h3,
   backdrop-filter: blur(10px) saturate(120%) !important;
   color: #fff !important;
   font-family: "Audiowide", "Orbitron", "Montserrat", sans-serif !important;
-  box-shadow: 0 0 18px #00f0ff55, 0 2px 8px #000a !important;
-  text-shadow: 0 0 6px #00f0ff99, 0 0 2px #fff !important;
+  box-shadow:
+    0 0 18px #00f0ff55,
+    0 2px 8px #000a !important;
+  text-shadow:
+    0 0 6px #00f0ff99,
+    0 0 2px #fff !important;
   padding: 1.1rem 1.5rem 1.1rem 2.5rem !important;
   border-radius: 14px !important;
   position: relative !important;

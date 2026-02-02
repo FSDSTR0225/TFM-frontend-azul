@@ -1,5 +1,5 @@
 .calendar-card {
-  min-width: 320px;
+  min-width: min(320px, 100%);
   max-width: 420px;
   width: 100%;
 }
@@ -41,7 +41,9 @@
   background: #55e39e !important;
   color: #181a2a !important;
   border-radius: 50%;
-  box-shadow: 0 0 12px #ffd70088, 0 0 2px #070707;
+  box-shadow:
+    0 0 12px #ffd70088,
+    0 0 2px #070707;
   font-weight: bold;
 }
 
@@ -75,7 +77,9 @@
   margin: 0 4px;
   padding: 6px 10px;
   border-radius: 8px;
-  transition: background 0.2s, color 0.2s;
+  transition:
+    background 0.2s,
+    color 0.2s;
   font-family: "Audiowide", "Poppins", sans-serif;
   cursor: pointer;
 }
@@ -101,7 +105,10 @@
   color: #fff;
   border: none;
   border-radius: 50%;
-  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  transition:
+    background 0.2s,
+    color 0.2s,
+    box-shadow 0.2s;
   font-size: 0.8rem;
   position: relative;
   z-index: 1;
@@ -128,7 +135,9 @@
   border-radius: 50%;
   transform: scale(0.88);
   position: relative;
-  box-shadow: 0 0 12px #ffd70088, 0 0 2px #070707;
+  box-shadow:
+    0 0 12px #ffd70088,
+    0 0 2px #070707;
   font-weight: bold;
 }
 
