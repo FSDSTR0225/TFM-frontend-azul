@@ -2,7 +2,7 @@
   width: 15vw;
   height: 100vh;
   min-width: 180px;
-  background-color: #140a3e;
+  background-color: rgba(10, 10, 30, 0.882);
   border-right: 2px solid #66fcf1;
   padding: 1rem;
   box-sizing: border-box;
