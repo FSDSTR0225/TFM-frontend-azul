@@ -19,7 +19,7 @@ function NoEventSuggested() {
       <div className="placeholder-actions">
         <button
           className="btn-preferences"
-          onClick={() => navigate("/profile/preferences")}
+          onClick={() => navigate("/profile/settings")}
         >
           🎯 Ajustar preferencias
         </button>
