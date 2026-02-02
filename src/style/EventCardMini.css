@@ -1,15 +1,25 @@
 .event-card-mini {
   background: none;
+  background-color: transparent;
   border: none;
   cursor: pointer;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  outline: none;
+  box-shadow: none;
+  -webkit-tap-highlight-color: transparent;
 }
-.event-card-mini:hover {
+.event-card-mini:hover,
+.event-card-mini:focus,
+.event-card-mini:focus-visible,
+.event-card-mini:active {
   background: none;
+  background-color: transparent;
   border: none;
+  outline: none;
+  box-shadow: none;
 }
 
 .mini-event-card {
