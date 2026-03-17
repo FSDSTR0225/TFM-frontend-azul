@@ -1,0 +1,7 @@
+@media (max-width: 600px) {
+  .notification-dropdown {
+    width: calc(100vw - 32px); /* ocupa casi toda la pantalla */
+    right: 0;
+    left: auto;
+  }
+}

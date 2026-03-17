@@ -1,4 +1,3 @@
-/* Container de las tarjetas */
 .players-list {
   display: flex;
   flex-wrap: wrap;
@@ -17,7 +16,6 @@
   align-items: center;
 }
 
-/* Botones */
 .player-actions {
   display: flex;
   justify-content: space-between;
@@ -27,7 +25,7 @@
 }
 
 .player-button {
-  flex: 1; /* Cada botón ocupa el mismo espacio */
+  flex: 1;
   text-align: center;
   font-family: "Audiowide", sans-serif;
   font-size: 0.8rem;
@@ -38,8 +36,10 @@
   border-radius: 10px;
   font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.2s ease, transform 0.2s ease;
-  min-width: 100px; /* Puedes quitar esto si prefieres que se adapten al contenedor */
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
+  min-width: 100px;
   text-decoration: none;
 }
 
@@ -56,7 +56,7 @@
   border-radius: 20px;
   padding: 20px;
   width: 280px;
-  height: 360px; /* 📏 Altura fija para uniformidad */
+  height: 360px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -85,9 +85,9 @@
 /* Nombre */
 .username-mock-list {
   color: #00f0ff;
-  text-overflow: ellipsis; /* Añade los puntos supensivos*/
-  white-space: nowrap; /* Evista qeu salte de linea si es largo*/
-  overflow: hidden; /* Oculta lo que sobrepasa el ancho*/
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
   font-size: 1.3rem;
   margin: 5px 0;
   font-weight: 600;
@@ -99,11 +99,11 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 8px;
-  min-height: 48px; /* 📏 Espacio reservado aunque esté vacío */
+  min-height: 48px;
   max-height: 80px;
   overflow: hidden;
   margin-bottom: 16px;
-  margin-top: 1.5rem; /* Espacio entre el nombre y los juegos */
+  margin-top: 1.5rem;
 }
 
 .game-tag {
@@ -114,9 +114,9 @@
   font-size: 0.75rem;
   color: #e0e0e0;
   white-space: wrap;
-  text-overflow: ellipsis; /* Añade los puntos supensivos*/
-  white-space: nowrap; /* Evista qeu salte de linea si es largo*/
-  overflow: hidden; /* Oculta lo que sobrepasa el ancho*/
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 /* Botones */
@@ -140,7 +140,7 @@
 }
 
 .player-button-connect {
-  flex: 1; /* Cada botón ocupa el mismo espacio */
+  flex: 1;
   text-align: center;
   font-family: "Audiowide", sans-serif;
   font-size: 0.8rem;
@@ -151,9 +151,33 @@
   border-radius: 10px;
   font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.2s ease, transform 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
 }
 
 .player-button:hover {
   background-color: #065e6f;
+}
+
+@media (max-width: 600px) {
+  .players-list {
+    gap: 12px;
+    padding: 12px;
+  }
+
+  .player-card {
+    width: min(280px, 90vw);
+    height: auto;
+    min-height: 320px;
+  }
+
+  .player-avatar {
+    width: 64px;
+    height: 64px;
+  }
+
+  .username-mock-list {
+    font-size: 1.1rem;
+  }
 }

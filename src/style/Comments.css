@@ -100,7 +100,9 @@
   font-size: 0.9rem;
   padding: 4px 8px;
   border-radius: 6px;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
   box-shadow: 0 0 8px transparent;
 }
 
@@ -174,4 +176,29 @@
 .comment-form button:hover {
   background: linear-gradient(90deg, #66fcf1, #00fff7);
   box-shadow: 0 0 25px #66fcf1cc;
+}
+
+@media (max-width: 600px) {
+  .comments {
+    padding: 1rem;
+    margin: 1rem 0.5rem;
+  }
+
+  .comments h4 {
+    font-size: 1.2rem;
+  }
+
+  .comment-content {
+    padding: 8px 12px;
+  }
+
+  .comment-avatar {
+    width: 36px;
+    height: 36px;
+  }
+
+  .comment-form button {
+    align-self: stretch;
+    font-size: 1rem;
+  }
 }

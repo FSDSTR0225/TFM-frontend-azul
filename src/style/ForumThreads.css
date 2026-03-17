@@ -2,11 +2,8 @@
   padding: 2rem;
   width: 100%;
   margin: 0 auto;
-  background-color: radial-gradient(
-      ellipse at 20% 25%,
-      #0f1740 0%,
-      transparent 50%
-    ),
+  background-color:
+    radial-gradient(ellipse at 20% 25%, #0f1740 0%, transparent 50%),
     radial-gradient(ellipse at 60% 70%, #1a0e33 0%, transparent 45%),
     radial-gradient(
       ellipse at 50% 85%,
@@ -58,4 +55,19 @@
   margin-bottom: 10px;
   border-bottom: 1px solid #444;
   padding-bottom: 5px;
+}
+
+@media (max-width: 600px) {
+  .forum-container {
+    padding: 1rem;
+  }
+
+  .tab-button {
+    padding: 8px 14px;
+    font-size: 0.9rem;
+  }
+
+  .create-thread-section {
+    padding: 12px;
+  }
 }

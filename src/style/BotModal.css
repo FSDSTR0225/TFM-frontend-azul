@@ -67,3 +67,25 @@
   border-top: 15px solid #0ff;
   margin-right: 15px;
 }
+
+@media (max-width: 600px) {
+  .chatbot-container {
+    right: 8px;
+    left: 8px;
+    bottom: 80px;
+    align-items: stretch;
+  }
+
+  .bot-card-content {
+    width: 100%;
+    padding: 12px;
+  }
+
+  .chatbot-window {
+    max-height: 200px;
+  }
+
+  .bubble-tail {
+    margin-right: 20px;
+  }
+}
