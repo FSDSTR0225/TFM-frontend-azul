@@ -295,3 +295,18 @@ input:-webkit-autofill:focus {
     font-size: 0.8rem;
   }
 }
+
+@media screen and (max-width: 768px) {
+  .auth-container {
+    position: relative !important;
+    height: auto !important;
+    min-height: 100svh;
+    overflow-y: auto !important;
+  }
+
+  .auth-form {
+    height: auto !important;
+    overflow: visible !important;
+    flex: 0 0 auto;
+  }
+}
